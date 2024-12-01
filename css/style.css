@@ -4,3 +4,14 @@
 .carousel-control-prev-icon, .carousel-control-next-icon {
     filter: invert(35%) sepia(100%) saturate(500%) hue-rotate(330deg);
 }
+
+/*
+* Dimensioni immagini dei caroselli
+*/
+.carousel-item img {
+    width: 100%;
+    aspect-ratio: 6 / 9;
+    object-fit: contain;
+    max-height: 60vh;
+    height: auto;
+}
