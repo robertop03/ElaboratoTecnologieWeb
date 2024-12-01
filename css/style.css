@@ -15,3 +15,32 @@
     max-height: 60vh;
     height: auto;
 }
+
+/*
+* Footer
+*/
+.custom-footer {
+    background-color: #4b0d17; /* Colore simile a quello dello screenshot */
+}
+
+.custom-footer > h5 {
+    font-weight: bold;
+}
+
+.custom-footer > p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.custom-footer > i {
+    color: white;
+}
+
+.logo-footer {
+    max-width: 70px;
+    border-radius: 15px; /* Arrotondamento minimo */
+}
+
+.d-flex.align-items-center > i {
+    min-width: 50px; /* Assicura uno spazio fisso tra icona e testo */
+}
