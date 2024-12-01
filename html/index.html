@@ -54,7 +54,7 @@
     </div>
     <!-- END CAROUSEL BEST SELLER PRODUCTS -->
 
-    <hr class="border-dark">
+    <hr class="styled-divider my-4">
 
     <!-- CAROUSEL EVENTS -->
     <div class="carousel slide" id="carouselEvents" data-bs-wrap="true">
@@ -62,24 +62,12 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="../resources/img/evento1.png" alt="Natale" class="d-block w-70 h-50">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Title Slide 0</h5>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error hic adipisci esse id nulla dolorem, officiis nesciunt magnam iure pariatur quaerat tempore consequatur consectetur ab possimus assumenda maiores, corporis officia.</p>
-                </div>
             </div>
             <div class="carousel-item">
                 <img src="../resources/img/evento2.png" alt="Black Friday" class="d-block w-70 h-50">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Title Slide 1</h5>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error hic adipisci esse id nulla dolorem, officiis nesciunt magnam iure pariatur quaerat tempore consequatur consectetur ab possimus assumenda maiores, corporis officia.</p>
-                </div>
             </div>
             <div class="carousel-item">
                 <img src="../resources/img/evento3.png" alt="Capodanno" class="d-block w-70 h-50">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Title Slide 0</h5>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error hic adipisci esse id nulla dolorem, officiis nesciunt magnam iure pariatur quaerat tempore consequatur consectetur ab possimus assumenda maiores, corporis officia.</p>
-                </div>
             </div>
         </div>
 
@@ -101,8 +89,47 @@
     </div>
     <!-- END CAROUSEL EVENTS -->
 
-    <hr class="border-dark">
+    <hr class="styled-divider my-4">
 
+    <!-- ASIDE -->
+    <aside class="p-4">
+        <div class="container">
+            <h3 class="fw-bold">Dove siamo?</h3>
+            <div class="row align-items-center mb-4">
+                <div class="col-md-6">
+                    <a href="https://maps.app.goo.gl/qrVCVyX85zjw7Xta6" target="_blank">
+                        <img src="../resources/img/maps.png" alt="Mappa Cesena" class="img-fluid rounded shadow">
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <p>Ci troviamo a Cesena, a 10 minuti dall'Ippodromo e a pochi minuti dall'ospedale Bufalini.</p>
+                </div>
+            </div>
+            <hr class="my-4" >
+            <h3 class="fw-bold">Newsletter</h3>
+            <p>Rimani aggiornato sui nuovi arrivi e sui prossimi eventi!</p>
+            <form>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Indirizzo Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email" required>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="newArrivals">
+                    <label class="form-check-label" for="newArrivals">
+                        Voglio ricevere notizie riguardo ai nuovi arrivi
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="events">
+                    <label class="form-check-label" for="events">
+                        Voglio ricevere notizie riguardo ai nuovi eventi
+                    </label>
+                </div>
+                <button type="submit" class="btn mt-3 px-5 py-2">Invia</button>
+            </form>
+        </div>
+    </aside>    
+    <!-- END ASIDE -->
 
     <!-- FOOTER -->
     <footer class="text-white py-4 custom-footer">
