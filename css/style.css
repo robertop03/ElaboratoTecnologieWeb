@@ -1,0 +1,114 @@
+/* Layout generale */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Struttura principale con CSS Grid */
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* 3 parti caroselli, 1 parte aside */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Configurazione aside */
+aside {
+    background-color: #f8f9fa;
+    padding: 1rem;
+}
+
+/* Configurazione caroselli */
+.content-main {
+    background-color: #fff;
+}
+
+/* Immagini carosello */
+.carousel-item img {
+    width: 100%;
+    aspect-ratio: 6 / 9;
+    object-fit: contain;
+    max-height: 60vh;
+}
+
+/* Frecce dei caroselli */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #54072a; /* Colore dello sfondo delle frecce */
+    border-radius: 50%; /* Opzionale: per un effetto più armonioso */
+    width: 3rem; /* Regolabile per dimensione */
+    height: 3rem;
+}
+
+/* Personalizzazione avanzata delle frecce */
+.carousel-control-prev-icon::before,
+.carousel-control-next-icon::before {
+    color: #fff; /* Colore della freccia */
+    font-size: 2rem; /* Adatta la dimensione */
+}
+
+/* Divisori */
+hr.styled-divider {
+    border: 1px solid #54072a;
+    opacity: 1; /* Rimuove trasparenza */
+    margin: 2rem 0; /* Spaziatura sopra e sotto */
+}
+
+/* Footer */
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #54072a;
+    color: white;
+    padding: 20px;
+    gap: 20px;
+}
+
+footer .row {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+footer .col-md-4 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+footer img {
+    width: 5%;
+}
+
+/* Media query per layout responsive */
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr; /* Una sola colonna */
+    }
+
+    /* Caroselli occupano tutta la larghezza */
+    .content-main {
+        grid-column: 1 / -1; /* Caroselli occupano tutta la larghezza */
+    }
+
+    /* L'aside si sposta sotto i caroselli */
+    aside {
+        grid-column: 1 / -1; /* L'aside occupa tutta la larghezza */
+    }
+}
+
+@media (min-width: 769px) {
+    .content-wrapper {
+        grid-template-columns: 3fr 1fr; /* 3 parti caroselli, 1 parte aside */
+    }
+
+    .content-main {
+        grid-column: 1 / 2; /* Caroselli nella prima colonna */
+    }
+
+    aside {
+        grid-column: 2 / 3; /* L'aside nella seconda colonna */
+    }
+}
