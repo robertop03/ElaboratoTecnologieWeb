@@ -294,3 +294,95 @@ footer p {
         grid-column: 2 / 3; /* L'aside nella seconda colonna */
     }
 }
+/* Layout per desktop */
+@media (min-width: 992px) {
+    /* Navbar */
+    .navbar {
+        background-color: #54072a;
+        padding: 20px 30px; /* Più spazio su desktop */
+    }
+
+    .navbar img.mx-auto {
+        height: 80px !important; /* Logo più grande */
+    }
+
+    .search-bar {
+        background-color: white; /* Sfondo bianco */
+        border-radius: 20px;
+        height: 50px; /* Più alta */
+        width: 50%; /* Occupa metà dello schermo */
+        margin: 0 auto; /* Centrare */
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input {
+        color: #54072a; /* Testo in bordeaux */
+        font-size: 16px;
+    }
+
+    /* Menu categorie orizzontale */
+    .navbar-categories {
+        display: flex;
+        justify-content: center;
+        background-color: #f5e7e7;
+        padding: 10px 0;
+        gap: 30px;
+    }
+
+    .navbar-categories a {
+        color: #54072a;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .navbar-categories a:hover {
+        color: #75093a;
+    }
+
+    /* Form di registrazione centrato */
+    .register-form {
+        max-width: 700px; /* Form più ampio */
+        padding: 40px;
+        margin: 40px auto;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .register-form h1 {
+        font-size: 2rem; /* Titolo più grande */
+        text-align: center;
+        color: #54072a;
+    }
+
+    /* Footer più compatto */
+    footer {
+        padding: 20px 40px; /* Più spazio orizzontale */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    footer .row {
+        flex-direction: row; /* Disposizione orizzontale */
+        justify-content: space-around;
+    }
+
+    footer .col-md-4 {
+        max-width: 300px; /* Riduce larghezza delle colonne */
+        padding: 0 10px;
+    }
+
+    footer h5 {
+        font-size: 1.1rem;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+}
+
