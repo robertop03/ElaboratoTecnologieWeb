@@ -18,6 +18,13 @@ aside {
     padding: 1rem;
 }
 
+/* Dimensione logo navbar */
+.navbar img.mx-auto {
+    height: 60px !important;
+    width: auto !important;
+}
+
+
 /* Configurazione caroselli */
 .content-main {
     background-color: #fff;
@@ -53,6 +60,135 @@ hr.styled-divider {
     opacity: 1; /* Rimuove trasparenza */
     margin: 2rem 0; /* Spaziatura sopra e sotto */
 }
+/* Barra di ricerca */
+.search-bar {
+    background-color: #54072a; /* Colore sfondo (bordeaux) */
+    height: 40px; /* Altezza */
+    padding: 0 15px; /* Spaziatura interna */
+    display: flex; /* Allineamento flessibile */
+    align-items: center; /* Allinea verticalmente il contenuto */
+    width: 100%; /* Occupa l'intera larghezza */
+    border-radius: 5px; /* Bordo leggermente arrotondato */
+}
+
+/* Icona della lente */
+.search-bar img {
+    height: 20px; /* Altezza dell'icona */
+}
+
+/* Testo e input */
+.search-bar label {
+    color: white; /* Testo bianco */
+    font-weight: normal; /* Stile testo */
+    margin-right: 10px; /* Spazio tra label e input */
+}
+
+.search-bar input {
+    background-color: transparent; /* Sfondo trasparente */
+    color: white; /* Testo bianco */
+    border: none; /* Rimuove bordi */
+    outline: none; /* Rimuove bordi focus */
+    flex-grow: 1; /* L'input occupa tutto lo spazio disponibile */
+}
+
+/* Placeholder */
+.search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.8); /* Placeholder bianco trasparente */
+}
+
+/* Form di registrazione */
+.register-form {
+    max-width: 500px;
+    margin: 0 auto; /* Centrare il form */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.register-form h1 {
+    font-size: 1.8rem; /* Dimensione del titolo */
+    font-weight: bold;
+    color: #000;
+}
+
+.register-form .form-label {
+    font-weight: bold;
+    color: #000;
+}
+
+.register-form .form-control {
+    border-radius: 8px;
+    box-shadow: none; /* Rimuove ombra dagli input */
+}
+
+.register-form .form-control:focus {
+    border-color: #800020; /* Colore focus bordeaux */
+    box-shadow: 0 0 0 0.2rem rgba(128, 0, 32, 0.25); /* Ombra focus */
+}
+
+.register-form .btn-dark {
+    background-color: #000; /* Colore sfondo bottone */
+    color: #fff; /* Colore testo bottone */
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+.register-form .btn-dark:hover {
+    background-color: #333; /* Colore al passaggio del mouse */
+}
+
+/* Icone toggle password */
+.input-group .form-control {
+    border-radius: 8px; /* Arrotondamento coerente */
+    height: 40px; /* Altezza coerente con il bottone */
+}
+
+.input-group .toggle-password {
+    display: flex; /* Per allineare verticalmente l'icona */
+    align-items: center; /* Centrare l'icona verticalmente */
+    justify-content: center; /* Centrare l'icona orizzontalmente */
+    height: 40px; /* Altezza coerente con l'input */
+    width: 45px; /* Larghezza del bottone */
+    padding: 0; /* Rimuove padding extra */
+    border-radius: 8px; /* Arrotondamento coerente */
+}
+
+.input-group .toggle-password i {
+    font-size: 1.2rem; /* Dimensione dell'icona */
+    color: #000; /* Colore dell'icona */
+}
+
+.input-group .toggle-password:hover {
+    color: #800020; /* Colore al passaggio del mouse */
+}
+
+/* Checkbox */
+.form-check-label {
+    color: #000;
+}
+
+/* Evidenziare campi obbligatori */
+.text-danger {
+    font-size: 0.9rem;
+    margin-left: 4px;
+}
+form.register-form .form-control {
+    margin-bottom: 1.5rem;
+}
+
+/* Mappa */
+.container img {
+    border-radius: 10px; /* Arrotonda gli angoli */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra leggera */
+    transition: transform 0.2s; /* Effetto al passaggio del mouse */
+}
+
+.container img:hover {
+    transform: scale(1.02); /* Leggero ingrandimento al passaggio del mouse */
+}
 
 /* Footer */
 footer {
@@ -61,26 +197,41 @@ footer {
     align-items: center;
     background-color: #54072a;
     color: white;
-    padding: 20px;
-    gap: 20px;
+    padding: 10px 15px; /* Ridotto il padding */
+    font-size: 0.9rem; /* Testo più piccolo */
+    line-height: 1.4; /* Ridotta l'altezza delle righe */
 }
 
 footer .row {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    gap: 10px; /* Ridotto lo spazio tra le colonne */
 }
 
 footer .col-md-4 {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column; /* Modificato da "row" per risparmiare spazio */
+    align-items: flex-start; /* Allinea i contenuti a sinistra */
+    gap: 5px; /* Ridotto lo spazio tra titolo e descrizione */
 }
 
 footer img {
-    width: 5%;
+    width: 4%; /* Ridotta la dimensione del logo */
+    margin-bottom: 5px; /* Spaziatura inferiore ridotta */
 }
+
+footer h5 {
+    font-size: 1rem; /* Titoli più piccoli */
+    font-weight: bold;
+    margin-bottom: 5px; /* Ridotto spazio sotto i titoli */
+}
+
+footer p {
+    font-size: 0.8rem; /* Testo descrittivo più piccolo */
+    margin: 0; /* Rimosso il margine aggiuntivo */
+}
+
 
 /* Media query per layout responsive */
 @media (max-width: 768px) {
