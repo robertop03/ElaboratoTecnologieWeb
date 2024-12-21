@@ -12,10 +12,41 @@ body {
     padding: 20px;
 }
 
+/* Configurazione menu */
+.offcanvas .list-group-item {
+    border: none; /* Nessun bordo */
+}
+
+/* Aggiunge un'eventuale personalizzazione per il testo */
+.offcanvas .list-group-item a {
+    text-decoration: none; /* Rimuove la sottolineatura */
+    color: inherit; /* Usa il colore predefinito */
+}
+
+.offcanvas .list-group-item a:hover {
+    color: #54072a; /* Cambia colore al passaggio del mouse (opzionale) */
+}
+
 /* Configurazione aside */
 aside {
     background-color: #f8f9fa;
     padding: 1rem;
+}
+
+aside .btn {
+    background-color: #54072a; /* Colore di sfondo */
+    color: white; /* Colore del testo */
+    border: none; /* Rimuove il bordo */
+    border-radius: 8px; /* Angoli smussati */
+    padding: 10px 20px; /* Spaziatura interna */
+    font-size: 16px; /* Dimensione del testo */
+    cursor: pointer; /* Cambia il cursore su hover */
+    transition: background-color 0.3s ease; /* Effetto di transizione */
+}
+
+aside .btn:hover {
+    background-color: #75093a; /* Colore più scuro al passaggio del mouse */
+    color: white;
 }
 
 /* Dimensione logo navbar */
