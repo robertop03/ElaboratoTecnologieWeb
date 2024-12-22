@@ -4,6 +4,10 @@ body {
     font-family: Arial, sans-serif;
 }
 
+i{
+    font-size: 30px;
+}
+
 /* Struttura principale con CSS Grid */
 .content-wrapper {
     display: grid;
@@ -125,6 +129,11 @@ hr.styled-divider {
 /* Placeholder */
 .search-bar input::placeholder {
     color: rgba(255, 255, 255, 0.8); /* Placeholder bianco trasparente */
+}
+
+.container-fluid .search-bar > .bi-search{
+    color: #fff;
+    font-size: 20px;
 }
 
 /* Form di registrazione */
@@ -263,126 +272,133 @@ footer p {
     margin: 0; /* Rimosso il margine aggiuntivo */
 }
 
-
-/* Media query per layout responsive */
-@media (max-width: 768px) {
-    .content-wrapper {
-        grid-template-columns: 1fr; /* Una sola colonna */
-    }
-
-    /* Caroselli occupano tutta la larghezza */
-    .content-main {
-        grid-column: 1 / -1; /* Caroselli occupano tutta la larghezza */
-    }
-
-    /* L'aside si sposta sotto i caroselli */
-    aside {
-        grid-column: 1 / -1; /* L'aside occupa tutta la larghezza */
-    }
-}
-
+/* Media query per index */
 @media (min-width: 769px) {
     .content-wrapper {
         grid-template-columns: 3fr 1fr; /* 3 parti caroselli, 1 parte aside */
     }
-
     .content-main {
         grid-column: 1 / 2; /* Caroselli nella prima colonna */
     }
-
     aside {
         grid-column: 2 / 3; /* L'aside nella seconda colonna */
     }
-}
-/* Layout per desktop */
-@media (min-width: 992px) {
-    /* Navbar */
-    .navbar {
-        background-color: #54072a;
-        padding: 20px 30px; /* Più spazio su desktop */
+    .hamburger-menu {
+        display: none;
     }
 
-    .navbar img.mx-auto {
-        height: 80px !important; /* Logo più grande */
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: transparent;
+        gap: 20px;
+    }
+
+    .nav-links a {
+        color: white;
+        padding: 0;
+    }
+
+    .nav-links a:hover {
+        background-color: transparent;
+        color: #FCECE4;
     }
 
     .search-bar {
-        background-color: white; /* Sfondo bianco */
-        border-radius: 20px;
-        height: 50px; /* Più alta */
-        width: 50%; /* Occupa metà dello schermo */
-        margin: 0 auto; /* Centrare */
         display: flex;
         align-items: center;
-        padding: 0 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-bar input {
-        color: #54072a; /* Testo in bordeaux */
-        font-size: 16px;
-    }
-
-    /* Menu categorie orizzontale */
-    .navbar-categories {
-        display: flex;
-        justify-content: center;
-        background-color: #f5e7e7;
-        padding: 10px 0;
-        gap: 30px;
-    }
-
-    .navbar-categories a {
-        color: #54072a;
-        text-decoration: none;
-        font-size: 1rem;
-        font-weight: bold;
-    }
-
-    .navbar-categories a:hover {
-        color: #75093a;
-    }
-
-    /* Form di registrazione centrato */
-    .register-form {
-        max-width: 700px; /* Form più ampio */
-        padding: 40px;
-        margin: 40px auto;
-        background-color: #fff;
-        border-radius: 15px;
-        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .register-form h1 {
-        font-size: 2rem; /* Titolo più grande */
-        text-align: center;
-        color: #54072a;
-    }
-
-    /* Footer più compatto */
-    footer {
-        padding: 20px 40px; /* Più spazio orizzontale */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    footer .row {
-        flex-direction: row; /* Disposizione orizzontale */
-        justify-content: space-around;
-    }
-
-    footer .col-md-4 {
-        max-width: 300px; /* Riduce larghezza delle colonne */
-        padding: 0 10px;
-    }
-
-    footer h5 {
-        font-size: 1.1rem;
-    }
-
-    footer p {
-        font-size: 0.9rem;
+        flex-grow: 1;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }
 
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr; /* Una sola colonna */
+    }
+}
+
+/* Barra di ricerca */
+
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    color: #800000; /* Testo Bordeaux */
+    flex-grow: 1;
+    outline: none;
+}
+
+/* Navbar Brand */
+.navbar-brand img {
+    height: 40px;
+}
+
+/* Icone */
+.d-flex img {
+    height: 30px;
+}
+
+/* Media query per navbar */
+@media (min-width: 768px) {
+    .navbar {
+        background-color: #54072a; /* Sfondo bordeaux */
+    }
+
+    .navbar .container-fluid {
+        display: flex;
+        align-items: center; /* Allinea tutto verticalmente */
+        justify-content: space-between; /* Distribuisce logo, barra e icone */
+    }
+
+    i{
+        color: white;
+    }
+
+    .container-fluid .search-bar > .bi-search{
+        color: #000;
+        font-size: 20px;
+    }
+
+    .d-flex.align-items-center > i{
+        font-size: 45px;
+        padding-left: 2px;
+    }
+
+    .nav-links a:hover {
+        text-decoration: underline; /* Sottolineatura al passaggio del mouse */
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 50px; /* Maggiore distanza tra le voci */
+    }
+
+    .nav-links a {
+        color: #fff;
+        padding: 0 35px 0 35px;
+        margin: 0 35px 0 35px;
+        text-decoration: none; /* Rimuove la sottolineatura */
+    }
+
+    .search-bar {
+        flex-grow: 1; /* Occupa lo spazio tra logo e icone */
+        max-width: 600px; /* Limita la larghezza */
+        margin: 0; /* Evita margini verticali */
+        background-color: #fff;
+    }
+
+    .search-bar input::placeholder{
+        color: #000;
+    }
+
+    .nav-links {
+        margin-top: 10px; /* Posiziona il menu sotto */
+    }
+
+    .navbar .container-fluid:first-child {
+        align-items: flex-end; /* Abbassa logo e icone rispetto alla barra di ricerca */
+    }
+}
