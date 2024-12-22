@@ -11,27 +11,41 @@
 </head>
 <body>
      <!-- NAVBAR -->
-     <nav class="navbar bg-light p-3">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-             <!-- Hamburger Menu (solo mobile) -->
-            <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
-                <img src="../resources/icons/menu.png" alt="Menu" class="mx-3" style="height: 30px;">
+     <nav class="navbar p-3">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <!-- Menu Hamburger -->
+            <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
+                <img src="../resources/icons/menu.png" alt="Menu" style="height: 30px;">
             </button>
-            <img src="../resources/img/logoWeb.png" alt="Logo" class="mx-auto" style="height: 40px;">
-            <div class="d-flex">
-                <img src="../resources/icons/empty-cart.png" alt="Carrello" class="me-3" style="height: 30px;">
-                <img src="../resources/icons/user.png" alt="Utente" style="height: 30px;">
+            <a href="#" class="navbar-brand mx-auto mx-md-0">
+                <img src="../resources/img/logoWeb.png" alt="Logo" style="height: 40px;">
+            </a>
+            <div class="d-flex align-items-center">
+                <i class="bi bi-cart"></i>
+                <i class="bi bi-person"></i>
             </div>
         </div>
-        <!-- Barra di ricerca -->
-        <div class="container-fluid mt-3 px-3">
-            <div class="search-bar d-flex align-items-center rounded">
-                <img src="../resources/icons/search.png" alt="Lente" class="me-3" style="height: 20px;">
-                <input type="text" id="search" class="form-control border-0 bg-transparent text-white" placeholder="Cerca" aria-label="Search">
+        <div class="container-fluid d-flex justify-content-center mt-3 mt-md-0">
+            <div class="search-bar d-flex align-items-center rounded px-3 w-100 w-md-50">
+                <i class="bi bi-search"></i>
+                <input type="text" id="search" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search">
+            </div>
         </div>
-    </div>
+    
+        <!-- Menu di navigazione (solo desktop) -->
+        <div class="container-fluid d-none d-md-flex justify-content-center mt-3">
+            <ul class="nav-links d-flex gap-3 list-unstyled">
+                <li><a href="#" class="text-white text-uppercase">Regione</a></li>
+                <li><a href="#" class="text-white text-uppercase">Rossi</a></li>
+                <li><a href="#" class="text-white text-uppercase">Bianchi</a></li>
+                <li><a href="#" class="text-white text-uppercase">Rosati</a></li>
+                <li><a href="#" class="text-white text-uppercase">Fermi</a></li>
+                <li><a href="#" class="text-white text-uppercase">Frizzanti</a></li>
+            </ul>
+        </div>
     </nav>
-    <!-- END NAVBAR -->
+    
+    
     <!-- OFFCANVAS MENU -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLaterale" aria-labelledby="menuLateraleLabel">
         <div class="offcanvas-header">
@@ -82,6 +96,7 @@
             </ul>
         </div>
     </div>
+    <!-- END OFFCANVAS MENU -->
     <!-- END OFFCANVAS MENU -->
     <!-- SEZIONE MAPPA E DESCRIZIONE -->
     <div class="container my-5">
