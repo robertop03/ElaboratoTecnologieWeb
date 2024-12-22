@@ -321,8 +321,6 @@ footer p {
 }
 
 /* Barra di ricerca */
-
-
 .search-bar input {
     border: none;
     background: transparent;
@@ -377,7 +375,6 @@ footer p {
     }
 
     .nav-links a {
-        color: #fff;
         padding: 0 35px 0 35px;
         margin: 0 35px 0 35px;
         text-decoration: none; /* Rimuove la sottolineatura */
@@ -400,5 +397,9 @@ footer p {
 
     .navbar .container-fluid:first-child {
         align-items: flex-end; /* Abbassa logo e icone rispetto alla barra di ricerca */
+    }
+
+    .container-fluid.d-none.d-md-flex{
+        background-color: #F9E4DA;
     }
 }
