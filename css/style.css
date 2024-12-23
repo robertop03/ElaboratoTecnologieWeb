@@ -345,8 +345,8 @@ nav.navbar .container-fluid .navbar-brand > img {
 
     .nav-links {
         display: flex;
+        flex-wrap: wrap;
         margin-top: 10px; /* Posiziona il menu sotto */
-        gap: 50px; /* Maggiore distanza tra le voci */
     }
 
     .nav-links a {
@@ -383,5 +383,19 @@ nav.navbar .container-fluid .navbar-brand > img {
     }
     p, ul > li {
         font-size: 1.25rem; /* Dimensione maggiore per desktop */
+    }
+}
+
+@media (min-width: 459px) and (max-width: 767px){
+    .nav-links a {
+        padding: 0 25px 0 25px;
+        margin: 0 25px 0 25px;
+    }
+}
+
+@media (min-width: 350px) and (max-width: 458px){
+    .nav-links a {
+        padding: 0 8px 0 8px;
+        margin: 0 8px 0 8px;
     }
 }
