@@ -53,13 +53,6 @@ aside .btn:hover {
     color: white;
 }
 
-/* Dimensione logo navbar */
-.navbar img.mx-auto {
-    height: 60px !important;
-    width: auto !important;
-}
-
-
 /* Configurazione caroselli */
 .content-main {
     background-color: #fff;
@@ -286,32 +279,6 @@ footer p {
     .hamburger-menu {
         display: none;
     }
-
-    .nav-links {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        background-color: transparent;
-        gap: 20px;
-    }
-
-    .nav-links a {
-        color: white;
-        padding: 0;
-    }
-
-    .nav-links a:hover {
-        background-color: transparent;
-        color: #FCECE4;
-    }
-
-    .search-bar {
-        display: flex;
-        align-items: center;
-        flex-grow: 1;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -329,14 +296,21 @@ footer p {
     outline: none;
 }
 
-/* Navbar Brand */
-.navbar-brand img {
-    height: 40px;
-}
-
 /* Icone */
 .d-flex img {
     height: 30px;
+}
+
+/* Logo */
+nav.navbar .container-fluid .navbar-brand > img {
+    height: 60px;
+}
+
+/* Mappa dove ci troviamo */
+.mappa-testo {
+    display: grid;
+    grid-template-columns: 1fr; /* Una sola colonna (mobile) */
+    gap: 20px; /* Spazio tra mappa e testo */
 }
 
 /* Media query per navbar */
@@ -366,11 +340,12 @@ footer p {
     }
 
     .nav-links a:hover {
-        text-decoration: underline; /* Sottolineatura al passaggio del mouse */
+        text-decoration: underline;
     }
 
     .nav-links {
         display: flex;
+        margin-top: 10px; /* Posiziona il menu sotto */
         gap: 50px; /* Maggiore distanza tra le voci */
     }
 
@@ -391,15 +366,22 @@ footer p {
         color: #000;
     }
 
-    .nav-links {
-        margin-top: 10px; /* Posiziona il menu sotto */
-    }
-
-    .navbar .container-fluid:first-child {
-        align-items: flex-end; /* Abbassa logo e icone rispetto alla barra di ricerca */
-    }
-
     .container-fluid.d-none.d-md-flex{
         background-color: #F9E4DA;
+    }
+}
+
+/* Media query per dove ci troviamo*/
+@media (min-width: 768px){
+    .mappa-testo {
+        grid-template-columns: 1fr 1fr; /* Due colonne uguali */
+        gap: 40px; /* Maggiore spazio tra mappa e testo */
+        align-items: start; /* Allinea verticalmente al top */
+    }
+    h1{
+        padding: 10px 0 10px 0;
+    }
+    p, ul > li {
+        font-size: 1.25rem; /* Dimensione maggiore per desktop */
     }
 }

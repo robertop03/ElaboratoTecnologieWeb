@@ -14,10 +14,10 @@
         <div class="container-fluid d-flex align-items-center justify-content-between">
             <!-- Menu Hamburger -->
             <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
-                <img src="../resources/icons/menu.png" alt="Menu" style="height: 30px;">
+                <i class="bi bi-list"></i>
             </button>
             <a href="#" class="navbar-brand mx-auto mx-md-0">
-                <img src="../resources/img/logoWeb.png" alt="Logo" style="height: 40px;">
+                <img src="../resources/img/logoWeb.png" alt="Logo">
             </a>
             <div class="d-flex align-items-center">
                 <i class="bi bi-cart"></i>
@@ -30,20 +30,18 @@
                 <input type="text" id="search" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search">
             </div>
         </div>
-    
-        <!-- Menu di navigazione (solo desktop) -->
-        <div class="container-fluid d-none d-md-flex justify-content-center mt-3">
-            <ul class="nav-links d-flex gap-3 list-unstyled">
-                <li><a href="#" class="text-dark text-uppercase">Regione</a></li>
-                <li><a href="#" class="text-dark text-uppercase">Rossi</a></li>
-                <li><a href="#" class="text-dark text-uppercase">Bianchi</a></li>
-                <li><a href="#" class="text-dark text-uppercase">Rosati</a></li>
-                <li><a href="#" class="text-dark text-uppercase">Fermi</a></li>
-                <li><a href="#" class="text-dark text-uppercase">Frizzanti</a></li>
-            </ul>
-        </div>
     </nav>
-    
+    <!-- Menu di navigazione (solo desktop) -->
+    <div class="container-fluid d-none d-md-flex justify-content-center border-bottom border-dark">
+        <ul class="nav-links d-flex gap-3 list-unstyled">
+            <li><a href="#" class="text-dark text-uppercase">Regione</a></li>
+            <li><a href="#" class="text-dark text-uppercase">Rossi</a></li>
+            <li><a href="#" class="text-dark text-uppercase">Bianchi</a></li>
+            <li><a href="#" class="text-dark text-uppercase">Rosati</a></li>
+            <li><a href="#" class="text-dark text-uppercase">Fermi</a></li>
+            <li><a href="#" class="text-dark text-uppercase">Frizzanti</a></li>
+        </ul>
+    </div>
     
     <!-- OFFCANVAS MENU -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLaterale" aria-labelledby="menuLateraleLabel">
@@ -96,13 +94,8 @@
         </div>
     </div>
     <!-- END OFFCANVAS MENU -->
-    
-
 
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores ducimus necessitatibus, exercitationem, similique natus, quidem tenetur modi repudiandae in atque veniam recusandae. Velit, consequuntur exercitationem? Ipsa natus velit odit iusto.</p>
-
-
-
 
      <!-- FOOTER -->
      <footer class="text-white py-4 custom-footer">
