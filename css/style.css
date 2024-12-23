@@ -1,531 +1,527 @@
 /* Layout generale */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
-i{
-    font-size: 30px;
+i {
+  font-size: 30px;
 }
 
 /* Struttura principale con CSS Grid */
 .content-wrapper {
-    display: grid;
-    grid-template-columns: 3fr 1fr; /* 3 parti caroselli, 1 parte aside */
-    gap: 20px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: 3fr 1fr; /* 3 parti caroselli, 1 parte aside */
+  gap: 20px;
+  padding: 20px;
 }
 
 /* Configurazione menu */
 .offcanvas .list-group-item {
-    border: none; /* Nessun bordo */
+  border: none; /* Nessun bordo */
 }
 
 /* Aggiunge un'eventuale personalizzazione per il testo */
 .offcanvas .list-group-item a {
-    text-decoration: none; /* Rimuove la sottolineatura */
-    color: inherit; /* Usa il colore predefinito */
+  text-decoration: none; /* Rimuove la sottolineatura */
+  color: inherit; /* Usa il colore predefinito */
 }
 
 .offcanvas .list-group-item a:hover {
-    color: #54072a; /* Cambia colore al passaggio del mouse (opzionale) */
+  color: #54072a; /* Cambia colore al passaggio del mouse (opzionale) */
 }
 
 /* Configurazione aside */
 aside {
-    background-color: #f8f9fa;
-    padding: 1rem;
+  background-color: #f8f9fa;
+  padding: 1rem;
 }
 
 aside .btn {
-    background-color: #54072a; /* Colore di sfondo */
-    color: white; /* Colore del testo */
-    border: none; /* Rimuove il bordo */
-    border-radius: 8px; /* Angoli smussati */
-    padding: 10px 20px; /* Spaziatura interna */
-    font-size: 16px; /* Dimensione del testo */
-    cursor: pointer; /* Cambia il cursore su hover */
-    transition: background-color 0.3s ease; /* Effetto di transizione */
+  background-color: #54072a; /* Colore di sfondo */
+  color: white; /* Colore del testo */
+  border: none; /* Rimuove il bordo */
+  border-radius: 8px; /* Angoli smussati */
+  padding: 10px 20px; /* Spaziatura interna */
+  font-size: 16px; /* Dimensione del testo */
+  cursor: pointer; /* Cambia il cursore su hover */
+  transition: background-color 0.3s ease; /* Effetto di transizione */
 }
 
 aside .btn:hover {
-    background-color: #75093a; /* Colore più scuro al passaggio del mouse */
-    color: white;
+  background-color: #75093a; /* Colore più scuro al passaggio del mouse */
+  color: white;
 }
 
 /* Configurazione caroselli */
 .content-main {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 /* Immagini carosello */
 .carousel-item img {
-    width: 100%;
-    aspect-ratio: 6 / 9;
-    object-fit: contain;
-    max-height: 60vh;
+  width: 100%;
+  aspect-ratio: 6 / 9;
+  object-fit: contain;
+  max-height: 60vh;
 }
 
 /* Frecce dei caroselli */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: #54072a; /* Colore dello sfondo delle frecce */
-    border-radius: 50%; /* Opzionale: per un effetto più armonioso */
-    width: 3rem; /* Regolabile per dimensione */
-    height: 3rem;
+  background-color: #54072a; /* Colore dello sfondo delle frecce */
+  border-radius: 50%; /* Opzionale: per un effetto più armonioso */
+  width: 3rem; /* Regolabile per dimensione */
+  height: 3rem;
 }
 
 /* Personalizzazione avanzata delle frecce */
 .carousel-control-prev-icon::before,
 .carousel-control-next-icon::before {
-    color: #fff; /* Colore della freccia */
-    font-size: 2rem; /* Adatta la dimensione */
+  color: #fff; /* Colore della freccia */
+  font-size: 2rem; /* Adatta la dimensione */
 }
 
 /* Divisori */
 hr.styled-divider {
-    border: 1px solid #54072a;
-    opacity: 1; /* Rimuove trasparenza */
-    margin: 2rem 0; /* Spaziatura sopra e sotto */
+  border: 1px solid #54072a;
+  opacity: 1; /* Rimuove trasparenza */
+  margin: 2rem 0; /* Spaziatura sopra e sotto */
 }
 /* Barra di ricerca */
 .search-bar {
-    background-color: #54072a; /* Colore sfondo (bordeaux) */
-    height: 40px; /* Altezza */
-    padding: 0 15px; /* Spaziatura interna */
-    display: flex; /* Allineamento flessibile */
-    align-items: center; /* Allinea verticalmente il contenuto */
-    width: 100%; /* Occupa l'intera larghezza */
-    border-radius: 5px; /* Bordo leggermente arrotondato */
+  background-color: #54072a; /* Colore sfondo (bordeaux) */
+  height: 40px; /* Altezza */
+  padding: 0 15px; /* Spaziatura interna */
+  display: flex; /* Allineamento flessibile */
+  align-items: center; /* Allinea verticalmente il contenuto */
+  width: 100%; /* Occupa l'intera larghezza */
+  border-radius: 5px; /* Bordo leggermente arrotondato */
 }
 
 /* Icona della lente */
 .search-bar img {
-    height: 20px; /* Altezza dell'icona */
+  height: 20px; /* Altezza dell'icona */
 }
 
 /* Testo e input */
 .search-bar label {
-    color: white; /* Testo bianco */
-    font-weight: normal; /* Stile testo */
-    margin-right: 10px; /* Spazio tra label e input */
+  color: white; /* Testo bianco */
+  font-weight: normal; /* Stile testo */
+  margin-right: 10px; /* Spazio tra label e input */
 }
 
 .search-bar input {
-    background-color: transparent; /* Sfondo trasparente */
-    color: white; /* Testo bianco */
-    border: none; /* Rimuove bordi */
-    outline: none; /* Rimuove bordi focus */
-    flex-grow: 1; /* L'input occupa tutto lo spazio disponibile */
+  background-color: transparent; /* Sfondo trasparente */
+  color: white; /* Testo bianco */
+  border: none; /* Rimuove bordi */
+  outline: none; /* Rimuove bordi focus */
+  flex-grow: 1; /* L'input occupa tutto lo spazio disponibile */
 }
 
 /* Placeholder */
 .search-bar input::placeholder {
-    color: rgba(255, 255, 255, 0.8); /* Placeholder bianco trasparente */
+  color: rgba(255, 255, 255, 0.8); /* Placeholder bianco trasparente */
 }
 
-.container-fluid .search-bar > .bi-search{
-    color: #fff;
-    font-size: 20px;
+.container-fluid .search-bar > .bi-search {
+  color: #fff;
+  font-size: 20px;
 }
 
 /* Form di registrazione */
 .register-form {
-    max-width: 500px;
-    margin: 0 auto; /* Centrare il form */
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  margin: 0 auto; /* Centrare il form */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .register-form h1 {
-    font-size: 1.8rem; /* Dimensione del titolo */
-    font-weight: bold;
-    color: #000;
+  font-size: 1.8rem; /* Dimensione del titolo */
+  font-weight: bold;
+  color: #000;
 }
 
 .register-form .form-label {
-    font-weight: bold;
-    color: #000;
+  font-weight: bold;
+  color: #000;
 }
 
 .register-form .form-control {
-    border-radius: 8px;
-    box-shadow: none; /* Rimuove ombra dagli input */
+  border-radius: 8px;
+  box-shadow: none; /* Rimuove ombra dagli input */
 }
 
 .register-form .form-control:focus {
-    border-color: #800020; /* Colore focus bordeaux */
-    box-shadow: 0 0 0 0.2rem rgba(128, 0, 32, 0.25); /* Ombra focus */
+  border-color: #800020; /* Colore focus bordeaux */
+  box-shadow: 0 0 0 0.2rem rgba(128, 0, 32, 0.25); /* Ombra focus */
 }
 
 .register-form .btn-dark {
-    background-color: #000; /* Colore sfondo bottone */
-    color: #fff; /* Colore testo bottone */
-    border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-size: 1rem;
+  background-color: #000; /* Colore sfondo bottone */
+  color: #fff; /* Colore testo bottone */
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
 }
 
 .register-form .btn-dark:hover {
-    background-color: #333; /* Colore al passaggio del mouse */
+  background-color: #333; /* Colore al passaggio del mouse */
 }
 
 /* Icone toggle password */
 .input-group .form-control {
-    border-radius: 8px; /* Arrotondamento coerente */
-    height: 40px; /* Altezza coerente con il bottone */
+  border-radius: 8px; /* Arrotondamento coerente */
+  height: 40px; /* Altezza coerente con il bottone */
 }
 
 .input-group .toggle-password {
-    display: flex; /* Per allineare verticalmente l'icona */
-    align-items: center; /* Centrare l'icona verticalmente */
-    justify-content: center; /* Centrare l'icona orizzontalmente */
-    height: 40px; /* Altezza coerente con l'input */
-    width: 45px; /* Larghezza del bottone */
-    padding: 0; /* Rimuove padding extra */
-    border-radius: 8px; /* Arrotondamento coerente */
+  display: flex; /* Per allineare verticalmente l'icona */
+  align-items: center; /* Centrare l'icona verticalmente */
+  justify-content: center; /* Centrare l'icona orizzontalmente */
+  height: 40px; /* Altezza coerente con l'input */
+  width: 45px; /* Larghezza del bottone */
+  padding: 0; /* Rimuove padding extra */
+  border-radius: 8px; /* Arrotondamento coerente */
 }
 
 .input-group .toggle-password i {
-    font-size: 1.2rem; /* Dimensione dell'icona */
-    color: #000; /* Colore dell'icona */
+  font-size: 1.2rem; /* Dimensione dell'icona */
+  color: #000; /* Colore dell'icona */
 }
 
 .input-group .toggle-password:hover {
-    color: #800020; /* Colore al passaggio del mouse */
+  color: #800020; /* Colore al passaggio del mouse */
 }
 
 /* Checkbox */
 .form-check-label {
-    color: #000;
+  color: #000;
 }
 
 /* Evidenziare campi obbligatori */
 .text-danger {
-    font-size: 0.9rem;
-    margin-left: 4px;
+  font-size: 0.9rem;
+  margin-left: 4px;
 }
 form.register-form .form-control {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 /* Mappa */
 .container img {
-    border-radius: 10px; /* Arrotonda gli angoli */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra leggera */
-    transition: transform 0.2s; /* Effetto al passaggio del mouse */
+  border-radius: 10px; /* Arrotonda gli angoli */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra leggera */
+  transition: transform 0.2s; /* Effetto al passaggio del mouse */
 }
 
 .container img:hover {
-    transform: scale(1.02); /* Leggero ingrandimento al passaggio del mouse */
+  transform: scale(1.02); /* Leggero ingrandimento al passaggio del mouse */
 }
 
 /* Footer */
 footer {
-    background-color: #54072a;
-    color: white;
-    padding: 20px 15px;
-    font-size: 0.9rem;
-    line-height: 1.6;
+  background-color: #54072a;
+  color: white;
+  padding: 20px 15px;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 footer .row {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 footer h6 {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 footer p {
-    font-size: 0.9rem;
-    margin: 0;
+  font-size: 0.9rem;
+  margin: 0;
 }
 
 .logo-footer {
-    width: 60px; /* Dimensione del logo */
-    margin-bottom: 10px;
+  width: 60px; /* Dimensione del logo */
+  margin-bottom: 10px;
 }
 
 /* Media query per index */
 @media (min-width: 993px) {
-    .content-wrapper {
-        grid-template-columns: 3fr 1fr; /* 3 parti caroselli, 1 parte aside */
-    }
-    .content-main {
-        grid-column: 1 / 2; /* Caroselli nella prima colonna */
-    }
-    aside {
-        grid-column: 2 / 3; /* L'aside nella seconda colonna */
-    }
-    .hamburger-menu {
-        display: none;
-    }
+  .content-wrapper {
+    grid-template-columns: 3fr 1fr; /* 3 parti caroselli, 1 parte aside */
+  }
+  .content-main {
+    grid-column: 1 / 2; /* Caroselli nella prima colonna */
+  }
+  aside {
+    grid-column: 2 / 3; /* L'aside nella seconda colonna */
+  }
+  .hamburger-menu {
+    display: none;
+  }
 }
 
 @media (max-width: 993px) {
-    .content-wrapper {
-        grid-template-columns: 1fr; /* Una sola colonna */
-    }
+  .content-wrapper {
+    grid-template-columns: 1fr; /* Una sola colonna */
+  }
 }
 
 /* Barra di ricerca */
 .search-bar input {
-    border: none;
-    background: transparent;
-    color: #800000; /* Testo Bordeaux */
-    flex-grow: 1;
-    outline: none;
-}
-
-/* Icone */
-.d-flex img {
-    height: 30px;
+  border: none;
+  background: transparent;
+  color: #800000; /* Testo Bordeaux */
+  flex-grow: 1;
+  outline: none;
 }
 
 /* Logo */
 nav.navbar .container-fluid .navbar-brand > img {
-    height: 60px;
+  height: 60px;
 }
 
 /* Mappa dove ci troviamo */
 .mappa-testo {
-    display: grid;
-    grid-template-columns: 1fr; /* Una sola colonna (mobile) */
-    gap: 20px; /* Spazio tra mappa e testo */
+  display: grid;
+  grid-template-columns: 1fr; /* Una sola colonna (mobile) */
+  gap: 20px; /* Spazio tra mappa e testo */
 }
 
 /* Media query per navbar */
 @media (min-width: 993px) {
-    .navbar {
-        background-color: #54072a; /* Sfondo bordeaux */
-    }
+  .navbar {
+    background-color: #54072a; /* Sfondo bordeaux */
+  }
 
-    .navbar .container-fluid {
-        display: flex;
-        align-items: center; /* Allinea tutto verticalmente */
-        justify-content: space-between; /* Distribuisce logo, barra e icone */
-    }
+  .navbar .container-fluid {
+    display: flex;
+    align-items: center; /* Allinea tutto verticalmente */
+    justify-content: space-between; /* Distribuisce logo, barra e icone */
+  }
 
-    i{
-        color: white;
-    }
+  i {
+    color: white;
+  }
 
-    .container-fluid .search-bar > .bi-search{
-        color: #000;
-        font-size: 20px;
-    }
+  .container-fluid .search-bar > .bi-search {
+    color: #000;
+    font-size: 20px;
+  }
 
-    .d-flex.align-items-center > i{
-        font-size: 45px;
-        padding-left: 2px;
-    }
+  nav i {
+    font-size: 45px;
+    padding-left: 2px;
+  }
 
-    .nav-links a:hover {
-        text-decoration: underline;
-    }
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
 
-    .nav-links {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px; /* Posiziona il menu sotto */
-        gap: 50px; /* Maggiore distanza tra le voci */
-        flex-wrap: nowrap;
-        overflow: hidden;
-        white-space: nowrap;
-    }
+  .nav-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px; /* Posiziona il menu sotto */
+    gap: 50px; /* Maggiore distanza tra le voci */
+    flex-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 
-    .nav-links a {
-        padding: 0 35px 0 35px;
-        margin: 0 35px 0 35px;
-        text-decoration: none; /* Rimuove la sottolineatura */
-    }
+  .nav-links a {
+    padding: 0 35px 0 35px;
+    margin: 0 35px 0 35px;
+    text-decoration: none; /* Rimuove la sottolineatura */
+  }
 
-    .search-bar {
-        flex-grow: 1; /* Occupa lo spazio tra logo e icone */
-        max-width: 600px; /* Limita la larghezza */
-        margin: 0; /* Evita margini verticali */
-        background-color: #fff;
-    }
+  .search-bar {
+    flex-grow: 1; /* Occupa lo spazio tra logo e icone */
+    max-width: 600px; /* Limita la larghezza */
+    margin: 0; /* Evita margini verticali */
+    background-color: #fff;
+  }
 
-    .search-bar input::placeholder{
-        color: #000;
-    }
+  .search-bar input::placeholder {
+    color: #000;
+  }
 
-    .container-fluid.d-none.d-md-flex{
-        background-color: #F9E4DA;
-    }
+  .container-fluid.d-none.d-md-flex {
+    background-color: #f9e4da;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-    .navbar {
-        background-color: #54072a; /* Sfondo bordeaux */
-    }
+  .navbar {
+    background-color: #54072a; /* Sfondo bordeaux */
+  }
 
-    .navbar .container-fluid {
-        display: flex;
-        align-items: center; /* Allinea tutto verticalmente */
-        justify-content: space-between; /* Distribuisce logo, barra e icone */
-    }
+  .navbar .container-fluid {
+    display: flex;
+    align-items: center; /* Allinea tutto verticalmente */
+    justify-content: space-between; /* Distribuisce logo, barra e icone */
+  }
 
-    i{
-        color: white;
-    }
+  i {
+    color: white;
+  }
 
-    .container-fluid .search-bar > .bi-search{
-        color: #000;
-        font-size: 20px;
-    }
+  .container-fluid .search-bar > .bi-search {
+    color: #000;
+    font-size: 20px;
+  }
 
-    .d-flex.align-items-center > i{
-        font-size: 45px;
-        padding-left: 2px;
-    }
+  .d-flex.align-items-center > i {
+    font-size: 45px;
+    padding-left: 2px;
+  }
 
-    .nav-links {
-        margin-top: 10px; /* Posiziona il menu sotto */
-        flex-wrap: nowrap;
-        overflow: hidden;
-        white-space: nowrap;
-    }
+  .nav-links {
+    margin-top: 10px; /* Posiziona il menu sotto */
+    flex-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 
-    .nav-links a:hover {
-        text-decoration: underline;
-    }
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
 
-    .nav-links a {
-        padding: 0 4px 0 4px;
-        margin: 0 4px 0 4px;
-        text-decoration: none; /* Rimuove la sottolineatura */
-    }
+  .nav-links a {
+    padding: 0 4px 0 4px;
+    margin: 0 4px 0 4px;
+    text-decoration: none; /* Rimuove la sottolineatura */
+  }
 
-    .search-bar {
-        flex-grow: 1; /* Occupa lo spazio tra logo e icone */
-        max-width: 600px; /* Limita la larghezza */
-        margin: 0; /* Evita margini verticali */
-        background-color: #fff;
-    }
+  .search-bar {
+    flex-grow: 1; /* Occupa lo spazio tra logo e icone */
+    max-width: 600px; /* Limita la larghezza */
+    margin: 0; /* Evita margini verticali */
+    background-color: #fff;
+  }
 
-    .search-bar input::placeholder{
-        color: #000;
-    }
+  .search-bar input::placeholder {
+    color: #000;
+  }
 
-    .container-fluid.d-none.d-md-flex{
-        background-color: #F9E4DA;
-    }
+  .container-fluid.d-none.d-md-flex {
+    background-color: #f9e4da;
+  }
 }
 
 @media (min-width: 993px) {
-    .navbar {
-        background-color: #54072a; /* Sfondo bordeaux */
-    }
+  .navbar {
+    background-color: #54072a; /* Sfondo bordeaux */
+  }
 
-    .navbar .container-fluid {
-        display: flex;
-        align-items: center; /* Allinea tutto verticalmente */
-        justify-content: space-between; /* Distribuisce logo, barra e icone */
-    }
+  .navbar .container-fluid {
+    display: flex;
+    align-items: center; /* Allinea tutto verticalmente */
+    justify-content: space-between; /* Distribuisce logo, barra e icone */
+  }
 
-    i{
-        color: white;
-    }
+  i {
+    color: white;
+  }
 
-    .container-fluid .search-bar > .bi-search{
-        color: #000;
-        font-size: 20px;
-    }
+  .container-fluid .search-bar > .bi-search {
+    color: #000;
+    font-size: 20px;
+  }
 
-    .d-flex.align-items-center > i{
-        font-size: 45px;
-        padding-left: 2px;
-    }
+  .d-flex.align-items-center > i {
+    font-size: 45px;
+    padding-left: 2px;
+  }
 
-    .nav-links a:hover {
-        text-decoration: underline;
-    }
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
 
-    .nav-links {
-        margin-top: 10px; /* Posiziona il menu sotto */
-        flex-wrap: nowrap;
-        overflow: hidden;
-        white-space: nowrap;
-    }
+  .nav-links {
+    margin-top: 10px; /* Posiziona il menu sotto */
+    flex-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 
-    .nav-links a {
-        padding: 0 35px 0 35px;
-        margin: 0 35px 0 35px;
-        text-decoration: none; /* Rimuove la sottolineatura */
-    }
+  .nav-links a {
+    padding: 0 35px 0 35px;
+    margin: 0 35px 0 35px;
+    text-decoration: none; /* Rimuove la sottolineatura */
+  }
 
-    .search-bar {
-        flex-grow: 1; /* Occupa lo spazio tra logo e icone */
-        max-width: 600px; /* Limita la larghezza */
-        margin: 0; /* Evita margini verticali */
-        background-color: #fff;
-    }
+  .search-bar {
+    flex-grow: 1; /* Occupa lo spazio tra logo e icone */
+    max-width: 600px; /* Limita la larghezza */
+    margin: 0; /* Evita margini verticali */
+    background-color: #fff;
+  }
 
-    .search-bar input::placeholder{
-        color: #000;
-    }
+  .search-bar input::placeholder {
+    color: #000;
+  }
 
-    .container-fluid.d-none.d-md-flex{
-        background-color: #F9E4DA;
-    }
+  .container-fluid.d-none.d-md-flex {
+    background-color: #f9e4da;
+  }
 }
-
 
 /* Media query per dove ci troviamo*/
-@media (min-width: 993px){
-    .mappa-testo {
-        grid-template-columns: 1fr 1fr; /* Due colonne uguali */
-        gap: 40px; /* Maggiore spazio tra mappa e testo */
-        align-items: start; /* Allinea verticalmente al top */
-    }
-    h1{
-        padding: 10px 0 10px 0;
-    }
-    p, ul > li {
-        font-size: 1.25rem; /* Dimensione maggiore per desktop */
-    }
+@media (min-width: 993px) {
+  .mappa-testo {
+    grid-template-columns: 1fr 1fr; /* Due colonne uguali */
+    gap: 40px; /* Maggiore spazio tra mappa e testo */
+    align-items: start; /* Allinea verticalmente al top */
+  }
+  h1 {
+    padding: 10px 0 10px 0;
+  }
+  p,
+  ul > li {
+    font-size: 1.25rem; /* Dimensione maggiore per desktop */
+  }
 }
 
-@media (min-width: 994px) and (max-width: 1300px){
-    .nav-links {
-        gap: 15px; /* Riduce lo spazio tra i link */
-    }
+@media (min-width: 994px) and (max-width: 1300px) {
+  .nav-links {
+    gap: 15px; /* Riduce lo spazio tra i link */
+  }
 
-    .nav-links a {
-        padding: 0 10px; /* Riduce il padding orizzontale */
-    }
+  .nav-links a {
+    padding: 0 10px; /* Riduce il padding orizzontale */
+  }
 }
 
-@media (min-width: 993px) and (max-width: 1080px){
-    .nav-links {
-        gap: 10px; /* Ancora meno spazio tra i link */
-    }
+@media (min-width: 993px) and (max-width: 1080px) {
+  .nav-links {
+    gap: 10px; /* Ancora meno spazio tra i link */
+  }
 
-    .nav-links a {
-        padding: 0 5px; /* Riduce ulteriormente il padding */
-    }
+  .nav-links a {
+    padding: 0 5px; /* Riduce ulteriormente il padding */
+  }
 }
 
-@media (min-width: 993px){
-    .mappa-testo {
-        grid-template-columns: 1fr 1fr; /* Due colonne uguali */
-        gap: 40px; /* Maggiore spazio tra mappa e testo */
-        align-items: start; /* Allinea verticalmente al top */
-    }
-    h1{
-        padding: 10px 0 10px 0;
-    }
-    p, ul > li {
-        font-size: 1.25rem; /* Dimensione maggiore per desktop */
-    }
+@media (min-width: 993px) {
+  .mappa-testo {
+    grid-template-columns: 1fr 1fr; /* Due colonne uguali */
+    gap: 40px; /* Maggiore spazio tra mappa e testo */
+    align-items: start; /* Allinea verticalmente al top */
+  }
+  h1 {
+    padding: 10px 0 10px 0;
+  }
+  p,
+  ul > li {
+    font-size: 1.25rem; /* Dimensione maggiore per desktop */
+  }
 }
