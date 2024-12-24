@@ -368,6 +368,11 @@ nav.navbar .container-fluid .navbar-brand > img {
   .container-fluid.d-none.d-md-flex {
     background-color: #f9e4da;
   }
+
+  /* Sfonndo selettore lingue */
+  div.btn.btn-secondary.dropdown-toggle {
+    background-color: #54072a;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
