@@ -6,6 +6,7 @@ body {
 
 i {
   font-size: 30px;
+  color: #000;
 }
 
 /* Struttura principale con CSS Grid */
@@ -221,6 +222,13 @@ form.register-form .form-control {
 
 .container img:hover {
   transform: scale(1.02); /* Leggero ingrandimento al passaggio del mouse */
+}
+
+/* Immagine utente */
+img[alt="Profilo"] {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
 }
 
 /* Footer */
