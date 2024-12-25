@@ -12,10 +12,6 @@ i {
   color: #000;
 }
 
-footer i {
-  color: #fff;
-}
-
 /* Struttura principale con CSS Grid */
 .content-wrapper {
   display: grid;
@@ -247,6 +243,10 @@ footer {
   line-height: 1;
 }
 
+footer i {
+  color: #fff;
+}
+
 footer .row {
   display: flex;
   justify-content: space-around;
@@ -269,7 +269,7 @@ footer p {
   margin-bottom: 8px;
 }
 
-/* Media query per index */
+/* MEDIA QUERY PER INDEX */
 @media (min-width: 993px) {
   .content-wrapper {
     grid-template-columns: 3fr 1fr; /* 3 parti caroselli, 1 parte aside */
@@ -316,12 +316,13 @@ nav.navbar .container-fluid .navbar-brand > img {
   gap: 20px; /* Spazio tra mappa e testo */
 }
 
+/* Margine per la navbar*/
 main {
   margin-top: 135px;
   border-top: 135px;
 }
 
-/* Media query per navbar */
+/* MEDIA QUERY NAVBAR */
 @media (min-width: 993px) {
   .navbar {
     background-color: #54072a; /* Sfondo bordeaux */
@@ -391,6 +392,7 @@ main {
   }
 }
 
+/* MEDIA QUERY PER NAVBAR FASI INTERMEDIE */
 @media (min-width: 768px) and (max-width: 992px) {
   .navbar {
     background-color: #54072a; /* Sfondo bordeaux */
@@ -449,64 +451,8 @@ main {
   }
 }
 
+/* MEDIA QUERY PAGINE UTENTE */
 @media (min-width: 993px) {
-  .navbar {
-    background-color: #54072a; /* Sfondo bordeaux */
-  }
-
-  .navbar .container-fluid {
-    display: flex;
-    align-items: center; /* Allinea tutto verticalmente */
-    justify-content: space-between; /* Distribuisce logo, barra e icone */
-  }
-
-  i {
-    color: white;
-  }
-
-  .container-fluid .search-bar > .bi-search {
-    color: #000;
-    font-size: 20px;
-  }
-
-  .d-flex.align-items-center > i {
-    font-size: 45px;
-    padding-left: 2px;
-  }
-
-  .nav-links a:hover {
-    text-decoration: underline;
-  }
-
-  .nav-links {
-    margin-top: 10px; /* Posiziona il menu sotto */
-    flex-wrap: nowrap;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .nav-links a {
-    padding: 0 35px 0 35px;
-    margin: 0 35px 0 35px;
-    text-decoration: none; /* Rimuove la sottolineatura */
-  }
-
-  .search-bar {
-    flex-grow: 1; /* Occupa lo spazio tra logo e icone */
-    max-width: 600px; /* Limita la larghezza */
-    margin: 0; /* Evita margini verticali */
-    background-color: #fff;
-  }
-
-  .search-bar input::placeholder {
-    color: #000;
-  }
-
-  .container-fluid.d-none.d-md-flex {
-    background-color: #f9e4da;
-  }
-
-  /* Pagina utente desktop*/
   /* Immagini preferiti */
   .row.mb-4 .card img {
     height: 420px;
@@ -522,7 +468,7 @@ main {
   }
 }
 
-/* Media query per dove ci troviamo*/
+/* MEDIA QUERY DOVE CI TROVIAMO */
 @media (min-width: 993px) {
   .mappa-testo {
     grid-template-columns: 1fr 1fr; /* Due colonne uguali */
@@ -555,21 +501,6 @@ main {
 
   .nav-links a {
     padding: 0 5px; /* Riduce ulteriormente il padding */
-  }
-}
-
-@media (min-width: 993px) {
-  .mappa-testo {
-    grid-template-columns: 1fr 1fr; /* Due colonne uguali */
-    gap: 40px; /* Maggiore spazio tra mappa e testo */
-    align-items: start; /* Allinea verticalmente al top */
-  }
-  h1 {
-    padding: 10px 0 10px 0;
-  }
-  p,
-  ul > li {
-    font-size: 1.25rem; /* Dimensione maggiore per desktop */
   }
 }
 
@@ -625,3 +556,11 @@ main {
 .cart-state button:hover {
   background-color: #590425;
 }
+
+/* Pagina singolo prodotto*/
+
+/* MEDIA QUERY PAGINA SINGOLO PRODOTTO */
+
+/* Pagina lista prodotti*/
+
+/* MEDIA QUERY PAGINA LISTA PRODOTTI */
