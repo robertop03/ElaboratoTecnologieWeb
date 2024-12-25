@@ -12,54 +12,56 @@
 
   <body class="d-flex flex-column min-vh-100">
     <!-- NAVBAR -->
-    <nav class="navbar p-3">
-      <div class="container-fluid d-flex align-items-center justify-content-between">
-        <!-- Menu Hamburger -->
-        <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
-          <i class="bi bi-list"></i>
-        </button>
-        <a href="index.html" class="navbar-brand mx-auto mx-md-0">
-          <img src="../resources/img/logoWeb.png" alt="Logo" />
-        </a>
-        <div class="d-flex align-items-center">
-          <!-- Language Selector -->
-          <div class="dropdown pe-1 d-none d-md-flex">
-            <a class="btn text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img src="../resources/icons/italy.png" alt="Italy" /> </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li
-                ><a class="dropdown-item" href="#"><img src="../resources/icons/english.png" alt="English" /> EN </a></li
-              >
-              <li
-                ><a class="dropdown-item" href="#"><img src="../resources/icons/italy.png" alt="Italy" /> IT </a></li
-              >
-            </ul>
+    <header class="fixed-top">
+      <nav class="navbar p-3">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+          <!-- Menu Hamburger -->
+          <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
+            <i class="bi bi-list"></i>
+          </button>
+          <a href="index.html" class="navbar-brand mx-auto mx-md-0">
+            <img src="../resources/img/logoWeb.png" alt="Logo" />
+          </a>
+          <div class="d-flex align-items-center">
+            <!-- Language Selector -->
+            <div class="dropdown pe-1 d-none d-md-flex">
+              <a class="btn text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img src="../resources/icons/italy.png" alt="Italy" /> </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li
+                  ><a class="dropdown-item" href="#"><img src="../resources/icons/english.png" alt="English" /> EN </a></li
+                >
+                <li
+                  ><a class="dropdown-item" href="#"><img src="../resources/icons/italy.png" alt="Italy" /> IT </a></li
+                >
+              </ul>
+            </div>
+            <a href="carrello.html" class="text-decoration-none">
+              <i class="bi bi-cart"></i>
+            </a>
+            <a href="utente.html" class="text-decoration-none">
+              <i class="bi bi-person"></i>
+            </a>
           </div>
-          <a href="carrello.html" class="text-decoration-none">
-            <i class="bi bi-cart"></i>
-          </a>
-          <a href="utente.html" class="text-decoration-none">
-            <i class="bi bi-person"></i>
-          </a>
         </div>
-      </div>
-      <div class="container-fluid d-flex justify-content-center mt-3 mt-md-0">
-        <div class="search-bar d-flex align-items-center rounded px-3 w-100 w-md-50">
-          <i class="bi bi-search"></i>
-          <input type="text" id="search" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" />
+        <div class="container-fluid d-flex justify-content-center mt-3 mt-md-0">
+          <div class="search-bar d-flex align-items-center rounded px-3 w-100 w-md-50">
+            <i class="bi bi-search"></i>
+            <input type="text" id="search" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" />
+          </div>
         </div>
+      </nav>
+      <!-- Menu di navigazione (solo desktop) -->
+      <div class="container-fluid d-none d-md-flex justify-content-center border border-dark">
+        <ul class="nav-links d-flex gap-3 list-unstyled">
+          <li><a href="#" class="text-dark text-uppercase">Regione</a></li>
+          <li><a href="#" class="text-dark text-uppercase">Rossi</a></li>
+          <li><a href="#" class="text-dark text-uppercase">Bianchi</a></li>
+          <li><a href="#" class="text-dark text-uppercase">Rosati</a></li>
+          <li><a href="#" class="text-dark text-uppercase">Fermi</a></li>
+          <li><a href="#" class="text-dark text-uppercase">Frizzanti</a></li>
+        </ul>
       </div>
-    </nav>
-    <!-- Menu di navigazione (solo desktop) -->
-    <div class="container-fluid d-none d-md-flex justify-content-center border border-dark">
-      <ul class="nav-links d-flex gap-3 list-unstyled">
-        <li><a href="#" class="text-dark text-uppercase">Regione</a></li>
-        <li><a href="#" class="text-dark text-uppercase">Rossi</a></li>
-        <li><a href="#" class="text-dark text-uppercase">Bianchi</a></li>
-        <li><a href="#" class="text-dark text-uppercase">Rosati</a></li>
-        <li><a href="#" class="text-dark text-uppercase">Fermi</a></li>
-        <li><a href="#" class="text-dark text-uppercase">Frizzanti</a></li>
-      </ul>
-    </div>
+    </header>
 
     <!-- OFFCANVAS MENU -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLaterale" aria-labelledby="menuLateraleLabel">

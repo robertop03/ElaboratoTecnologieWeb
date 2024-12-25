@@ -12,6 +12,10 @@ i {
   color: #000;
 }
 
+footer i {
+  color: #fff;
+}
+
 /* Struttura principale con CSS Grid */
 .content-wrapper {
   display: grid;
@@ -301,11 +305,20 @@ nav.navbar .container-fluid .navbar-brand > img {
   height: 60px;
 }
 
+.navbar {
+  background-color: #fff;
+}
+
 /* Mappa dove ci troviamo */
 .mappa-testo {
   display: grid;
   grid-template-columns: 1fr; /* Una sola colonna (mobile) */
   gap: 20px; /* Spazio tra mappa e testo */
+}
+
+main {
+  margin-top: 135px;
+  border-top: 135px;
 }
 
 /* Media query per navbar */
@@ -320,16 +333,13 @@ nav.navbar .container-fluid .navbar-brand > img {
     justify-content: space-between; /* Distribuisce logo, barra e icone */
   }
 
-  i {
-    color: white;
-  }
-
   .container-fluid .search-bar > .bi-search {
     color: #000;
     font-size: 20px;
   }
 
   nav i {
+    color: white;
     font-size: 45px;
     padding-left: 2px;
   }
@@ -372,6 +382,12 @@ nav.navbar .container-fluid .navbar-brand > img {
   /* Sfonndo selettore lingue */
   div.btn.btn-secondary.dropdown-toggle {
     background-color: #54072a;
+  }
+
+  /* Spazio per la navbar ancora in alto */
+  main {
+    margin-top: 220px;
+    border-top: 220px;
   }
 }
 
@@ -488,6 +504,21 @@ nav.navbar .container-fluid .navbar-brand > img {
 
   .container-fluid.d-none.d-md-flex {
     background-color: #f9e4da;
+  }
+
+  /* Pagina utente desktop*/
+  /* Immagini preferiti */
+  .row.mb-4 .card img {
+    height: 420px;
+    object-fit: contain;
+  }
+
+  /* vari link */
+  .text-decoration-none.border-bottom:hover {
+    text-decoration: underline !important; /* Sottolinea al passaggio del mouse */
+  }
+  .text-decoration-none.border-bottom {
+    color: #54072a;
   }
 }
 
