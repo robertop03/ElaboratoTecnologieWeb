@@ -12,40 +12,67 @@
   <body class="d-flex flex-column min-vh-100">
     <!-- NAVBAR -->
     <header class="fixed-top">
-      <nav class="navbar p-3">
-        <div class="container-fluid d-flex align-items-center justify-content-between">
-          <!-- Menu Hamburger -->
-          <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
-            <i class="bi bi-list"></i>
-          </button>
-          <a href="index.html" class="navbar-brand mx-auto mx-md-0">
-            <img src="../resources/img/logoWeb.png" alt="Logo" />
-          </a>
-          <div class="d-flex align-items-center">
-            <!-- Language Selector -->
-            <div class="dropdown pe-1 d-none d-md-flex">
-              <a class="btn text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img src="../resources/icons/italy.png" alt="Italy" /> IT </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li
-                  ><a class="dropdown-item" href="#"><img src="../resources/icons/english.png" alt="English" /> EN </a></li
-                >
-                <li
-                  ><a class="dropdown-item" href="#"><img src="../resources/icons/italy.png" alt="Italy" /> IT </a></li
-                >
-              </ul>
+      <nav class="navbar p-2">
+        <div class="container-fluid">
+          <!-- Mobile: Navbar -->
+          <div class="d-flex d-md-none align-items-center justify-content-between w-100">
+            <!-- Menu Hamburger -->
+            <button class="btn me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
+              <i class="bi bi-list"></i>
+            </button>
+            <!-- Logo Mobile -->
+            <a href="index.html" class="navbar-brand">
+              <img src="../resources/img/logoWeb.png" alt="Logo" />
+            </a>
+            <!-- Icone Mobile -->
+            <div class="d-flex align-items-center">
+              <a href="carrello.html" class="text-decoration-none me-3">
+                <i class="bi bi-cart"></i>
+              </a>
+              <a href="utente.html" class="text-decoration-none">
+                <i class="bi bi-person"></i>
+              </a>
             </div>
-            <a href="carrello.html" class="text-decoration-none">
-              <i class="bi bi-cart"></i>
-            </a>
-            <a href="utente.html" class="text-decoration-none">
-              <i class="bi bi-person"></i>
-            </a>
           </div>
-        </div>
-        <div class="container-fluid d-flex justify-content-center mt-3 mt-md-0">
-          <div class="search-bar d-flex align-items-center rounded px-3 w-100 w-md-50">
-            <i class="bi bi-search"></i>
-            <input type="text" id="search" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" />
+          <!-- Barra di ricerca Mobile -->
+          <div class="d-flex d-md-none mt-2">
+            <div class="search-bar d-flex align-items-center rounded px-3 w-100">
+              <i class="bi bi-search"></i>
+              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-mobile" />
+            </div>
+          </div>
+
+          <!-- Desktop: Barra di ricerca e icone -->
+          <div class="d-none d-md-flex align-items-center justify-content-between w-100 mt-3 mt-md-0">
+            <!-- Logo Desktop -->
+            <a href="index.html" class="navbar-brand">
+              <img src="../resources/img/logoWeb.png" alt="Logo" />
+            </a>
+            <!-- Barra di ricerca Desktop -->
+            <div class="search-bar d-flex align-items-center rounded px-3">
+              <i class="bi bi-search"></i>
+              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-desktop" />
+            </div>
+            <!-- Icone Desktop -->
+            <div class="icons-group d-flex align-items-center">
+              <div class="dropdown pe-1">
+                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> <img src="../resources/icons/italy.png" alt="Italy" /> IT </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li
+                    ><a class="dropdown-item" href="#"><img src="../resources/icons/english.png" alt="English" /> EN</a></li
+                  >
+                  <li
+                    ><a class="dropdown-item" href="#"><img src="../resources/icons/italy.png" alt="Italy" /> IT</a></li
+                  >
+                </ul>
+              </div>
+              <a href="carrello.html" class="text-decoration-none me-3">
+                <i class="bi bi-cart"></i>
+              </a>
+              <a href="utente.html" class="text-decoration-none">
+                <i class="bi bi-person"></i>
+              </a>
+            </div>
           </div>
         </div>
       </nav>

@@ -103,6 +103,10 @@ hr.styled-divider {
   border-radius: 5px; /* Bordo leggermente arrotondato */
 }
 
+.d-flex.d-md-none.mt-2 {
+  width: 100%; /* Assicurati che il contenitore abbia larghezza piena */
+}
+
 /* Icona della lente */
 .search-bar img {
   height: 20px; /* Altezza dell'icona */
@@ -580,4 +584,17 @@ main input[type="number"] {
 .d-flex > button:nth-of-type(1),
 .d-flex > button:nth-of-type(2) {
   max-width: 200px;
+}
+@media (min-width: 768px) {
+  .navbar .search-bar {
+    flex-grow: 1; /* Occupa tutto lo spazio disponibile */
+    max-width: 400px; /* Limita la larghezza */
+    margin-left: 20px; /* Spazio tra logo e barra */
+  }
+  .navbar .navbar-brand {
+    flex-shrink: 0; /* Evita che il logo si restringa */
+  }
+  .navbar .icons-group {
+    flex-shrink: 0; /* Evita che le icone si restringano */
+  }
 }
