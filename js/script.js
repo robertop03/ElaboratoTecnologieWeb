@@ -38,18 +38,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // Codice per i pulsanti quantità nella pagina prodotto
   const quantityInput = document.querySelector('input[type="number"]')
   const buttons = document.querySelectorAll(".btn-outline-secondary")
+  if (quantityInput && buttons.length >= 2) {
+    buttons[0].addEventListener("click", function () {
+      const currentValue = parseInt(quantityInput.value, 10)
+      if (currentValue > 1) {
+        quantityInput.value = currentValue - 1
+      }
+    })
 
-  buttons[0].addEventListener("click", function () {
-    const currentValue = parseInt(quantityInput.value, 10)
-    if (currentValue > 1) {
-      quantityInput.value = currentValue - 1
-    }
-  })
-
-  buttons[1].addEventListener("click", function () {
-    const currentValue = parseInt(quantityInput.value, 10)
-    if (currentValue < 1000) {
-      quantityInput.value = currentValue + 1
-    }
-  })
+    buttons[1].addEventListener("click", function () {
+      const currentValue = parseInt(quantityInput.value, 10)
+      if (currentValue < 1000) {
+        quantityInput.value = currentValue + 1
+      }
+    })
+  }
 })

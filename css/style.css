@@ -216,17 +216,6 @@ form.register-form .form-control {
   margin-bottom: 1.5rem;
 }
 
-/* Mappa */
-.container img {
-  border-radius: 10px; /* Arrotonda gli angoli */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra leggera */
-  transition: transform 0.2s; /* Effetto al passaggio del mouse */
-}
-
-.container img:hover {
-  transform: scale(1.02); /* Leggero ingrandimento al passaggio del mouse */
-}
-
 /* Immagine utente */
 img[alt="Profilo"] {
   width: 80px;
@@ -319,7 +308,6 @@ nav.navbar .container-fluid .navbar-brand > img {
 /* Margine per la navbar*/
 main {
   margin-top: 135px;
-  border-top: 135px;
 }
 
 /* MEDIA QUERY NAVBAR */
@@ -385,10 +373,9 @@ main {
     background-color: #54072a;
   }
 
-  /* Spazio per la navbar ancora in alto */
+  /* Spazio per la navbar ancorata in alto */
   main {
     margin-top: 220px;
-    border-top: 220px;
   }
 }
 
@@ -565,5 +552,32 @@ main input[type="number"] {
 /* MEDIA QUERY PAGINA SINGOLO PRODOTTO */
 
 /* Pagina lista prodotti*/
+.card-img-top {
+  height: 220px;
+  object-fit: contain;
+}
 
-/* MEDIA QUERY PAGINA LISTA PRODOTTI */
+.btn-custom {
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: black;
+  border-radius: 8px;
+}
+
+.btn-custom:hover i {
+  color: white;
+}
+
+.btn-custom i {
+  transition: color 0.3s ease;
+}
+
+.d-flex > button:nth-of-type(1),
+.d-flex > button:nth-of-type(2) {
+  max-width: 200px;
+}

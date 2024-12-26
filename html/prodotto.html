@@ -24,7 +24,7 @@
           <div class="d-flex align-items-center">
             <!-- Language Selector -->
             <div class="dropdown pe-1 d-none d-md-flex">
-              <a class="btn text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="../resources/icons/italy.png" alt="Italy" /> IT </a>
+              <a class="btn text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img src="../resources/icons/italy.png" alt="Italy" /> IT </a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li
                   ><a class="dropdown-item" href="#"><img src="../resources/icons/english.png" alt="English" /> EN </a></li
@@ -116,21 +116,20 @@
     <main class="flex-grow-1">
       <div class="container py-4">
         <div class="row justify-content-center">
-          <div class="col-12 col-md-6 text-center">
-            <img src="../resources/img/vino1.jpg" alt="Chateau Fleur Haut Gaussens" class="img-fluid" />
+          <div class="col-12 col-md-6 text-center position-relative">
+            <img src="../resources/img/vino1.jpg" alt="Chateau Fleur Haut Gaussens" class="shadow" />
+            <button class="btn btn-light position-absolute top-0 end-0 m-2 border rounded-circle">
+              <i class="bi bi-heart"></i>
+            </button>
           </div>
           <div class="col-12 col-md-6 mx-auto text-center">
             <h1 class="h4 mt-4">Chateau Fleur Haut Gaussens</h1>
             <p>Bordeaux Supérieur 2019</p>
             <p class="fw-bold fs-5">12,50 €</p>
             <div class="row justify-content-center align-items-center mb-3">
-              <div class="col-auto">
+              <div class="col-auto d-inline-flex align-items-center">
                 <button class="btn btn-outline-secondary rounded-circle text-dark fw-bold">-</button>
-              </div>
-              <div class="col-auto">
-                <input type="number" value="2" min="1" class="form-control text-center fw-bold" readonly />
-              </div>
-              <div class="col-auto">
+                <input type="number" value="2" min="1" class="form-control text-center fw-bold mx-2" readonly />
                 <button class="btn btn-outline-secondary rounded-circle text-dark fw-bold">+</button>
               </div>
             </div>
