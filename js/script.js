@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Codice per mostrare o nascondere le password nei vari form
   document.querySelectorAll(".toggle-password").forEach((button) => {
     button.addEventListener("click", function () {
       const input = this.parentElement.querySelector("input")
@@ -12,26 +13,43 @@ document.addEventListener("DOMContentLoaded", function () {
     })
   })
 
-  const dropdownMenu = document.getElementById("dropdownMenuLink")
+  // Codice per il cambio di lingua nella navbar
+  const dropdownMenu = document.querySelector(".dropdown .dropdown-toggle")
   if (!dropdownMenu) {
-    console.error("Elemento con id 'dropdownMenuLink' non trovato!")
+    console.error("Dropdown toggle non trovato!")
     return
   }
-  const dropdownItems = document.querySelectorAll(".dropdown-item")
+  const dropdownItems = document.querySelectorAll(".dropdown-menu .dropdown-item")
   dropdownItems.forEach((item) => {
     item.addEventListener("click", function (event) {
       event.preventDefault() // Evita il comportamento predefinito del link
 
-      // Ottieni l'immagine e il testo dell'elemento cliccato
       const selectedImage = this.querySelector("img").src
       const selectedText = this.textContent.trim()
 
-      // Aggiorna il pulsante principale
       const dropdownImg = dropdownMenu.querySelector("img")
-      dropdownImg.src = selectedImage
+      dropdownImg.src = selectedImage // Cambia immagine
       dropdownMenu.textContent = "" // Pulisci il contenuto del pulsante
       dropdownMenu.appendChild(dropdownImg) // Aggiungi l'immagine
       dropdownMenu.append(" " + selectedText) // Aggiungi il testo
     })
+  })
+
+  // Codice per i pulsanti quantità nella pagina prodotto
+  const quantityInput = document.querySelector('input[type="number"]')
+  const buttons = document.querySelectorAll(".btn-outline-secondary")
+
+  buttons[0].addEventListener("click", function () {
+    const currentValue = parseInt(quantityInput.value, 10)
+    if (currentValue > 1) {
+      quantityInput.value = currentValue - 1
+    }
+  })
+
+  buttons[1].addEventListener("click", function () {
+    const currentValue = parseInt(quantityInput.value, 10)
+    if (currentValue < 1000) {
+      quantityInput.value = currentValue + 1
+    }
   })
 })

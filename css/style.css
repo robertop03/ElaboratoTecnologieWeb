@@ -556,8 +556,11 @@ main {
 .cart-state button:hover {
   background-color: #590425;
 }
-
 /* Pagina singolo prodotto*/
+main input[type="number"] {
+  background-color: #590425;
+  color: #fff;
+}
 
 /* MEDIA QUERY PAGINA SINGOLO PRODOTTO */
 
