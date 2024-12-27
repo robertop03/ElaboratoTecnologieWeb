@@ -106,4 +106,24 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     })
   })
+
+  // Codice per il range prezzo nel filtraggio
+  document.querySelectorAll(".form-range").forEach((slider, index, sliders) => {
+    const badges = document.querySelectorAll(".badge")
+    const minSlider = sliders[0]
+    const maxSlider = sliders[1]
+
+    slider.addEventListener("input", () => {
+      const minValue = parseInt(minSlider.value)
+      const maxValue = parseInt(maxSlider.value)
+
+      // Sincronizza il valore del badge
+      badges[0].textContent = `Min: ${minValue}€`
+      badges[1].textContent = `Max: ${maxValue}€`
+
+      // Impedisce la sovrapposizione dei pallini
+      if (minValue >= maxValue) minSlider.value = maxValue - 1
+      if (maxValue <= minValue) maxSlider.value = minValue + 1
+    })
+  })
 })

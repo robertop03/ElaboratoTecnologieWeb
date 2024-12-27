@@ -155,16 +155,20 @@
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label for="priceRange" class="form-label">Prezzo</label>
-                <div class="mt-4">
-                  <div class="range-values">
-                    <span id="minValue">0</span>
-                    <span id="maxValue">1000</span>
+                <label class="form-label">Prezzo</label>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="badge bg-warning text-dark" id="priceMin">0€</span>
+                  <span class="badge bg-danger" id="priceMax">1000€</span>
+                </div>
+                <div class="position-relative">
+                  <!-- Singolo slider -->
+                  <div class="range-slider">
+                    <input type="range" class="form-range" min="0" max="1000" step="1" value="0" id="sliderMin" />
+                    <input type="range" class="form-range" min="0" max="1000" step="1" value="1000" id="sliderMax" />
                   </div>
-                  <input type="range" id="rangeMin" class="form-range" min="0" max="1000" step="1" value="250" />
-                  <input type="range" id="rangeMax" class="form-range" min="0" max="1000" step="1" value="750" />
                 </div>
               </div>
+
               <div class="mb-3">
                 <label for="categories" class="form-label">Categorie</label>
                 <select multiple class="form-select" id="categories">
