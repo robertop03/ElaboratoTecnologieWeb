@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prodotto</title>
+    <title>Notifiche</title>
     <script src="../js/script.js"></script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
@@ -112,27 +112,27 @@
             <!-- SUBMENU -->
             <ul class="list-group collapse mt-2" id="menuRegioni">
               <!--
-                          <li class="list-group-item"><a href="#">Abruzzo</a></li>
-                          <li class="list-group-item"><a href="#">Basilicata</a></li>
-                          <li class="list-group-item"><a href="#">Calabria</a></li>
-                          <li class="list-group-item"><a href="#">Campania</a></li>
-                          <li class="list-group-item"><a href="#">Emilia-Romagna</a></li>
-                          <li class="list-group-item"><a href="#">Friuli Venezia Giulia</a></li>
-                          <li class="list-group-item"><a href="#">Lazio</a></li>
-                          <li class="list-group-item"><a href="#">Liguria</a></li>
-                          <li class="list-group-item"><a href="#">Lombardia</a></li>
-                          <li class="list-group-item"><a href="#">Marche</a></li>
-                          <li class="list-group-item"><a href="#">Molise</a></li>
-                          <li class="list-group-item"><a href="#">Piemonte</a></li>
-                          <li class="list-group-item"><a href="#">Puglia</a></li>
-                          <li class="list-group-item"><a href="#">Sardegna</a></li>
-                          <li class="list-group-item"><a href="#">Sicilia</a></li>
-                          <li class="list-group-item"><a href="#">Toscana</a></li>
-                          <li class="list-group-item"><a href="#">Trentino-Alto Adige</a></li>
-                          <li class="list-group-item"><a href="#">Umbria</a></li>
-                          <li class="list-group-item"><a href="#">Valle d'Aosta</a></li>
-                          <li class="list-group-item"><a href="#">Veneto</a></li>
-                          -->
+                        <li class="list-group-item"><a href="#">Abruzzo</a></li>
+                        <li class="list-group-item"><a href="#">Basilicata</a></li>
+                        <li class="list-group-item"><a href="#">Calabria</a></li>
+                        <li class="list-group-item"><a href="#">Campania</a></li>
+                        <li class="list-group-item"><a href="#">Emilia-Romagna</a></li>
+                        <li class="list-group-item"><a href="#">Friuli Venezia Giulia</a></li>
+                        <li class="list-group-item"><a href="#">Lazio</a></li>
+                        <li class="list-group-item"><a href="#">Liguria</a></li>
+                        <li class="list-group-item"><a href="#">Lombardia</a></li>
+                        <li class="list-group-item"><a href="#">Marche</a></li>
+                        <li class="list-group-item"><a href="#">Molise</a></li>
+                        <li class="list-group-item"><a href="#">Piemonte</a></li>
+                        <li class="list-group-item"><a href="#">Puglia</a></li>
+                        <li class="list-group-item"><a href="#">Sardegna</a></li>
+                        <li class="list-group-item"><a href="#">Sicilia</a></li>
+                        <li class="list-group-item"><a href="#">Toscana</a></li>
+                        <li class="list-group-item"><a href="#">Trentino-Alto Adige</a></li>
+                        <li class="list-group-item"><a href="#">Umbria</a></li>
+                        <li class="list-group-item"><a href="#">Valle d'Aosta</a></li>
+                        <li class="list-group-item"><a href="#">Veneto</a></li>
+                        -->
               <li class="list-group-item"><a href="#">Vai alla mappa</a></li>
             </ul>
           </li>
@@ -141,40 +141,58 @@
     </div>
 
     <main class="flex-grow-1">
-      <div class="container py-4">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-6 text-center position-relative">
-            <img src="../resources/img/vino1.jpg" alt="Chateau Fleur Haut Gaussens" class="shadow" />
-            <button class="btn btn-light position-absolute top-0 end-0 m-2 border rounded-circle">
-              <i class="bi bi-heart"></i>
-            </button>
+      <div class="container my-5">
+        <div class="d-flex flex-column flex-lg-row">
+          <!-- Notification List -->
+          <div class="list-group flex-lg-shrink-0" style="min-width: 300px">
+            <a href="#" class="list-group-item" onclick="showNotification(event)">
+              <i class="bi bi-truck me-3"></i>
+              <span>Aggiornamento spedizione</span>
+              <p class="mb-0 text-muted">La spedizione è arrivata con successo!</p>
+            </a>
+            <a href="#" class="list-group-item" onclick="showNotification(event)">
+              <i class="bi bi-truck me-3"></i>
+              <span>Aggiornamento spedizione</span>
+              <p class="mb-0 text-muted">L'ordine IT2320P è in arrivo domani!</p>
+            </a>
+            <a href="#" class="list-group-item" onclick="showNotification(event)">
+              <i class="bi bi-truck me-3"></i>
+              <span>Aggiornamento spedizione</span>
+              <p class="mb-0 text-muted">La spedizione contenente l'ordine IT2320P è stata effettuata</p>
+            </a>
+            <a href="#" class="list-group-item" onclick="showNotification(event)">
+              <i class="bi bi-truck me-3"></i>
+              <span>Ordine effettuato</span>
+              <p class="mb-0 text-muted">Ordine IT2320P effettuato con successo</p>
+            </a>
           </div>
-          <div class="col-12 col-md-6 mx-auto text-center">
-            <h1 class="h4 mt-4">Chateau Fleur Haut Gaussens</h1>
-            <p>Bordeaux Supérieur 2019</p>
-            <p class="fw-bold fs-5">12,50 €</p>
-            <div class="row justify-content-center align-items-center mb-3">
-              <div class="col-auto d-inline-flex align-items-center">
-                <button class="btn btn-outline-secondary rounded-circle text-dark fw-bold">-</button>
-                <input type="number" value="2" min="1" class="form-control text-center fw-bold mx-2" readonly />
-                <button class="btn btn-outline-secondary rounded-circle text-dark fw-bold">+</button>
+
+          <!-- Notification Details -->
+          <div class="flex-grow-1 ms-lg-3 d-none d-lg-block">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Seleziona una notifica</h5>
+                <p class="card-text">I dettagli della notifica selezionata appariranno qui.</p>
               </div>
             </div>
-            <div class="row justify-content-center">
-              <div class="col-6 col-md-4 pt-2">
-                <button class="btn btn-dark w-100">Aggiungi al carrello</button>
-              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal for Mobile -->
+      <div class="modal fade" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Titolo Notifica</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <h2 class="h5 mt-3 pt-2 mb-3 pb-2">Caratteristiche</h2>
-            <p
-              >Il Château Fleur Haut Gaussens 2019 è un Bordeaux Supérieur che esprime al meglio le caratteristiche del suo terroir. Composto per l'85% da Merlot, con aggiunte di Cabernet Franc, Cabernet Sauvignon e Malbec, offre un bouquet intenso di prugne mature e more, arricchito da note di legno tostato. Al palato, si presenta setoso e vellutato, con tannini morbidi e una piacevole
-              freschezza.</p
-            >
+            <div class="modal-body"> Contenuto della notifica. </div>
           </div>
         </div>
       </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <!-- FOOTER -->
     <footer class="text-white py-4 custom-footer mt-auto">
       <div class="container">
@@ -213,5 +231,7 @@
       </div>
     </footer>
     <!-- END FOOTER -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>

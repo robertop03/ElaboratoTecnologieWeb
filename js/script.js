@@ -54,3 +54,45 @@ document.addEventListener("DOMContentLoaded", function () {
     })
   }
 })
+
+document.addEventListener("DOMContentLoaded", function () {
+  function showNotification(event) {
+    const clickedItem = event.currentTarget
+
+    // Clear active state from all items
+    document.querySelectorAll(".list-group-item").forEach((item) => {
+      item.style.backgroundColor = ""
+      item.style.opacity = "1"
+    })
+
+    // Set active state on the clicked item
+    clickedItem.style.backgroundColor = "#f8f9fa"
+    clickedItem.style.opacity = "0.6"
+
+    // Update desktop details
+    const cardTitle = document.querySelector(".card-title")
+    const cardText = document.querySelector(".card-text")
+    cardTitle.textContent = clickedItem.querySelector("span").textContent
+    cardText.textContent = clickedItem.querySelector("p").textContent
+
+    const detailedContent = {
+      "La spedizione è arrivata con successo!": "La spedizione è arrivata con successo! Questo aggiornamento indica che il tuo ordine è stato consegnato correttamente. Se hai ulteriori domande o hai bisogno di assistenza, contatta il nostro supporto clienti.",
+      "L'ordine IT2320P è in arrivo domani!": "L'ordine IT2320P è in arrivo domani! Il corriere ha confermato la data di consegna e ti invitiamo a tenere il telefono a portata di mano per eventuali aggiornamenti o richieste di firma alla consegna.",
+      "La spedizione contenente l'ordine IT2320P è stata effettuata": "La spedizione contenente l'ordine IT2320P è stata effettuata. Il pacco è ora in viaggio verso la tua destinazione e ti aggiorneremo a breve con il tracking completo.",
+      "Ordine IT2320P effettuato con successo": "Ordine IT2320P effettuato con successo. Il nostro team ha ricevuto il tuo ordine e lo sta processando. Riceverai una notifica appena la spedizione sarà pronta.",
+    }
+    const shortContent = clickedItem.querySelector("p").textContent
+    cardText.textContent = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
+
+    // Show modal on mobile
+    if (window.innerWidth < 992) {
+      const modal = new bootstrap.Modal(document.querySelector(".modal"))
+      document.querySelector(".modal-title").textContent = clickedItem.querySelector("span").textContent
+      document.querySelector(".modal-body").textContent = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
+      modal.show()
+    }
+  }
+
+  // Attach the function to the global scope (optional, if required by inline events)
+  window.showNotification = showNotification
+})

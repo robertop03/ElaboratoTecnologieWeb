@@ -98,7 +98,7 @@ hr.styled-divider {
   height: 40px; /* Altezza */
   padding: 0 15px; /* Spaziatura interna */
   display: flex; /* Allineamento flessibile */
-  align-items: center; /* Allinea verticalmente il contenuto */
+  align-items: center; /* Allinea verticalme#nte il contenuto */
   width: 100%; /* Occupa l'intera larghezza */
   border-radius: 5px; /* Bordo leggermente arrotondato */
 }
@@ -312,6 +312,7 @@ nav.navbar .container-fluid .navbar-brand > img {
 /* Margine per la navbar*/
 main {
   margin-top: 135px;
+  margin-bottom: 20px;
 }
 
 /* MEDIA QUERY NAVBAR */
@@ -379,7 +380,8 @@ main {
 
   /* Spazio per la navbar ancorata in alto */
   main {
-    margin-top: 220px;
+    margin-top: 180px;
+    margin-bottom: 20px;
   }
 }
 
@@ -596,5 +598,21 @@ main input[type="number"] {
   }
   .navbar .icons-group {
     flex-shrink: 0; /* Evita che le icone si restringano */
+  }
+}
+
+.container-fluid {
+  padding: 16px;
+}
+.list-group-item {
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+.card {
+  min-height: 300px;
+}
+@media (max-width: 991.98px) {
+  .d-none.d-lg-block {
+    display: none !important;
   }
 }
