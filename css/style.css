@@ -585,3 +585,92 @@ main input[type="number"] {
 .d-flex > button:nth-of-type(2) {
   max-width: 200px;
 }
+/* MEDIA QUERY LISTA PRODOTTI */
+@media (min-width: 768px) {
+  .navbar .search-bar {
+    flex-grow: 1; /* Occupa tutto lo spazio disponibile */
+    max-width: 400px; /* Limita la larghezza */
+    margin-left: 20px; /* Spazio tra logo e barra */
+  }
+  .navbar .navbar-brand {
+    flex-shrink: 0; /* Evita che il logo si restringa */
+  }
+  .navbar .icons-group {
+    flex-shrink: 0; /* Evita che le icone si restringano */
+  }
+}
+
+/*
+* Riassunto ordine
+*/
+/* Stile per la sezione riassunto ordine all'interno del main */
+/* Stile per la sezione riassunto ordine all'interno del main */
+main > section {
+  background-color: #f8f9fa;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+/* Sezione di riassunto ordine con contenuto flex */
+main > section > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0; /* Aggiunto per gestire lo spazio tra le righe */
+}
+
+/* Stile per il primo span (TOTALE ORDINE) - Allineato a sinistra */
+main > section > div > span:first-child {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  margin-right: auto; /* Assicura che 'TOTALE ORDINE' sia allineato a sinistra */
+}
+
+/* Stile per il secondo span (IVA inclusa 22%) */
+main > section > div > span:nth-child(2) {
+  font-size: 14px;
+  color: #888888;
+  margin-left: 8px;
+}
+
+/* Stile per l'ultimo span (prezzo totale o importo) */
+main > section > div > span:last-child {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  margin-left: auto; /* Aggiunto per spostare il totale a destra */
+}
+
+/* Stile per le righe di 'Totale prodotti', 'Totale spedizione', e 'Totale con spedizione' */
+main > section > div > span:not(:first-child):not(:last-child) {
+  font-weight: normal; /* Rimuove il grassetto */
+}
+
+/* Stile per la lista dei prodotti nel carrello */
+main #cart-full #cart-items li img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+/* Layout della lista dei prodotti nel carrello */
+main #cart-full #cart-items li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Stile per l'intestazione quando il carrello è vuoto */
+main #cart-empty h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Selettori per i totali del carrello */
+main > section div {
+  padding: 8px 0;
+}
