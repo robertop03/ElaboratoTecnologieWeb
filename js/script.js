@@ -53,9 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     })
   }
-})
 
-document.addEventListener("DOMContentLoaded", function () {
+  // Codice per mostrare le notifiche selezionate nella pagina notifiche
   function showNotification(event) {
     const clickedItem = event.currentTarget
 
@@ -95,4 +94,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Attach the function to the global scope (optional, if required by inline events)
   window.showNotification = showNotification
+
+  const modals = document.querySelectorAll(".modal")
+
+  modals.forEach((modal) => {
+    modal.addEventListener("hidden.bs.modal", function (event) {
+      // Sposta il focus sul pulsante che ha aperto il modal
+      const triggerButton = document.querySelector(`[data-bs-target="#${modal.id}"]`)
+      if (triggerButton) {
+        triggerButton.focus()
+      }
+    })
+  })
 })

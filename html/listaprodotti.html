@@ -142,9 +142,106 @@
 
     <main class="container">
       <div class="d-flex justify-content-center gap-3">
-        <button class="btn btn-dark text-white mb-3 btn-lg w-100">Filtra</button>
-        <button class="btn btn-dark text-white mb-3 btn-lg w-100">Ordina</button>
+        <button class="btn btn-dark text-white mb-3 btn-lg w-100" data-bs-toggle="modal" data-bs-target="#filterModal">Filtra</button>
+        <button class="btn btn-dark text-white mb-3 btn-lg w-100" data-bs-toggle="modal" data-bs-target="#sortModal">Ordina</button>
       </div>
+      <!-- Filter Modal -->
+      <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="filterModalLabel">Filtra</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="priceRange" class="form-label">Prezzo</label>
+                <div class="mt-4">
+                  <div class="range-values">
+                    <span id="minValue">0</span>
+                    <span id="maxValue">1000</span>
+                  </div>
+                  <input type="range" id="rangeMin" class="form-range" min="0" max="1000" step="1" value="250" />
+                  <input type="range" id="rangeMax" class="form-range" min="0" max="1000" step="1" value="750" />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="categories" class="form-label">Categorie</label>
+                <select multiple class="form-select" id="categories">
+                  <option>Rossi</option>
+                  <option>Bianchi</option>
+                  <option>Rosati</option>
+                  <option>Fermi</option>
+                  <option>Frizzanti</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="regions" class="form-label">Regioni</label>
+                <select multiple class="form-select" id="regions">
+                  <option>Abruzzo</option>
+                  <option>Basilicata</option>
+                  <option>Calabria</option>
+                  <option>Campania</option>
+                  <option>Emilia-Romagna</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="formato" class="form-label">Formato</label>
+                <select multiple class="form-select" id="formato">
+                  <option>0.375L</option>
+                  <option>0.5L</option>
+                  <option>0.75L</option>
+                  <option>1L</option>
+                  <option>1.5L</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+              <button type="button" class="btn btn-primary">Applica Filtro</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sort Modal -->
+      <div class="modal fade" id="sortModal" tabindex="-1" aria-labelledby="sortModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="sortModalLabel">Ordina</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h6>Prezzo</h6>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="sortOptions" id="priceAsc" value="ascPrice" />
+                <label class="form-check-label" for="priceAsc">Crescente</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="sortOptions" id="priceDesc" value="descPrice" />
+                <label class="form-check-label" for="priceDesc">Decrescente</label>
+              </div>
+            </div>
+            <div class="modal-body">
+              <h6>Formato</h6>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="sortOptions" id="FormatAsc" value="ascFormato" />
+                <label class="form-check-label" for="FormatAsc">Crescente</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="sortOptions" id="FormatDesc" value="descFormato" />
+                <label class="form-check-label" for="FormatDesc">Descrescente</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+              <button type="button" class="btn btn-primary">Applica Ordinamento</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row row-cols-2 row-cols-md-4 g-3">
         <!-- Prodotto 1 -->
         <div class="col">
@@ -304,7 +401,8 @@
             </div>
           </div>
         </div>
-      </main>
+      </div>
+    </main>
     <!-- FOOTER -->
     <footer class="text-white py-4 custom-footer mt-3">
       <div class="container">
