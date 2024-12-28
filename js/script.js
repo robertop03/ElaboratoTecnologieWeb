@@ -126,10 +126,4 @@ document.addEventListener("DOMContentLoaded", function () {
       if (maxValue <= minValue) maxSlider.value = minValue + 1
     })
   })
-
-  $(".regione").on("click", function () {
-    $(".regione").removeClass("selected")
-    $(this).addClass("selected")
-    console.log($(this).data("nome-regione"))
-  })
 })

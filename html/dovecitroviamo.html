@@ -17,7 +17,7 @@
           <div class="d-flex d-md-none align-items-center justify-content-between w-100">
             <!-- Menu Hamburger -->
             <button class="btn me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
-              <i class="bi bi-list"></i>
+              <span class="bi bi-list" aria-hidden="true"></span>
             </button>
             <!-- Logo Mobile -->
             <a href="index.html" class="navbar-brand">
@@ -25,19 +25,20 @@
             </a>
             <!-- Icone Mobile -->
             <div class="d-flex align-items-center">
-              <a href="carrello.html" class="text-decoration-none me-3">
-                <i class="bi bi-cart"></i>
+              <a href="carrello.html" class="text-decoration-none me-3" aria-label="cart icon">
+                <span class="bi bi-cart" aria-hidden="true"></span>
               </a>
-              <a href="utente.html" class="text-decoration-none">
-                <i class="bi bi-person"></i>
+              <a href="utente.html" class="text-decoration-none" aria-label="person icon">
+                <span class="bi bi-person" aria-hidden="true"></span>
               </a>
             </div>
           </div>
           <!-- Barra di ricerca Mobile -->
           <div class="d-flex d-md-none mt-2">
             <div class="search-bar d-flex align-items-center rounded px-3 w-100">
-              <i class="bi bi-search"></i>
-              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-mobile" />
+              <span class="bi bi-search" aria-label="search icon"></span>
+              <label for="search-bar-mobile" class="visually-hidden">Barra di ricerca</label>
+              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" name="search-bar-mobile" id="search-bar-mobile" />
             </div>
           </div>
 
@@ -49,27 +50,28 @@
             </a>
             <!-- Barra di ricerca Desktop -->
             <div class="search-bar d-flex align-items-center rounded px-3">
-              <i class="bi bi-search"></i>
-              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-desktop" />
+              <span class="bi bi-search" aria-label="search icon"></span>
+              <label for="search-bar-desktop" class="visually-hidden">Barra di ricerca</label>
+              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" name="search-bar-desktop" id="search-bar-desktop" />
             </div>
             <!-- Icone Desktop -->
             <div class="icons-group d-flex align-items-center">
               <div class="dropdown pe-1">
-                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> <img src="../resources/icons/italy.png" alt="Italy" /> IT </a>
+                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> <img src="../resources/icons/italy.png" alt="Italy flag" /> IT </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <li
-                    ><a class="dropdown-item" href="#"><img src="../resources/icons/english.png" alt="English" /> EN</a></li
+                    ><a class="dropdown-item" href="#"><img src="../resources/icons/english.png" alt="English flag" /> EN</a></li
                   >
                   <li
-                    ><a class="dropdown-item" href="#"><img src="../resources/icons/italy.png" alt="Italy" /> IT</a></li
+                    ><a class="dropdown-item" href="#"><img src="../resources/icons/italy.png" alt="Italy flag" /> IT</a></li
                   >
                 </ul>
               </div>
-              <a href="carrello.html" class="text-decoration-none me-3">
-                <i class="bi bi-cart"></i>
+              <a href="carrello.html" class="text-decoration-none me-3" aria-label="cart icon">
+                <span class="bi bi-cart" aria-hidden="true"></span>
               </a>
-              <a href="utente.html" class="text-decoration-none">
-                <i class="bi bi-person"></i>
+              <a href="utente.html" class="text-decoration-none" aria-label="person icon">
+                <span class="bi bi-person" aria-hidden="true"></span>
               </a>
             </div>
           </div>
@@ -87,6 +89,7 @@
         </ul>
       </div>
     </header>
+
     <!-- OFFCANVAS MENU -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLaterale" aria-labelledby="menuLateraleLabel">
       <div class="offcanvas-header">
@@ -105,7 +108,7 @@
           <li class="list-group-item">
             <a class="d-flex justify-content-between align-items-center" href="#" data-bs-toggle="collapse" data-bs-target="#menuRegioni" aria-expanded="false" aria-controls="menuRegioni">
               Regioni
-              <i class="bi bi-chevron-down"></i>
+              <span class="bi bi-chevron-down" aria-hidden="true"></span>
             </a>
             <!-- SUBMENU -->
             <ul class="list-group collapse mt-2" id="menuRegioni">
@@ -130,14 +133,13 @@
                         <li class="list-group-item"><a href="#">Umbria</a></li>
                         <li class="list-group-item"><a href="#">Valle d'Aosta</a></li>
                         <li class="list-group-item"><a href="#">Veneto</a></li>
-                    -->
+                        -->
               <li class="list-group-item"><a href="#">Vai alla mappa</a></li>
             </ul>
           </li>
         </ul>
       </div>
     </div>
-    <!-- END OFFCANVAS MENU -->
     <!-- SEZIONE MAPPA E DESCRIZIONE -->
     <main class="flex-grow-1">
       <div class="container my-3 pb-5">
@@ -152,7 +154,7 @@
           <!-- Colonna Testo -->
           <div>
             <p>Ci troviamo a Cesena, a 10 minuti dall'Ippodromo e a pochi minuti dall'ospedale Bufalini.</p>
-            <p><strong>Orari di apertura:</strong></p>
+            <p class="fw-bold">Orari di apertura:</p>
             <ul>
               <li>Lun-Ven: 9:00-12:00 / 15:00-19:00</li>
               <li>Sab: 9:00 - 12:30</li>
@@ -169,24 +171,27 @@
       <div class="container">
         <div class="row text-center">
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <i class="bi bi-lock fs-1 me-3"></i>
+            <span class="bi bi-lock fs-1 me-3" aria-label="footer lock icon"></span>
             <div>
-              <h5><strong>SHOPPING SICURO</strong></h5>
-              <p>I tuoi <strong>pagamenti online</strong> sono protetti e accettiamo anche il <strong>pagamento alla consegna</strong></p>
+              <h2 class="h5"><strong>SHOPPING SICURO</strong></h2>
+              <p>
+                I tuoi <strong>pagamenti online</strong> sono protetti e accettiamo anche il
+                <strong>pagamento alla consegna</strong>
+              </p>
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <i class="bi bi-truck fs-1 me-3"></i>
+            <span class="bi bi-truck fs-1 me-3" aria-label="footer truck icon"></span>
             <div>
-              <h5><strong>COSTI DI SPEDIZIONE</strong></h5>
-              <p><strong>Gratis</strong> per gli ordini sopra i <strong>69€</strong>, altrimenti la spedizione è di 7.75€</p>
+              <h2 class="h5"><strong>COSTI DI SPEDIZIONE</strong></h2>
+              <p> <strong>Gratis</strong> per gli ordini sopra i <strong>69€</strong>, altrimenti la spedizione è di 7.75€ </p>
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <i class="bi bi-telephone fs-1 me-3"></i>
+            <span class="bi bi-telephone fs-1 me-3" aria-label="footer telephone icon"></span>
             <div>
-              <h5><strong>CONTATTACI</strong></h5>
-              <p>Consulta la <strong>nostra guida</strong> o contatta il nostro <strong>servizio clienti</strong> per ottenere maggiori informazioni e ricevere assistenza</p>
+              <h2 class="h5"><strong>CONTATTACI</strong></h2>
+              <p> Consulta la <strong>nostra guida</strong> o contatta il nostro <strong>servizio clienti</strong> per ottenere maggiori informazioni e ricevere assistenza </p>
             </div>
           </div>
         </div>
