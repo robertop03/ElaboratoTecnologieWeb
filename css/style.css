@@ -220,13 +220,6 @@ form.register-form .form-control {
   margin-bottom: 1.5rem;
 }
 
-/* Immagine utente */
-img[alt="Profilo"] {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-}
-
 /* Footer */
 footer {
   background-color: #54072a;
@@ -659,4 +652,14 @@ main #cart-empty h2 {
 /* Selettori per i totali del carrello */
 main > section div {
   padding: 8px 0;
+}
+
+path:hover {
+  fill: #fff;
+}
+path.selected {
+  fill: #fff !important;
+}
+.regione {
+  transition: all 200ms ease-in-out;
 }
