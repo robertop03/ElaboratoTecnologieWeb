@@ -597,3 +597,9 @@ main #cart-empty h2 {
 main > section div {
   padding: 8px 0;
 }
+.modal-dialog {
+  height: 350px;
+}
+svg {
+  height: 280px;
+}
