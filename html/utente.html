@@ -17,7 +17,7 @@
           <div class="d-flex d-md-none align-items-center justify-content-between w-100">
             <!-- Menu Hamburger -->
             <button class="btn me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
-              <span class="bi bi-list text-dark" aria-label="hamburger menu"></span>
+              <span class="bi bi-list text-dark" role="img" aria-label="hamburger menu"></span>
             </button>
             <!-- Logo Mobile -->
             <a href="index.html" class="navbar-brand">
@@ -26,17 +26,17 @@
             <!-- Icone Mobile -->
             <div class="d-flex align-items-center">
               <a href="carrello.html" class="text-decoration-none me-3" aria-label="cart icon">
-                <span class="bi bi-cart text-dark" aria-hidden="true"></span>
+                <span class="bi bi-cart text-dark" role="img" aria-hidden="true"></span>
               </a>
               <a href="utente.html" class="text-decoration-none" aria-label="person icon">
-                <span class="bi bi-person text-dark" aria-hidden="true"></span>
+                <span class="bi bi-person text-dark" role="img" aria-hidden="true"></span>
               </a>
             </div>
           </div>
           <!-- Barra di ricerca Mobile -->
           <div class="d-flex d-md-none mt-2">
             <div class="search-bar d-flex align-items-center rounded px-3 w-100">
-              <span class="bi bi-search" aria-label="search icon"></span>
+              <span class="bi bi-search" role="img" aria-label="search icon"></span>
               <label for="search-bar-mobile" class="visually-hidden">Barra di ricerca</label>
               <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-mobile" id="search-bar-mobile" />
             </div>
@@ -50,7 +50,7 @@
             </a>
             <!-- Barra di ricerca Desktop -->
             <div class="search-bar d-flex align-items-center rounded px-3">
-              <span class="bi bi-search" aria-label="search icon"></span>
+              <span class="bi bi-search" role="img" aria-label="search icon"></span>
               <label for="search-bar-desktop" class="visually-hidden">Barra di ricerca</label>
               <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-desktop" id="search-bar-desktop" />
             </div>
@@ -68,10 +68,10 @@
                 </ul>
               </div>
               <a href="carrello.html" class="text-decoration-none me-3" aria-label="cart icon">
-                <span class="bi bi-cart" aria-hidden="true"></span>
+                <span class="bi bi-cart" role="img" aria-hidden="true"></span>
               </a>
               <a href="utente.html" class="text-decoration-none" aria-label="person icon">
-                <span class="bi bi-person" aria-hidden="true"></span>
+                <span class="bi bi-person" role="img" aria-hidden="true"></span>
               </a>
             </div>
           </div>
@@ -80,7 +80,7 @@
       <!-- Menu di navigazione (solo desktop) -->
       <div class="container-fluid d-none d-md-flex justify-content-center border border-dark">
         <ul class="nav-links d-flex gap-3 list-unstyled">
-          <li><a href="#" class="text-dark text-uppercase">Regione</a></li>
+          <li><a href="#" class="text-dark text-uppercase" data-bs-toggle="modal" data-bs-target="#map-modal">Regione</a></li>
           <li><a href="#" class="text-dark text-uppercase">Rossi</a></li>
           <li><a href="#" class="text-dark text-uppercase">Bianchi</a></li>
           <li><a href="#" class="text-dark text-uppercase">Rosati</a></li>
@@ -108,7 +108,7 @@
           <li class="list-group-item">
             <a class="d-flex justify-content-between align-items-center" href="#" data-bs-toggle="collapse" data-bs-target="#menuRegioni" aria-expanded="false" aria-controls="menuRegioni">
               Regioni
-              <span class="bi bi-chevron-down" aria-hidden="true"></span>
+              <span class="bi bi-chevron-down" role="img" aria-hidden="true"></span>
             </a>
             <!-- SUBMENU -->
             <ul class="list-group collapse mt-2" id="menuRegioni">
@@ -143,6 +143,23 @@
     <!-- END OFFCANVAS MENU -->
 
     <main>
+      <!-- Modale della Mappa -->
+      <div class="modal fade" id="map-modal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mapModalLabel">Seleziona Regione</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <img src="../resources/img/italy.svg" alt="Mappa Italia" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- MOBILE PAGE -->
       <div class="container mt-4 mb-5 d-md-none">
         <!-- Sezione profilo -->
@@ -163,7 +180,7 @@
                 <span class="text-muted small">Hai effettuato 3 ordini</span>
               </div>
             </a>
-            <span class="bi bi-chevron-right text-muted" aria-hidden="true"></span>
+            <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span>
           </li>
           <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
             <a href="#" class="text-decoration-none text-dark w-100">
@@ -172,7 +189,7 @@
                 <span class="text-muted small">1 indirizzo</span>
               </div>
             </a>
-            <span class="bi bi-chevron-right text-muted" aria-hidden="true"></span>
+            <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span>
           </li>
           <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
             <a href="#" class="text-decoration-none text-dark w-100">
@@ -181,7 +198,7 @@
                 <span class="text-muted small">Visa **34</span>
               </div>
             </a>
-            <a href="" aria-label="chevron right icon"><span class="bi bi-chevron-right text-muted" aria-hidden="true"></span></a>
+            <a href="" aria-label="chevron right icon"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span></a>
           </li>
           <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
             <a href="#" class="text-decoration-none text-dark w-100">
@@ -190,7 +207,7 @@
                 <span class="text-muted small">Non hai preferiti</span>
               </div>
             </a>
-            <a href="" aria-label="chevron right icon"><span class="bi bi-chevron-right text-muted" aria-hidden="true"></span></a>
+            <a href="" aria-label="chevron right icon"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span></a>
           </li>
           <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
             <a href="notifiche.html" class="text-decoration-none text-dark w-100">
@@ -199,7 +216,7 @@
                 <span class="text-muted small">Al momento non hai notifiche</span>
               </div>
             </a>
-            <a href="notifiche.html" aria-label="chevron right icon"><span class="bi bi-chevron-right text-muted" aria-hidden="true"></span></a>
+            <a href="notifiche.html" aria-label="chevron right icon"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span></a>
           </li>
           <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
             <a href="#" class="text-decoration-none text-dark w-100" data-bs-toggle="modal" data-bs-target="#impostazioniModal">
@@ -209,78 +226,78 @@
               </div>
             </a>
             <a href="#" data-bs-toggle="modal" data-bs-target="#impostazioniModal" aria-label="chevron right icon">
-              <span class="bi bi-chevron-right text-muted" aria-hidden="true"></span>
+              <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span>
             </a>
           </li>
-          <!-- Modale Impostazioni -->
-          <div class="modal fade" id="impostazioniModal" tabindex="-1" aria-labelledby="impostazioniModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="impostazioniModalLabel">Impostazioni</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <!-- Sezione Impostazioni -->
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h4>Informazioni Personali</h4>
-                      <form>
-                        <div class="mb-3">
-                          <label for="nome-modal" class="form-label">Nome</label>
-                          <input type="text" class="form-control" id="nome-modal" />
+        </ul>
+        <!-- Modale Impostazioni -->
+        <div class="modal fade" id="impostazioniModal" tabindex="-1" aria-labelledby="impostazioniModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="impostazioniModalLabel">Impostazioni</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- Sezione Impostazioni -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <h4>Informazioni Personali</h4>
+                    <form>
+                      <div class="mb-3">
+                        <label for="nome-modal" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome-modal" />
+                      </div>
+                      <div class="mb-3">
+                        <label for="cognome-modal" class="form-label">Cognome</label>
+                        <input type="text" class="form-control" id="cognome-modal" />
+                      </div>
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="notifiche-modal" />
+                        <label class="form-check-label" for="notifiche-modal">Voglio ricevere notifiche per gli stati delle consegne</label>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-md-6">
+                    <h4 class="py-3">Cambia Password</h4>
+                    <form>
+                      <div class="mb-3">
+                        <label for="current-password-modal" class="form-label">Password attuale</label>
+                        <div class="input-group">
+                          <input type="password" class="form-control" id="current-password-modal" />
+                          <button class="btn btn-outline-secondary toggle-password" type="button">
+                            <span class="bi bi-eye" role="img" aria-label="eye icon"></span>
+                          </button>
                         </div>
-                        <div class="mb-3">
-                          <label for="cognome-modal" class="form-label">Cognome</label>
-                          <input type="text" class="form-control" id="cognome-modal" />
+                      </div>
+                      <div class="mb-3">
+                        <label for="new-password-modal" class="form-label">Nuova Password</label>
+                        <div class="input-group">
+                          <input type="password" class="form-control" id="new-password-modal" />
+                          <button class="btn btn-outline-secondary toggle-password" type="button">
+                            <span class="bi bi-eye" role="img" aria-label="eye icon"></span>
+                          </button>
                         </div>
-                        <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" id="notifiche-modal" />
-                          <label class="form-check-label" for="notifiche-modal">Voglio ricevere notifiche per gli stati delle consegne</label>
+                      </div>
+                      <div class="mb-3">
+                        <label for="confirm-password-modal" class="form-label">Conferma Nuova Password</label>
+                        <div class="input-group">
+                          <input type="password" class="form-control" id="confirm-password-modal" />
+                          <button class="btn btn-outline-secondary toggle-password" type="button">
+                            <span class="bi bi-eye" role="img" aria-label="eye icon"></span>
+                          </button>
                         </div>
-                      </form>
-                    </div>
-                    <div class="col-md-6">
-                      <h4 class="py-3">Cambia Password</h4>
-                      <form>
-                        <div class="mb-3">
-                          <label for="current-password-modal" class="form-label">Password attuale</label>
-                          <div class="input-group">
-                            <input type="password" class="form-control" id="current-password-modal" />
-                            <button class="btn btn-outline-secondary toggle-password" type="button">
-                              <span class="bi bi-eye" aria-label="eye icon"></span>
-                            </button>
-                          </div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="new-password-modal" class="form-label">Nuova Password</label>
-                          <div class="input-group">
-                            <input type="password" class="form-control" id="new-password-modal" />
-                            <button class="btn btn-outline-secondary toggle-password" type="button">
-                              <span class="bi bi-eye" aria-label="eye icon"></span>
-                            </button>
-                          </div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="confirm-password-modal" class="form-label">Conferma Nuova Password</label>
-                          <div class="input-group">
-                            <input type="password" class="form-control" id="confirm-password-modal" />
-                            <button class="btn btn-outline-secondary toggle-password" type="button">
-                              <span class="bi bi-eye" aria-label="eye icon"></span>
-                            </button>
-                          </div>
-                        </div>
-                        <div class="d-grid">
-                          <button type="submit" class="btn btn-lg btn-primary mt-3">Salva</button>
-                        </div>
-                      </form>
-                    </div>
+                      </div>
+                      <div class="d-grid">
+                        <button type="submit" class="btn btn-lg btn-primary mt-3">Salva</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </ul>
+        </div>
       </div>
 
       <!-- DESKTOP PAGE -->
@@ -348,8 +365,8 @@
                   <div class="card-body text-center">
                     <p>Château Fleur Haut Gaussens</p>
                     <p>12,90€</p>
-                    <span class="bi bi-cart-plus text-dark pe-2" aria-label="cart plus icon"></span>
-                    <span class="bi bi-heart-fill text-dark ps-2" aria-label="heart fill icon"></span>
+                    <span class="bi bi-cart-plus text-dark pe-2" role="img" aria-label="cart plus icon"></span>
+                    <span class="bi bi-heart-fill text-dark ps-2" role="img" aria-label="heart fill icon"></span>
                   </div>
                 </div>
               </div>
@@ -359,8 +376,8 @@
                   <div class="card-body text-center">
                     <p>Sottimano</p>
                     <p>19,90€</p>
-                    <span class="bi bi-cart-plus text-dark pe-2" aria-label="cart plus icon"></span>
-                    <span class="bi bi-heart-fill text-dark ps-2" aria-label="heart fill icon"></span>
+                    <span class="bi bi-cart-plus text-dark pe-2" role="img" aria-label="cart plus icon"></span>
+                    <span class="bi bi-heart-fill text-dark ps-2" role="img" aria-label="heart fill icon"></span>
                   </div>
                 </div>
               </div>
@@ -370,8 +387,8 @@
                   <div class="card-body text-center">
                     <p>Mazoni Campi</p>
                     <p>14,90€</p>
-                    <span class="bi bi-cart-plus text-dark pe-2" aria-label="cart plus icon"></span>
-                    <span class="bi bi-heart-fill text-dark ps-2" aria-label="heart fill icon"></span>
+                    <span class="bi bi-cart-plus text-dark pe-2" role="img" aria-label="cart plus icon"></span>
+                    <span class="bi bi-heart-fill text-dark ps-2" role="img" aria-label="heart fill icon"></span>
                   </div>
                 </div>
               </div>
@@ -386,11 +403,11 @@
             <h4>Notifiche</h4>
             <ul class="notifications-list">
               <li>
-                <span class="bi bi-bell text-primary me-2" aria-label="bell icon"></span>
+                <span class="bi bi-bell text-primary me-2" role="img" aria-label="bell icon"></span>
                 Aggiornamento spedizione - <small class="text-muted">12 Marzo 2024</small>
               </li>
               <li>
-                <span class="bi bi-box-arrow-down text-success me-2" aria-label="arrow down icon"></span>
+                <span class="bi bi-box-arrow-down text-success me-2" role="img" aria-label="arrow down icon"></span>
                 Ordine effettuato - <small class="text-muted">11 Marzo 2024</small>
               </li>
             </ul>
@@ -427,7 +444,7 @@
                 <div class="input-group">
                   <input type="password" class="form-control" id="current-password" />
                   <button class="btn btn-outline-secondary toggle-password" type="button">
-                    <span class="bi bi-eye" aria-label="eye icon"></span>
+                    <span class="bi bi-eye" role="img" aria-label="eye icon"></span>
                   </button>
                 </div>
               </div>
@@ -436,7 +453,7 @@
                 <div class="input-group">
                   <input type="password" class="form-control" id="new-password" />
                   <button class="btn btn-outline-secondary toggle-password" type="button">
-                    <span class="bi bi-eye" aria-label="eye icon"></span>
+                    <span class="bi bi-eye" role="img" aria-label="eye icon"></span>
                   </button>
                 </div>
               </div>
@@ -445,7 +462,7 @@
                 <div class="input-group">
                   <input type="password" class="form-control" id="confirm-password" />
                   <button class="btn btn-outline-secondary toggle-password" type="button">
-                    <span class="bi bi-eye" aria-label="eye icon"></span>
+                    <span class="bi bi-eye" role="img" aria-label="eye icon"></span>
                   </button>
                 </div>
               </div>
@@ -463,7 +480,7 @@
       <div class="container">
         <div class="row text-center">
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <span class="bi bi-lock fs-1 me-3" aria-label="footer lock icon"></span>
+            <span class="bi bi-lock fs-1 me-3" role="img" aria-label="footer lock icon"></span>
             <div>
               <h2 class="h5"><strong>SHOPPING SICURO</strong></h2>
               <p>
@@ -473,14 +490,14 @@
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <span class="bi bi-truck fs-1 me-3" aria-label="footer truck icon"></span>
+            <span class="bi bi-truck fs-1 me-3" role="img" aria-label="footer truck icon"></span>
             <div>
               <h2 class="h5"><strong>COSTI DI SPEDIZIONE</strong></h2>
               <p> <strong>Gratis</strong> per gli ordini sopra i <strong>69€</strong>, altrimenti la spedizione è di 7.75€ </p>
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <span class="bi bi-telephone fs-1 me-3" aria-label="footer telephone icon"></span>
+            <span class="bi bi-telephone fs-1 me-3" role="img" aria-label="footer telephone icon"></span>
             <div>
               <h2 class="h5"><strong>CONTATTACI</strong></h2>
               <p> Consulta la <strong>nostra guida</strong> o contatta il nostro <strong>servizio clienti</strong> per ottenere maggiori informazioni e ricevere assistenza </p>

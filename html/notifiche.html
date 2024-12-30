@@ -18,7 +18,7 @@
           <div class="d-flex d-md-none align-items-center justify-content-between w-100">
             <!-- Menu Hamburger -->
             <button class="btn me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
-              <span class="bi bi-list text-dark" aria-label="hamburger menu"></span>
+              <span class="bi bi-list text-dark" role="img" aria-label="hamburger menu"></span>
             </button>
             <!-- Logo Mobile -->
             <a href="index.html" class="navbar-brand">
@@ -27,17 +27,17 @@
             <!-- Icone Mobile -->
             <div class="d-flex align-items-center">
               <a href="carrello.html" class="text-decoration-none me-3" aria-label="cart icon">
-                <span class="bi bi-cart text-dark" aria-hidden="true"></span>
+                <span class="bi bi-cart text-dark" role="img" aria-hidden="true"></span>
               </a>
               <a href="utente.html" class="text-decoration-none" aria-label="person icon">
-                <span class="bi bi-person text-dark" aria-hidden="true"></span>
+                <span class="bi bi-person text-dark" role="img" aria-hidden="true"></span>
               </a>
             </div>
           </div>
           <!-- Barra di ricerca Mobile -->
           <div class="d-flex d-md-none mt-2">
             <div class="search-bar d-flex align-items-center rounded px-3 w-100">
-              <span class="bi bi-search" aria-label="search icon"></span>
+              <span class="bi bi-search" role="img" aria-label="search icon"></span>
               <label for="search-bar-mobile" class="visually-hidden">Barra di ricerca</label>
               <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-mobile" id="search-bar-mobile" />
             </div>
@@ -51,7 +51,7 @@
             </a>
             <!-- Barra di ricerca Desktop -->
             <div class="search-bar d-flex align-items-center rounded px-3">
-              <span class="bi bi-search" aria-label="search icon"></span>
+              <span class="bi bi-search" role="img" aria-label="search icon"></span>
               <label for="search-bar-desktop" class="visually-hidden">Barra di ricerca</label>
               <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-desktop" id="search-bar-desktop" />
             </div>
@@ -69,10 +69,10 @@
                 </ul>
               </div>
               <a href="carrello.html" class="text-decoration-none me-3" aria-label="cart icon">
-                <span class="bi bi-cart" aria-hidden="true"></span>
+                <span class="bi bi-cart" role="img" aria-hidden="true"></span>
               </a>
               <a href="utente.html" class="text-decoration-none" aria-label="person icon">
-                <span class="bi bi-person" aria-hidden="true"></span>
+                <span class="bi bi-person" role="img" aria-hidden="true"></span>
               </a>
             </div>
           </div>
@@ -81,7 +81,7 @@
       <!-- Menu di navigazione (solo desktop) -->
       <div class="container-fluid d-none d-md-flex justify-content-center border border-dark">
         <ul class="nav-links d-flex gap-3 list-unstyled">
-          <li><a href="#" class="text-dark text-uppercase">Regione</a></li>
+          <li><a href="#" class="text-dark text-uppercase" data-bs-toggle="modal" data-bs-target="#map-modal">Regione</a></li>
           <li><a href="#" class="text-dark text-uppercase">Rossi</a></li>
           <li><a href="#" class="text-dark text-uppercase">Bianchi</a></li>
           <li><a href="#" class="text-dark text-uppercase">Rosati</a></li>
@@ -109,7 +109,7 @@
           <li class="list-group-item">
             <a class="d-flex justify-content-between align-items-center" href="#" data-bs-toggle="collapse" data-bs-target="#menuRegioni" aria-expanded="false" aria-controls="menuRegioni">
               Regioni
-              <span class="bi bi-chevron-down" aria-hidden="true"></span>
+              <span class="bi bi-chevron-down" role="img" aria-hidden="true"></span>
             </a>
             <!-- SUBMENU -->
             <ul class="list-group collapse mt-2" id="menuRegioni">
@@ -143,26 +143,43 @@
     </div>
 
     <main class="flex-grow-1">
+      <!-- Modale della Mappa -->
+      <div class="modal fade" id="map-modal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mapModalLabel">Seleziona Regione</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <img src="../resources/img/italy.svg" alt="Mappa Italia" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="d-flex flex-column flex-lg-row">
         <!-- Notification List -->
         <div class="list-group flex-lg-shrink-0" style="min-width: 300px">
           <a href="#" class="list-group-item list-group-item-action" onclick="showNotification(event)">
-            <span class="bi bi-truck me-3" aria-hidden="true"></span>
+            <span class="bi bi-truck me-3" role="img" aria-hidden="true"></span>
             <span>Aggiornamento spedizione</span>
             <p class="mb-0 text-muted">La spedizione è arrivata con successo!</p>
           </a>
           <a href="#" class="list-group-item list-group-item-action" onclick="showNotification(event)">
-            <span class="bi bi-truck me-3" aria-hidden="true"></span>
+            <span class="bi bi-truck me-3" role="img" aria-hidden="true"></span>
             <span>Aggiornamento spedizione</span>
             <p class="mb-0 text-muted">L'ordine IT2320P è in arrivo domani!</p>
           </a>
           <a href="#" class="list-group-item list-group-item-action" onclick="showNotification(event)">
-            <span class="bi bi-truck me-3" aria-hidden="true"></span>
+            <span class="bi bi-truck me-3" role="img" aria-hidden="true"></span>
             <span>Aggiornamento spedizione</span>
             <p class="mb-0 text-muted">La spedizione contenente l'ordine IT2320P è stata effettuata</p>
           </a>
           <a href="#" class="list-group-item list-group-item-action" onclick="showNotification(event)">
-            <span class="bi bi-truck me-3" aria-hidden="true"></span>
+            <span class="bi bi-truck me-3" role="img" aria-hidden="true"></span>
             <span>Ordine effettuato</span>
             <p class="mb-0 text-muted">Ordine IT2320P effettuato con successo</p>
           </a>
@@ -198,7 +215,7 @@
       <div class="container">
         <div class="row text-center">
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <span class="bi bi-lock fs-1 me-3" aria-label="footer lock icon"></span>
+            <span class="bi bi-lock fs-1 me-3" role="img" aria-label="footer lock icon"></span>
             <div>
               <h2 class="h5"><strong>SHOPPING SICURO</strong></h2>
               <p>
@@ -208,14 +225,14 @@
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <span class="bi bi-truck fs-1 me-3" aria-label="footer truck icon"></span>
+            <span class="bi bi-truck fs-1 me-3" role="img" aria-label="footer truck icon"></span>
             <div>
               <h2 class="h5"><strong>COSTI DI SPEDIZIONE</strong></h2>
               <p> <strong>Gratis</strong> per gli ordini sopra i <strong>69€</strong>, altrimenti la spedizione è di 7.75€ </p>
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <span class="bi bi-telephone fs-1 me-3" aria-label="footer telephone icon"></span>
+            <span class="bi bi-telephone fs-1 me-3" role="img" aria-label="footer telephone icon"></span>
             <div>
               <h2 class="h5"><strong>CONTATTACI</strong></h2>
               <p> Consulta la <strong>nostra guida</strong> o contatta il nostro <strong>servizio clienti</strong> per ottenere maggiori informazioni e ricevere assistenza </p>

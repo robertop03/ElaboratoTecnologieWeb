@@ -95,16 +95,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // Attach the function to the global scope (optional, if required by inline events)
   window.showNotification = showNotification
 
-  const modals = document.querySelectorAll(".modal")
+  const modalTriggers = document.querySelectorAll("[data-bs-toggle='modal']")
 
-  modals.forEach((modal) => {
-    modal.addEventListener("hidden.bs.modal", function (event) {
-      // Sposta il focus sul pulsante che ha aperto il modal
-      const triggerButton = document.querySelector(`[data-bs-target="#${modal.id}"]`)
-      if (triggerButton) {
-        triggerButton.focus()
-      }
-    })
+  modalTriggers.forEach((trigger) => {
+    const targetModalId = trigger.getAttribute("data-bs-target")
+    const targetModal = document.querySelector(targetModalId)
+
+    if (targetModal) {
+      // Non serve aggiungere bootstrap.Modal.show() manualmente
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault() // Per evitare che il link href="#" scorra verso l'alto
+      })
+    }
   })
 
   // Codice per il range prezzo nel filtraggio

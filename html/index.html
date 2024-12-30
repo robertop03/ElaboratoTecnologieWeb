@@ -78,7 +78,7 @@
       <!-- Menu di navigazione (solo desktop) -->
       <div class="container-fluid d-none d-md-flex justify-content-center border border-dark">
         <ul class="nav-links d-flex gap-3 list-unstyled">
-          <li><a href="#" class="text-dark text-uppercase">Regione</a></li>
+          <li><a href="#" class="text-dark text-uppercase" data-bs-toggle="modal" data-bs-target="#map-modal">Regione</a></li>
           <li><a href="#" class="text-dark text-uppercase">Rossi</a></li>
           <li><a href="#" class="text-dark text-uppercase">Bianchi</a></li>
           <li><a href="#" class="text-dark text-uppercase">Rosati</a></li>
@@ -142,6 +142,23 @@
 
     <!-- MAIN SECTION -->
     <main class="content-wrapper">
+      <!-- Modale della Mappa -->
+      <div class="modal fade" id="map-modal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mapModalLabel">Seleziona Regione</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <img src="../resources/img/italy.svg" alt="Mappa Italia" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Main content: caroselli -->
       <div class="content-main">
         <!-- CAROUSEL BEST SELLER PRODUCTS -->

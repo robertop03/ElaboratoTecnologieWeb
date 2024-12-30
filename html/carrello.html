@@ -144,6 +144,23 @@
 
     <!-- MAIN SECTION -->
     <main class="flex-grow-1">
+      <!-- Modale della Mappa -->
+      <div class="modal fade" id="map-modal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mapModalLabel">Seleziona Regione</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <img src="../resources/img/italy.svg" alt="Mappa Italia" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- CARRELLO VUOTO -->
       <div id="cart-empty" class="cart-state">
         <h2>La tua shopping bag è vuota</h2>
@@ -171,7 +188,6 @@
           <span>€0,00</span>
         </div>
       </section>
-      
     </main>
 
     <!-- FOOTER -->

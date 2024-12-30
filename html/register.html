@@ -17,7 +17,7 @@
           <div class="d-flex d-md-none align-items-center justify-content-between w-100">
             <!-- Menu Hamburger -->
             <button class="btn me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
-              <span class="bi bi-list" aria-hidden="true"></span>
+              <span class="bi bi-list" role="img" aria-hidden="true"></span>
             </button>
             <!-- Logo Mobile -->
             <a href="index.html" class="navbar-brand">
@@ -26,17 +26,17 @@
             <!-- Icone Mobile -->
             <div class="d-flex align-items-center">
               <a href="carrello.html" class="text-decoration-none me-3" aria-label="cart icon">
-                <span class="bi bi-cart" aria-hidden="true"></span>
+                <span class="bi bi-cart" role="img" aria-hidden="true"></span>
               </a>
               <a href="utente.html" class="text-decoration-none" aria-label="person icon">
-                <span class="bi bi-person" aria-hidden="true"></span>
+                <span class="bi bi-person" role="img" aria-hidden="true"></span>
               </a>
             </div>
           </div>
           <!-- Barra di ricerca Mobile -->
           <div class="d-flex d-md-none mt-2">
             <div class="search-bar d-flex align-items-center rounded px-3 w-100">
-              <span class="bi bi-search" aria-label="search icon"></span>
+              <span class="bi bi-search" role="img" aria-label="search icon"></span>
               <label for="search-bar-mobile" class="visually-hidden">Barra di ricerca</label>
               <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" name="search-bar-mobile" id="search-bar-mobile" />
             </div>
@@ -50,7 +50,7 @@
             </a>
             <!-- Barra di ricerca Desktop -->
             <div class="search-bar d-flex align-items-center rounded px-3">
-              <span class="bi bi-search" aria-label="search icon"></span>
+              <span class="bi bi-search" role="img" aria-label="search icon"></span>
               <label for="search-bar-desktop" class="visually-hidden">Barra di ricerca</label>
               <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" name="search-bar-desktop" id="search-bar-desktop" />
             </div>
@@ -68,10 +68,10 @@
                 </ul>
               </div>
               <a href="carrello.html" class="text-decoration-none me-3" aria-label="cart icon">
-                <span class="bi bi-cart" aria-hidden="true"></span>
+                <span class="bi bi-cart" role="img" aria-hidden="true"></span>
               </a>
               <a href="utente.html" class="text-decoration-none" aria-label="person icon">
-                <span class="bi bi-person" aria-hidden="true"></span>
+                <span class="bi bi-person" role="img" aria-hidden="true"></span>
               </a>
             </div>
           </div>
@@ -80,7 +80,7 @@
       <!-- Menu di navigazione (solo desktop) -->
       <div class="container-fluid d-none d-md-flex justify-content-center border border-dark">
         <ul class="nav-links d-flex gap-3 list-unstyled">
-          <li><a href="#" class="text-dark text-uppercase">Regione</a></li>
+          <li><a href="#" class="text-dark text-uppercase" data-bs-toggle="modal" data-bs-target="#map-modal">Regione</a></li>
           <li><a href="#" class="text-dark text-uppercase">Rossi</a></li>
           <li><a href="#" class="text-dark text-uppercase">Bianchi</a></li>
           <li><a href="#" class="text-dark text-uppercase">Rosati</a></li>
@@ -108,7 +108,7 @@
           <li class="list-group-item">
             <a class="d-flex justify-content-between align-items-center" href="#" data-bs-toggle="collapse" data-bs-target="#menuRegioni" aria-expanded="false" aria-controls="menuRegioni">
               Regioni
-              <span class="bi bi-chevron-down" aria-hidden="true"></span>
+              <span class="bi bi-chevron-down" role="img" aria-hidden="true"></span>
             </a>
             <!-- SUBMENU -->
             <ul class="list-group collapse mt-2" id="menuRegioni">
@@ -142,6 +142,23 @@
     </div>
 
     <main class="flex-grow-1">
+      <!-- Modale della Mappa -->
+      <div class="modal fade" id="map-modal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mapModalLabel">Seleziona Regione</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <img src="../resources/img/italy.svg" alt="Mappa Italia" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- FORM DI REGISTRAZIONE -->
       <div class="container my-5">
         <h1 class="text-center fw-bold mb-4">Crea account</h1>
@@ -153,18 +170,18 @@
           <div class="mb-3">
             <label for="password" class="form-label fw-bold text-dark">Crea una password<span class="text-danger">*</span></label>
             <div class="input-group">
-              <input type="password" class="form-control" id="password" placeholder="deve essere di 8 caratteri" required />
+              <input type="password" class="form-control" id="password" placeholder="deve essere di 8 caratteri" name="password" required />
               <button class="btn btn-outline-secondary toggle-password" type="button">
-                <span class="bi bi-eye" aria-label="eye icon"></span>
+                <span class="bi bi-eye" role="img" aria-label="eye icon"></span>
               </button>
             </div>
           </div>
           <div class="mb-3">
             <label for="confirm-password" class="form-label fw-bold text-dark">Conferma password<span class="text-danger">*</span></label>
             <div class="input-group">
-              <input type="password" class="form-control" id="confirm-password" placeholder="ripeti password" required />
+              <input type="password" class="form-control" id="confirm-password" placeholder="ripeti password" name="confirm-password" required />
               <button class="btn btn-outline-secondary toggle-password" type="button">
-                <span class="bi bi-eye" aria-label="eye icon"></span>
+                <span class="bi bi-eye" role="img" aria-label="eye icon"></span>
               </button>
             </div>
           </div>
@@ -177,6 +194,7 @@
           </div>
         </form>
       </div>
+
       <!-- END FORM DI REGISTRAZIONE -->
     </main>
 
@@ -185,7 +203,7 @@
       <div class="container">
         <div class="row text-center">
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <span class="bi bi-lock fs-1 me-3" aria-label="footer lock icon"></span>
+            <span class="bi bi-lock fs-1 me-3" role="img" aria-label="footer lock icon"></span>
             <div>
               <h2 class="h5"><strong>SHOPPING SICURO</strong></h2>
               <p>
@@ -195,14 +213,14 @@
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <span class="bi bi-truck fs-1 me-3" aria-label="footer truck icon"></span>
+            <span class="bi bi-truck fs-1 me-3" role="img" aria-label="footer truck icon"></span>
             <div>
               <h2 class="h5"><strong>COSTI DI SPEDIZIONE</strong></h2>
               <p> <strong>Gratis</strong> per gli ordini sopra i <strong>69€</strong>, altrimenti la spedizione è di 7.75€ </p>
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <span class="bi bi-telephone fs-1 me-3" aria-label="footer telephone icon"></span>
+            <span class="bi bi-telephone fs-1 me-3" role="img" aria-label="footer telephone icon"></span>
             <div>
               <h2 class="h5"><strong>CONTATTACI</strong></h2>
               <p> Consulta la <strong>nostra guida</strong> o contatta il nostro <strong>servizio clienti</strong> per ottenere maggiori informazioni e ricevere assistenza </p>
