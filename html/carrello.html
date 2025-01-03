@@ -39,7 +39,7 @@
           <div class="d-flex d-md-none mt-2">
             <div class="search-bar d-flex align-items-center rounded px-3 w-100">
               <i class="bi bi-search"></i>
-              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-mobile" />
+              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" name="search-bar-mobile" />
             </div>
           </div>
 
@@ -52,18 +52,18 @@
             <!-- Barra di ricerca Desktop -->
             <div class="search-bar d-flex align-items-center rounded px-3">
               <i class="bi bi-search"></i>
-              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-desktop" />
+              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" name="search-bar-desktop" />
             </div>
             <!-- Icone Desktop -->
             <div class="icons-group d-flex align-items-center">
               <div class="dropdown pe-1">
-                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> <img src="../resources/icons/italy.png" alt="Italy" /> IT </a>
+                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> <img src="../resources/icons/italy.png" alt="Bandiera Italia" /> IT </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <li
-                    ><a class="dropdown-item" href="#"><img src="../resources/icons/english.png" alt="English" /> EN</a></li
+                    ><a class="dropdown-item" href="#"><img src="../resources/icons/english.png" alt="Bandiera Inghilterra" /> EN</a></li
                   >
                   <li
-                    ><a class="dropdown-item" href="#"><img src="../resources/icons/italy.png" alt="Italy" /> IT</a></li
+                    ><a class="dropdown-item" href="#"><img src="../resources/icons/italy.png" alt="Bandiera Italia" /> IT</a></li
                   >
                 </ul>
               </div>
@@ -94,7 +94,7 @@
     <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLaterale" aria-labelledby="menuLateraleLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="menuLateraleLabel">Categorie</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Chiudi menù"></button>
       </div>
       <div class="offcanvas-body">
         <!-- LISTA PRINCIPALE -->
@@ -128,10 +128,10 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="mapModalLabel">Seleziona Regione</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi mappa regioni"></button>
             </div>
             <div class="modal-body">
-              <svg mapsvg:geoViewBox="6.624486 47.092916 18.521301 35.490303" viewBox="0 0 3001 792.58575"></svg>
+              <svg viewBox="0 0 3001 792.58575"></svg>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
@@ -151,7 +151,9 @@
       <!-- CARRELLO CON PRODOTTI -->
       <div id="cart-full" class="cart-state">
         <h2>La tua shopping bag</h2>
-        <ul id="cart-items"> <!-- Aggiornati dinamicamente (cart.js) --> </ul>
+        <ul id="cart-items">
+          <!-- Aggiornati dinamicamente (cart.js) -->
+        </ul>
       </div>
 
       <script src="../js/cart.js"></script>
@@ -167,12 +169,9 @@
           <span>Spedizione:</span>
           <strong id="shipping-price">€0,00</strong>
         </div>
-        <div class="total">
-          Totale: <strong id="total-price">€0,00</strong>
-        </div>
+        <div class="total"> Totale: <strong id="total-price">€0,00</strong> </div>
         <button onclick="window.location.href='checkout.html'">Procedi al checkout</button>
       </aside>
-      
     </main>
 
     <!-- FOOTER -->

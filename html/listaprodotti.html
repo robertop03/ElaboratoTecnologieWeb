@@ -18,7 +18,7 @@
           <div class="d-flex d-md-none align-items-center justify-content-between w-100">
             <!-- Menu Hamburger -->
             <button class="btn me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
-              <span class="bi bi-list text-dark" role="img" aria-label="hamburger menu"></span>
+              <span class="bi bi-list text-dark" role="img" aria-label="menù panino"></span>
             </button>
             <!-- Logo Mobile -->
             <a href="index.html" class="navbar-brand">
@@ -26,10 +26,10 @@
             </a>
             <!-- Icone Mobile -->
             <div class="d-flex align-items-center">
-              <a href="carrello.html" class="text-decoration-none me-3" aria-label="cart icon">
+              <a href="carrello.html" class="text-decoration-none me-3" aria-label="icona carrello">
                 <span class="bi bi-cart text-dark" role="img" aria-hidden="true"></span>
               </a>
-              <a href="utente.html" class="text-decoration-none" aria-label="person icon">
+              <a href="utente.html" class="text-decoration-none" aria-label="icona utente">
                 <span class="bi bi-person text-dark" role="img" aria-hidden="true"></span>
               </a>
             </div>
@@ -37,9 +37,9 @@
           <!-- Barra di ricerca Mobile -->
           <div class="d-flex d-md-none mt-2">
             <div class="search-bar d-flex align-items-center rounded px-3 w-100">
-              <span class="bi bi-search" role="img" aria-label="search icon"></span>
+              <span class="bi bi-search" role="img" aria-label="icona lente d'ingrandimento"></span>
               <label for="search-bar-mobile" class="visually-hidden">Barra di ricerca</label>
-              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-mobile" id="search-bar-mobile" />
+              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" name="search-bar-mobile" id="search-bar-mobile" />
             </div>
           </div>
 
@@ -51,27 +51,27 @@
             </a>
             <!-- Barra di ricerca Desktop -->
             <div class="search-bar d-flex align-items-center rounded px-3">
-              <span class="bi bi-search" role="img" aria-label="search icon"></span>
+              <span class="bi bi-search" role="img" aria-label="icona lente d'ingrandimento"></span>
               <label for="search-bar-desktop" class="visually-hidden">Barra di ricerca</label>
-              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" aria-label="Search" name="search-bar-desktop" id="search-bar-desktop" />
+              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" name="search-bar-desktop" id="search-bar-desktop" />
             </div>
             <!-- Icone Desktop -->
             <div class="icons-group d-flex align-items-center">
               <div class="dropdown pe-1">
-                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> <img src="../resources/icons/italy.png" alt="Italy" /> IT </a>
+                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> <img src="../resources/icons/italy.png" alt="Bandiera Italia" /> IT </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <li
-                    ><a class="dropdown-item" href="#"><img src="../resources/icons/english.png" alt="English" /> EN</a></li
+                    ><a class="dropdown-item" href="#"><img src="../resources/icons/english.png" alt="Bandiera Inghilterra" /> EN</a></li
                   >
                   <li
-                    ><a class="dropdown-item" href="#"><img src="../resources/icons/italy.png" alt="Italy" /> IT</a></li
+                    ><a class="dropdown-item" href="#"><img src="../resources/icons/italy.png" alt="Bandiera Italia" /> IT</a></li
                   >
                 </ul>
               </div>
-              <a href="carrello.html" class="text-decoration-none me-3" aria-label="cart icon">
+              <a href="carrello.html" class="text-decoration-none me-3" aria-label="icona carrello">
                 <span class="bi bi-cart" role="img" aria-hidden="true"></span>
               </a>
-              <a href="utente.html" class="text-decoration-none" aria-label="person icon">
+              <a href="utente.html" class="text-decoration-none" aria-label="icona utente">
                 <span class="bi bi-person" role="img" aria-hidden="true"></span>
               </a>
             </div>
@@ -95,7 +95,7 @@
     <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLaterale" aria-labelledby="menuLateraleLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="menuLateraleLabel">Categorie</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Chiudi menù"></button>
       </div>
       <div class="offcanvas-body">
         <!-- LISTA PRINCIPALE -->
@@ -128,10 +128,10 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="mapModalLabel">Seleziona Regione</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi mappa regioni"></button>
             </div>
             <div class="modal-body">
-              <svg mapsvg:geoViewBox="6.624486 47.092916 18.521301 35.490303" viewBox="0 0 3001 792.58575"></svg>
+              <svg viewBox="0 0 3001 792.58575"></svg>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
@@ -149,7 +149,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="filterModalLabel">Filtra</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi modale filtraggio"></button>
             </div>
             <div class="modal-body">
               <div class="mb-3">
@@ -214,7 +214,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="sortModalLabel">Ordina</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi Modale ordinamento"></button>
             </div>
             <div class="modal-body">
               <h6>Prezzo</h6>
@@ -258,10 +258,10 @@
             </div>
             <div class="card-footer bg-white border-0">
               <button class="btn-custom me-2">
-                <span class="bi bi-cart text-dark" role="img" aria-label="cart icon"></span>
+                <span class="bi bi-cart text-dark" role="img" aria-label="icona carrello"></span>
               </button>
               <button class="btn-custom">
-                <span class="bi bi-heart text-dark" role="img" aria-label="heart icon"></span>
+                <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"></span>
               </button>
             </div>
           </div>
@@ -278,10 +278,10 @@
             </div>
             <div class="card-footer bg-white border-0">
               <button class="btn-custom me-2">
-                <span class="bi bi-cart text-dark" role="img" aria-label="cart icon"></span>
+                <span class="bi bi-cart text-dark" role="img" aria-label="icona carrello">></span>
               </button>
               <button class="btn-custom">
-                <span class="bi bi-heart text-dark" role="img" aria-label="heart icon"></span>
+                <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"></span>
               </button>
             </div>
           </div>
@@ -298,10 +298,10 @@
             </div>
             <div class="card-footer bg-white border-0">
               <button class="btn-custom me-2">
-                <span class="bi bi-cart text-dark" role="img" aria-label="cart icon"></span>
+                <span class="bi bi-cart text-dark" role="img" aria-label="icona carrello"></span>
               </button>
               <button class="btn-custom">
-                <span class="bi bi-heart text-dark" role="img" aria-label="heart icon"></span>
+                <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"></span>
               </button>
             </div>
           </div>
@@ -318,10 +318,10 @@
             </div>
             <div class="card-footer bg-white border-0">
               <button class="btn-custom me-2">
-                <span class="bi bi-cart text-dark" role="img" aria-label="cart icon"></span>
+                <span class="bi bi-cart text-dark" role="img" aria-label="icona carrello"></span>
               </button>
               <button class="btn-custom">
-                <span class="bi bi-heart text-dark" role="img" aria-label="heart icon"></span>
+                <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"></span>
               </button>
             </div>
           </div>
@@ -337,10 +337,10 @@
             </div>
             <div class="card-footer bg-white border-0">
               <button class="btn-custom me-2">
-                <span class="bi bi-cart text-dark" role="img" aria-label="cart icon"></span>
+                <span class="bi bi-cart text-dark" role="img" aria-label="icona carrello"></span>
               </button>
               <button class="btn-custom">
-                <span class="bi bi-heart text-dark" role="img" aria-label="heart icon"></span>
+                <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"></span>
               </button>
             </div>
           </div>
@@ -357,10 +357,10 @@
             </div>
             <div class="card-footer bg-white border-0">
               <button class="btn-custom me-2">
-                <span class="bi bi-cart text-dark" role="img" aria-label="cart icon"></span>
+                <span class="bi bi-cart text-dark" role="img" aria-label="icona carrello"></span>
               </button>
               <button class="btn-custom">
-                <span class="bi bi-heart text-dark" role="img" aria-label="heart icon"></span>
+                <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"></span>
               </button>
             </div>
           </div>
@@ -377,10 +377,10 @@
             </div>
             <div class="card-footer bg-white border-0">
               <button class="btn-custom me-2">
-                <span class="bi bi-cart text-dark" role="img" aria-label="cart icon"></span>
+                <span class="bi bi-cart text-dark" role="img" aria-label="icona carrello">></span>
               </button>
               <button class="btn-custom">
-                <span class="bi bi-heart text-dark" role="img" aria-label="heart icon"></span>
+                <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"></span>
               </button>
             </div>
           </div>
@@ -397,10 +397,10 @@
             </div>
             <div class="card-footer bg-white border-0">
               <button class="btn-custom me-2">
-                <span class="bi bi-cart text-dark" role="img" aria-label="cart icon"></span>
+                <span class="bi bi-cart text-dark" role="img" aria-label="icona carrello">></span>
               </button>
               <button class="btn-custom">
-                <span class="bi bi-heart text-dark" role="img" aria-label="heart icon"></span>
+                <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"></span>
               </button>
             </div>
           </div>
