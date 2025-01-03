@@ -171,6 +171,13 @@ hr.styled-divider {
   margin-left: 4px;
 }
 
+/* Immagine utente */
+img[alt="Profilo"] {
+  width: 80px;  
+  height: 80px;
+  object-fit: cover;
+}
+
 /* Footer */
 footer {
   background-color: #54072a;
@@ -438,168 +445,224 @@ main {
 /*
 * Carrello
 */
-
-/* Stile per il carrello vuoto */
+/* Contenitore principale del carrello (sia pieno che vuoto) */
 .cart-state {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  padding: 20px;
-}
-
-.cart-state.active {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  margin: 20px 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  width: 90%; /* Usa una larghezza fluida */
 }
 
-.cart-state img {
-  width: 150px;
-  height: auto;
-  margin: 20px 0;
+/* Carrello vuoto */
+#cart-empty {
+  display: none; /* Nascosto di default */
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-.cart-state h2 {
-  font-size: 1.5rem;
-  color: #000;
-  margin-bottom: 10px;
+#cart-empty.active {
+  display: flex;
+  opacity: 1;
 }
 
-.cart-state p {
+#cart-empty h2 {
+  font-size: 2rem;
+  margin-top: 20px;
+  color: #333; /* Più scuro */
+}
+
+#cart-empty p {
   font-size: 1rem;
-  color: #666;
+  color: #555; /* Più scuro rispetto a prima */
+}
+
+/* Carrello pieno */
+#cart-full {
+  display: none; /* Nascosto di default */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#cart-full.active {
+  display: flex;
+  opacity: 1;
+}
+
+#cart-full h2 {
+  font-size: 2.5rem;
   margin-bottom: 20px;
+  color: #333; /* Più scuro */
 }
 
-/* Stile per il pulsante */
-.cart-state button {
-  background-color: #7d0633;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* Lista degli articoli */
+#cart-full ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%; /* Occupa tutta la larghezza disponibile */
 }
 
-.cart-state button:hover {
-  background-color: #590425;
-}
-/* Pagina singolo prodotto*/
-main input[type="number"] {
-  background-color: #590425;
-  color: #fff;
-}
-
-/* Pagina lista prodotti*/
-.card-img-top {
-  height: 220px;
-  object-fit: contain;
-}
-
-.btn-custom {
-  border: none;
-  background-color: transparent;
-  color: inherit;
-  transition: all 0.3s ease;
-}
-
-.btn-custom:hover {
-  background-color: black;
-  border-radius: 8px;
-}
-
-.btn-custom:hover i {
-  color: white;
-}
-
-.btn-custom span.bi {
-  transition: color 0.3s ease;
-}
-
-.d-flex > button:nth-of-type(1),
-.d-flex > button:nth-of-type(2) {
-  max-width: 200px;
-}
-
-/*
-* Riassunto ordine
-*/
-/* Stile per la sezione riassunto ordine all'interno del main */
-main > section {
-  background-color: #f8f9fa;
-  padding: 15px 20px;
-  border-radius: 8px;
-  font-family: Arial, sans-serif;
-  margin: 0 auto;
-  max-width: 500px;
-}
-
-/* Sezione di riassunto ordine con contenuto flex */
-main > section > div {
+#cart-full ul li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 0; /* Aggiunto per gestire lo spazio tra le righe */
+  margin: 10px 0;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Stile per il primo span (TOTALE ORDINE) - Allineato a sinistra */
-main > section > div > span:first-child {
-  font-size: 16px;
-  font-weight: bold;
-  color: #000;
-  margin-right: auto; /* Assicura che 'TOTALE ORDINE' sia allineato a sinistra */
+#cart-full ul li img {
+  width: 80px; /* Maggiore per migliorare la qualità */
+  height: auto;
+  border-radius: 5px;
+  margin-right: 15px;
 }
 
-/* Stile per il secondo span (IVA inclusa 22%) */
-main > section > div > span:nth-child(2) {
-  font-size: 14px;
-  color: #888888;
-  margin-left: 8px;
+#cart-full ul li div {
+  text-align: left;
+  flex: 1;
 }
 
-/* Stile per l'ultimo span (prezzo totale o importo) */
-main > section > div > span:last-child {
-  font-size: 18px;
-  font-weight: bold;
-  color: #000;
-  margin-left: auto; /* Aggiunto per spostare il totale a destra */
-}
-
-/* Stile per le righe di 'Totale prodotti', 'Totale spedizione', e 'Totale con spedizione' */
-main > section > div > span:not(:first-child):not(:last-child) {
-  font-weight: normal; /* Rimuove il grassetto */
-}
-
-/* Stile per la lista dei prodotti nel carrello */
-main #cart-full #cart-items li img {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-}
-
-/* Layout della lista dei prodotti nel carrello */
-main #cart-full #cart-items li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-/* Stile per l'intestazione quando il carrello è vuoto */
-main #cart-empty h2 {
-  font-size: 1.5rem;
+#cart-full ul li h4 {
+  margin: 0;
+  font-size: 1.2rem;
   color: #333;
 }
 
-/* Selettori per i totali del carrello */
-main > section div {
-  padding: 8px 0;
+#cart-full ul li p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #666;
 }
-.modal-dialog {
-  height: 350px;
+
+/* Pulsanti quantità */
+#cart-full ul li p button {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin: 0 5px;
+  transition: background-color 0.3s;
 }
-svg {
-  height: 280px;
+
+#cart-full ul li p button:hover {
+  background-color: #ddd;
+}
+
+#cart-empty button,
+.order-summary button,
+#cart-full ul li button.btn-danger {
+  background-color: #54072a;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#cart-empty button:hover,
+.order-summary button:hover,
+#cart-full ul li button.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+/* Transizioni tra stati */
+#cart-empty, #cart-full {
+  animation-duration: 0.8s;
+  animation-fill-mode: forwards;
+}
+
+#cart-empty.fade-out, #cart-full.fade-in {
+  animation-name: fade-in;
+}
+
+#cart-empty.fade-in, #cart-full.fade-out {
+  animation-name: fade-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Riassunto ordine */
+.order-summary {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 70%; /* Larghezza fluida */
+  margin: 30px auto;
+}
+
+.order-summary h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333; /* Più scuro */
+  text-align: center;
+}
+
+.order-summary .summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.order-summary .summary-item strong {
+  color: #333;
+}
+
+.order-summary .total {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+  text-align: right;
+}
+
+.order-summary button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+#cart-empty button {
+  margin-top: 10px;
+  width: 70%;
+}
+
+.order-summary button:hover {
+  background-color: #c0392b;
 }

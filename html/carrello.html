@@ -139,33 +139,40 @@
           </div>
         </div>
       </div>
+
       <!-- CARRELLO VUOTO -->
       <div id="cart-empty" class="cart-state">
         <h2>La tua shopping bag è vuota</h2>
         <img src="../resources/img/emptyCart.svg" alt="Carrello vuoto" />
         <p>Non hai ancora aggiunto nessun prodotto alla tua bag!</p>
-        <button>Inizia lo shopping</button>
+        <button onclick="window.location.href='listaprodotti.html'">Inizia lo shopping</button>
       </div>
 
       <!-- CARRELLO CON PRODOTTI -->
       <div id="cart-full" class="cart-state">
-        <h2>Il tuo carrello</h2>
-        <ul id="cart-items">
-          <li><img src="../resources/img/vino1.jpg" alt="Vino di prova" /></li>
-        </ul>
-        <button>Procedi al checkout</button>
+        <h2>La tua shopping bag</h2>
+        <ul id="cart-items"> <!-- Aggiornati dinamicamente (cart.js) --> </ul>
       </div>
 
       <script src="../js/cart.js"></script>
 
       <!-- RIASSUNTO ORDINE -->
-      <section>
-        <div>
-          <span>TOTALE ORDINE</span>
-          <span>IVA inclusa 22%</span>
-          <span>€0,00</span>
+      <aside id="order-summary" class="order-summary">
+        <h3>Riassunto dell'ordine</h3>
+        <div class="summary-item">
+          <span>Subtotale:</span>
+          <strong id="subtotal-price">€0,00</strong>
         </div>
-      </section>
+        <div class="summary-item">
+          <span>Spedizione:</span>
+          <strong id="shipping-price">€0,00</strong>
+        </div>
+        <div class="total">
+          Totale: <strong id="total-price">€0,00</strong>
+        </div>
+        <button onclick="window.location.href='checkout.html'">Procedi al checkout</button>
+      </aside>
+      
     </main>
 
     <!-- FOOTER -->
