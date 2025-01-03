@@ -1,106 +1,134 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Array che rappresenta il carrello (inizialmente vuoto)
-  let cart = [];
-
-  // Riferimenti agli elementi HTML
+  // Elementi del DOM
   const cartEmpty = document.getElementById("cart-empty");
   const cartFull = document.getElementById("cart-full");
-  const cartItems = document.getElementById("cart-items");
-  const orderSummarySection = document.querySelector("main > section");
+  const cartItemsList = document.getElementById("cart-items");
 
-  // Funzione per calcolare il totale dei prodotti
-  function calculateTotal() {
-    return cart.reduce((total, product) => total + product.price, 0);
-  }
+  // Dati iniziali del carrello
+  let cartItems = [
+    {
+      id: 1,
+      name: "Chianti Classico DOCG",
+      price: 19.99,
+      quantity: 2,
+      image: "../resources/img/vino1.jpg",
+    },
+    {
+      id: 2,
+      name: "Barolo Riserva",
+      price: 29.99,
+      quantity: 1,
+      image: "../resources/img/vino3.jpg",
+    },
+  ];
 
   // Funzione per aggiornare il riassunto dell'ordine
-  function updateOrderSummary() {
-    if (cart.length === 0) {
-      // Se il carrello è vuoto, mostra il riassunto predefinito con €0,00
-      orderSummarySection.innerHTML = `
-        <div>
-          <span>TOTALE ORDINE</span>
-        </div>
-        <div>
-          <span>Totale ordine (IVA inclusa 22%)</span>
-          <span>€0,00</span>
-        </div>
-      `;
+function updateOrderSummary() {
+  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  let shippingCost = 0;
+
+  const shippingPriceElement = document.getElementById('shipping-price');
+  const subtotalPriceElement = document.getElementById('subtotal-price');
+  const totalPriceElement = document.getElementById('total-price');
+
+  if (cartItems.length === 0) {
+    // Se il carrello è vuoto
+    subtotalPriceElement.textContent = `€0,00`;
+    shippingPriceElement.textContent = `€0,00`;
+    totalPriceElement.textContent = `€0,00`;
+
+    // Nascondi la riga della spedizione
+    shippingPriceElement.parentElement.style.display = 'none';
+  } else {
+    // Calcolo costo spedizione
+    if (subtotal >= 69) {
+      shippingCost = 0;
+      shippingPriceElement.textContent = 'Gratuita';
     } else {
-      const totalProducts = calculateTotal();
-      const shippingCost = totalProducts > 69 ? 0 : 7.75;
-      const totalWithShipping = totalProducts + shippingCost;
-
-      // Aggiorna il contenuto della sezione con i dettagli dell'ordine
-      orderSummarySection.innerHTML = `
-        <div>
-          <span>TOTALE ORDINE</span>
-        </div>
-        <div>
-          <span>Totale prodotti</span>
-          <span>€${totalProducts.toFixed(2)}</span>
-        </div>
-        <div>
-          <span>Totale spedizione a domicilio</span>
-          <span>${shippingCost === 0 ? "Gratuita" : `€${shippingCost.toFixed(2)}`}</span>
-        </div>
-        <hr />
-        <div>
-          <span>Totale ordine (IVA inclusa 22%)</span>
-          <span>€${totalWithShipping.toFixed(2)}</span>
-        </div>
-      `;
+      shippingCost = 7.75;
+      shippingPriceElement.textContent = `€${shippingCost.toFixed(2)}`;
     }
-  }
 
-  // Funzione per aggiornare lo stato del carrello
+    // Mostra la riga della spedizione
+    shippingPriceElement.parentElement.style.display = 'flex';
+
+    // Aggiorna i valori nel DOM
+    subtotalPriceElement.textContent = `€${subtotal.toFixed(2)}`;
+    totalPriceElement.textContent = `€${(subtotal + shippingCost).toFixed(2)}`;
+  }
+}
+
+
+  // Funzione: Aggiorna lo stato del carrello (vuoto/pieno)
   function updateCartState() {
-    if (cart.length === 0) {
-      // Mostra il carrello vuoto
+    if (cartItems.length === 0) {
       cartEmpty.classList.add("active");
       cartFull.classList.remove("active");
     } else {
-      // Mostra il carrello pieno
       cartEmpty.classList.remove("active");
       cartFull.classList.add("active");
-
-      // Popola la lista dei prodotti nel carrello
-      cartItems.innerHTML = ""; // Svuota la lista precedente
-      cart.forEach(product => {
-        const li = document.createElement("li");
-        li.innerHTML = `
-          <img src="${product.image}" alt="${product.name}">
-          ${product.name} - €${product.price.toFixed(2)}
-        `;
-        cartItems.appendChild(li);
-      });
     }
+  }
 
-    // Aggiorna il riassunto dell'ordine
+  // Funzione: Renderizza gli elementi nel carrello
+  function renderCartItems() {
+    cartItemsList.innerHTML = ""; // Svuota la lista
+    cartItems.forEach((item) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" />
+        <div>
+          <h4>${item.name}</h4>
+          <p>Prezzo: €${item.price.toFixed(2)}</p>
+          <p>Quantità: 
+            <button class="btn btn-sm btn-outline-secondary" data-action="decrease" data-id="${item.id}">-</button>
+            <span>${item.quantity}</span>
+            <button class="btn btn-sm btn-outline-secondary" data-action="increase" data-id="${item.id}">+</button>
+          </p>
+        </div>
+        <button class="btn btn-sm btn-danger" data-action="remove" data-id="${item.id}">Rimuovi</button>
+      `;
+      cartItemsList.appendChild(li);
+    });
+  }
+
+  // Funzione: Aggiorna quantità di un prodotto
+  function updateQuantity(id, action) {
+    cartItems = cartItems
+      .map((item) => {
+        if (item.id === id) {
+          if (action === "increase") item.quantity += 1;
+          if (action === "decrease" && item.quantity > 1) item.quantity -= 1;
+        }
+        return item;
+      })
+      .filter((item) => item.quantity > 0); // Rimuove elementi con quantità 0
+    refreshCart();
+  }
+
+  // Funzione: Rimuove un elemento dal carrello
+  function removeItem(id) {
+    cartItems = cartItems.filter((item) => item.id !== id);
+    refreshCart();
+  }
+
+  // Funzione: Aggiorna carrello e riassunto
+  function refreshCart() {
+    renderCartItems();
+    updateCartState();
     updateOrderSummary();
   }
 
-  // Simula l'aggiunta di un prodotto al carrello dopo 2 secondi
-  setTimeout(() => {
-    cart.push({
-      id: 1,
-      name: "Bottiglia di Vino",
-      price: 19.99,
-      image: "../resources/img/vino1.jpg",
-    });
-    updateCartState();
-  }, 2000);
+  // Gestione eventi
+  cartItemsList.addEventListener("click", (e) => {
+    const id = parseInt(e.target.dataset.id, 10);
+    const action = e.target.dataset.action;
 
-  setTimeout(() => {
-    cart.push({
-      id: 2,
-      name: "Biscotti Artigianali",
-      price: 15.5,
-      image: "../resources/img/biscotti.jpg",
-    });
-    updateCartState();
-  }, 4000);
+    if (action === "increase") updateQuantity(id, "increase");
+    if (action === "decrease") updateQuantity(id, "decrease");
+    if (action === "remove") removeItem(id);
+  });
 
-  // Inizializza lo stato del carrello
-  updateCartState();
+  // Inizializza il carrello
+  refreshCart();
 });
