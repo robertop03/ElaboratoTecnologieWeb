@@ -220,6 +220,13 @@ form.register-form .form-control {
   margin-bottom: 1.5rem;
 }
 
+/* Immagine utente */
+img[alt="Profilo"] {
+  width: 80px;  
+  height: 80px;
+  object-fit: cover;
+}
+
 /* Footer */
 footer {
   background-color: #54072a;
@@ -494,172 +501,104 @@ main {
 * Carrello
 */
 
-/* Stile per il carrello vuoto */
-.cart-state {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  padding: 20px;
-}
-
-.cart-state.active {
-  display: flex;
-}
-
-.cart-state img {
-  width: 150px;
-  height: auto;
-  margin: 20px 0;
-}
-
-.cart-state h2 {
-  font-size: 1.5rem;
-  color: #000;
-  margin-bottom: 10px;
-}
-
-.cart-state p {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-/* Stile per il pulsante */
-.cart-state button {
-  background-color: #7d0633;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.cart-state button:hover {
-  background-color: #590425;
-}
-/* Pagina singolo prodotto*/
-main input[type="number"] {
-  background-color: #590425;
-  color: #fff;
-}
-
-/* Pagina lista prodotti*/
-.card-img-top {
-  height: 220px;
-  object-fit: contain;
-}
-
-.btn-custom {
-  border: none;
-  background-color: transparent;
-  color: inherit;
-  transition: all 0.3s ease;
-}
-
-.btn-custom:hover {
-  background-color: black;
-  border-radius: 8px;
-}
-
-.btn-custom:hover i {
-  color: white;
-}
-
-.btn-custom i {
-  transition: color 0.3s ease;
-}
-
-.d-flex > button:nth-of-type(1),
-.d-flex > button:nth-of-type(2) {
-  max-width: 200px;
-}
-
-/*
-* Riassunto ordine
-*/
-/* Stile per la sezione riassunto ordine all'interno del main */
-/* Stile per la sezione riassunto ordine all'interno del main */
-main > section {
-  background-color: #f8f9fa;
-  padding: 15px 20px;
-  border-radius: 8px;
+#cart-empty,
+#cart-full {
   font-family: Arial, sans-serif;
-  margin: 0 auto;
-  max-width: 500px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
 }
 
-/* Sezione di riassunto ordine con contenuto flex */
-main > section > div {
+/* Carrello vuoto */
+#cart-empty {
+  display: none;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+#cart-empty.active {
+  display: block;
+}
+
+/* Carrello pieno */
+#cart-full {
+  display: none;
+}
+
+#cart-full.active {
+  display: block;
+}
+
+#cart-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#cart-items li {
   display: flex;
   align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+#cart-items img {
+  width: 70px;
+  height: auto;
+  max-height: 70px;
+  object-fit: contain; /* Garantisce che l'immagine sia completamente visibile */
+  border-radius: 4px;
+  background-color: #f0f0f0; /* Sfondo per evidenziare immagini piccole */
+}
+
+/* Riassunto dell'ordine */
+main > section {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+main > section div {
+  display: flex;
   justify-content: space-between;
-  padding: 8px 0; /* Aggiunto per gestire lo spazio tra le righe */
+  padding: 0.5rem 0;
 }
 
-/* Stile per il primo span (TOTALE ORDINE) - Allineato a sinistra */
-main > section > div > span:first-child {
-  font-size: 16px;
+main > section div:first-child {
   font-weight: bold;
-  color: #000;
-  margin-right: auto; /* Assicura che 'TOTALE ORDINE' sia allineato a sinistra */
+  font-size: 1.2rem;
 }
 
-/* Stile per il secondo span (IVA inclusa 22%) */
-main > section > div > span:nth-child(2) {
-  font-size: 14px;
-  color: #888888;
-  margin-left: 8px;
+main > section hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 1rem 0;
 }
 
-/* Stile per l'ultimo span (prezzo totale o importo) */
-main > section > div > span:last-child {
-  font-size: 18px;
+/* Totale ordine */
+main > section div:last-child {
   font-weight: bold;
-  color: #000;
-  margin-left: auto; /* Aggiunto per spostare il totale a destra */
-}
-
-/* Stile per le righe di 'Totale prodotti', 'Totale spedizione', e 'Totale con spedizione' */
-main > section > div > span:not(:first-child):not(:last-child) {
-  font-weight: normal; /* Rimuove il grassetto */
-}
-
-/* Stile per la lista dei prodotti nel carrello */
-main #cart-full #cart-items li img {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-}
-
-/* Layout della lista dei prodotti nel carrello */
-main #cart-full #cart-items li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-/* Stile per l'intestazione quando il carrello è vuoto */
-main #cart-empty h2 {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   color: #333;
 }
 
-/* Selettori per i totali del carrello */
-main > section div {
-  padding: 8px 0;
-}
+/* Responsività */
+@media (max-width: 768px) {
+  #cart-items li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-path:hover {
-  fill: #fff;
-}
-path.selected {
-  fill: #fff !important;
-}
-.regione {
-  transition: all 200ms ease-in-out;
+  main > section div {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+  }
 }

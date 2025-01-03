@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartEmpty = document.getElementById("cart-empty");
   const cartFull = document.getElementById("cart-full");
   const cartItems = document.getElementById("cart-items");
-  const orderSummary = document.querySelector("main > section");
+  const orderSummarySection = document.querySelector("main > section");
 
   // Funzione per calcolare il totale dei prodotti
   function calculateTotal() {
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateOrderSummary() {
     if (cart.length === 0) {
       // Se il carrello è vuoto, mostra il riassunto predefinito con €0,00
-      orderSummary.innerHTML = `
+      orderSummarySection.innerHTML = `
         <div>
           <span>TOTALE ORDINE</span>
         </div>
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const totalWithShipping = totalProducts + shippingCost;
 
       // Aggiorna il contenuto della sezione con i dettagli dell'ordine
-      orderSummary.innerHTML = `
+      orderSummarySection.innerHTML = `
         <div>
           <span>TOTALE ORDINE</span>
         </div>
