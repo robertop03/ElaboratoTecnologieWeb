@@ -171,9 +171,41 @@ hr.styled-divider {
   margin-left: 4px;
 }
 
+/* Pagina singolo prodotto*/
+main input[type="number"] {
+  background-color: #590425;
+  color: #fff;
+}
+
+/* Pagina lista prodotti */
+.card-img-top {
+  height: 220px;
+  object-fit: contain;
+}
+.btn-custom {
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+.btn-custom:hover {
+  background-color: black;
+  border-radius: 8px;
+}
+.btn-custom:hover span {
+  color: white !important;
+}
+.btn-custom span.bi {
+  transition: color 0.3s ease;
+}
+.d-flex > button:nth-of-type(1),
+.d-flex > button:nth-of-type(2) {
+  max-width: 200px; /* larghezza max pulsanti filtra e ordina */
+}
+
 /* Immagine utente */
 img[alt="Profilo"] {
-  width: 80px;  
+  width: 80px;
   height: 80px;
   object-fit: cover;
 }
@@ -581,16 +613,19 @@ main {
 }
 
 /* Transizioni tra stati */
-#cart-empty, #cart-full {
+#cart-empty,
+#cart-full {
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
 
-#cart-empty.fade-out, #cart-full.fade-in {
+#cart-empty.fade-out,
+#cart-full.fade-in {
   animation-name: fade-in;
 }
 
-#cart-empty.fade-in, #cart-full.fade-out {
+#cart-empty.fade-in,
+#cart-full.fade-out {
   animation-name: fade-out;
 }
 
@@ -665,4 +700,12 @@ main {
 
 .order-summary button:hover {
   background-color: #c0392b;
+}
+
+/* Stile per mappa regioni */
+.modal-dialog {
+  height: 350px;
+}
+svg {
+  height: 280px;
 }
