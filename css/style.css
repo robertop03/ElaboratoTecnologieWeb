@@ -7,7 +7,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-i {
+span.bi {
   font-size: 30px;
   color: #000;
 }
@@ -147,59 +147,14 @@ hr.styled-divider {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.register-form h1 {
-  font-size: 1.8rem; /* Dimensione del titolo */
-  font-weight: bold;
-  color: #000;
-}
-
-.register-form .form-label {
-  font-weight: bold;
-  color: #000;
-}
-
-.register-form .form-control {
-  border-radius: 8px;
-  box-shadow: none; /* Rimuove ombra dagli input */
-}
-
 .register-form .form-control:focus {
-  border-color: #800020; /* Colore focus bordeaux */
-  box-shadow: 0 0 0 0.2rem rgba(128, 0, 32, 0.25); /* Ombra focus */
-}
-
-.register-form .btn-dark {
-  background-color: #000; /* Colore sfondo bottone */
-  color: #fff; /* Colore testo bottone */
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 1rem;
-}
-
-.register-form .btn-dark:hover {
-  background-color: #333; /* Colore al passaggio del mouse */
+  border-color: #800020;
+  box-shadow: 0 0 0 0.2rem rgba(128, 0, 32, 0.25);
 }
 
 /* Icone toggle password */
-.input-group .form-control {
-  border-radius: 8px; /* Arrotondamento coerente */
-  height: 40px; /* Altezza coerente con il bottone */
-}
-
-.input-group .toggle-password {
-  display: flex; /* Per allineare verticalmente l'icona */
-  align-items: center; /* Centrare l'icona verticalmente */
-  justify-content: center; /* Centrare l'icona orizzontalmente */
-  height: 40px; /* Altezza coerente con l'input */
-  width: 45px; /* Larghezza del bottone */
-  padding: 0; /* Rimuove padding extra */
-  border-radius: 8px; /* Arrotondamento coerente */
-}
-
 .input-group .toggle-password i {
-  font-size: 1.2rem; /* Dimensione dell'icona */
-  color: #000; /* Colore dell'icona */
+  font-size: 1.2rem;
 }
 
 .input-group .toggle-password:hover {
@@ -213,11 +168,7 @@ hr.styled-divider {
 
 /* Evidenziare campi obbligatori */
 .text-danger {
-  font-size: 0.9rem;
   margin-left: 4px;
-}
-form.register-form .form-control {
-  margin-bottom: 1.5rem;
 }
 
 /* Immagine utente */
@@ -236,7 +187,7 @@ footer {
   line-height: 1;
 }
 
-footer i {
+footer span.bi {
   color: #fff;
 }
 
@@ -244,12 +195,6 @@ footer .row {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-}
-
-footer h6 {
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 8px;
 }
 
 footer p {
@@ -332,8 +277,8 @@ main {
     font-size: 20px;
   }
 
-  nav i {
-    color: white;
+  nav span.bi {
+    color: #fff;
     font-size: 45px;
     padding-left: 2px;
   }
@@ -397,8 +342,8 @@ main {
     justify-content: space-between; /* Distribuisce logo, barra e icone */
   }
 
-  i {
-    color: white;
+  span .bi {
+    color: #fff;
   }
 
   .container-fluid .search-bar > .bi-search {
@@ -501,8 +446,99 @@ main {
 * Carrello
 */
 
-#cart-empty,
-#cart-full {
+/* Stile per il carrello vuoto */
+.cart-state {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.cart-state.active {
+  display: flex;
+}
+
+.cart-state img {
+  width: 150px;
+  height: auto;
+  margin: 20px 0;
+}
+
+.cart-state h2 {
+  font-size: 1.5rem;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.cart-state p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Stile per il pulsante */
+.cart-state button {
+  background-color: #7d0633;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cart-state button:hover {
+  background-color: #590425;
+}
+/* Pagina singolo prodotto*/
+main input[type="number"] {
+  background-color: #590425;
+  color: #fff;
+}
+
+/* Pagina lista prodotti*/
+.card-img-top {
+  height: 220px;
+  object-fit: contain;
+}
+
+.btn-custom {
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: black;
+  border-radius: 8px;
+}
+
+.btn-custom:hover i {
+  color: white;
+}
+
+.btn-custom span.bi {
+  transition: color 0.3s ease;
+}
+
+.d-flex > button:nth-of-type(1),
+.d-flex > button:nth-of-type(2) {
+  max-width: 200px;
+}
+
+/*
+* Riassunto ordine
+*/
+/* Stile per la sezione riassunto ordine all'interno del main */
+main > section {
+  background-color: #f8f9fa;
+  padding: 15px 20px;
+  border-radius: 8px;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;

@@ -78,7 +78,7 @@
       <!-- Menu di navigazione (solo desktop) -->
       <div class="container-fluid d-none d-md-flex justify-content-center border border-dark">
         <ul class="nav-links d-flex gap-3 list-unstyled">
-          <li><a href="#" class="text-dark text-uppercase">Regione</a></li>
+          <li><a href="#" class="text-dark text-uppercase" data-bs-toggle="modal" data-bs-target="#map-modal">Regione</a></li>
           <li><a href="#" class="text-dark text-uppercase">Rossi</a></li>
           <li><a href="#" class="text-dark text-uppercase">Bianchi</a></li>
           <li><a href="#" class="text-dark text-uppercase">Rosati</a></li>
@@ -110,29 +110,7 @@
             </a>
             <!-- SUBMENU -->
             <ul class="list-group collapse mt-2" id="menuRegioni">
-              <!--
-                        <li class="list-group-item"><a href="#">Abruzzo</a></li>
-                        <li class="list-group-item"><a href="#">Basilicata</a></li>
-                        <li class="list-group-item"><a href="#">Calabria</a></li>
-                        <li class="list-group-item"><a href="#">Campania</a></li>
-                        <li class="list-group-item"><a href="#">Emilia-Romagna</a></li>
-                        <li class="list-group-item"><a href="#">Friuli Venezia Giulia</a></li>
-                        <li class="list-group-item"><a href="#">Lazio</a></li>
-                        <li class="list-group-item"><a href="#">Liguria</a></li>
-                        <li class="list-group-item"><a href="#">Lombardia</a></li>
-                        <li class="list-group-item"><a href="#">Marche</a></li>
-                        <li class="list-group-item"><a href="#">Molise</a></li>
-                        <li class="list-group-item"><a href="#">Piemonte</a></li>
-                        <li class="list-group-item"><a href="#">Puglia</a></li>
-                        <li class="list-group-item"><a href="#">Sardegna</a></li>
-                        <li class="list-group-item"><a href="#">Sicilia</a></li>
-                        <li class="list-group-item"><a href="#">Toscana</a></li>
-                        <li class="list-group-item"><a href="#">Trentino-Alto Adige</a></li>
-                        <li class="list-group-item"><a href="#">Umbria</a></li>
-                        <li class="list-group-item"><a href="#">Valle d'Aosta</a></li>
-                        <li class="list-group-item"><a href="#">Veneto</a></li>
-                    -->
-              <li class="list-group-item"><a href="#">Vai alla mappa</a></li>
+              <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#map-modal" sss>Vai alla mappa</a></li>
             </ul>
           </li>
         </ul>
@@ -142,6 +120,23 @@
 
     <!-- MAIN SECTION -->
     <main class="content-wrapper">
+      <!-- Modale della Mappa -->
+      <div class="modal fade" id="map-modal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mapModalLabel">Seleziona Regione</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <svg mapsvg:geoViewBox="6.624486 47.092916 18.521301 35.490303" viewBox="0 0 3001 792.58575"></svg>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Main content: caroselli -->
       <div class="content-main">
         <!-- CAROUSEL BEST SELLER PRODUCTS -->

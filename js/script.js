@@ -95,19 +95,20 @@ document.addEventListener("DOMContentLoaded", function () {
   // Attach the function to the global scope (optional, if required by inline events)
   window.showNotification = showNotification
 
-  const modals = document.querySelectorAll(".modal")
+  const modalTriggers = document.querySelectorAll("[data-bs-toggle='modal']")
 
-  modals.forEach((modal) => {
-    modal.addEventListener("hidden.bs.modal", function (event) {
-      // Sposta il focus sul pulsante che ha aperto il modal
-      const triggerButton = document.querySelector(`[data-bs-target="#${modal.id}"]`)
-      if (triggerButton) {
-        triggerButton.focus()
-      }
-    })
+  modalTriggers.forEach((trigger) => {
+    const targetModalId = trigger.getAttribute("data-bs-target")
+    const targetModal = document.querySelector(targetModalId)
+
+    if (targetModal) {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault() // Per evitare che il link href="#" scorra verso l'alto
+      })
+    }
   })
 
-  // Codice per il range prezzo nel filtraggio
+  // CODICE PER IL RANGE PREZZO NEL FILTRAGGIO
   document.querySelectorAll(".form-range").forEach((slider, index, sliders) => {
     const badges = document.querySelectorAll(".badge")
     const minSlider = sliders[0]
@@ -127,9 +128,60 @@ document.addEventListener("DOMContentLoaded", function () {
     })
   })
 
-  $(".regione").on("click", function () {
-    $(".regione").removeClass("selected")
-    $(this).addClass("selected")
-    console.log($(this).data("nome-regione"))
+  // CODICE PER INTERATTIVITA' MAPPA
+  const mapElement = document.querySelector("#map-modal svg")
+  if (!mapElement) {
+    console.error("SVG non trovato!")
+    return
+  }
+
+  const tooltip = document.createElement("div")
+  tooltip.style.position = "absolute"
+  tooltip.style.backgroundColor = "rgba(206, 196, 228, 0.8)"
+  tooltip.style.color = "black"
+  tooltip.style.padding = "5px 10px"
+  tooltip.style.borderRadius = "5px"
+  tooltip.style.fontSize = "12px"
+  tooltip.style.display = "none"
+  tooltip.style.pointerEvents = "none"
+  document.body.appendChild(tooltip)
+
+  // CODICE PER CARICARE I PERCORSI NELLA MAPPA SVG
+  const modalElement = document.getElementById("map-modal")
+  const svgElement = modalElement.querySelector("svg")
+
+  async function loadPaths() {
+    try {
+      const { paths } = await import("../js/path.js")
+
+      paths.forEach((pathString) => {
+        svgElement.innerHTML += pathString
+      })
+
+      // Seleziona i path o elementi interattivi solo dopo averli caricati
+      const regions = svgElement.querySelectorAll("path, g")
+
+      if (regions.length === 0) {
+        console.warn("Nessun elemento trovato nell'SVG!")
+        return
+      }
+
+      regions.forEach((region) => {
+        // Evento click per selezionare una regione
+        region.addEventListener("click", () => {
+          const regionName = region.getAttribute("title") || region.getAttribute("data-name") || region.id || "Regione non definita"
+          alert(`Hai selezionato la regione: ${regionName}`)
+        })
+      })
+    } catch (error) {
+      console.error("Errore durante il caricamento dei path:", error)
+    }
+  }
+
+  // Carica i path quando il modal viene mostrato
+  modalElement.addEventListener("show.bs.modal", () => {
+    if (!svgElement.innerHTML.trim()) {
+      loadPaths()
+    }
   })
 })
