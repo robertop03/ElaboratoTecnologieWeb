@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Elementi del DOM
-  const cartEmpty = document.getElementById("cart-empty");
-  const cartFull = document.getElementById("cart-full");
-  const cartItemsList = document.getElementById("cart-items");
+  const cartEmpty = document.querySelector("#cart-empty");
+  const cartFull = document.querySelector("#cart-full");
+  const cartItemsList = document.querySelector("#cart-items");
 
   // Dati iniziali del carrello
   let cartItems = [
@@ -23,41 +23,40 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   // Funzione per aggiornare il riassunto dell'ordine
-function updateOrderSummary() {
-  const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  let shippingCost = 0;
+  function updateOrderSummary() {
+    const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    let shippingCost = 0;
 
-  const shippingPriceElement = document.getElementById('shipping-price');
-  const subtotalPriceElement = document.getElementById('subtotal-price');
-  const totalPriceElement = document.getElementById('total-price');
+    const shippingPriceElement = document.querySelector("#shipping-price");
+    const subtotalPriceElement = document.querySelector("#subtotal-price");
+    const totalPriceElement = document.querySelector("#total-price");
 
-  if (cartItems.length === 0) {
-    // Se il carrello è vuoto
-    subtotalPriceElement.textContent = `€0,00`;
-    shippingPriceElement.textContent = `€0,00`;
-    totalPriceElement.textContent = `€0,00`;
+    if (cartItems.length === 0) {
+      // Se il carrello è vuoto
+      subtotalPriceElement.textContent = `€0,00`;
+      shippingPriceElement.textContent = `€0,00`;
+      totalPriceElement.textContent = `€0,00`;
 
-    // Nascondi la riga della spedizione
-    shippingPriceElement.parentElement.style.display = 'none';
-  } else {
-    // Calcolo costo spedizione
-    if (subtotal >= 69) {
-      shippingCost = 0;
-      shippingPriceElement.textContent = 'Gratuita';
+      // Nascondi la riga della spedizione
+      shippingPriceElement.parentElement.style.display = "none";
     } else {
-      shippingCost = 7.75;
-      shippingPriceElement.textContent = `€${shippingCost.toFixed(2)}`;
+      // Calcolo costo spedizione
+      if (subtotal >= 69) {
+        shippingCost = 0;
+        shippingPriceElement.textContent = "Gratuita";
+      } else {
+        shippingCost = 7.75;
+        shippingPriceElement.textContent = `€${shippingCost.toFixed(2)}`;
+      }
+
+      // Mostra la riga della spedizione
+      shippingPriceElement.parentElement.style.display = "flex";
+
+      // Aggiorna i valori nel DOM
+      subtotalPriceElement.textContent = `€${subtotal.toFixed(2)}`;
+      totalPriceElement.textContent = `€${(subtotal + shippingCost).toFixed(2)}`;
     }
-
-    // Mostra la riga della spedizione
-    shippingPriceElement.parentElement.style.display = 'flex';
-
-    // Aggiorna i valori nel DOM
-    subtotalPriceElement.textContent = `€${subtotal.toFixed(2)}`;
-    totalPriceElement.textContent = `€${(subtotal + shippingCost).toFixed(2)}`;
   }
-}
-
 
   // Funzione: Aggiorna lo stato del carrello (vuoto/pieno)
   function updateCartState() {

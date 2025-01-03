@@ -185,3 +185,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   })
 })
+
+// CODICE PER CARICARE I PERCORSI NELLA MAPPA SVG
+const modalElement = document.getElementById("map-modal");
+const svgElement = modalElement.querySelector("svg");
+
+async function loadPaths() {
+  try {
+    const { paths } = await import("../js/path.js");
+
+    paths.forEach((pathString) => {
+      svgElement.innerHTML += pathString;
+    });
+
+    // Seleziona i path o elementi interattivi solo dopo averli caricati
+    const regions = svgElement.querySelectorAll("path, g");
+
+    if (regions.length === 0) {
+      console.warn("Nessun elemento trovato nell'SVG!");
+      return;
+    }
+
+    regions.forEach((region) => {
+      // Evento click per selezionare una regione
+      region.addEventListener("click", () => {
+        const regionName =
+          region.getAttribute("title") ||
+          region.getAttribute("data-name") ||
+          region.id ||
+          "Regione non definita";
+        alert(`Hai selezionato la regione: ${regionName}`); // Backtick per interpolazione
+      });
+    });
+  } catch (error) {
+    console.error("Errore durante il caricamento dei path:", error);
+  }
+}
+
+// Carica i path quando il modal viene mostrato
+modalElement.addEventListener("show.bs.modal", () => {
+  if (!svgElement.innerHTML.trim()) {
+    loadPaths();
+  }
+});
