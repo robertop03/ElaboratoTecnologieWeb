@@ -105,6 +105,12 @@ document.addEventListener("DOMContentLoaded", function () {
       trigger.addEventListener("click", (event) => {
         event.preventDefault() // Per evitare che il link href="#" scorra verso l'alto
       })
+      targetModal.addEventListener("hide.bs.modal", () => {
+        // Rimuovi il focus dall'elemento attivo
+        if (document.activeElement) {
+          document.activeElement.blur()
+        }
+      })
     }
   })
 
