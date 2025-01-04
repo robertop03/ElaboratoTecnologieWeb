@@ -11,7 +11,7 @@
     <nav class="navbar bg-light p-3">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <img src="resources/icons/menu.png" alt="Menu" class="mx-3" style="height: 30px;">
-            <img src="resources/img/logoWeb.jpeg" alt="Logo" class="mx-auto" style="height: 40px;">
+            <img src="resources/img/logoWeb.png" alt="Logo" class="mx-auto" style="height: 40px;">
             <div class="d-flex">
                 <img src="resources/icons/empty-cart.png" alt="Carrello" class="me-3" style="height: 30px;">
                 <img src="resources/icons/user.png" alt="Utente" style="height: 30px;">
@@ -151,7 +151,7 @@
             </div>
             <div class="row text-center mt-3">
                 <div class="col">
-                    <img src="resources/img/logoWeb.jpeg" alt="Logo" class="img-fluid logo-footer">
+                    <img src="resources/img/logoWeb.png" alt="Logo" class="img-fluid logo-footer">
                     <p class="mt-2">/vino copyright © 2024</p>
                 </div>
             </div>
