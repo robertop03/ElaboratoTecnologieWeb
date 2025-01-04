@@ -1,1 +1,0 @@
-/* Codice per creare il database */
