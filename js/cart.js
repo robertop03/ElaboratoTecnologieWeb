@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartFull = document.querySelector("#cart-full");
   const cartItemsList = document.querySelector("#cart-items");
 
+  const shippingMessageElement = document.querySelector(".shipping-message #message-content");
+  const clearCartButton = document.querySelector("#clear-cart");
+
   // Dati iniziali del carrello
   let cartItems = [
     {
@@ -21,6 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
       image: "../resources/img/vino3.jpg",
     },
   ];
+
+  const freeShippingThreshold = 69; // Soglia per la spedizione gratuita
 
   // Funzione per aggiornare il riassunto dell'ordine
   function updateOrderSummary() {
@@ -41,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       shippingPriceElement.parentElement.style.display = "none";
     } else {
       // Calcolo costo spedizione
-      if (subtotal >= 69) {
+      if (subtotal >= freeShippingThreshold) {
         shippingCost = 0;
         shippingPriceElement.textContent = "Gratuita";
       } else {
@@ -55,6 +60,25 @@ document.addEventListener("DOMContentLoaded", () => {
       // Aggiorna i valori nel DOM
       subtotalPriceElement.textContent = `€${subtotal.toFixed(2)}`;
       totalPriceElement.textContent = `€${(subtotal + shippingCost).toFixed(2)}`;
+    }
+
+    // Aggiorna messaggio di spedizione
+    updateShippingMessage(subtotal);
+  }
+
+  // Funzione per aggiornare il messaggio di spedizione
+  function updateShippingMessage(subtotal) {
+    if (subtotal >= freeShippingThreshold) {
+      shippingMessageElement.innerHTML = `
+        <span class="bi bi-check"></span>
+        Complimenti, hai ottenuto la spedizione gratuita!
+      `;
+    } else {
+      const remaining = freeShippingThreshold - subtotal;
+      shippingMessageElement.innerHTML = `
+        <span class="bi bi-x"></span>
+        Aggiungi ancora €${remaining.toFixed(2)} al carrello per ottenere la spedizione gratuita.
+      `;
     }
   }
 
@@ -117,6 +141,13 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCartState();
     updateOrderSummary();
   }
+
+  // Evento per svuotare il carrello
+  clearCartButton.addEventListener("click", () => {
+    cartItems = []; // Resetta il carrello
+    refreshCart(); // Aggiorna il carrello
+    alert("Il carrello è stato svuotato.");
+  });
 
   // Gestione eventi
   cartItemsList.addEventListener("click", (e) => {
