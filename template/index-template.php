@@ -64,7 +64,7 @@
     <div class="row align-items-center mb-4">
       <div class="col-md-6">
         <!-- <a href="https://maps.app.goo.gl/qrVCVyX85zjw7Xta6" target="_blank"> -->
-        <a href="dovecitroviamo.html" target="_blank">
+        <a href="dovecitroviamo.php" target="_blank">
           <img src="resources/img/maps.png" alt="Mappa Cesena" class="img-fluid rounded shadow" />
         </a>
       </div>
