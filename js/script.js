@@ -54,49 +54,65 @@ document.addEventListener("DOMContentLoaded", function () {
     })
   }
 
-  // Codice per mostrare le notifiche selezionate nella pagina notifiche
+  // CODICE PER I MODALI DELLE NOTIFICHE
+  const notificationModal = document.getElementById("notification-modal")
+  const modalTitle = notificationModal?.querySelector(".modal-title")
+  const modalBody = notificationModal?.querySelector(".modal-body")
+  const cardTitle = document.querySelector(".card-title")
+  const cardText = document.querySelector(".card-text")
+
+  if (!notificationModal || !modalTitle || !modalBody || !cardTitle || !cardText) {
+    console.error("Errore: Elementi mancanti nel DOM!")
+    return
+  }
+
+  const detailedContent = {
+    "La spedizione è arrivata con successo!": "La spedizione è arrivata con successo! Questo aggiornamento indica che il tuo ordine è stato consegnato correttamente. Se hai ulteriori domande o hai bisogno di assistenza, contatta il nostro supporto clienti.",
+    "L'ordine IT2320P è in arrivo domani!": "L'ordine IT2320P è in arrivo domani! Il corriere ha confermato la data di consegna e ti invitiamo a tenere il telefono a portata di mano per eventuali aggiornamenti o richieste di firma alla consegna.",
+    "La spedizione contenente l'ordine IT2320P è stata effettuata": "La spedizione contenente l'ordine IT2320P è stata effettuata. Il pacco è ora in viaggio verso la tua destinazione e ti aggiorneremo a breve con il tracking completo.",
+    "Ordine IT2320P effettuato con successo": "Ordine IT2320P effettuato con successo. Il nostro team ha ricevuto il tuo ordine e lo sta processando. Riceverai una notifica appena la spedizione sarà pronta.",
+  }
+
   function showNotification(event) {
-    const clickedItem = event.currentTarget
+    event.preventDefault()
+    const clickedItem = event.currentTarget.closest(".list-group-item")
+    if (!clickedItem) return
 
-    // Clear active state from all items
-    document.querySelectorAll(".list-group-item").forEach((item) => {
-      item.style.backgroundColor = ""
-      item.style.opacity = "1"
-    })
+    const shortContentElement = clickedItem.querySelector("p")
+    const titleElement = clickedItem.querySelectorAll("span")[1]
 
-    // Set active state on the clicked item
-    clickedItem.style.backgroundColor = "#f8f9fa"
-    clickedItem.style.opacity = "0.6"
-
-    // Update desktop details
-    const cardTitle = document.querySelector(".card-title")
-    const cardText = document.querySelector(".card-text")
-    cardTitle.textContent = clickedItem.querySelectorAll("span")[1].textContent
-    cardText.textContent = clickedItem.querySelector("p").textContent
-
-    const detailedContent = {
-      "La spedizione è arrivata con successo!": "La spedizione è arrivata con successo! Questo aggiornamento indica che il tuo ordine è stato consegnato correttamente. Se hai ulteriori domande o hai bisogno di assistenza, contatta il nostro supporto clienti.",
-      "L'ordine IT2320P è in arrivo domani!": "L'ordine IT2320P è in arrivo domani! Il corriere ha confermato la data di consegna e ti invitiamo a tenere il telefono a portata di mano per eventuali aggiornamenti o richieste di firma alla consegna.",
-      "La spedizione contenente l'ordine IT2320P è stata effettuata": "La spedizione contenente l'ordine IT2320P è stata effettuata. Il pacco è ora in viaggio verso la tua destinazione e ti aggiorneremo a breve con il tracking completo.",
-      "Ordine IT2320P effettuato con successo": "Ordine IT2320P effettuato con successo. Il nostro team ha ricevuto il tuo ordine e lo sta processando. Riceverai una notifica appena la spedizione sarà pronta.",
+    if (!shortContentElement || !titleElement) {
+      console.error("Errore: Elementi <p> o <span> mancanti nella notifica cliccata!")
+      return
     }
-    const shortContent = clickedItem.querySelector("p").textContent
-    cardText.textContent = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
 
-    // Show modal on mobile
-    if (window.innerWidth < 992) {
-      const modal = new bootstrap.Modal(document.querySelector(".modal"))
-      document.querySelector(".modal-title").textContent = clickedItem.querySelectorAll("span")[1].textContent
-      document.querySelector(".modal-body").textContent = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
-      modal.show()
+    const shortContent = shortContentElement.textContent.trim()
+    const titleText = titleElement.textContent.trim()
+
+    if (window.innerWidth >= 992) {
+      // Modalità Desktop: aggiorna la sidebar
+      cardTitle.textContent = titleText
+      cardText.textContent = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
+    } else {
+      // Modalità Mobile: aggiorna e mostra il modale
+      modalTitle.textContent = titleText
+      modalBody.textContent = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
+
+      console.log("Tentativo di apertura del modale su mobile:", modalTitle.textContent)
+
+      const modalInstance = new bootstrap.Modal(notificationModal, { backdrop: true, keyboard: true })
+      modalInstance.show()
     }
   }
 
-  // Attach the function to the global scope (optional, if required by inline events)
+  document.querySelectorAll(".list-group-item").forEach((item) => {
+    item.addEventListener("click", showNotification)
+  })
+
   window.showNotification = showNotification
 
+  // CODICE PER CHIUDERE ALTRI EVENTUALI MODALI APERTI
   const modalTriggers = document.querySelectorAll("[data-bs-toggle='modal']")
-
   modalTriggers.forEach((trigger) => {
     const targetModalId = trigger.getAttribute("data-bs-target")
     const targetModal = document.querySelector(targetModalId)
@@ -135,7 +151,6 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 
   // CODICE PER INTERATTIVITA' MAPPA
-
   const tooltip = document.createElement("div")
   tooltip.style.position = "absolute"
   tooltip.style.backgroundColor = "rgba(206, 196, 228, 0.8)"
@@ -148,9 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.appendChild(tooltip)
 
   // CODICE PER CARICARE I PERCORSI NELLA MAPPA SVG
-  const modalElement = document.getElementById("map-modal")
-  const svgElement = modalElement.querySelector("svg")
-
   async function loadPaths() {
     try {
       const { paths } = await import("../js/path.js")
@@ -179,41 +191,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // CODICE PER CARICARE I PERCORSI NELLA MAPPA SVG
-  async function loadPaths() {
-    try {
-      const { paths } = await import("../js/path.js")
-
-      paths.forEach((pathString) => {
-        svgElement.innerHTML += pathString
-      })
-
-      // Seleziona i path o elementi interattivi solo dopo averli caricati
-      const regions = svgElement.querySelectorAll("path, g")
-
-      if (regions.length === 0) {
-        console.warn("Nessun elemento trovato nell'SVG!")
-        return
-      }
-
-      regions.forEach((region) => {
-        // Evento click per selezionare una regione
-        region.addEventListener("click", () => {
-          const regionName = region.getAttribute("title") || region.getAttribute("data-name") || region.id || "Regione non definita"
-          alert(`Hai selezionato la regione: ${regionName}`) // Backtick per interpolazione
-        })
-      })
-    } catch (error) {
-      console.error("Errore durante il caricamento dei path:", error)
-    }
-  }
-
+  const modalElement = document.getElementById("map-modal")
+  const svgElement = modalElement.querySelector("svg")
   // Carica i path quando il modal viene mostrato
-  modalElement.addEventListener("show.bs.modal", () => {
-    if (!svgElement.innerHTML.trim()) {
-      loadPaths()
-    }
-  })
+  if (modalElement) {
+    modalElement.addEventListener("show.bs.modal", () => {
+      if (!svgElement.innerHTML.trim()) {
+        loadPaths()
+      }
+    })
+  }
 
   modalElement.addEventListener("hide.bs.modal", () => {
     if (document.activeElement) {

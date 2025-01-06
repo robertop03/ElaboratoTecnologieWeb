@@ -378,7 +378,7 @@ main {
     justify-content: space-between; /* Distribuisce logo, barra e icone */
   }
 
-  span .bi {
+  span.bi {
     color: #fff;
   }
 

@@ -48,13 +48,13 @@
       <a href="" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span></a>
     </li>
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
-      <a href="notifiche.html" class="text-decoration-none text-dark w-100">
+      <a href="notifiche.php" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
           <span class="fw-bold">Notifiche</span>
           <span class="text-muted small">Al momento non hai notifiche</span>
         </div>
       </a>
-      <a href="notifiche.html" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span></a>
+      <a href="notifiche.php" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span></a>
     </li>
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
       <a href="#" class="text-decoration-none text-dark w-100" data-bs-toggle="modal" data-bs-target="#impostazioniModal">
@@ -250,7 +250,7 @@
         </li>
       </ul>
     </div>
-    <a href="notifiche.html" class="mt-3 text-decoration-none border-bottom pb-1">vedi tutte</a>
+    <a href="notifiche.php" class="mt-3 text-decoration-none border-bottom pb-1">vedi tutte</a>
   </div>
 
   <div class="section-separator"></div>
