@@ -73,20 +73,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const shortContentElement = clickedItem.querySelector("p")
     const titleElement = clickedItem.querySelectorAll("span")[1]
 
-    const shortContent = shortContentElement.textContent.trim()
-    const titleText = titleElement.textContent.trim()
-    const detailedText = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
+    if (shortContentElement != null) {
+      const shortContent = shortContentElement.textContent.trim()
+      const titleText = titleElement.textContent.trim()
+      const detailedText = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
 
-    if (window.innerWidth >= 992) {
-      // Modalità Desktop: aggiorna la sidebar
-      cardTitle.textContent = titleText
-      cardText.textContent = detailedText
-    } else {
-      // Modalità Mobile: aggiorna e mostra il modale
-      modalTitle.textContent = titleText
-      modalBody.textContent = detailedText
-      const modalInstance = new bootstrap.Modal(notificationModal, { backdrop: true, keyboard: true })
-      modalInstance.show()
+      if (window.innerWidth >= 992) {
+        // Modalità Desktop: aggiorna la sidebar
+        cardTitle.textContent = titleText
+        cardText.textContent = detailedText
+      } else {
+        // Modalità Mobile: aggiorna e mostra il modale
+        modalTitle.textContent = titleText
+        modalBody.textContent = detailedText
+        const modalInstance = new bootstrap.Modal(notificationModal, { backdrop: true, keyboard: true })
+        modalInstance.show()
+      }
     }
   }
 

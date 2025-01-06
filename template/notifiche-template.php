@@ -39,7 +39,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <span class="modal-title">Titolo Notifica</span>
+        <span class="modal-title" id="notificationModalLabel">Titolo Notifica</span>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi notifica"></button>
       </div>
       <div class="modal-body"> Contenuto della notifica. </div>
