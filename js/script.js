@@ -15,10 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Codice per il cambio di lingua nella navbar
   const dropdownMenu = document.querySelector(".dropdown .dropdown-toggle")
-  if (!dropdownMenu) {
-    console.error("Dropdown toggle non trovato!")
-    return
-  }
   const dropdownItems = document.querySelectorAll(".dropdown-menu .dropdown-item")
   dropdownItems.forEach((item) => {
     item.addEventListener("click", function (event) {
@@ -61,11 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const cardTitle = document.querySelector(".card-title")
   const cardText = document.querySelector(".card-text")
 
-  if (!notificationModal || !modalTitle || !modalBody || !cardTitle || !cardText) {
-    console.error("Errore: Elementi mancanti nel DOM!")
-    return
-  }
-
   const detailedContent = {
     "La spedizione è arrivata con successo!": "La spedizione è arrivata con successo! Questo aggiornamento indica che il tuo ordine è stato consegnato correttamente. Se hai ulteriori domande o hai bisogno di assistenza, contatta il nostro supporto clienti.",
     "L'ordine IT2320P è in arrivo domani!": "L'ordine IT2320P è in arrivo domani! Il corriere ha confermato la data di consegna e ti invitiamo a tenere il telefono a portata di mano per eventuali aggiornamenti o richieste di firma alla consegna.",
@@ -75,31 +66,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function showNotification(event) {
     event.preventDefault()
+
     const clickedItem = event.currentTarget.closest(".list-group-item")
     if (!clickedItem) return
 
     const shortContentElement = clickedItem.querySelector("p")
     const titleElement = clickedItem.querySelectorAll("span")[1]
 
-    if (!shortContentElement || !titleElement) {
-      console.error("Errore: Elementi <p> o <span> mancanti nella notifica cliccata!")
-      return
-    }
-
     const shortContent = shortContentElement.textContent.trim()
     const titleText = titleElement.textContent.trim()
+    const detailedText = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
 
     if (window.innerWidth >= 992) {
       // Modalità Desktop: aggiorna la sidebar
       cardTitle.textContent = titleText
-      cardText.textContent = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
+      cardText.textContent = detailedText
     } else {
       // Modalità Mobile: aggiorna e mostra il modale
       modalTitle.textContent = titleText
-      modalBody.textContent = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
-
-      console.log("Tentativo di apertura del modale su mobile:", modalTitle.textContent)
-
+      modalBody.textContent = detailedText
       const modalInstance = new bootstrap.Modal(notificationModal, { backdrop: true, keyboard: true })
       modalInstance.show()
     }
