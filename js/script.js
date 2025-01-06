@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update desktop details
     const cardTitle = document.querySelector(".card-title")
     const cardText = document.querySelector(".card-text")
-    cardTitle.textContent = clickedItem.querySelector("span").textContent
+    cardTitle.textContent = clickedItem.querySelectorAll("span")[1].textContent
     cardText.textContent = clickedItem.querySelector("p").textContent
 
     const detailedContent = {
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Show modal on mobile
     if (window.innerWidth < 992) {
       const modal = new bootstrap.Modal(document.querySelector(".modal"))
-      document.querySelector(".modal-title").textContent = clickedItem.querySelector("span").textContent
+      document.querySelector(".modal-title").textContent = clickedItem.querySelectorAll("span")[1].textContent
       document.querySelector(".modal-body").textContent = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
       modal.show()
     }

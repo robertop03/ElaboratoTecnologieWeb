@@ -4,7 +4,6 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-  font-family: Arial, sans-serif;
 }
 
 span.bi {
@@ -484,7 +483,7 @@ main {
 */
 main > section > aside {
   background-color: white;
-} 
+}
 
 #message-content .bi-check {
   color: green;
@@ -575,7 +574,7 @@ main > section > aside {
 }
 
 /* Media query per schermi larghi (>=900px) */
-@media (min-width: 900px) {  
+@media (min-width: 900px) {
   .cart-container {
     flex-direction: row;
     align-items: flex-start;
@@ -622,7 +621,6 @@ main > section > aside {
 .clear-cart:hover {
   text-decoration: underline;
 }
-
 
 /* Stile per mappa regioni */
 .modal-dialog {
