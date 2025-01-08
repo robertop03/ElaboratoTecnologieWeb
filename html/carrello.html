@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Carrello</title>
     <script src="../js/script.js"></script>
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
@@ -147,13 +147,12 @@
             <!-- Questo contenuto sarà dinamico con JS -->
           </p>
         </aside>
-      
+
         <!-- Bottone per rimuovere tutti i prodotti -->
         <button id="clear-cart" class="clear-cart" aria-label="Elimina tutti i prodotti">
           <span class="bi bi-trash" alt="Elimina tutto">Elimina tutti i prodotti</span>
         </button>
       </section>
-      
 
       <div class="cart-container">
         <!-- CARRELLO VUOTO -->
@@ -161,7 +160,7 @@
           <h2>La tua shopping bag è vuota</h2>
           <img src="../resources/img/emptyCart.svg" alt="Carrello vuoto" />
           <p>Non hai ancora aggiunto nessun prodotto alla tua bag!</p>
-          <button onclick="window.location.href='listaprodotti.html'">Inizia lo shopping</button>
+          <button class="btn btn-dark mt-2" onclick="window.location.href='listaprodotti.html'">Inizia lo shopping</button>
         </div>
 
         <!-- CARRELLO CON PRODOTTI -->
@@ -184,7 +183,7 @@
             <strong id="shipping-price">€0,00</strong>
           </div>
           <div class="total"> Totale: <strong id="total-price">€0,00</strong> </div>
-          <button onclick="window.location.href='checkout.html'">Procedi al checkout</button>
+          <button class="btn btn-dark w-100 mt-2" onclick="window.location.href='checkout.html'">Procedi al checkout</button>
         </aside>
       </div>
 

@@ -97,7 +97,7 @@ hr.styled-divider {
   height: 40px; /* Altezza */
   padding: 0 15px; /* Spaziatura interna */
   display: flex; /* Allineamento flessibile */
-  align-items: center; /* Allinea verticalme#nte il contenuto */
+  align-items: center; /* Allinea verticalmente il contenuto */
   width: 100%; /* Occupa l'intera larghezza */
   border-radius: 5px; /* Bordo leggermente arrotondato */
 }
