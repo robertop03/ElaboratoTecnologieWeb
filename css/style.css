@@ -40,6 +40,11 @@ aside {
   padding: 1rem;
 }
 
+.no-style {
+    text-decoration: none;
+    color: black;  
+}
+
 aside .btn {
   background-color: #54072a; /* Colore di sfondo */
   color: white; /* Colore del testo */
