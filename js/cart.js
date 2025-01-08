@@ -1,11 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("Il file cart.js è stato caricato correttamente.");
+  
   // Elementi del DOM
   const cartEmpty = document.querySelector("#cart-empty");
   const cartFull = document.querySelector("#cart-full");
   const cartItemsList = document.querySelector("#cart-items");
-
+  const checkoutButton = document.querySelector("#checkout-button");
   const shippingMessageElement = document.querySelector(".shipping-message #message-content");
   const clearCartButton = document.querySelector("#clear-cart");
+
+  console.log(checkoutButton); // Controlla se il pulsante viene trovato
 
   // Dati iniziali del carrello
   let cartItems = [
@@ -84,14 +88,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Funzione: Aggiorna lo stato del carrello (vuoto/pieno)
   function updateCartState() {
+    console.log("Aggiornamento stato carrello:", cartItems);
     if (cartItems.length === 0) {
       cartEmpty.classList.add("active");
       cartFull.classList.remove("active");
+  
+      if (checkoutButton) {
+        checkoutButton.disabled = true; // Disabilita il pulsante
+        console.log("Carrello vuoto: pulsante di checkout disabilitato.");
+      } else {
+        console.error("Checkout button non trovato!");
+      }
     } else {
       cartEmpty.classList.remove("active");
       cartFull.classList.add("active");
+  
+      if (checkoutButton) {
+        checkoutButton.disabled = false; // Abilita il pulsante
+        console.log("Carrello pieno: pulsante di checkout abilitato.");
+      } else {
+        console.error("Checkout button non trovato!");
+      }
     }
   }
+  
 
   // Funzione: Renderizza gli elementi nel carrello
   function renderCartItems() {
@@ -159,6 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (action === "remove") removeItem(id);
   });
 
+  updateCartState();
   // Inizializza il carrello
   refreshCart();
 });
