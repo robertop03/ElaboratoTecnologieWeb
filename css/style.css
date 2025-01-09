@@ -499,7 +499,6 @@ main > section > aside {
 }
 
 /* Contenitore principale */
-.checkout-container,
 .cart-container {
   display: flex;
   flex-direction: column; /* Layout verticale predefinito */
@@ -672,6 +671,14 @@ svg {
   color: #000;
   font-weight: bold;
   border-bottom: 2px solid #000;
+}
+
+/* Stile per il riquadro */
+.checkout-box {
+  background-color: #fef0f0; /* Colore di sfondo */
+  border-radius: 10px; /* Angoli arrotondati */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Ombreggiatura */
+  padding: 20px; /* Spaziatura interna */
 }
 
 /* Personalizzazione del bottone */

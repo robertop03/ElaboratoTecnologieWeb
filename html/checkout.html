@@ -156,50 +156,51 @@
           </ul>
         </nav>
       
-        <!-- Modulo di Checkout -->
-        <form>
-          <div class="mb-3 nome">
-            <label for="nomeCognome" class="form-label">Nome e Cognome <span class="text-muted">(obbligatorio)</span></label>
-            <input type="text" class="form-control" id="nomeCognome" placeholder="Inserisci il tuo nome e cognome" required>
-          </div>
-          <div class="mb-3 indirizzo">
-            <label for="indirizzo" class="form-label">Indirizzo <span class="text-muted">(obbligatorio)</span></label>
-            <input type="text" class="form-control" id="indirizzo" placeholder="Es.: via Chiossetto 1" required>
-          </div>
-          <div class="mb-3 presso">
-            <label for="presso" class="form-label">Presso <span class="text-muted">(obbligatorio)</span></label>
-            <input type="text" class="form-control" id="presso" placeholder="Es.: presso Studio Associato Rossi">
-          </div>
-          <div class="row">
-            <div class="col-md-4 mb-3 cap">
-              <label for="cap" class="form-label">CAP <span class="text-muted">(obbligatorio)</span></label>
-              <input type="text" class="form-control" id="cap" placeholder="Es.: 20121" required>
+        <div class="checkout-box p-4">
+          <h3>Dettagli della spedizione</h3>
+          <!-- Modulo di Checkout -->
+          <form>
+            <div class="mb-3 nome">
+              <label for="nomeCognome" class="form-label">Nome e Cognome<span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="nomeCognome" placeholder="Inserisci il tuo nome e cognome" required>
             </div>
-            <div class="col-md-8 mb-3 comune">
-              <label for="comune" class="form-label">Comune <span class="text-muted">(obbligatorio)</span></label>
-              <input type="text" class="form-control" id="comune" placeholder="Es.: Milano" required>
+            <div class="mb-3 indirizzo">
+              <label for="indirizzo" class="form-label">Indirizzo<span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="indirizzo" placeholder="Es.: via Chiossetto 1" required>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 mb-3 provincia">
-              <label for="provincia" class="form-label">Provincia</label>
-              <select class="form-select" id="provincia" required>
-                <option selected disabled>Seleziona la provincia</option>
-                <option>MI</option>
-                <option>RM</option>
-                <option>TO</option>
-              </select>
+            <div class="mb-3 presso">
+              <label for="presso" class="form-label">Presso<span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="presso" placeholder="Es.: presso Studio Associato Rossi">
             </div>
-            <div class="col-md-6 mb-3 telefono">
-              <label for="telefono" class="form-label">Telefono <span class="text-muted">(obbligatorio)</span></label>
-              <input type="tel" class="form-control" id="telefono" placeholder="Es.: 333 1234567" required>
+            <div class="row">
+              <div class="col-md-4 mb-3 cap">
+                <label for="cap" class="form-label">CAP<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="cap" placeholder="Es.: 20121" required>
+              </div>
+              <div class="col-md-8 mb-3 comune">
+                <label for="comune" class="form-label">Comune<span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="comune" placeholder="Es.: Milano" required>
+              </div>
             </div>
-          </div>
-          <button type="submit" class="custom-btn continua">Continua</button>
-        </form>
-      </div>
-         
-      
+            <div class="row">
+              <div class="col-md-6 mb-3 provincia">
+                <label for="provincia" class="form-label">Provincia<span class="text-danger">*</span></label>
+                <select class="form-select" id="provincia" required>
+                  <option selected disabled>Seleziona la provincia</option>
+                  <option>MI</option>
+                  <option>RM</option>
+                  <option>TO</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3 telefono">
+                <label for="telefono" class="form-label">Telefono<span class="text-danger">*</span></label>
+                <input type="tel" class="form-control" id="telefono" placeholder="Es.: 333 1234567" required>
+              </div>
+            </div>
+            <!-- <button type="submit" class="custom-btn continua">Continua</button> -->
+          </form>
+        </div>
+      </div>    
 
     </main>
 
