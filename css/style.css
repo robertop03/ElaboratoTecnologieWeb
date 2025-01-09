@@ -499,11 +499,11 @@ main > section > aside {
 }
 
 /* Contenitore principale */
+.checkout-container,
 .cart-container {
   display: flex;
   flex-direction: column; /* Layout verticale predefinito */
   gap: 20px;
-  margin: 0px 20px !important; /* Margine superiore RIDOTTO ulteriormente */
 }
 
 /* Carrello vuoto */
@@ -580,6 +580,7 @@ main > section > aside {
 
 /* Media query per schermi larghi (>=900px) */
 @media (min-width: 900px) {
+  .checkout-container,
   .cart-container {
     flex-direction: row;
     align-items: flex-start;
@@ -638,3 +639,58 @@ svg {
 /*
 * Checkout
 */
+/* Stile per la progress bar */
+.progress-steps {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: space-between;
+  border-bottom: 2px solid #ccc;
+}
+
+.step {
+  font-size: 12px;
+  text-align: center;
+  color: #999;
+  flex: 1;
+  font-weight: 500;
+}
+
+.step span {
+  display: block;
+  line-height: 1.2;
+}
+
+.step.active {
+  color: #54072a;
+  font-weight: bold;
+  border-bottom: 2px solid #54072a;
+}
+
+.step.completed {
+  color: #000;
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+}
+
+/* Personalizzazione del bottone */
+.custom-btn {
+  background-color: #54072a; /* Colore del bottone */
+  color: #ffffff; /* Colore del testo */
+  font-size: 1rem; /* Dimensione del testo */
+  font-weight: 600; /* Peso del testo */
+  padding: 10px 20px; /* Spaziatura interna */
+  border: none; /* Rimuovi bordo */
+  border-radius: 10px; /* Angoli arrotondati */
+  cursor: pointer; /* Icona del cursore */
+  text-align: center; /* Testo centrato */
+  transition: background-color 0.3s ease; /* Transizione per hover */
+  display: block; /* Per garantire che il margin funzioni correttamente */
+  margin: 20px auto 0 auto; /* Margine automatico orizzontale per centrare */
+  width: 70%;
+}
+
+.custom-btn:hover {
+  background-color: #3d0521; /* Colore hover */
+}
