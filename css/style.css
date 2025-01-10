@@ -684,7 +684,7 @@ svg {
 /* Personalizzazione del bottone */
 .custom-btn {
   background-color: #54072a; /* Colore del bottone */
-  color: #ffffff; /* Colore del testo */
+  color: #fff; /* Colore del testo */
   font-size: 1rem; /* Dimensione del testo */
   font-weight: 600; /* Peso del testo */
   padding: 10px 20px; /* Spaziatura interna */
@@ -700,4 +700,41 @@ svg {
 
 .custom-btn:hover {
   background-color: #3d0521; /* Colore hover */
+}
+
+.custom-link {
+  color: #54072a;
+}
+
+/* CSS aggiornato */
+.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.address-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.address-card:hover {
+  background: #f0f0f0;
 }
