@@ -41,8 +41,8 @@ aside {
 }
 
 .no-style {
-    text-decoration: none;
-    color: black;  
+  text-decoration: none;
+  color: black;
 }
 
 aside .btn {
@@ -442,6 +442,9 @@ main {
   .text-decoration-none.border-bottom:hover {
     text-decoration: underline !important; /* Sottolinea al passaggio del mouse */
   }
+}
+
+@media (min-width: 768px) {
   .text-decoration-none.border-bottom {
     color: #54072a;
   }

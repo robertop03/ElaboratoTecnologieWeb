@@ -63,8 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function showNotification(event) {
-    event.preventDefault()
-
     const clickedItem = event.currentTarget.closest(".list-group-item")
     if (!clickedItem) return
 
