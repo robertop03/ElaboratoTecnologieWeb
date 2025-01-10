@@ -2,8 +2,8 @@
 <div class="content-main">
   <!-- CAROUSEL BEST SELLER PRODUCTS -->
   <div class="carousel slide mb-4" id="carouselBestSeller" data-bs-ride="carousel">
-    <h2>I più venduti</h2>
-    <p>Scopri i nostri prodotti più venduti, scelti dai nostri clienti. Unisciti a loro e prova anche tu queste fantastiche etichette!</p>
+    <h2><?php echo $linguaAttuale == "en" ? "Best Sellers" : "I più venduti" ?></h2>
+    <p><?php echo $linguaAttuale == "en" ? "Discover our best-selling products, chosen by our customers. Join them and try these amazing labels yourself!" : "Scopri i nostri prodotti più venduti, scelti dai nostri clienti. Unisciti a loro e prova anche tu queste fantastiche etichette!" ?></p>
     <div class="carousel-inner text-center">
       <div class="carousel-item active">
         <img src="resources/img/vino1.jpg" alt="Vino 1" class="d-block w-100" />
@@ -30,8 +30,8 @@
 
   <!-- CAROUSEL EVENTS -->
   <div class="carousel slide mb-4" id="carouselEvents" data-bs-ride="carousel">
-    <h2>Eventi</h2>
-    <p>Non perdere gli eventi più esclusivi organizzati da noi. Partecipa e vivi esperienze uniche nel mondo del vino!</p>
+    <h2><?php echo $linguaAttuale == "en" ? "Events" : "Eventi" ?></h2>
+    <p><?php echo $linguaAttuale == "en" ? "Don't miss the most exclusive events organized by us. Join us and experience unique moments in the world of wine!" : "Non perdere gli eventi più esclusivi organizzati da noi. Partecipa e vivi esperienze uniche nel mondo del vino!" ?></p>
     <div class="carousel-inner text-center">
       <div class="carousel-item active">
         <img src="resources/img/evento1.png" alt="Evento 1" class="d-block w-100" />
@@ -60,7 +60,7 @@
 <!-- ASIDE -->
 <aside>
   <div class="container">
-    <h3 class="fw-bold">Dove siamo?</h3>
+    <h3 class="fw-bold"><?php echo $linguaAttuale == "en" ? "Where are we?" : "Dove siamo?" ?></h3>
     <div class="row align-items-center mb-4">
       <div class="col-md-6">
         <!-- <a href="https://maps.app.goo.gl/qrVCVyX85zjw7Xta6" target="_blank"> -->
@@ -69,26 +69,26 @@
         </a>
       </div>
       <div class="col-md-6">
-        <p>Ci troviamo a Cesena, a 10 minuti dall'Ippodromo e a pochi minuti dall'ospedale Bufalini.</p>
+        <p><?php echo $linguaAttuale == "en" ? "We are located in Cesena, 10 minutes from the Hippodrome and a few minutes from Bufalini Hospital" : "Ci troviamo a Cesena, a 10 minuti dall'Ippodromo e a pochi minuti dall'ospedale Bufalini" ?></p>
       </div>
     </div>
     <hr class="my-4" />
     <h3 class="fw-bold">Newsletter</h3>
-    <p>Rimani aggiornato sui nuovi arrivi e sui prossimi eventi!</p>
+    <p><?php echo $linguaAttuale == "en" ? "Keep up to date with new arrivals and upcoming events!" : "Rimani aggiornato sui nuovi arrivi e sui prossimi eventi!" ?></p>
     <form>
       <div class="mb-3">
-        <label for="email" class="form-label">Indirizzo Email</label>
+        <label for="email" class="form-label">Email</label>
         <input type="email" class="form-control" id="email" placeholder="Email" required />
       </div>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="newArrivals" />
-        <label class="form-check-label" for="newArrivals"> Voglio ricevere notizie riguardo ai nuovi arrivi </label>
+        <label class="form-check-label" for="newArrivals"> <?php echo $linguaAttuale == "en" ? "I want to receive news about new arrivals" : "Voglio ricevere notizie riguardo ai nuovi arrivi" ?></label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="events" />
-        <label class="form-check-label" for="events"> Voglio ricevere notizie riguardo ai nuovi eventi </label>
+        <label class="form-check-label" for="events"> <?php echo $linguaAttuale == "en" ? "I want to receive news about new events" : "Voglio ricevere notizie riguardo ai nuovi eventi" ?> </label>
       </div>
-      <button type="submit" class="btn mt-3 px-5 py-2">Invia</button>
+      <button type="submit" class="btn mt-3 px-5 py-2"><?php echo $linguaAttuale == "en" ? "Sent" : "Invia" ?></button>
     </form>
   </div>
 </aside>

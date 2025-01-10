@@ -14,8 +14,8 @@
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
       <a href="#" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
-          <span class="fw-bold">I miei ordini</span>
-          <span class="text-muted small">Hai effettuato 3 ordini</span>
+          <span class="fw-bold"><?php echo $linguaAttuale == "en" ? "My orders" : "I miei ordini" ?></span>
+          <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have placed 3 orders" : "Hai effettuato 3 ordini" ?></span>
         </div>
       </a>
       <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span>
@@ -23,8 +23,8 @@
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
       <a href="#" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
-          <span class="fw-bold">Indirizzi di spedizione</span>
-          <span class="text-muted small">1 indirizzo</span>
+          <span class="fw-bold"><?php echo $linguaAttuale == "en" ? "Delivery Addresses" : "Indirizzi di spedizione" ?></span>
+          <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "1 address" : "1 indirizzo" ?></span>
         </div>
       </a>
       <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span>
@@ -32,7 +32,7 @@
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
       <a href="#" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
-          <span class="fw-bold">Metodi di pagamento</span>
+          <span class="fw-bold"><?php echo $linguaAttuale == "en" ? "Payment Methods" : "Metodi di pagamento" ?></span>
           <span class="text-muted small">Visa **34</span>
         </div>
       </a>
@@ -41,8 +41,8 @@
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
       <a href="#" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
-          <span class="fw-bold">Preferiti</span>
-          <span class="text-muted small">Non hai preferiti</span>
+          <span class="fw-bold"><?php echo $linguaAttuale == "en" ? "Favourites" : "Preferiti" ?></span>
+          <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have no favourites" : "Non hai preferiti" ?></span>
         </div>
       </a>
       <a href="" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span></a>
@@ -50,8 +50,8 @@
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
       <a href="notifiche.php" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
-          <span class="fw-bold">Notifiche</span>
-          <span class="text-muted small">Al momento non hai notifiche</span>
+          <span class="fw-bold"><?php echo $linguaAttuale == "en" ? "Notifications" : "Notifiche" ?></span>
+          <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You currently have no notifications" : "Al momento non hai notifiche" ?></span>
         </div>
       </a>
       <a href="notifiche.php" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span></a>
@@ -59,8 +59,8 @@
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
       <a href="#" class="text-decoration-none text-dark w-100" data-bs-toggle="modal" data-bs-target="#impostazioniModal">
         <div class="d-flex flex-column">
-          <span class="fw-bold">Impostazioni</span>
-          <span class="text-muted small">Gestisci notifiche e password</span>
+          <span class="fw-bold"><?php echo $linguaAttuale == "en" ? "Settings" : "Impostazioni" ?></span>
+          <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "Manage notifications and password" : "Gestisci notifiche e password" ?></span>
         </div>
       </a>
       <a href="#" data-bs-toggle="modal" data-bs-target="#impostazioniModal" aria-label="icona freccia a destra">
@@ -73,34 +73,34 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="impostazioniModalLabel">Impostazioni</h5>
+          <h5 class="modal-title" id="impostazioniModalLabel"><?php echo $linguaAttuale == "en" ? "Settings" : "Impostazioni" ?></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi impostazioni"></button>
         </div>
         <div class="modal-body">
           <!-- Sezione Impostazioni -->
           <div class="row">
             <div class="col-md-6">
-              <h4>Informazioni Personali</h4>
+              <h4><?php echo $linguaAttuale == "en" ? "Personal information" : "Informazioni personali" ?></h4>
               <form>
                 <div class="mb-3">
-                  <label for="nome-modal" class="form-label">Nome</label>
+                  <label for="nome-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Name" : "Nome" ?></label>
                   <input type="text" class="form-control" id="nome-modal" />
                 </div>
                 <div class="mb-3">
-                  <label for="cognome-modal" class="form-label">Cognome</label>
+                  <label for="cognome-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Surname" : "Cognome" ?></label>
                   <input type="text" class="form-control" id="cognome-modal" />
                 </div>
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="notifiche-modal" />
-                  <label class="form-check-label" for="notifiche-modal">Voglio ricevere notifiche per gli stati delle consegne</label>
+                  <label class="form-check-label" for="notifiche-modal"><?php echo $linguaAttuale == "en" ? "I want to receive notifications for delivery status updates" : "Voglio ricevere notifiche per il cambio di stato consegna" ?></label>
                 </div>
               </form>
             </div>
             <div class="col-md-6">
-              <h4 class="py-3">Cambia Password</h4>
+              <h4 class="py-3"><?php echo $linguaAttuale == "en" ? "Change Password" : "Cambia Password" ?></h4>
               <form>
                 <div class="mb-3">
-                  <label for="current-password-modal" class="form-label">Password attuale</label>
+                  <label for="current-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Actual password" : "Password attuale" ?></label>
                   <div class="input-group">
                     <input type="password" class="form-control" id="current-password-modal" />
                     <button class="btn btn-outline-secondary toggle-password" type="button">
@@ -109,7 +109,7 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label for="new-password-modal" class="form-label">Nuova Password</label>
+                  <label for="new-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "New password" : "Nuova password" ?></label>
                   <div class="input-group">
                     <input type="password" class="form-control" id="new-password-modal" />
                     <button class="btn btn-outline-secondary toggle-password" type="button">
@@ -118,7 +118,7 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label for="confirm-password-modal" class="form-label">Conferma Nuova Password</label>
+                  <label for="confirm-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Confirm new password" : "Conferma nuova password" ?></label>
                   <div class="input-group">
                     <input type="password" class="form-control" id="confirm-password-modal" />
                     <button class="btn btn-outline-secondary toggle-password" type="button">
@@ -127,7 +127,7 @@
                   </div>
                 </div>
                 <div class="d-grid">
-                  <button type="submit" class="btn btn-lg btn-primary mt-3">Salva</button>
+                  <button type="submit" class="btn btn-lg btn-primary mt-3"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
                 </div>
               </form>
             </div>
@@ -143,14 +143,14 @@
   <!-- Sezione I miei ordini -->
   <div class="row mb-4">
     <div class="col-12">
-      <h3>I miei ordini</h3>
+      <h3><?php echo $linguaAttuale == "en" ? "My orders" : "I miei ordini" ?></h3>
     </div>
     <div class="col-md-4">
       <div class="card p-3 bg-light">
         <p class="fw-bold">N. ordine: AT325D</p>
         <p>Creato il: 27/01/2024</p>
         <p>Totale: 45€</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1">Vedi dettagli</a>
+        <a href="#" class="text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
       </div>
     </div>
     <div class="col-md-4">
@@ -158,7 +158,7 @@
         <p class="fw-bold">N. ordine: PO124R</p>
         <p>Creato il: 17/01/2024</p>
         <p>Totale: 25€</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1">Vedi dettagli</a>
+        <a href="#" class="text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
       </div>
     </div>
     <div class="col-md-4">
@@ -166,28 +166,28 @@
         <p class="fw-bold">N. ordine: RE642E</p>
         <p>Creato il: 12/01/2024</p>
         <p>Totale: 35€</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1">Vedi dettagli</a>
+        <a href="#" class="text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
       </div>
     </div>
-    <a href="#" class="mt-3 text-decoration-none border-bottom pb-1">vedi tutti</a>
+    <a href="#" class="mt-3 text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "see all" : "vedi tutti" ?></a>
   </div>
 
   <!-- Sezione Indirizzi di spedizione e Metodi di pagamento -->
   <div class="row mb-4">
     <div class="col-md-6">
-      <h4>Indirizzi di spedizione</h4>
+      <h4><?php echo $linguaAttuale == "en" ? "Delivery addresses" : "Indirizzi di spedizione" ?></h4>
       <div class="card p-3 bg-light">
         <p>Italia<br />Via esempio 123, 47039</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1">Aggiungi un nuovo indirizzo</a>
-        <a href="#" class="text-decoration-none border-bottom pb-1">Modifica</a>
+        <a href="#" class="text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "Add a new address" : "Aggiungi un nuovo indirizzo" ?></a>
+        <a href="#" class="text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "Edit" : "Modifica" ?></a>
       </div>
     </div>
     <div class="col-md-6">
-      <h4>Metodi di pagamento</h4>
+      <h4><?php echo $linguaAttuale == "en" ? "Payment methods" : "Metodi di pagamento" ?></h4>
       <div class="card p-3 bg-light">
-        <p>Metodo di pagamento predefinito<br />Visa **34</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1">Aggiungi un nuovo metodo</a>
-        <a href="#" class="text-decoration-none border-bottom pb-1">Modifica</a>
+        <p><?php echo $linguaAttuale == "en" ? "Default Payment Method" : "Metodo di pagamento predefinito" ?><br />Visa **34</p>
+        <a href="#" class="text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "Add a new payment method" : "Aggiungi un nuovo metodo di pagamento" ?></a>
+        <a href="#" class="text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "Edit" : "Modifica" ?></a>
       </div>
     </div>
   </div>
@@ -195,7 +195,7 @@
   <!-- Sezione Preferiti -->
   <div class="row mb-4">
     <div class="col-12">
-      <h4>Preferiti</h4>
+      <h4><?php echo $linguaAttuale == "en" ? "Favourites" : "Preferiti" ?></h4>
       <div class="d-flex overflow-auto">
         <div class="col-md-4">
           <div class="card me-3">
@@ -232,13 +232,13 @@
         </div>
       </div>
     </div>
-    <a href="" class="mt-3 text-decoration-none border-bottom pb-1">vedi tutti</a>
+    <a href="" class="mt-3 text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "see all" : "vedi tutti" ?></a>
   </div>
 
   <!-- Sezione Notifiche -->
   <div class="row mb-4">
     <div class="col-12">
-      <h4>Notifiche</h4>
+      <h4><?php echo $linguaAttuale == "en" ? "Notification" : "Notifiche" ?></h4>
       <ul class="notifications-list">
         <li>
           <span class="bi bi-bell text-primary me-2" role="img" aria-label="icona campanella"></span>
@@ -250,7 +250,7 @@
         </li>
       </ul>
     </div>
-    <a href="notifiche.php" class="mt-3 text-decoration-none border-bottom pb-1">vedi tutte</a>
+    <a href="notifiche.php" class="mt-3 text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "see all" : "vedi tutte" ?></a>
   </div>
 
   <div class="section-separator"></div>
@@ -258,27 +258,27 @@
   <!-- Sezione Impostazioni -->
   <div class="row">
     <div class="col-md-6">
-      <h4>Informazioni Personali</h4>
+      <h4><?php echo $linguaAttuale == "en" ? "Personal information" : "Informazioni personali" ?></h4>
       <form>
         <div class="mb-3">
-          <label for="nome" class="form-label">Nome</label>
+          <label for="nome" class="form-label"><?php echo $linguaAttuale == "en" ? "Name" : "Nome" ?></label>
           <input type="text" class="form-control" id="nome" />
         </div>
         <div class="mb-3">
-          <label for="cognome" class="form-label">Cognome</label>
+          <label for="cognome" class="form-label"><?php echo $linguaAttuale == "en" ? "Surname" : "Cognome" ?></label>
           <input type="text" class="form-control" id="cognome" />
         </div>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="notifiche" />
-          <label class="form-check-label" for="notifiche">Voglio ricevere notifiche per gli stati delle consegne</label>
+          <label class="form-check-label" for="notifiche"><?php echo $linguaAttuale == "en" ? "I want to receive notifications for delivery status updates" : "Voglio ricevere notifiche per il cambio di stato consegna" ?></label>
         </div>
       </form>
     </div>
     <div class="col-md-6">
-      <h4>Cambia Password</h4>
+      <h4><?php echo $linguaAttuale == "en" ? "Change password" : "Cambia password" ?></h4>
       <form>
         <div class="mb-3">
-          <label for="current-password" class="form-label">Password attuale</label>
+          <label for="current-password" class="form-label"><?php echo $linguaAttuale == "en" ? "Actual password" : "Password attuale" ?></label>
           <div class="input-group">
             <input type="password" class="form-control" id="current-password" />
             <button class="btn btn-outline-secondary toggle-password" type="button">
@@ -287,7 +287,7 @@
           </div>
         </div>
         <div class="mb-3">
-          <label for="new-password" class="form-label">Nuova Password</label>
+          <label for="new-password" class="form-label"><?php echo $linguaAttuale == "en" ? "New password" : "Nuova password" ?></label>
           <div class="input-group">
             <input type="password" class="form-control" id="new-password" />
             <button class="btn btn-outline-secondary toggle-password" type="button">
@@ -296,7 +296,7 @@
           </div>
         </div>
         <div class="mb-3">
-          <label for="confirm-password" class="form-label">Conferma Nuova Password</label>
+          <label for="confirm-password" class="form-label"><?php echo $linguaAttuale == "en" ? "Confirm new password" : "Conferma nuova password" ?></label>
           <div class="input-group">
             <input type="password" class="form-control" id="confirm-password" />
             <button class="btn btn-outline-secondary toggle-password" type="button">
@@ -305,7 +305,7 @@
           </div>
         </div>
         <div class="d-grid">
-          <button type="submit" class="btn btn-lg btn-primary mt-3">Salva</button>
+          <button type="submit" class="btn btn-lg btn-primary mt-3"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
         </div>
       </form>
     </div>

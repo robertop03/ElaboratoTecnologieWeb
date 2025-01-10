@@ -27,8 +27,8 @@
   <div class="flex-grow-1 ms-lg-3 d-none d-lg-block">
     <div class="card min-vh-25">
       <div class="card-body">
-        <h5 class="card-title">Seleziona una notifica</h5>
-        <p class="card-text">I dettagli della notifica selezionata appariranno qui.</p>
+        <h5 class="card-title"><?php echo $linguaAttuale == "en" ? "Select a notification" : "Seleziona una notifica" ?></h5>
+        <p class="card-text"><?php echo $linguaAttuale == "en" ? "The notification details will appear here" : "I dettagli della notifica appariranno qui" ?></p>
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
         <div class="modal-header">
           <h5 class="modal-title" id="notificationModalLabel">Titolo Notifica</h5>
         </div>
-        <div class="modal-body"> Contenuto della notifica. </div>
+        <div class="modal-body"> </div>
         <div class="modal-footer">
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>

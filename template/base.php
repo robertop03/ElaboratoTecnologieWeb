@@ -38,8 +38,8 @@
           <div class="d-flex d-md-none mt-2">
             <div class="search-bar d-flex align-items-center rounded px-3 w-100">
               <span class="bi bi-search" role="img" aria-label="icona lente d'ingrandimento"></span>
-              <label for="search-bar-mobile" class="visually-hidden">Barra di ricerca</label>
-              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" name="search-bar-mobile" id="search-bar-mobile" />
+              <label for="search-bar-mobile" class="visually-hidden"><?php echo $linguaAttuale == "en" ? "Search bar" : "Barra di ricerca" ?></label>
+              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="<?php echo $linguaAttuale == "en" ? "Search" : "Cerca" ?>" name="search-bar-mobile" id="search-bar-mobile" />
             </div>
           </div>
 
@@ -52,19 +52,22 @@
             <!-- Barra di ricerca Desktop -->
             <div class="search-bar d-flex align-items-center rounded px-3">
               <span class="bi bi-search" role="img" aria-label="icona lente d'ingrandimento"></span>
-              <label for="search-bar-desktop" class="visually-hidden">Barra di ricerca</label>
-              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="Cerca" name="search-bar-desktop" id="search-bar-desktop" />
+              <label for="search-bar-desktop" class="visually-hidden"> <?php echo $linguaAttuale == "en" ? "Search bar" : "Barra di ricerca" ?></label>
+              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="<?php echo $linguaAttuale == "en" ? "Search" : "Cerca" ?>" name="search-bar-desktop" id="search-bar-desktop" />
             </div>
             <!-- Icone Desktop -->
             <div class="icons-group d-flex align-items-center">
               <div class="dropdown pe-1">
-                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> <img src="resources/icons/italy.png" alt="Bandiera Italia" /> IT </a>
+                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="resources/icons/<?php echo $linguaAttuale == "en" ? "english.png" : "italy.png" ?>" alt="<?php echo $linguaAttuale == "en" ? "Bandiera Inghilterra" : "Bandiera Italia" ?>" />
+                  <?php echo $linguaAttuale == "en" ? "EN" : "IT" ?>
+                </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <li
-                    ><a class="dropdown-item" href="#"><img src="resources/icons/english.png" alt="Bandiera Inghilterra" /> EN</a></li
+                    ><a class="dropdown-item" href="?lang=en"><img src="resources/icons/english.png" alt="Bandiera Inghilterra" /> EN</a></li
                   >
                   <li
-                    ><a class="dropdown-item" href="#"><img src="resources/icons/italy.png" alt="Bandiera Italia" /> IT</a></li
+                    ><a class="dropdown-item" href="?lang=it"><img src="resources/icons/italy.png" alt="Bandiera Italia" /> IT</a></li
                   >
                 </ul>
               </div>
@@ -81,37 +84,37 @@
       <!-- Menu di navigazione (solo desktop) -->
       <div class="container-fluid d-none d-md-flex justify-content-center border border-dark">
         <ul class="nav-links d-flex gap-3 list-unstyled">
-          <li><a href="#" class="text-dark text-uppercase" data-bs-toggle="modal" data-bs-target="#map-modal">Regione</a></li>
-          <li><a href="#" class="text-dark text-uppercase">Rossi</a></li>
-          <li><a href="#" class="text-dark text-uppercase">Bianchi</a></li>
-          <li><a href="#" class="text-dark text-uppercase">Rosati</a></li>
-          <li><a href="#" class="text-dark text-uppercase">Fermi</a></li>
-          <li><a href="#" class="text-dark text-uppercase">Frizzanti</a></li>
+          <li><a href="#" class="text-dark text-uppercase" data-bs-toggle="modal" data-bs-target="#map-modal"><?php echo $linguaAttuale == "en" ? "Region" : "Regione" ?></a></li>
+          <li><a href="#" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "RED" : "ROSSI" ?></a></li>
+          <li><a href="#" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "WHITE" : "BIANCHI" ?></a></li>
+          <li><a href="#" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "ROSÈ" : "ROSATI" ?></a></li>
+          <li><a href="#" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "STILL" : "FERMI" ?></a></li>
+          <li><a href="#" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "SPARKLING" : "FRIZZANTI" ?></a></li>
         </ul>
       </div>
       <!-- OFFCANVAS MENU -->
       <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLaterale" aria-labelledby="menuLateraleLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="menuLateraleLabel">Categorie</h5>
+          <h5 class="offcanvas-title" id="menuLateraleLabel"><?php echo $linguaAttuale == "en" ? "Categories" : "Categorie" ?></h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Chiudi menù"></button>
         </div>
         <div class="offcanvas-body">
           <!-- LISTA PRINCIPALE -->
           <ul class="list-group">
-            <li class="list-group-item"><a href="#">Rossi</a></li>
-            <li class="list-group-item"><a href="#">Bianchi</a></li>
-            <li class="list-group-item"><a href="#">Rosati</a></li>
-            <li class="list-group-item"><a href="#">Fermi</a></li>
-            <li class="list-group-item"><a href="#">Frizzanti</a></li>
+            <li class="list-group-item"><a href="#"><?php echo $linguaAttuale == "en" ? "Red" : "Rossi" ?></a></li>
+            <li class="list-group-item"><a href="#"><?php echo $linguaAttuale == "en" ? "White" : "Bianchi" ?></a></li>
+            <li class="list-group-item"><a href="#"><?php echo $linguaAttuale == "en" ? "Rosè" : "Rosati" ?></a></li>
+            <li class="list-group-item"><a href="#"><?php echo $linguaAttuale == "en" ? "Still" : "Fermi" ?></a></li>
+            <li class="list-group-item"><a href="#"><?php echo $linguaAttuale == "en" ? "Sparkling" : "Frizzanti" ?></a></li>
             <!-- REGIONE CON SUB-MENU -->
             <li class="list-group-item">
               <a class="d-flex justify-content-between align-items-center" href="#" data-bs-toggle="collapse" data-bs-target="#menuRegioni" aria-expanded="false" aria-controls="menuRegioni">
-                Regioni
+                <?php echo $linguaAttuale == "en" ? "Regions" : "Regioni" ?>
                 <span class="bi bi-chevron-down" role="img" aria-hidden="true"></span>
               </a>
               <!-- SUBMENU -->
               <ul class="list-group collapse mt-2" id="menuRegioni">
-                <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#map-modal">Vai alla mappa</a></li>
+                <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#map-modal"><?php echo $linguaAttuale == "en" ? "Go to the maps" : "Vai alla mappa" ?></a></li>
               </ul>
             </li>
           </ul>
@@ -132,22 +135,24 @@
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
             <i class="bi bi-lock fs-1 me-3"></i>
             <div>
-              <h5><strong>SHOPPING SICURO</strong></h5>
-              <p>I tuoi <strong>pagamenti online</strong> sono protetti e accettiamo anche il <strong>pagamento alla consegna</strong></p>
+              <h5
+                ><strong><?php echo $linguaAttuale == "en" ? "SAFE SHOPPING" : "SHOPPING SICURO" ?></strong></h5
+              >
+              <p><?php echo $linguaAttuale == "en" ? "Your <strong>online payments</strong> are secure, and we also accept <strong>cash on delivery</strong>." : "I tuoi <strong>pagamenti online</strong> sono protetti e accettiamo anche il <strong>pagamento alla consegna</strong>" ?></p>
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
             <i class="bi bi-truck fs-1 me-3"></i>
             <div>
-              <h5><strong>COSTI DI SPEDIZIONE</strong></h5>
-              <p><strong>Gratis</strong> per gli ordini sopra i <strong>69€</strong>, altrimenti la spedizione è di 7.75€</p>
+              <h5><strong><?php echo $linguaAttuale == "en" ? "SHIPPING COST" : "COSTI SPEDIZIONE" ?></strong></h5>
+              <p><?php echo $linguaAttuale == "en" ? "<strong>Free</strong> for orders over <strong>€69</strong>, otherwise shipping costs €7.75." : "<strong>Gratis</strong> per gli ordini sopra i <strong>69€</strong>, altrimenti la spedizione è di 7.75€" ?></p>
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
             <i class="bi bi-telephone fs-1 me-3"></i>
             <div>
-              <h5><strong>CONTATTACI</strong></h5>
-              <p>Consulta la <strong>nostra guida</strong> o contatta il nostro <strong>servizio clienti</strong> per ottenere maggiori informazioni e ricevere assistenza</p>
+              <h5><strong><?php echo $linguaAttuale == "en" ? "CONTACT US" : "CONTATTACI" ?></strong></h5>
+              <p><?php echo $linguaAttuale == "en" ? "Check <strong>our guide</strong> or contact our <strong>customer service</strong> for more information and assistance" : "Consulta la <strong>nostra guida</strong> o contatta il nostro <strong>servizio clienti</strong> per ottenere maggiori informazioni e ricevere assistenza" ?></p>
             </div>
           </div>
         </div>

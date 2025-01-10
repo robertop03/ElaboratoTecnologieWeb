@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdownItems = document.querySelectorAll(".dropdown-menu .dropdown-item")
   dropdownItems.forEach((item) => {
     item.addEventListener("click", function (event) {
-      event.preventDefault() // Evita il comportamento predefinito del link
-
       const selectedImage = this.querySelector("img").src
       const selectedText = this.textContent.trim()
 
