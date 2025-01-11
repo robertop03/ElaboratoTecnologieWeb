@@ -60,7 +60,9 @@
 <!-- ASIDE -->
 <aside>
   <div class="container">
-    <h3 class="fw-bold"><?php echo $linguaAttuale == "en" ? "Where are we?" : "Dove siamo?" ?></h3>
+    <a href="dovecitroviamo.php" title="Dove ci troviamo" class="no-style">
+      <h3 class="fw-bold"><?php echo $linguaAttuale == "en" ? "Where are we?" : "Dove siamo?" ?></h3>
+    </a>
     <div class="row align-items-center mb-4">
       <div class="col-md-6">
         <!-- <a href="https://maps.app.goo.gl/qrVCVyX85zjw7Xta6" target="_blank"> -->
@@ -69,7 +71,9 @@
         </a>
       </div>
       <div class="col-md-6">
-        <p><?php echo $linguaAttuale == "en" ? "We are located in Cesena, 10 minutes from the Hippodrome and a few minutes from Bufalini Hospital" : "Ci troviamo a Cesena, a 10 minuti dall'Ippodromo e a pochi minuti dall'ospedale Bufalini" ?></p>
+        <a href="dovecitroviamo.php" title="Dove ci troviamo" class="no-style">
+          <p><?php echo $linguaAttuale == "en" ? "We are located in Cesena, 10 minutes from the Hippodrome and a few minutes from Bufalini Hospital" : "Ci troviamo a Cesena, a 10 minuti dall'Ippodromo e a pochi minuti dall'ospedale Bufalini" ?></p>
+        </a>
       </div>
     </div>
     <hr class="my-4" />

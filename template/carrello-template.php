@@ -8,7 +8,7 @@
 
   <!-- Bottone per rimuovere tutti i prodotti -->
   <button id="clear-cart" class="clear-cart" aria-label="Elimina tutti i prodotti">
-    <span class="bi bi-trash fs-5 ms-3 mb-3" alt="Elimina tutto"><?php echo $linguaAttuale == "en" ? "Delete all products" : "Elimina tutti i prodotti" ?></span>
+    <span class="bi bi-trash fs-5 ms-3 mb-3" aria-label="Elimina tutti i prodotti"><?php echo $linguaAttuale == "en" ? "Delete all products" : "Elimina tutti i prodotti" ?></span>
   </button>
 </section>
 
