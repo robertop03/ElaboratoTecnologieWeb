@@ -660,11 +660,14 @@ svg {
 /* Stile delle card nel modale (riuso delle regole per indirizzi) */
 .selectable-address,
 .selectable-card {
-  border-radius: 10px; /* Bordi arrotondati */
-  background-color: #f7f9fc; /* Sfondo tenue */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sfumatura leggera */
+  border-radius: 10px;
+  background-color: #f7f9fc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: all 0.2s ease-in-out; /* Animazione al passaggio del mouse */
+  transition: all 0.2s ease-in-out;
+  margin: 15px;
+  padding: 10px;
+  width: 90% !important;
 }
 
 /* Hover e selezione (stessa logica delle indirizzi) */
@@ -680,21 +683,6 @@ svg {
   background-color: #d1ecf1; /* Sfondo blu chiaro per la card selezionata */
   border-color: #bee5eb; /* Bordo blu chiaro */
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* Sfumatura blu */
-}
-
-.selectable-address {
-  margin: 15px;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Margine superiore e inferiore per le carte */
-.selectable-card {
-  margin: 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 80%;
 }
 
 /* Campo input per numero carta */
