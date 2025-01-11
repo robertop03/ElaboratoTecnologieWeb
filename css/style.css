@@ -639,52 +639,97 @@ svg {
 }
 
 /*
-* Checkout
+* Checkout - Carte di Credito
 */
-/* Stile per la progress bar */
-.progress-steps {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  justify-content: space-between;
-  border-bottom: 2px solid #ccc;
-}
-
-.step {
-  font-size: 12px;
-  text-align: center;
-  color: #999;
-  flex: 1;
-  font-weight: 500;
-}
-
-.step span {
-  display: block;
-  line-height: 1.2;
-}
-
-.step.active {
-  color: #54072a;
-  font-weight: bold;
-  border-bottom: 2px solid #54072a;
-}
-
-.step.completed {
-  color: #000;
-  font-weight: bold;
-  border-bottom: 2px solid #000;
-}
-
-/* Stile per il riquadro */
+/* Riquadro principale (stessa classe delle spedizioni) */
 .checkout-box {
-  background-color: #fef0f0; /* Colore di sfondo */
+  background-color: #fef0f0; /* Colore di sfondo (già esistente) */
   border-radius: 10px; /* Angoli arrotondati */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Ombreggiatura */
   padding: 20px; /* Spaziatura interna */
 }
 
-/* Personalizzazione del bottone */
+/* Stile generale del modale (riuso delle regole per indirizzi) */
+.modal-body-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center; /* Centrare le card */
+}
+
+/* Stile delle card nel modale (riuso delle regole per indirizzi) */
+.selectable-address,
+.selectable-card {
+  border-radius: 10px; /* Bordi arrotondati */
+  background-color: #f7f9fc; /* Sfondo tenue */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sfumatura leggera */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; /* Animazione al passaggio del mouse */
+}
+
+/* Hover e selezione (stessa logica delle indirizzi) */
+.selectable-address:hover,
+.selectable-card:hover {
+  background-color: #e9eef5; /* Sfondo leggermente più scuro al passaggio del mouse */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra più evidente */
+  transform: scale(1.02); /* Leggero ingrandimento */
+}
+
+.selectable-address.active,
+.selectable-card.active {
+  background-color: #d1ecf1; /* Sfondo blu chiaro per la card selezionata */
+  border-color: #bee5eb; /* Bordo blu chiaro */
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* Sfumatura blu */
+}
+
+.selectable-address {
+  margin: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Margine superiore e inferiore per le carte */
+.selectable-card {
+  margin: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80%;
+}
+
+/* Campo input per numero carta */
+.numero-carta input {
+  letter-spacing: 2px; /* Spaziatura tra i numeri */
+}
+
+/* Dropdown mese/anno di scadenza */
+.scadenza select {
+  border-radius: 5px; /* Angoli arrotondati */
+  padding: 5px; /* Spaziatura interna */
+  transition: all 0.2s ease; /* Animazione */
+}
+
+.scadenza select:focus {
+  border-color: #54072a; /* Colore del bordo in focus */
+  outline: none; /* Rimuove l'outline predefinito */
+}
+
+/* Campo input per CVV */
+.cvv input {
+  width: 100px; /* Dimensione limitata per il CVV */
+  letter-spacing: 2px; /* Spaziatura tra i caratteri */
+}
+
+.custom-link {
+  color: #54072a;
+  text-decoration: none;
+}
+
+.custom-link:hover {
+  text-decoration: underline;
+}
+
+/* Bottone personalizzato (riuso delle regole esistenti) */
 .custom-btn {
   background-color: #54072a; /* Colore del bottone */
   color: #fff; /* Colore del testo */
@@ -703,62 +748,4 @@ svg {
 
 .custom-btn:hover {
   background-color: #3d0521; /* Colore hover */
-}
-
-.custom-link {
-  color: #54072a;
-}
-
-/* CSS aggiornato */
-.hidden {
-  display: none;
-}
-
-.modal-content {
-  background: white;
-  border: 1px solid #ccc;
-  padding: 20px;
-  position: relative;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-/* Stile generale del modale */
-.modal-body-address {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center; /* Centrare le card */
-}
-
-/* Stile delle card nel modale */
-.selectable-address {
-  border: 1px solid #ddd; /* Bordo sottile */
-  border-radius: 10px; /* Bordi arrotondati */
-  padding: 1rem;
-  background-color: #f7f9fc; /* Sfondo tenue */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sfumatura leggera */
-  cursor: pointer;
-  transition: all 0.2s ease-in-out; /* Animazione al passaggio del mouse */
-}
-
-/* Hover e selezione */
-.selectable-address:hover {
-  background-color: #e9eef5; /* Sfondo leggermente più scuro al passaggio del mouse */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra più evidente */
-  transform: scale(1.02); /* Leggero ingrandimento */
-}
-
-.selectable-address.active {
-  background-color: #d1ecf1; /* Sfondo blu chiaro per la card selezionata */
-  border-color: #bee5eb; /* Bordo blu chiaro */
-  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* Sfumatura blu */
 }
