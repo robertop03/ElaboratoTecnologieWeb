@@ -731,13 +731,34 @@ svg {
   cursor: pointer;
 }
 
-.address-card {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px 0;
-  cursor: pointer;
+/* Stile generale del modale */
+.modal-body-address {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center; /* Centrare le card */
 }
 
-.address-card:hover {
-  background: #f0f0f0;
+/* Stile delle card nel modale */
+.selectable-address {
+  border: 1px solid #ddd; /* Bordo sottile */
+  border-radius: 10px; /* Bordi arrotondati */
+  padding: 1rem;
+  background-color: #f7f9fc; /* Sfondo tenue */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sfumatura leggera */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; /* Animazione al passaggio del mouse */
+}
+
+/* Hover e selezione */
+.selectable-address:hover {
+  background-color: #e9eef5; /* Sfondo leggermente più scuro al passaggio del mouse */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra più evidente */
+  transform: scale(1.02); /* Leggero ingrandimento */
+}
+
+.selectable-address.active {
+  background-color: #d1ecf1; /* Sfondo blu chiaro per la card selezionata */
+  border-color: #bee5eb; /* Bordo blu chiaro */
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* Sfumatura blu */
 }

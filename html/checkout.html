@@ -162,8 +162,8 @@
               <h4>Indirizzi di spedizione</h4>
               <div class="card p-3 bg-light">
                 <p>Italia<br />Via esempio 123, 47039</p>
-                <span class="custom-link" id="use-address" style="cursor: pointer; color: black;">Usa questo indirizzo</span><br />
-                <span class="custom-link" data-bs-toggle="modal" data-bs-target="#addressModal" style="cursor: pointer; color: black;">Scegli quale indirizzo usare</span>
+                <a href="#" class="custom-link" id="use-address">Usa questo indirizzo</a>
+                <a href="#" class="custom-link" data-bs-toggle="modal" data-bs-target="#addressModal">Scegli quale indirizzo usare</a>
               </div>
             </div>
           </div>
@@ -221,7 +221,7 @@
                 <h5 class="modal-title" id="addressModalLabel">Scegli un indirizzo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body-address">
                 <!-- Lista di indirizzi salvati -->
                 <div class="row g-2" id="address-list">
                   <div class="col-12">
@@ -280,7 +280,7 @@
     </footer>
     <!-- END FOOTER -->
 
-    <script src="../js/checkout.js?v=1"></script>
+    <script src="../js/checkout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
