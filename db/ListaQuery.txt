@@ -26,3 +26,4 @@
 26 - visualizzare i preferiti
 27 - estrarre le notifiche di un determinato utente
 28 - estrarre tutti gli ordini di un determinato utente
+29 - dato un id ordine mostra la lista di vini acquistati e la quantità
