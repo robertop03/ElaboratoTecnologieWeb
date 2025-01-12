@@ -1,40 +1,34 @@
 -- 1 - estrarre tutti i vini con i relativi attributi e filtri opzionali
 
-SELECT 
-    PRODOTTO.ID_Prodotto, 
-    Prezzo, 
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Frizzantezza' THEN ATTRIBUTO.Titolo END) AS Frizzantezza,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Tonalità' THEN ATTRIBUTO.Titolo END) AS Tonalita,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) AS Provenienza,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END) AS Capacita_Bottiglia,
-    TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
-    TESTO_PRODOTTO.Descrizione
-FROM 
-    PRODOTTO
-JOIN 
-    TESTO_PRODOTTO ON PRODOTTO.ID_Prodotto = TESTO_PRODOTTO.ID_Prodotto
-LEFT JOIN 
-    ATTRIBUTA ON PRODOTTO.ID_Prodotto = ATTRIBUTA.ID_Prodotto
-LEFT JOIN 
-    ATTRIBUTO ON ATTRIBUTA.ID_Attributo = ATTRIBUTO.ID_Attributo
-LEFT JOIN 
-    CATEGORIA ON ATTRIBUTO.ID_Categoria = CATEGORIA.ID_Categoria
-WHERE 
-    TESTO_PRODOTTO.Lingua = 1 -- inserire la lingua desiderata 1 italiano 2 inglese
-GROUP BY 
-    PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione
-HAVING 
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) LIKE '%:prov%'  -- inserire la provenienza del vino
-AND
-	GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Frizzantezza' THEN ATTRIBUTO.Titolo END) LIKE '%:friz%' -- inserire la frizzantezza del vino
-AND
-	GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Tonalità' THEN ATTRIBUTO.Titolo END) LIKE '%:tona%' -- inserire la tonalità del vino
-AND
-	GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END) LIKE '%:dime%' -- inserire la capacità della bottiglia
-AND
-	Prezzo < :pmax -- inserire il range di prezzo massimo
-AND 
-	Prezzo > :pmin; -- inserire il range di prezzo minimo
+    SELECT 
+        PRODOTTO.ID_Prodotto, 
+        Prezzo, 
+        GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Frizzantezza' THEN ATTRIBUTO.Titolo END) AS Frizzantezza,
+        GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Tonalità' THEN ATTRIBUTO.Titolo END) AS Tonalita,
+        GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) AS Provenienza,
+        GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END) AS Capacita_Bottiglia,
+        TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
+        TESTO_PRODOTTO.Descrizione
+    FROM 
+        PRODOTTO
+    JOIN 
+        TESTO_PRODOTTO ON PRODOTTO.ID_Prodotto = TESTO_PRODOTTO.ID_Prodotto
+    LEFT JOIN 
+        ATTRIBUTA ON PRODOTTO.ID_Prodotto = ATTRIBUTA.ID_Prodotto
+    LEFT JOIN 
+        ATTRIBUTO ON ATTRIBUTA.ID_Attributo = ATTRIBUTO.ID_Attributo
+    LEFT JOIN 
+        CATEGORIA ON ATTRIBUTO.ID_Categoria = CATEGORIA.ID_Categoria
+    WHERE 
+        TESTO_PRODOTTO.Lingua = :lingua
+    GROUP BY 
+        PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione
+    HAVING 
+        (Frizzantezza LIKE :friz)
+        AND (Tonalita LIKE :tona)
+        AND (Provenienza LIKE :prov)
+        AND (Capacita_Bottiglia LIKE :dime)
+        AND Prezzo BETWEEN :pmin AND :pmax
 
 
 -- 2 - estrarre tutti gli eventi
