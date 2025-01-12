@@ -90,6 +90,12 @@ FROM EVENTO
 WHERE Data_Inizio <= '2025-01-12'-- inserire la data di inizio
 AND Data_Fine >= '2025-05-20'; -- inserire la data di fine
 
+-- 13 - filtrare per regione per vedere i vini disponibili
+-- unita nella query 1
+
+-- 14 - mostrare i vini in ordine crescente/decrescente per capacità della bottiglia
+-- unita nella query 1
+
 -- 15 - estrarre singolo vino da mostra nella pagina prodotto
 
 SELECT 
@@ -132,6 +138,18 @@ WHERE ID_Indirizzo = 'I1'; -- inserire l'id dell'indirizzo da modificare
 -- 17 - cancellazione metodo di pagamento
 DELETE FROM METODO_PAGAMENTO
 WHERE ID_Metodo = 'M1'; -- inserire l'id del metodo di pagamento da cancellare
+
+-- 18 - mostrare vini in ordine crescente/descrescente per prezzo
+-- unita nella query 1
+
+-- 19 - filtrare i vini per categoria (navbar: rossi, bianchi ecc)
+-- unita nella query 1
+
+-- 20 - filtrare i vini per range di prezzo 
+-- unita nella query 1
+
+-- 21 - filtrare i vini per capacità bottiglia
+-- unita nella query 1
 
 -- 22 - iscrivere utente già registrato in newsletter - 23 - disiscrivere utente dalla newsletter
 UPDATE UTENTE 
@@ -177,7 +195,7 @@ AND
 GROUP BY 
     PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione;
 
-
+-- 27 - estrarre le notifiche di un determinato utente
 
 -- 28 - estrarre tutti gli ordini di un determinato utente
 SELECT * 
@@ -202,116 +220,9 @@ WHERE
 
 
 
--- 13 - filtrare per regione per vedere i vini disponibili
-SELECT 
-    PRODOTTO.ID_Prodotto, 
-    Prezzo, 
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Frizzantezza' THEN ATTRIBUTO.Titolo END) AS Frizzantezza,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Tonalità' THEN ATTRIBUTO.Titolo END) AS Tonalita,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) AS Provenienza,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END) AS Capacita_Bottiglia,
-    TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
-    TESTO_PRODOTTO.Descrizione
-FROM 
-    PRODOTTO
-JOIN 
-    TESTO_PRODOTTO ON PRODOTTO.ID_Prodotto = TESTO_PRODOTTO.ID_Prodotto
-LEFT JOIN 
-    ATTRIBUTA ON PRODOTTO.ID_Prodotto = ATTRIBUTA.ID_Prodotto
-LEFT JOIN 
-    ATTRIBUTO ON ATTRIBUTA.ID_Attributo = ATTRIBUTO.ID_Attributo
-LEFT JOIN 
-    CATEGORIA ON ATTRIBUTO.ID_Categoria = CATEGORIA.ID_Categoria
-WHERE 
-    TESTO_PRODOTTO.Lingua = 1 -- inserire la lingua desiderata 1 italiano 2 inglese
-GROUP BY 
-    PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione
-HAVING 
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) LIKE 'Toscana';  -- inserire la regione desiderata
 
--- 14 - mostrare i vini in ordine crescente/decrescente per capacità della bottiglia
-SELECT 
-    PRODOTTO.ID_Prodotto, 
-    Prezzo, 
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Frizzantezza' THEN ATTRIBUTO.Titolo END) AS Frizzantezza,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Tonalità' THEN ATTRIBUTO.Titolo END) AS Tonalita,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) AS Provenienza,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END) AS Capacita_Bottiglia,
-    TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
-    TESTO_PRODOTTO.Descrizione
-FROM 
-    PRODOTTO
-JOIN 
-    TESTO_PRODOTTO ON PRODOTTO.ID_Prodotto = TESTO_PRODOTTO.ID_Prodotto
-LEFT JOIN 
-    ATTRIBUTA ON PRODOTTO.ID_Prodotto = ATTRIBUTA.ID_Prodotto
-LEFT JOIN 
-    ATTRIBUTO ON ATTRIBUTA.ID_Attributo = ATTRIBUTO.ID_Attributo
-LEFT JOIN 
-    CATEGORIA ON ATTRIBUTO.ID_Categoria = CATEGORIA.ID_Categoria
-WHERE 
-    TESTO_PRODOTTO.Lingua = 1 -- inserire la lingua desiderata 1 italiano 2 inglese
-GROUP BY 
-    PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione
-ORDER BY Capacita_Bottiglia;
 
--- 18 - mostrare vini in ordine crescente/descrescente per prezzo
--- crescente
-SELECT 
-    PRODOTTO.ID_Prodotto, 
-    Prezzo, 
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Frizzantezza' THEN ATTRIBUTO.Titolo END) AS Frizzantezza,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Tonalità' THEN ATTRIBUTO.Titolo END) AS Tonalita,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) AS Provenienza,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END) AS Capacita_Bottiglia,
-    TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
-    TESTO_PRODOTTO.Descrizione
-FROM 
-    PRODOTTO
-JOIN 
-    TESTO_PRODOTTO ON PRODOTTO.ID_Prodotto = TESTO_PRODOTTO.ID_Prodotto
-LEFT JOIN 
-    ATTRIBUTA ON PRODOTTO.ID_Prodotto = ATTRIBUTA.ID_Prodotto
-LEFT JOIN 
-    ATTRIBUTO ON ATTRIBUTA.ID_Attributo = ATTRIBUTO.ID_Attributo
-LEFT JOIN 
-    CATEGORIA ON ATTRIBUTO.ID_Categoria = CATEGORIA.ID_Categoria
-WHERE 
-    TESTO_PRODOTTO.Lingua = 1 -- inserire la lingua desiderata 1 italiano 2 inglese
-GROUP BY 
-    PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione
-ORDER BY Prezzo;
 
--- decrescente
-SELECT 
-    PRODOTTO.ID_Prodotto, 
-    Prezzo, 
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Frizzantezza' THEN ATTRIBUTO.Titolo END) AS Frizzantezza,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Tonalità' THEN ATTRIBUTO.Titolo END) AS Tonalita,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) AS Provenienza,
-    GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END) AS Capacita_Bottiglia,
-    TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
-    TESTO_PRODOTTO.Descrizione
-FROM 
-    PRODOTTO
-JOIN 
-    TESTO_PRODOTTO ON PRODOTTO.ID_Prodotto = TESTO_PRODOTTO.ID_Prodotto
-LEFT JOIN 
-    ATTRIBUTA ON PRODOTTO.ID_Prodotto = ATTRIBUTA.ID_Prodotto
-LEFT JOIN 
-    ATTRIBUTO ON ATTRIBUTA.ID_Attributo = ATTRIBUTO.ID_Attributo
-LEFT JOIN 
-    CATEGORIA ON ATTRIBUTO.ID_Categoria = CATEGORIA.ID_Categoria
-WHERE 
-    TESTO_PRODOTTO.Lingua = 1 -- inserire la lingua desiderata 1 italiano 2 inglese
-GROUP BY 
-    PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione
-ORDER BY Prezzo DESC;
 
--- 19 - filtrare i vini per categoria (navbar: rossi, bianchi ecc)
 
--- 20 - filtrare i vini per range di prezzo 
 
--- 21 - filtrare i vini per capacità bottiglia
-
--- 27 - estrarre le notifiche di un determinato utente
