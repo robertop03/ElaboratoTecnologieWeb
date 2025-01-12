@@ -177,7 +177,7 @@ AND
 GROUP BY 
     PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione;
 
--- 27 - estrarre le notifiche di un determinato utente
+
 
 -- 28 - estrarre tutti gli ordini di un determinato utente
 SELECT * 
@@ -313,3 +313,5 @@ ORDER BY Prezzo DESC;
 -- 20 - filtrare i vini per range di prezzo 
 
 -- 21 - filtrare i vini per capacità bottiglia
+
+-- 27 - estrarre le notifiche di un determinato utente
