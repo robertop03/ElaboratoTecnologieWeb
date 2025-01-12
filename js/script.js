@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // CODICE PER I MODALI DELLE NOTIFICHE
-  const notificationModal = document.getElementById("notification-modal")
+  const notificationModal = document.querySelector("#notification-modal")
   const modalTitle = notificationModal?.querySelector(".modal-title")
   const modalBody = notificationModal?.querySelector(".modal-body")
   const cardTitle = document.querySelector(".card-title")
@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  const modalElement = document.getElementById("map-modal")
+  const modalElement = document.querySelector("main .modal")
   const svgElement = modalElement.querySelector("svg")
   // Carica i path quando il modal viene mostrato
   if (modalElement) {
