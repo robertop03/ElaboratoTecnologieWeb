@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Il file cart.js è stato caricato correttamente.");
   
   // Elementi del DOM
   const cartEmpty = document.querySelector("#cart-empty");
@@ -9,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const shippingMessageElement = document.querySelector(".shipping-message #message-content");
   const clearCartButton = document.querySelector("#clear-cart");
 
-  console.log(checkoutButton); // Controlla se il pulsante viene trovato
 
   // Dati iniziali del carrello
   let cartItems = [

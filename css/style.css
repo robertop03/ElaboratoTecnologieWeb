@@ -649,6 +649,18 @@ svg {
   padding: 20px; /* Spaziatura interna */
 }
 
+.modal-dialog {
+  max-width: 90% !important; /* Usa una percentuale invece di una larghezza fissa */
+  width: auto; /* Adatta il contenuto alla dimensione */
+  margin: 10vh auto; /* Spazio verticale */
+}
+
+.modal-content {
+  padding: 1rem; /* Spaziatura uniforme */
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Stile generale del modale (riuso delle regole per indirizzi) */
 .modal-body-card {
   display: flex;
