@@ -1,15 +1,5 @@
 <?php
 
-$db = new VinoDatabase();
-$array = $db->getViniAcquistatiByOrderId(1,"O2");
-
-print_r($array);
-/*
-foreach ($array as $row) {
-    print_r($row);
-}*/
-
-
 class VinoDatabase {
     private $pdo;
 
