@@ -1,6 +1,7 @@
 <?php
 require_once("db/database.php");
-$dbh = new DatabaseHelper("localhost", "root", "", "vino", 3306);
+
+$db = new VinoDatabase();
 
 if (isset($_GET['lang'])) {
     $linguaAttuale = $_GET['lang'];
