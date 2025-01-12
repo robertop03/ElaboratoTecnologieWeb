@@ -21,7 +21,8 @@ INSERT INTO METODO_PAGAMENTO (ID_Metodo, Numero_Carta, mese_scadenza, anno_scade
 INSERT INTO CATEGORIA (ID_Categoria, Titolo) VALUES
 ('C1', 'Frizzantezza'),
 ('C2', 'Tonalità'),
-('C3', 'Provenienza');
+('C3', 'Provenienza'),
+('C4', 'Dimensione Bottiglia');
 
 -- Popolamento della tabella ATTRIBUTO
 INSERT INTO ATTRIBUTO (ID_Attributo, Titolo, ID_Categoria) VALUES
@@ -50,14 +51,18 @@ INSERT INTO ATTRIBUTO (ID_Attributo, Titolo, ID_Categoria) VALUES
 ('A23', 'Trentino Alto Adige', 'C3'),
 ('A24', 'Umbria', 'C3'),
 ('A25', "Valle d'Aosta", 'C3'),
-('A26', 'Veneto', 'C3');
+('A26', 'Veneto', 'C3'),
+('A27', 'Bottiglia 0.75l', 'C4'),
+('A28', 'Magnum 1.5l', 'C4'),
+('A29', 'Mezza 0.375l', 'C4');
+
 
 -- Popolamento della tabella PRODOTTO
 INSERT INTO PRODOTTO (ID_Prodotto, Prezzo, Quantita_Magazzino, Foto) VALUES
 ('P1', 15.50, 100, 'foto1.jpg'),
 ('P2', 12.30, 200, 'foto2.jpg'),
 ('P3', 18.75, 150, 'foto3.jpg'),
-('P4', 22.40, 120, 'foto4.jpg'),
+('P4', 22.40, 0, 'foto4.jpg'),
 ('P5', 9.99, 300, 'foto5.jpg'),
 ('P6', 14.20, 250, 'foto6.jpg'),
 ('P7', 19.80, 80, 'foto7.jpg'),
@@ -70,42 +75,52 @@ INSERT INTO Attributa (ID_Attributo, ID_Prodotto) VALUES
 ('A1', 'P1'), -- Frizzante (C1)
 ('A5', 'P1'), -- Bianco (C2)
 ('A7', 'P1'), -- Abruzzo (C3)
+('A27', 'P1'), -- Bottiglia 0.75l (C4)
 
 ('A2', 'P2'), -- Fermo (C1)
 ('A4', 'P2'), -- Rosso (C2)
 ('A22', 'P2'), -- Toscana (C3)
+('A28', 'P2'), -- Magnum 1.5l (C4)
 
 ('A3', 'P3'), -- Spumante (C1)
 ('A6', 'P3'), -- Rosè (C2)
 ('A18', 'P3'), -- Piemonte (C3)
+('A29', 'P3'), -- Mezza 0.375l (C4)
 
 ('A1', 'P4'), -- Frizzante (C1)
 ('A4', 'P4'), -- Rosso (C2)
 ('A26', 'P4'), -- Veneto (C3)
+('A27', 'P4'), -- Bottiglia 0.75l (C4)
 
 ('A2', 'P5'), -- Fermo (C1)
 ('A5', 'P5'), -- Bianco (C2)
 ('A21', 'P5'), -- Sicilia (C3)
+('A27', 'P5'), -- Bottiglia 0.75l (C4)
 
 ('A3', 'P6'), -- Spumante (C1)
 ('A6', 'P6'), -- Rosè (C2)
 ('A15', 'P6'), -- Lombardia (C3)
+('A28', 'P6'), -- Magnum 1.5l (C4)
 
 ('A1', 'P7'), -- Frizzante (C1)
 ('A5', 'P7'), -- Bianco (C2)
 ('A20', 'P7'), -- Sardegna (C3)
+('A29', 'P7'), -- Mezza 0.375l (C4)
 
 ('A2', 'P8'), -- Fermo (C1)
 ('A4', 'P8'), -- Rosso (C2)
 ('A19', 'P8'), -- Puglia (C3)
+('A27', 'P8'), -- Bottiglia 0.75l (C4)
 
 ('A3', 'P9'), -- Spumante (C1)
 ('A5', 'P9'), -- Bianco (C2)
 ('A11', 'P9'), -- Emilia Romagna (C3)
+('A27', 'P9'), -- Bottiglia 0.75l (C4)
 
 ('A1', 'P10'), -- Frizzante (C1)
 ('A6', 'P10'), -- Rosè (C2)
-('A10', 'P10'); -- Campania (C3)
+('A10', 'P10'), -- Campania (C3)
+('A27', 'P10'); -- Bottiglia 0.75l (C4)
 
 -- Popolamento della tabella Testo Prodotto
 -- all'interno del campo lingua il valore 1 significa italiano, il valore 2 inglese

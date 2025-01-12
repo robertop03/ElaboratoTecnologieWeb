@@ -75,7 +75,7 @@ create table Preferisce (
 
 create table PRODOTTO (
      ID_Prodotto varchar(10) not null,
-     Prezzo numeric(10) not null,
+     Prezzo float(10) not null,
      Quantita_Magazzino numeric(10) not null,
      Foto text not null,
      primary key (ID_Prodotto));
