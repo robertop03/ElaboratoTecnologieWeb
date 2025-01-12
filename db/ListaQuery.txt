@@ -1,0 +1,28 @@
+1 - estrarre tutti i vini
+2 - estrarre tutti gli eventi
+3 - ricavare prezzo di un articolo
+4 - verificare la disponibilità in magazzino di un prodotto
+5 - registrare un utente
+6 - eliminare un utente registrato
+7 - verificare che la password inserita dall'utente sia esatta
+8 - registrare un metodo di pagamento
+9 - registrare un ordine
+10 - registrare l'indirizzo di spedizione associata al cliente
+11 - aggiungere / modificare il testo di un prodotto (o evento)
+12 - filtrare per data per vedere gli eventi disponibili
+13 - filtrare per regione per vedere i vini disponibili
+14 - mostrare i vini in ordine crescente/decrescente per capacità della bottiglia
+15 - estrarre singolo vino da mostra nella pagina prodotto
+16 - modifica/cancellazione indirizzo
+17 - cancellazione metodo di pagamento
+18 - mostrare vini in ordine crescente/descrescente per prezzo
+19 - filtrare i vini per categoria (navbar: rossi, bianchi ecc)
+20 - filtrare i vini per range di prezzo 
+21 - filtrare i vini per capacità bottiglia
+22 - iscrivere utente già registrato in newsletter
+23 - disiscrivere utente dalla newsletter
+24 - aggiungere vino nei preferiti
+25 - rimuovere vino dai preferiti
+26 - visualizzare i preferiti
+27 - estrarre le notifiche di un determinato utente
+28 - estrarre tutti gli ordini di un determinato utente
