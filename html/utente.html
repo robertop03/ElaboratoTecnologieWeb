@@ -318,19 +318,46 @@
             <h4>Indirizzi di spedizione</h4>
             <div class="card p-3 bg-light">
               <p>Italia<br />Via esempio 123, 47039</p>
-              <a href="#" class="text-decoration-none border-bottom pb-1">Aggiungi un nuovo indirizzo</a>
-              <a href="#" class="text-decoration-none border-bottom pb-1">Modifica</a>
+              <a href="#" class="text-decoration-none border-bottom pb-1">Vedi tutti gli indirizzi salvati</a>
             </div>
           </div>
           <div class="col-md-6">
             <h4>Metodi di pagamento</h4>
             <div class="card p-3 bg-light">
               <p>Metodo di pagamento predefinito<br />Visa **34</p>
-              <a href="#" class="text-decoration-none border-bottom pb-1">Aggiungi un nuovo metodo</a>
-              <a href="#" class="text-decoration-none border-bottom pb-1">Modifica</a>
+              <a href="#" class="text-decoration-none border-bottom pb-1">Vedi tutte le carte salvate</a>
             </div>
           </div>
         </div>
+
+        <!-- MODALE PER CARTE -->
+        <div class="modal fade" id="viewCreditCard" tabindex="-1" aria-labelledby="viewCreditCardLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="viewCreditCardLabel">Scegli una carta di credito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body-viewCards">
+                <!-- Lista delle carte salvate -->
+                <div class="row g-2" id="creditCard-list">
+                  <div class="col-12">
+                    <div class="card p-3 selectable-card" data-card="VISA|1234123412341234|01/25|123">
+                      <p class="mb-0">VISA<br />**** **** **** 1234<br />Scadenza: 01/25</p>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="card p-3 selectable-card" data-card="MasterCard|5678567856785678|02/26|456">
+                      <p class="mb-0">MasterCard<br />**** **** **** 5678<br />Scadenza: 02/26</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
         <!-- Sezione Preferiti -->
         <div class="row mb-4">
