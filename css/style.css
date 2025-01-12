@@ -580,7 +580,6 @@ main > section > aside {
   margin-top: 10px; /* Ridotto spazio sopra */
 }
 
-/* Media query per schermi larghi (>=900px) */
 @media (min-width: 900px) {
   .checkout-container,
   .cart-container {
@@ -650,7 +649,7 @@ svg {
 }
 
 .modal-dialog {
-  max-width: 90% !important; /* Usa una percentuale invece di una larghezza fissa */
+  max-width: 90%; /* Usa una percentuale invece di una larghezza fissa */
   width: auto; /* Adatta il contenuto alla dimensione */
   margin: 10vh auto; /* Spazio verticale */
 }
