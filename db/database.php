@@ -108,12 +108,7 @@ class VinoDatabase {
             ':surname' => $surname,
             ':newsletter' => $newsletter
         ];
-        $stmt = $this->executeQuery($query, $params);
-        if ($stmt->rowCount() > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->executeQuery($query, $params);
     }
 
     // 6 - Elimina utente
@@ -494,6 +489,20 @@ class VinoDatabase {
         $params = [
             ':email' => $email,
             ':password' => $password
+        ];
+
+        // Restituisce i risultati della query
+        return $this->executeQuery($query, $params);
+    }
+
+    public function checkExistsUser($email){
+        $query = "
+        SELECT COUNT(*) AS total
+        FROM UTENTE WHERE email = :email";
+
+        // Parametri della query
+        $params = [
+            ':email' => $email
         ];
 
         // Restituisce i risultati della query

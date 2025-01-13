@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST["password"]);
     $confirmPassword = trim($_POST["confirm-password"]);
 
-    // Controlli sulle password
+    // Controllo che le password coincidano
     if ($password !== $confirmPassword) {
         $templateParams["errore"] = "Le password non coincidono.";
     } elseif (strlen($password) < 8) {
@@ -18,13 +18,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $templateParams["errore"] = "L'email non è valida.";
     } else {
-        // Registra l'utente nel database (senza password hashata per ora)
-        $result = $db->registerUser($email, $password, "", ""); 
-        if ($result) {
-            header("Location: login.php?success=1");
-            exit();
+        $existingUser = $db->checkExistsUser($email);
+
+        if (!empty($existingUser) && isset($existingUser[0]['total']) && $existingUser[0]['total'] > 0) {
+            $templateParams["errore"] = "L'email è già registrata. Effettua il login.";
         } else {
-            $templateParams["errore"] = "Errore durante la registrazione. L'email potrebbe essere già in uso.";
+            $result = $db->registerUser($email, $password, "", "");
+            $userCheck = $db->checkExistsUser($email);
+
+            if (!empty($userCheck) && isset($userCheck[0]['total']) && $userCheck[0]['total'] > 0) {
+                header("Location: login.php?success=1");
+                exit();
+            } else {
+                $templateParams["errore"] = "Errore durante la registrazione. Riprova più tardi.";
+            }
         }
     }
 }
