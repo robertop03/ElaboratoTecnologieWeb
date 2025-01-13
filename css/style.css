@@ -26,12 +26,12 @@ span.bi {
 
 /* Aggiunge un'eventuale personalizzazione per il testo */
 .offcanvas .list-group-item a {
-  text-decoration: none; /* Rimuove la sottolineatura */
-  color: inherit; /* Usa il colore predefinito */
+  text-decoration: none;
+  color: inherit;
 }
 
 .offcanvas .list-group-item a:hover {
-  color: #54072a; /* Cambia colore al passaggio del mouse (opzionale) */
+  color: #54072a;
 }
 
 /* Configurazione aside */
@@ -46,18 +46,18 @@ aside {
 }
 
 aside .btn {
-  background-color: #54072a; /* Colore di sfondo */
-  color: white; /* Colore del testo */
-  border: none; /* Rimuove il bordo */
-  border-radius: 8px; /* Angoli smussati */
-  padding: 10px 20px; /* Spaziatura interna */
-  font-size: 16px; /* Dimensione del testo */
-  cursor: pointer; /* Cambia il cursore su hover */
-  transition: background-color 0.3s ease; /* Effetto di transizione */
+  background-color: #54072a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 aside .btn:hover {
-  background-color: #75093a; /* Colore più scuro al passaggio del mouse */
+  background-color: #75093a;
   color: white;
 }
 
@@ -212,13 +212,6 @@ main input[type="number"] {
   max-width: 200px; /* larghezza max pulsanti filtra e ordina */
 }
 
-/* Immagine utente */
-img[alt="Profilo"] {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-}
-
 /* Footer */
 footer {
   background-color: #54072a;
@@ -274,7 +267,7 @@ footer p {
 .search-bar input {
   border: none;
   background: transparent;
-  color: #800000; /* Testo Bordeaux */
+  color: #800000;
   flex-grow: 1;
   outline: none;
 }
@@ -292,7 +285,7 @@ nav.navbar .container-fluid .navbar-brand > img {
 .mappa-testo {
   display: grid;
   grid-template-columns: 1fr; /* Una sola colonna (mobile) */
-  gap: 20px; /* Spazio tra mappa e testo */
+  gap: 20px;
 }
 
 /* Margine per la navbar*/
@@ -304,13 +297,13 @@ main {
 /* MEDIA QUERY NAVBAR */
 @media (min-width: 993px) {
   .navbar {
-    background-color: #54072a; /* Sfondo bordeaux */
+    background-color: #54072a;
   }
 
   .navbar .container-fluid {
     display: flex;
-    align-items: center; /* Allinea tutto verticalmente */
-    justify-content: space-between; /* Distribuisce logo, barra e icone */
+    align-items: center;
+    justify-content: space-between;
   }
 
   .container-fluid .search-bar > .bi-search {
@@ -331,8 +324,8 @@ main {
   .nav-links {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px; /* Posiziona il menu sotto */
-    gap: 50px; /* Maggiore distanza tra le voci */
+    margin-top: 10px;
+    gap: 50px;
     flex-wrap: nowrap;
     overflow: hidden;
     white-space: nowrap;
