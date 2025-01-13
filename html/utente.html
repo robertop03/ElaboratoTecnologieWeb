@@ -172,7 +172,7 @@
           <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
             <a href="#" class="text-decoration-none text-dark w-100">
               <div class="d-flex flex-column">
-                <span class="fw-bold">Metodi di pagamento</span>
+                <span class="fw-bold"data-bs-toggle="modal" data-bs-target=".card-modal">Metodi di pagamento</span>
                 <span class="text-muted small">Visa **34</span>
               </div>
             </a>
@@ -325,7 +325,7 @@
             <h4>Metodi di pagamento</h4>
             <div class="card p-3 bg-light">
               <p>Metodo di pagamento predefinito<br />Visa **34</p>
-              <a href="#" class="text-decoration-none border-bottom pb-1">Vedi tutte le carte salvate</a>
+              <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target=".card-modal">Vedi tutte le carte salvate</a>
             </div>
           </div>
         </div>
@@ -516,7 +516,7 @@
         </div>
       </div>
 
-      <!-- Modale per Aggiungere un indirizzo -->
+      <!-- Modale per aggiungere un indirizzo -->
       <div class="modal fade" id="addNewAddressModal" tabindex="-1" aria-labelledby="addNewAddressLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -548,6 +548,115 @@
           </div>
         </div>
       </div>
+
+      <!-- Modale per la selezione della carta -->
+      <div class="modal fade card-modal" tabindex="-1" aria-labelledby="cardModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Scegli una carta di credito</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Lista delle carte -->
+              <div class="card-list">
+                <!-- Card 1 -->
+                <div class="card-item selectable-card">
+                  <p class="card-text">VISA<br />**** **** **** 1234<br />Scadenza: 01/25</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card-item selectable-card">
+                  <p class="card-text">MasterCard<br />**** **** **** 5678<br />Scadenza: 02/26</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card-item selectable-card">
+                  <p class="card-text">American Express<br />**** **** **** 3456<br />Scadenza: 03/27</p>
+                </div>
+
+                <!-- Card per aggiungere una nuova carta -->
+                <div class="card-item add-address-card" data-bs-toggle="modal" data-bs-target="#addNewCardModal">
+                  <span class="bi bi-plus fs-5"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modale per aggiungere una carta -->
+      <div class="modal fade" id="addNewCardModal" tabindex="-1" aria-labelledby="addNewCardLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addNewCardLabel">Gestisci Carta di Credito</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="cardNumber" class="form-label">Numero Carta</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cardNumber"
+                    placeholder="4111 1111 1111 1111"
+                    pattern="\d{16}"
+                    title="Inserisci un numero di carta valido"
+                    required
+                  />
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="expiryMonth" class="form-label">Mese di Scadenza</label>
+                    <select class="form-select" id="expiryMonth" required>
+                      <option selected disabled>MM</option>
+                      <option>01</option>
+                      <option>02</option>
+                      <option>03</option>
+                      <option>04</option>
+                      <option>05</option>
+                      <option>06</option>
+                      <option>07</option>
+                      <option>08</option>
+                      <option>09</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="expiryYear" class="form-label">Anno di Scadenza</label>
+                    <select class="form-select" id="expiryYear" required>
+                      <option selected disabled>YY</option>
+                      <option>2025</option>
+                      <option>2026</option>
+                      <option>2027</option>
+                      <option>2028</option>
+                      <option>2029</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="cvv" class="form-label">CVV</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cvv"
+                    placeholder="123"
+                    pattern="\d{3}"
+                    title="Inserisci un CVV valido"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary" id="formButton">Aggiungi Carta</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
 
     </main>
