@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".edit-link").forEach(link => {
     link.addEventListener("click", function (event) {
       event.preventDefault(); // Evita il comportamento predefinito del link
-      
+
       // Trova l'elemento della scheda associata
       const addressCard = this.closest(".address-card");
       if (!addressCard) {
@@ -19,13 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const postalCode = postalCity.trim();
 
       // Compila i campi del modale
-      document.getElementById("address").value = address.trim();
-      document.getElementById("city").value = city.trim();
-      document.getElementById("province").value = province.trim();
-      document.getElementById("postalCode").value = postalCode.trim();
+      document.querySelector("#address").value = address.trim();
+      document.querySelector("#city").value = city.trim();
+      document.querySelector("#province").value = province.trim();
+      document.querySelector("#postalCode").value = postalCode.trim();
 
       // Cambia il titolo del modale e il testo del pulsante
-      document.getElementById("addNewAddressLabel").textContent = "Modifica indirizzo";
+      document.querySelector("#addNewAddressLabel").textContent = "Modifica indirizzo";
       const formButton = document.querySelector("#addNewAddressModal .btn-primary");
       formButton.textContent = "Conferma modifiche";
 
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       formButton.dataset.id = addressCard.dataset.id;
 
       // Mostra il modale
-      const addNewAddressModal = new bootstrap.Modal(document.getElementById("addNewAddressModal"));
+      const addNewAddressModal = new bootstrap.Modal(document.querySelector("#addNewAddressModal"));
       addNewAddressModal.show();
     });
   });
@@ -44,10 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
 
     // Ottieni i dati aggiornati dai campi del modale
-    const updatedAddress = document.getElementById("address").value;
-    const updatedCity = document.getElementById("city").value;
-    const updatedProvince = document.getElementById("province").value;
-    const updatedPostalCode = document.getElementById("postalCode").value;
+    const updatedAddress = document.querySelector("#address").value;
+    const updatedCity = document.querySelector("#city").value;
+    const updatedProvince = document.querySelector("#province").value;
+    const updatedPostalCode = document.querySelector("#postalCode").value;
 
     // Trova la scheda corrispondente e aggiorna i dati
     const addressCard = document.querySelector(`.address-card[data-id="${this.dataset.id}"]`);
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Chiudi il modale
-    const addNewAddressModal = bootstrap.Modal.getInstance(document.getElementById("addNewAddressModal"));
+    const addNewAddressModal = bootstrap.Modal.getInstance(document.querySelector("#addNewAddressModal"));
     addNewAddressModal.hide();
   });
 
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const orders = {
     AT325D: {
-      image: "https://via.placeholder.com/150", // Immagine prodotto
+      image: "../resources/img/vino1.jpg", // Immagine prodotto
       quantity: 2,
       unitPrice: "22€",
       status: "Spedito",
@@ -113,5 +113,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const orderDetailsModal = new bootstrap.Modal(document.querySelector("#orderDetailsModal"));
     orderDetailsModal.show();
+
+    // Evento per assicurarsi che la pagina venga ripristinata correttamente al termine
+    const modalElement = document.querySelector("#orderDetailsModal");
+    modalElement.addEventListener("hidden.bs.modal", removeBackdrop);
+  }
+
+  // Funzione per rimuovere manualmente il backdrop
+  function removeBackdrop() {
+    const backdrop = document.querySelector(".modal-backdrop");
+    if (backdrop) {
+      backdrop.remove();
+    }
+    document.body.classList.remove("modal-open");
+    document.body.style.paddingRight = ""; // Ripristina lo stato del body
   }
 });

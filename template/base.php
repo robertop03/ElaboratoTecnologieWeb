@@ -10,6 +10,9 @@
       if ($pageName === 'carrello') {
         echo '<script src="js/cart.js?v=1"></script>';
       }
+      if ($pageName === 'checkout') {
+        echo '<script src="js/checkout.js?v=1"></script>';
+      }
     ?>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
