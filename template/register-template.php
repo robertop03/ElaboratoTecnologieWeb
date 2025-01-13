@@ -1,15 +1,20 @@
 <!-- FORM DI REGISTRAZIONE -->
 <div class="container my-5">
   <h1 class="text-center fw-bold mb-4"><?php echo $linguaAttuale == "en" ? "Create account" : "Crea account" ?></h1>
-  <form class="register-form">
+  <?php if(isset($templateParams["errore"])): ?>
+    <div class="alert alert-danger">
+      <?php echo $templateParams["errore"]; ?>
+    </div>
+  <?php endif; ?>
+  <form class="register-form" action="#" method="POST">
     <div class="mb-3">
       <label for="email" class="form-label fw-bold text-dark">Email<span class="text-danger">*</span></label>
-      <input type="email" class="form-control" id="email" placeholder="<?php echo $linguaAttuale == "en" ? "example@gmail.com" : "esempio@gmail.com" ?>" required />
+      <input type="email" class="form-control" id="email" name="email" placeholder="<?php echo $linguaAttuale == "en" ? "example@gmail.com" : "esempio@gmail.com" ?>" required />
     </div>
     <div class="mb-3">
       <label for="password" class="form-label fw-bold text-dark"><?php echo $linguaAttuale == "en" ? "Create a password" : "Crea una password" ?><span class="text-danger">*</span></label>
       <div class="input-group">
-        <input type="password" class="form-control" id="password" placeholder="<?php echo $linguaAttuale == "en" ? "should be at least 8 characters long" : "deve essere di almeno 8 caratteri" ?>" name="password" required />
+        <input type="password" class="form-control" id="password" name="password" placeholder="<?php echo $linguaAttuale == "en" ? "should be at least 8 characters long" : "deve essere di almeno 8 caratteri" ?>" name="password" required />
         <button class="btn btn-outline-secondary toggle-password" type="button">
           <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
         </button>
@@ -18,7 +23,7 @@
     <div class="mb-3">
       <label for="confirm-password" class="form-label fw-bold text-dark"><?php echo $linguaAttuale == "en" ? "Confirm password" : "Conferma password" ?><span class="text-danger">*</span></label>
       <div class="input-group">
-        <input type="password" class="form-control" id="confirm-password" placeholder="<?php echo $linguaAttuale == "en" ? "repeat password" : "tipeti password" ?>" name="confirm-password" required />
+        <input type="password" class="form-control" id="confirm-password" placeholder="<?php echo $linguaAttuale == "en" ? "repeat password" : "ripeti password" ?>" name="confirm-password" required />
         <button class="btn btn-outline-secondary toggle-password" type="button">
           <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
         </button>

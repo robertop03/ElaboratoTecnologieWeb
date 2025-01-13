@@ -77,63 +77,63 @@ aside .btn:hover {
 /* Frecce dei caroselli */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: #54072a; /* Colore dello sfondo delle frecce */
-  border-radius: 50%; /* Opzionale: per un effetto più armonioso */
-  width: 3rem; /* Regolabile per dimensione */
+  background-color: #54072a;
+  border-radius: 50%;
+  width: 3rem;
   height: 3rem;
 }
 
 /* Personalizzazione avanzata delle frecce */
 .carousel-control-prev-icon::before,
 .carousel-control-next-icon::before {
-  color: #fff; /* Colore della freccia */
-  font-size: 2rem; /* Adatta la dimensione */
+  color: #fff;
+  font-size: 2rem;
 }
 
 /* Divisori */
 hr.styled-divider {
   border: 1px solid #54072a;
-  opacity: 1; /* Rimuove trasparenza */
-  margin: 2rem 0; /* Spaziatura sopra e sotto */
+  opacity: 1;
+  margin: 2rem 0;
 }
 /* Barra di ricerca */
 .search-bar {
-  background-color: #54072a; /* Colore sfondo (bordeaux) */
-  height: 40px; /* Altezza */
-  padding: 0 15px; /* Spaziatura interna */
-  display: flex; /* Allineamento flessibile */
-  align-items: center; /* Allinea verticalmente il contenuto */
-  width: 100%; /* Occupa l'intera larghezza */
-  border-radius: 5px; /* Bordo leggermente arrotondato */
+  background-color: #54072a;
+  height: 40px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 5px;
 }
 
 .d-flex.d-md-none.mt-2 {
-  width: 100%; /* Assicurati che il contenitore abbia larghezza piena */
+  width: 100%;
 }
 
 /* Icona della lente */
 .search-bar img {
-  height: 20px; /* Altezza dell'icona */
+  height: 20px;
 }
 
 /* Testo e input */
 .search-bar label {
-  color: white; /* Testo bianco */
-  font-weight: normal; /* Stile testo */
-  margin-right: 10px; /* Spazio tra label e input */
+  color: white;
+  font-weight: normal;
+  margin-right: 10px;
 }
 
 .search-bar input {
-  background-color: transparent; /* Sfondo trasparente */
-  color: white; /* Testo bianco */
-  border: none; /* Rimuove bordi */
-  outline: none; /* Rimuove bordi focus */
-  flex-grow: 1; /* L'input occupa tutto lo spazio disponibile */
+  background-color: transparent;
+  color: white;
+  border: none;
+  outline: none;
+  flex-grow: 1;
 }
 
 /* Placeholder */
 .search-bar input::placeholder {
-  color: rgba(255, 255, 255, 0.8); /* Placeholder bianco trasparente */
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .container-fluid .search-bar > .bi-search {
@@ -144,7 +144,7 @@ hr.styled-divider {
 /* Form di registrazione */
 .register-form {
   max-width: 500px;
-  margin: 0 auto; /* Centrare il form */
+  margin: 0 auto;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
@@ -162,7 +162,7 @@ hr.styled-divider {
 }
 
 .input-group .toggle-password:hover {
-  color: #800020; /* Colore al passaggio del mouse */
+  color: #800020;
 }
 
 /* Checkbox */
@@ -341,13 +341,13 @@ main {
   .nav-links a {
     padding: 0 35px 0 35px;
     margin: 0 35px 0 35px;
-    text-decoration: none; /* Rimuove la sottolineatura */
+    text-decoration: none;
   }
 
   .search-bar {
-    flex-grow: 1; /* Occupa lo spazio tra logo e icone */
-    max-width: 600px; /* Limita la larghezza */
-    margin: 0; /* Evita margini verticali */
+    flex-grow: 1;
+    max-width: 600px;
+    margin: 0;
     background-color: #fff;
   }
 
@@ -374,13 +374,13 @@ main {
 /* MEDIA QUERY PER NAVBAR FASI INTERMEDIE */
 @media (min-width: 768px) and (max-width: 992px) {
   .navbar {
-    background-color: #54072a; /* Sfondo bordeaux */
+    background-color: #54072a;
   }
 
   .navbar .container-fluid {
     display: flex;
-    align-items: center; /* Allinea tutto verticalmente */
-    justify-content: space-between; /* Distribuisce logo, barra e icone */
+    align-items: center;
+    justify-content: space-between;
   }
 
   span.bi {
@@ -398,7 +398,7 @@ main {
   }
 
   .nav-links {
-    margin-top: 10px; /* Posiziona il menu sotto */
+    margin-top: 10px;
     flex-wrap: nowrap;
     overflow: hidden;
     white-space: nowrap;
@@ -417,7 +417,7 @@ main {
   .search-bar {
     flex-grow: 1; /* Occupa lo spazio tra logo e icone */
     max-width: 600px; /* Limita la larghezza */
-    margin: 0; /* Evita margini verticali */
+    margin: 0;
     background-color: #fff;
   }
 
@@ -453,9 +453,9 @@ main {
 /* MEDIA QUERY DOVE CI TROVIAMO */
 @media (min-width: 993px) {
   .mappa-testo {
-    grid-template-columns: 1fr 1fr; /* Due colonne uguali */
+    grid-template-columns: 1fr 1fr;
     gap: 40px; /* Maggiore spazio tra mappa e testo */
-    align-items: start; /* Allinea verticalmente al top */
+    align-items: start;
   }
   h1 {
     padding: 10px 0 10px 0;
@@ -468,17 +468,17 @@ main {
 
 @media (min-width: 994px) and (max-width: 1300px) {
   .nav-links {
-    gap: 15px; /* Riduce lo spazio tra i link */
+    gap: 15px;
   }
 
   .nav-links a {
-    padding: 0 10px; /* Riduce il padding orizzontale */
+    padding: 0 10px;
   }
 }
 
 @media (min-width: 993px) and (max-width: 1080px) {
   .nav-links {
-    gap: 10px; /* Ancora meno spazio tra i link */
+    gap: 10px;
   }
 
   .nav-links a {
@@ -530,7 +530,7 @@ main > section > aside {
 /* Carrello pieno */
 .full {
   flex: 2;
-  display: none; /* Nascondi di default */
+  display: none;
   flex-direction: column;
   padding: 15px;
   background-color: #fff;
@@ -642,16 +642,16 @@ svg {
 */
 /* Riquadro principale (stessa classe delle spedizioni) */
 .checkout-box {
-  background-color: #fef0f0; /* Colore di sfondo (già esistente) */
-  border-radius: 10px; /* Angoli arrotondati */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Ombreggiatura */
-  padding: 20px; /* Spaziatura interna */
+  background-color: #fef0f0;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
 .modal-dialog {
-  max-width: 90%; /* Usa una percentuale invece di una larghezza fissa */
-  width: auto; /* Adatta il contenuto alla dimensione */
-  margin: 10vh auto; /* Spazio verticale */
+  max-width: 90%;
+  width: auto;
+  margin: 10vh auto;
 }
 
 .modal-content {
@@ -730,23 +730,23 @@ svg {
 
 /* Bottone personalizzato (riuso delle regole esistenti) */
 .custom-btn {
-  background-color: #54072a; /* Colore del bottone */
-  color: #fff; /* Colore del testo */
-  font-size: 1rem; /* Dimensione del testo */
-  font-weight: 600; /* Peso del testo */
-  padding: 10px 20px; /* Spaziatura interna */
-  border: none; /* Rimuovi bordo */
-  border-radius: 10px; /* Angoli arrotondati */
-  cursor: pointer; /* Icona del cursore */
-  text-align: center; /* Testo centrato */
-  transition: background-color 0.3s ease; /* Transizione per hover */
-  display: block; /* Per garantire che il margin funzioni correttamente */
-  margin: 20px auto 0 auto; /* Margine automatico orizzontale per centrare */
+  background-color: #54072a;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 20px auto 0 auto;
   width: 70%;
 }
 
 .custom-btn:hover {
-  background-color: #3d0521; /* Colore hover */
+  background-color: #3d0521;
 }
 
 /*
@@ -758,7 +758,7 @@ svg {
 .address-list {
   display: flex;
   flex-direction: column;
-  gap: 8px; /* Spaziatura tra le schede */
+  gap: 8px;
 }
 
 /* Scheda degli indirizzi */
@@ -792,7 +792,7 @@ svg {
   color: #007bff;
   font-size: 24px;
   font-weight: bold;
-  height: 100px; /* Altezza personalizzata */
+  height: 100px;
   width: auto;
 }
 
@@ -849,4 +849,3 @@ svg {
 .order-details-modal .modal-footer {
   justify-content: center;
 }
-

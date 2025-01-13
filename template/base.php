@@ -38,7 +38,7 @@
               <a href="carrello.php" class="text-decoration-none me-3" aria-label="icona carrello">
                 <span class="bi bi-cart" role="img" aria-hidden="true"></span>
               </a>
-              <a href="utente.php" class="text-decoration-none" aria-label="icona utente">
+              <a href="login.php" class="text-decoration-none" aria-label="icona utente">
                 <span class="bi bi-person" role="img" aria-hidden="true"></span>
               </a>
             </div>
@@ -83,7 +83,7 @@
               <a href="carrello.php" class="text-decoration-none me-3" aria-label="icona carrello">
                 <span class="bi bi-cart" role="img" aria-hidden="true"></span>
               </a>
-              <a href="utente.php" class="text-decoration-none" aria-label="icona utente">
+              <a href="login.php" class="text-decoration-none" aria-label="icona utente">
                 <span class="bi bi-person" role="img" aria-hidden="true"></span>
               </a>
             </div>

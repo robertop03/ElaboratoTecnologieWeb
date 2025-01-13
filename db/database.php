@@ -108,7 +108,12 @@ class VinoDatabase {
             ':surname' => $surname,
             ':newsletter' => $newsletter
         ];
-        return $this->executeQuery($query, $params);
+        $stmt = $this->executeQuery($query, $params);
+        if ($stmt->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // 6 - Elimina utente
@@ -481,7 +486,7 @@ class VinoDatabase {
 
     public function checkLogin($email, $password){
         $query = "
-        SELECT email, nome, cognome
+        SELECT email
         FROM UTENTE
         WHERE email = :email AND password = :password";
 

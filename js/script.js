@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const input = this.parentElement.querySelector("input")
       if (input.type === "password") {
         input.type = "text"
-        this.innerHTML = '<i class="bi bi-eye-slash"></i>'
+        this.innerHTML = '<span class="bi bi-eye-slash" role="img" aria-label="icona occhio mostra passsword"></span>'
       } else {
         input.type = "password"
-        this.innerHTML = '<i class="bi bi-eye"></i>'
+        this.innerHTML = '<span class="bi bi-eye" role="img" aria-label="icona occhio mostra passsword"></span>'
       }
     })
   })

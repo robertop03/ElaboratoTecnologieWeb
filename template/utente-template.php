@@ -2,10 +2,9 @@
 <div class="container mt-4 mb-5 d-md-none">
   <!-- Sezione profilo -->
   <div class="d-flex align-items-center mb-4">
-    <img src="resources/img/persona.jpg" alt="Profilo utente" class="rounded-circle me-3 w-25" />
     <div>
-      <h5 class="mb-1">Matilda Brown</h5>
-      <p class="text-muted mb-0">matildabrown@mail.com</p>
+      <h5 class="mb-2 ms-3">Matilda Brown</h5>
+      <p class="text-muted ms-3"><?php echo $_SESSION["email"] ?></p>
     </div>
   </div>
 
@@ -135,6 +134,9 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="d-grid mt-4">
+    <button class="btn btn-dark btn-lg" onclick="window.location.href='logout.php'">Logout</button>
   </div>
 </div>
 
@@ -309,5 +311,8 @@
         </div>
       </form>
     </div>
+  </div>
+  <div class="d-grid mt-4">
+    <button class="btn btn-dark btn-lg" onclick="window.location.href='logout.php'">Logout</button>
   </div>
 </div>
