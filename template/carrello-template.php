@@ -1,7 +1,7 @@
 <section class="shopping-bag-summary">
   <!-- Messaggio informativo sulla spedizione -->
   <aside class="shipping-message" aria-live="polite">
-    <p id="message-content">
+    <p class="message-content" id="message-content">
       <!-- Questo contenuto sarà dinamico con JS -->
     </p>
   </aside>
@@ -14,7 +14,7 @@
 
 <div class="cart-container">
   <!-- CARRELLO VUOTO -->
-  <div id="cart-empty" class="cart-state">
+  <div id="cart-empty" class="cart-state empty">
     <h2><?php echo $linguaAttuale == "en" ? "Your shopping bag is empty" : "La tua shopping bag è vuota" ?></h2>
     <img src="resources/img/emptyCart.svg" alt="Carrello vuoto" />
     <p><?php echo $linguaAttuale == "en" ? "You haven't added any products to your bag yet!" : "Non hai ancora aggiunto nessun prodotto alla tua bag!" ?></p>
@@ -22,7 +22,7 @@
   </div>
 
   <!-- CARRELLO CON PRODOTTI -->
-  <div id="cart-full" class="cart-state">
+  <div id="cart-full" class="cart-state full">
     <h2><?php echo $linguaAttuale == "en" ? "Your shopping bag" : "La tua shopping bag" ?></h2>
     <ul id="cart-items">
       <!-- Aggiornati dinamicamente (cart.js) -->

@@ -1,7 +1,10 @@
 <!-- FORM DI LOGIN -->
 <div class="container my-5">
   <h1 class="text-center fw-bold mb-4">Login</h1>
-  <form class="register-form">
+  <?php if(isset($templateParams["errorelogin"])): ?>
+  <p><?php echo $templateParams["errorelogin"]; ?></p>
+  <?php endif; ?>
+  <form class="register-form" action="#" method="POST">
     <div class="mb-3">
       <label for="email" class="form-label fw-bold text-dark">Email<span class="text-danger">*</span></label>
       <input type="email" class="form-control" id="email" placeholder="<?php echo $linguaAttuale == "en" ? "example@gmail.com" : "esempio@gmail.com" ?>" required />

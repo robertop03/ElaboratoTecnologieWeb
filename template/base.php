@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["titolo"]; ?></title>
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=1"></script>
     <?php
       $pageName = basename($_SERVER['PHP_SELF'], ".php");
       if ($pageName === 'carrello') {
-        echo '<script src="js/cart.js"></script>';
+        echo '<script src="js/cart.js?v=1"></script>';
       }
     ?>
     <link rel="stylesheet" href="css/style.css" />

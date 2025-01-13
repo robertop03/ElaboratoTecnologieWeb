@@ -478,5 +478,21 @@ class VinoDatabase {
         // Suddividi ed esegui le query
         $this->pdo->exec($sql);
     }
+
+    public function checkLogin($email, $password){
+        $query = "
+        SELECT email, nome, cognome
+        FROM UTENTE
+        WHERE email = :email AND password = :password";
+
+        // Parametri della query
+        $params = [
+            ':email' => $email,
+            ':password' => $password
+        ];
+
+        // Restituisce i risultati della query
+        return $this->executeQuery($query, $params);
+    }
 }
 ?>
