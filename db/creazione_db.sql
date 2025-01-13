@@ -104,7 +104,18 @@ create table UTENTE (
      Nome varchar(25),
      Cognome varchar(25),
      Newsletter char not null,
+     Admin char,
      primary key (Email));
+
+create table NOTIFICA (
+     ID_NOTIFICA varchar(10) not null,
+     Data date not null,
+     Titolo varchar(200) not null,
+     Testo varchar(500) not null,
+     Visualizzato char not null,
+     Email varchar(100) not null,
+     primary key (ID_NOTIFICA));
+
 
 
 alter table Attributa add constraint FKHa_PRO
@@ -170,3 +181,7 @@ alter table TESTO_EVENTO add constraint FKSpecifica
 alter table TESTO_PRODOTTO add constraint FKDescrive
      foreign key (ID_Prodotto)
      references PRODOTTO(ID_Prodotto);
+
+alter table NOTIFICA add constraint FKR
+     foreign key (Email)
+     references UTENTE(Email);

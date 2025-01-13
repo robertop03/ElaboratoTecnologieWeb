@@ -5,6 +5,9 @@ INSERT INTO UTENTE (Email, Password, Nome, Cognome, Newsletter) VALUES
 ('mario.rossi@example.com', 'password123', 'Mario', 'Rossi', 'Y'),
 ('luigi.bianchi@example.com', 'password456', 'Luigi', 'Bianchi', 'N');
 
+INSERT INTO UTENTE (Email, Password, Nome, Cognome, Newsletter,Admin) VALUES
+('admin@gmail.com', 'admin', 'Roberto', 'Nuvoli', 'N','Y');
+
 -- Popolamento della tabella INDIRIZZO
 INSERT INTO INDIRIZZO (ID_Indirizzo, Via, Numero_Civico, CAP, Citta, Paese, Email) VALUES
 ('I1', 'Via Roma', '10', 47521, 'Roma', 'Italia', 'mario.rossi@example.com'),
@@ -230,3 +233,10 @@ INSERT INTO Consiglia (ID_Prodotto, ID_Evento) VALUES
 ('P6', 'E2'),
 ('P7', 'E2'),
 ('P10', 'E2');
+
+INSERT INTO NOTIFICA (ID_NOTIFICA, Data, Titolo, Testo, Visualizzato, Email) 
+VALUES
+('N001', '2023-10-23', 'Ordine consegnato', 'Il tuo ordine è stato consegnato con successo.', 'Y', 'luigi.bianchi@example.com'),
+('N002', '2023-10-23', 'Ordine spedito', 'Il tuo ordine è stato spedito ed è in transito.', 'N', 'mario.rossi@example.com'),
+('N003', '2025-01-13', 'Articolo esaurito', 'Un articolo del catalogo non è più disponibile, id articolo: P4', 'N', 'admin@gmail.com'),
+('N004', '2025-01-02', 'Ordine confermato', 'Il tuo ordine è stato confermato, attendi la spedizione 3/7 giorni lavorativi.', 'N', 'luigi.bianchi@example.com');
