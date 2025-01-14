@@ -1,6 +1,5 @@
 <?php
 /*************************************************
- * Pagina vini.php
  * Legge i filtri di GET per:
  *  - pmin, pmax
  *  - prov (Provenienza)
