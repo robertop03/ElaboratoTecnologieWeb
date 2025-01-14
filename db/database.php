@@ -21,7 +21,7 @@ class VinoDatabase {
     }
 
     // 1 - Estrarre tutti i vini con attributi e filtri opzionali 
-    public function getAllVini($lingua = 1, $pmin = 0, $pmax = 100000, $prov = '%', $friz = '%', $tona = '%', $dime = '%') {
+    public function getAllVini($lingua = 1, $pmin = 0, $pmax = 100000, $prov = '%', $friz = '%', $tona = '%', $dime = '%',$order = '') {
         $query = "
         SELECT 
             PRODOTTO.ID_Prodotto, 
@@ -54,6 +54,26 @@ class VinoDatabase {
             AND (Capacita_Bottiglia LIKE :dime)
             AND Prezzo BETWEEN :pmin AND :pmax
         ";
+
+        switch ($order) {
+            case 'price_asc':
+                $query .= " ORDER BY Prezzo ASC";
+                break;
+            case 'price_desc':
+                $query .= " ORDER BY Prezzo DESC";
+                break;
+            case 'cap_asc':
+                // Capacita_Bottiglia è una stringa (es. '0.75L'), quindi attenzione al sorting testuale.
+                // Se hai valori numerici reali, potresti convertire. Altrimenti, ordina alfabeticamente.
+                $query .= " ORDER BY Capacita_Bottiglia ASC";
+                break;
+            case 'cap_desc':
+                $query .= " ORDER BY Capacita_Bottiglia DESC";
+                break;
+            default:
+                // Nessun ordine aggiuntivo
+                break;
+        }
 
         // Parametri della query
         $params = [
