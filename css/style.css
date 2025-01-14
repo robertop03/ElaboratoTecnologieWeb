@@ -629,6 +629,9 @@ main > section > aside {
 svg {
   height: 280px;
 }
+.modal.fade[aria-labelledby="mapModalLabel"] .modal-dialog .modal-content {
+  width: 80%;
+}
 
 /*
 * Checkout
