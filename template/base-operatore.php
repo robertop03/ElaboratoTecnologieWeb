@@ -36,7 +36,7 @@
                 <a class="nav-link text-white" href="page6.php">Page 6</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="dashboard.php">DASHBOARD</a>
+                <a class="nav-link text-white" href="index.php">Frontend</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-danger" href="logout.php">Logout</a>
