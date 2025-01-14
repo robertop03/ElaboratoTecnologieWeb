@@ -21,73 +21,106 @@ class VinoDatabase {
     }
 
     // 1 - Estrarre tutti i vini con attributi e filtri opzionali 
-    public function getAllVini($lingua = 1, $pmin = 0, $pmax = 100000, $prov = '%', $friz = '%', $tona = '%', $dime = '%',$order = '') {
-        $query = "
-        SELECT 
-            PRODOTTO.ID_Prodotto, 
-            Prezzo, 
-            GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Frizzantezza' THEN ATTRIBUTO.Titolo END) AS Frizzantezza,
-            GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Tonalità' THEN ATTRIBUTO.Titolo END) AS Tonalita,
-            GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) AS Provenienza,
-            GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END) AS Capacita_Bottiglia,
-            TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
-            TESTO_PRODOTTO.Descrizione,
-            Foto
-        FROM 
-            PRODOTTO
-        JOIN 
-            TESTO_PRODOTTO ON PRODOTTO.ID_Prodotto = TESTO_PRODOTTO.ID_Prodotto
-        LEFT JOIN 
-            ATTRIBUTA ON PRODOTTO.ID_Prodotto = ATTRIBUTA.ID_Prodotto
-        LEFT JOIN 
-            ATTRIBUTO ON ATTRIBUTA.ID_Attributo = ATTRIBUTO.ID_Attributo
-        LEFT JOIN 
-            CATEGORIA ON ATTRIBUTO.ID_Categoria = CATEGORIA.ID_Categoria
-        WHERE 
-            TESTO_PRODOTTO.Lingua = :lingua
-        GROUP BY 
-            PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione
-        HAVING 
-            (Frizzantezza LIKE :friz)
-            AND (Tonalita LIKE :tona)
-            AND (Provenienza LIKE :prov)
-            AND (Capacita_Bottiglia LIKE :dime)
-            AND Prezzo BETWEEN :pmin AND :pmax
+    public function getAllVini(
+        $lingua = 1, 
+        $pmin = 0, 
+        $pmax = 100000, 
+        $prov = '%', 
+        $friz = '%', 
+        $tona = '%', 
+        $dime = '%',
+        $order = ''
+    ) {
+        
+        //query interna per selezione con filtri
+        $subQuery = "
+            SELECT 
+                PRODOTTO.ID_Prodotto, 
+                Prezzo, 
+                GROUP_CONCAT(
+                    CASE WHEN CATEGORIA.Titolo = 'Frizzantezza' THEN ATTRIBUTO.Titolo END
+                ) AS Frizzantezza,
+                GROUP_CONCAT(
+                    CASE WHEN CATEGORIA.Titolo = 'Tonalità' THEN ATTRIBUTO.Titolo END
+                ) AS Tonalita,
+                GROUP_CONCAT(
+                    CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END
+                ) AS Provenienza,
+                GROUP_CONCAT(
+                    CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END
+                ) AS Capacita_Bottiglia,
+                TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
+                TESTO_PRODOTTO.Descrizione,
+                Foto
+            FROM 
+                PRODOTTO
+            JOIN TESTO_PRODOTTO 
+                ON PRODOTTO.ID_Prodotto = TESTO_PRODOTTO.ID_Prodotto
+            LEFT JOIN ATTRIBUTA 
+                ON PRODOTTO.ID_Prodotto = ATTRIBUTA.ID_Prodotto
+            LEFT JOIN ATTRIBUTO 
+                ON ATTRIBUTA.ID_Attributo = ATTRIBUTO.ID_Attributo
+            LEFT JOIN CATEGORIA 
+                ON ATTRIBUTO.ID_Categoria = CATEGORIA.ID_Categoria
+            WHERE 
+                TESTO_PRODOTTO.Lingua = :lingua
+            GROUP BY 
+                PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione
+            HAVING 
+                (Frizzantezza        LIKE :friz)
+                AND (Tonalita        LIKE :tona)
+                AND (Provenienza     LIKE :prov)
+                AND (Capacita_Bottiglia LIKE :dime)
+                AND Prezzo BETWEEN :pmin AND :pmax
         ";
-
+    
+        //query esterna per utilizzo ordinamento senza problemi di raggruppamento 
+        $finalQuery = "
+            SELECT T.*
+            FROM (
+                $subQuery
+            ) AS T
+        ";
+    
+        //scelgo la query per il sort
         switch ($order) {
             case 'price_asc':
-                $query .= " ORDER BY Prezzo ASC";
+                $finalQuery .= " ORDER BY T.Prezzo ASC";
                 break;
             case 'price_desc':
-                $query .= " ORDER BY Prezzo DESC";
+                $finalQuery .= " ORDER BY T.Prezzo DESC";
                 break;
             case 'cap_asc':
-                // Capacita_Bottiglia è una stringa (es. '0.75L'), quindi attenzione al sorting testuale.
-                // Se hai valori numerici reali, potresti convertire. Altrimenti, ordina alfabeticamente.
-                $query .= " ORDER BY Capacita_Bottiglia ASC";
+                $finalQuery .= " ORDER BY FIELD(T.Capacita_Bottiglia, 
+                                                 'Mezza 0.375l',
+                                                 'Bottiglia 0.75l',
+                                                 'Magnum 1.5l')";
                 break;
             case 'cap_desc':
-                $query .= " ORDER BY Capacita_Bottiglia DESC";
+                $finalQuery .= " ORDER BY FIELD(T.Capacita_Bottiglia, 
+                                                 'Mezza 0.375l',
+                                                 'Bottiglia 0.75l',
+                                                 'Magnum 1.5l') DESC";
                 break;
             default:
                 // Nessun ordine aggiuntivo
                 break;
         }
-
-        // Parametri della query
+    
         $params = [
             ':lingua' => $lingua,
-            ':friz' => $friz,
-            ':tona' => $tona,
-            ':prov' => $prov,
-            ':dime' => $dime,
-            ':pmin' => $pmin,
-            ':pmax' => $pmax
+            ':friz'   => $friz,
+            ':tona'   => $tona,
+            ':prov'   => $prov,
+            ':dime'   => $dime,
+            ':pmin'   => $pmin,
+            ':pmax'   => $pmax
         ];
-
-        return $this->executeQuery($query, $params);
+    
+        // Esegui e restituisci i risultati
+        return $this->executeQuery($finalQuery, $params);
     }
+    
 
     // 2 - Estrazione eventi 
     public function extractEvents($lingua = 1) {
