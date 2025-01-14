@@ -20,7 +20,7 @@ $wines = $db->getAllVini($lingua, $pmin, $pmax, $prov, $friz, $tona, $dime);
 
 ?>
 
-<!-- 4. Sezione Filtri e Ordinamento (i tuoi modali rimangono invariati) -->
+<!-- 4. Sezione Filtri e Ordinamento-->
 <div class="d-flex justify-content-center gap-3">
   <button class="btn btn-dark text-white mb-3 btn-lg w-100" data-bs-toggle="modal" data-bs-target="#filterModal">
     <?php echo $linguaAttuale == "en" ? "Filter" : "Filtra" ?>
@@ -41,8 +41,6 @@ $wines = $db->getAllVini($lingua, $pmin, $pmax, $prov, $friz, $tona, $dime);
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi modale filtraggio"></button>
       </div>
       <div class="modal-body">
-        <!-- Esempio di filtri: Prezzo (slider), Categoria, Regioni, Formato -->
-        <!-- Qui andresti a impostare e catturare i valori, poi rigenerare la pagina con i filtri -->
         <div class="mb-3">
           <label class="form-label">
             <?php echo $linguaAttuale == "en" ? "Price" : "Prezzo" ?>
