@@ -41,18 +41,7 @@ switch ($sort) {
     break;
 }
 
-$wines = $db->getAllVini(
-  $lingua,
-  $pmin,
-  $pmax,
-  $prov,
-  $friz,
-  $tona,
-  $dime,
-  $ordine
-);
-
-?>
+$wines = $db->getAllVini( $lingua, $pmin, $pmax, $prov, $friz, $tona, $dime, $ordine ); ?>
 
 <div class="d-flex justify-content-center gap-3">
   <button class="btn btn-dark text-white mb-3 btn-lg w-100" data-bs-toggle="modal" data-bs-target="#filterModal">
@@ -136,7 +125,6 @@ $wines = $db->getAllVini(
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi" ?></button>
         <button type="button" class="btn btn-primary"><?php echo $linguaAttuale == "en" ? "Apply filter" : "Applica filtro" ?></button>
       </div>
     </div>
@@ -149,48 +137,57 @@ $wines = $db->getAllVini(
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="sortModalLabel">
-          <?php echo $linguaAttuale == "en" ? "Order" : "Ordina" ?>
+          <?php echo $linguaAttuale == "en" ? "Order" : "Ordina"; ?>
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi Modale ordinamento"></button>
       </div>
-      <div class="modal-body">
-        <h6><?php echo $linguaAttuale == "en" ? "Price" : "Prezzo" ?></h6>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="sortOptions" id="priceAsc" value="ascPrice" />
-          <label class="form-check-label" for="priceAsc">
-            <?php echo $linguaAttuale == "en" ? "Ascending" : "Crescente" ?>
-          </label>
+      
+      <form method="GET" action="">
+        <div class="modal-body">
+          <h6><?php echo $linguaAttuale == "en" ? "Price" : "Prezzo"; ?></h6>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="sort" id="priceAsc" value="ascPrice"
+              <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'ascPrice') ? 'checked' : ''; ?>>
+            <label class="form-check-label" for="priceAsc">
+              <?php echo $linguaAttuale == "en" ? "Ascending" : "Crescente"; ?>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="sort" id="priceDesc" value="descPrice"
+              <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'descPrice') ? 'checked' : ''; ?>>
+            <label class="form-check-label" for="priceDesc">
+              <?php echo $linguaAttuale == "en" ? "Descending" : "Decrescente"; ?>
+            </label>
+          </div>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="sortOptions" id="priceDesc" value="descPrice" />
-          <label class="form-check-label" for="priceDesc">
-            <?php echo $linguaAttuale == "en" ? "Descending" : "Decrescente" ?>
-          </label>
+
+        <div class="modal-body">
+          <h6><?php echo $linguaAttuale == "en" ? "Bottle size" : "Formato"; ?></h6>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="sort" id="FormatAsc" value="ascFormato"
+              <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'ascFormato') ? 'checked' : ''; ?>>
+            <label class="form-check-label" for="FormatAsc">
+              <?php echo $linguaAttuale == "en" ? "Ascending" : "Crescente"; ?>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="sort" id="FormatDesc" value="descFormato"
+              <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'descFormato') ? 'checked' : ''; ?>>
+            <label class="form-check-label" for="FormatDesc">
+              <?php echo $linguaAttuale == "en" ? "Descending" : "Decrescente"; ?>
+            </label>
+          </div>
         </div>
-      </div>
-      <div class="modal-body">
-        <h6><?php echo $linguaAttuale == "en" ? "Bottle size" : "Formato" ?></h6>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="sortOptions" id="FormatAsc" value="ascFormato" />
-          <label class="form-check-label" for="FormatAsc">
-            <?php echo $linguaAttuale == "en" ? "Ascending" : "Crescente" ?>
-          </label>
+
+        <div class="modal-footer">
+          <a href="<?php echo strtok($_SERVER["REQUEST_URI"], '?'); ?>" class="btn btn-danger me-auto">
+            <?php echo $linguaAttuale == "en" ? "Reset sorting" : "Resetta ordinamento"; ?>
+          </a>
+          <button type="submit" class="btn btn-primary">
+            <?php echo $linguaAttuale == "en" ? "Apply sorting" : "Applica ordinamento"; ?>
+          </button>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="sortOptions" id="FormatDesc" value="descFormato" />
-          <label class="form-check-label" for="FormatDesc">
-            <?php echo $linguaAttuale == "en" ? "Descending" : "Decrescente" ?>
-          </label>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          <?php echo $linguaAttuale == "en" ? "Close" : "Chiudi" ?>
-        </button>
-        <button type="button" class="btn btn-primary">
-          <?php echo $linguaAttuale == "en" ? "Apply sorting" : "Applica ordinamento" ?>
-        </button>
-      </div>
+      </form>
     </div>
   </div>
 </div>
@@ -198,45 +195,41 @@ $wines = $db->getAllVini(
 <!--Sezione dei prodotti / vini -->
 <div class="row row-cols-2 row-cols-md-4 g-3">
   <?php if (!empty($wines)): ?>
-    <?php foreach ($wines as $vino): ?>
-      <div class="col">
-        <div class="card h-100 text-center">
-          <img 
-            src="<?php echo "resources/img/".htmlspecialchars($vino['Foto'] ?? 'vino_generic.jpg'); ?>"
-            class="card-img-top"
-            alt="<?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>"
-          />
-          <div class="card-body">
-            <h5 class="card-title">
-              <?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>
-            </h5>
-            <p class="fs-6 mb-0">
-              <?php echo htmlspecialchars($vino['Provenienza'])." - ".htmlspecialchars($vino['Tonalita']);?>
-            </p>
-            <p class="fs-6">
-              <?php echo htmlspecialchars($vino['Capacita_Bottiglia']); ?> 
-            </p>
-            <p class="card-text fw-bold">
-              <?php 
+  <?php foreach ($wines as $vino): ?>
+  <div class="col">
+    <div class="card h-100 text-center">
+      <img src="<?php echo "resources/img/".htmlspecialchars($vino['Foto'] ?? 'vino_generic.jpg'); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>" />
+      <div class="card-body">
+        <h5 class="card-title">
+          <?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>
+        </h5>
+        <p class="fs-6 mb-0">
+          <?php echo htmlspecialchars($vino['Provenienza'])." - ".htmlspecialchars($vino['Tonalita']);?>
+        </p>
+        <p class="fs-6">
+          <?php echo htmlspecialchars($vino['Capacita_Bottiglia']); ?>
+        </p>
+        <p class="card-text fw-bold">
+          <?php 
                 echo number_format($vino['Prezzo'], 2, ',', '.')."€"; 
               ?>
-            </p>
-          </div>
-          <div class="card-footer bg-white border-0">
-            <button class="btn-custom me-2">
-              <span class="bi bi-cart text-dark" role="img" aria-label="icona carrello"></span>
-            </button>
-            <button class="btn-custom">
-              <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"></span>
-            </button>
-          </div>
-        </div>
+        </p>
       </div>
-    <?php endforeach; ?>
+      <div class="card-footer bg-white border-0">
+        <button class="btn-custom me-2">
+          <span class="bi bi-cart text-dark" role="img" aria-label="icona carrello"></span>
+        </button>
+        <button class="btn-custom">
+          <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <?php endforeach; ?>
   <?php else: ?>
-    <!-- Se non ci sono vini da mostrare -->
-    <p class="text-center">
-      <?php echo ($linguaAttuale == "en") ? "No products found." : "Nessun prodotto trovato."; ?>
-    </p>
+  <!-- Se non ci sono vini da mostrare -->
+  <p class="text-center">
+    <?php echo $linguaAttuale == "en" ? "No products found." : "Nessun prodotto trovato."; ?>
+  </p>
   <?php endif; ?>
 </div>
