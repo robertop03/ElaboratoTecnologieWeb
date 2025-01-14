@@ -151,13 +151,14 @@ class VinoDatabase {
 
     // 5 - Registrazione utente
     public function registerUser($email, $password, $name, $surname, $newsletter = 'N') {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $query = "
         INSERT INTO UTENTE (Email, Password, Nome, Cognome, Newsletter) 
         VALUES (:email, :password, :name, :surname, :newsletter)
         ";
         $params = [
             ':email' => $email,
-            ':password' => $password,
+            ':password' => $hashed_password,
             ':name' => $name,
             ':surname' => $surname,
             ':newsletter' => $newsletter
@@ -533,21 +534,24 @@ class VinoDatabase {
         $this->pdo->exec($sql);
     }
 
-    public function checkLogin($email, $password){
+    public function checkLogin($email, $password) {
         $query = "
-        SELECT email
-        FROM UTENTE
-        WHERE email = :email AND password = :password";
-
-        // Parametri della query
-        $params = [
-            ':email' => $email,
-            ':password' => $password
-        ];
-
-        // Restituisce i risultati della query
-        return $this->executeQuery($query, $params);
+        SELECT Email, Password FROM UTENTE WHERE Email = :email";
+        $params = [':email' => $email];
+    
+        // Recupera i dati dell'utente
+        $result = $this->executeQuery($query, $params);
+        if ($result && count($result) > 0) {
+            $hashed_password = $result[0]['Password'];
+            if (password_verify($password, $hashed_password)) {
+                unset($result[0]['Password']);
+                return $result;
+            }
+        }
+    
+        return [];
     }
+    
 
     public function checkExistsUser($email){
         $query = "
