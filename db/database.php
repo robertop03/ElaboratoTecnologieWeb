@@ -508,5 +508,30 @@ class VinoDatabase {
         // Restituisce i risultati della query
         return $this->executeQuery($query, $params);
     }
+
+    public function checkIsAdmin($email) {
+        $query = "
+            SELECT COUNT(*) AS total
+            FROM UTENTE
+            WHERE email = :email
+            AND admin = 'Y'
+        ";
+    
+        // Parametri della query
+        $params = [
+            ':email' => $email
+        ];
+    
+        // Eseguo la query e ottengo il risultato
+        $result = $this->executeQuery($query, $params);
+    
+        // Controllo il valore di 'total' nella prima riga (se esiste)
+        // Se total > 0, significa che esiste almeno un utente con email corrispondente e admin = TRUE
+        if ($result[0]['total'] > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 ?>
