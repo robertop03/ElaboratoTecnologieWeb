@@ -21,7 +21,7 @@ class VinoDatabase {
     }
 
     // 1 - Estrarre tutti i vini con attributi e filtri opzionali 
-    public function getAllVini($lingua = 1, $pmin = 0, $pmax = 100000, $prov = '%', $friz = '%', $tona = '%', $dime = '%') {
+    public function getAllVini($lingua = 1, $pmin = 0, $pmax = 100000, $prov = '%', $friz = '%', $tona = '%', $dime = '%',$order = '') {
         $query = "
         SELECT 
             PRODOTTO.ID_Prodotto, 
@@ -31,7 +31,8 @@ class VinoDatabase {
             GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) AS Provenienza,
             GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END) AS Capacita_Bottiglia,
             TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
-            TESTO_PRODOTTO.Descrizione
+            TESTO_PRODOTTO.Descrizione,
+            Foto
         FROM 
             PRODOTTO
         JOIN 
@@ -53,6 +54,26 @@ class VinoDatabase {
             AND (Capacita_Bottiglia LIKE :dime)
             AND Prezzo BETWEEN :pmin AND :pmax
         ";
+
+        switch ($order) {
+            case 'price_asc':
+                $query .= " ORDER BY Prezzo ASC";
+                break;
+            case 'price_desc':
+                $query .= " ORDER BY Prezzo DESC";
+                break;
+            case 'cap_asc':
+                // Capacita_Bottiglia è una stringa (es. '0.75L'), quindi attenzione al sorting testuale.
+                // Se hai valori numerici reali, potresti convertire. Altrimenti, ordina alfabeticamente.
+                $query .= " ORDER BY Capacita_Bottiglia ASC";
+                break;
+            case 'cap_desc':
+                $query .= " ORDER BY Capacita_Bottiglia DESC";
+                break;
+            default:
+                // Nessun ordine aggiuntivo
+                break;
+        }
 
         // Parametri della query
         $params = [
@@ -508,5 +529,48 @@ class VinoDatabase {
         // Restituisce i risultati della query
         return $this->executeQuery($query, $params);
     }
+
+    public function checkIsAdmin($email) {
+        $query = "
+            SELECT COUNT(*) AS total
+            FROM UTENTE
+            WHERE email = :email
+            AND admin = 'Y'
+        ";
+    
+        // Parametri della query
+        $params = [
+            ':email' => $email
+        ];
+    
+        // Eseguo la query e ottengo il risultato
+        $result = $this->executeQuery($query, $params);
+    
+        // Controllo il valore di 'total' nella prima riga (se esiste)
+        // Se total > 0, significa che esiste almeno un utente con email corrispondente e admin = TRUE
+        if ($result[0]['total'] > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //funzione che restituisce tutti gli ordini del sito
+    public function getAllOrders() {
+        $query = "
+            SELECT 
+                ID_Ordine, 
+                Email,
+                Data, 
+                Stato
+            FROM ORDINE
+        ";
+    
+        $params = [];
+    
+        // Esegui la query con la funzione interna executeQuery
+        return $this->executeQuery($query, $params);
+    }
+    
 }
 ?>

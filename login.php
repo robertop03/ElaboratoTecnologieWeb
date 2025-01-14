@@ -9,15 +9,27 @@ if(isset($_POST["email"]) && isset($_POST["password"])){
         $templateParams["errorelogin"] = "Errore! Controllare email o password";
     }else{
         registerLoggedUser($login_result[0]);
-        header("Location: utente.php");
-        exit();
+        
+        if(isset($_SESSION["email"]) && $db->checkIsAdmin($_SESSION["email"]) == 1){
+            header("Location: dashboard.php");
+            exit();
+        }else{
+            header("Location: utente.php");
+            exit();
+        }
     }
 }
 
 // Controllo se l'utente è loggato
 if(isUserLoggedIn()){
     // utente loggato, lo riconduco alla pagina utente
-    header("Location: utente.php");
+    if(isset($_SESSION["email"]) && $db->checkIsAdmin($_SESSION["email"]) == 1){
+        header("Location: dashboard.php");
+        exit();
+    }else{
+        header("Location: utente.php");
+        exit();
+    }
 
 }else{
     // utente non loggato
