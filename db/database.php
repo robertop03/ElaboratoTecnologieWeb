@@ -31,7 +31,8 @@ class VinoDatabase {
             GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) AS Provenienza,
             GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END) AS Capacita_Bottiglia,
             TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
-            TESTO_PRODOTTO.Descrizione
+            TESTO_PRODOTTO.Descrizione,
+            Foto
         FROM 
             PRODOTTO
         JOIN 
