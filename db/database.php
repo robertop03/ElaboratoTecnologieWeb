@@ -533,5 +533,23 @@ class VinoDatabase {
             return false;
         }
     }
+
+    //funzione che restituisce tutti gli ordini del sito
+    public function getAllOrders() {
+        $query = "
+            SELECT 
+                ID_Ordine, 
+                Email,
+                Data, 
+                Stato
+            FROM ORDINE
+        ";
+    
+        $params = [];
+    
+        // Esegui la query con la funzione interna executeQuery
+        return $this->executeQuery($query, $params);
+    }
+    
 }
 ?>
