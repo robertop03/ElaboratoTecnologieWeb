@@ -69,33 +69,76 @@ $wines = $db->getAllVini(
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="filterModalLabel">
-          <?php echo $linguaAttuale == "en" ? "Filter" : "Filtra" ?>
-        </h5>
+        <h5 class="modal-title" id="filterModalLabel"><?php echo $linguaAttuale == "en" ? "Filter" : "Filtra" ?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi modale filtraggio"></button>
       </div>
       <div class="modal-body">
         <div class="mb-3">
-          <label class="form-label">
-            <?php echo $linguaAttuale == "en" ? "Price" : "Prezzo" ?>
-          </label>
+          <label class="form-label"><?php echo $linguaAttuale == "en" ? "Price" : "Prezzo" ?></label>
           <div class="d-flex justify-content-between align-items-center mb-2">
             <span class="badge bg-warning text-dark" id="priceMin">0€</span>
             <span class="badge bg-danger" id="priceMax">1000€</span>
           </div>
           <div class="position-relative">
+            <!-- Singolo slider -->
             <div class="range-slider">
+              <label for="sliderMin" class="visually-hidden">Slider prezzo minimo</label>
+              <input type="range" class="form-range" min="0" max="1000" step="1" value="0" id="sliderMin" />
+              <label for="sliderMax" class="visually-hidden">Slider prezzo massimo</label>
+              <input type="range" class="form-range" min="0" max="1000" step="1" value="1000" id="sliderMax" />
             </div>
           </div>
         </div>
+
+        <div class="mb-3">
+          <label for="categories" class="form-label"><?php echo $linguaAttuale == "en" ? "Categories" : "Categorie" ?></label>
+          <select multiple class="form-select" id="categories">
+            <option><?php echo $linguaAttuale == "en" ? "Red" : "Rossi" ?></option>
+            <option><?php echo $linguaAttuale == "en" ? "White" : "Bianchi" ?></option>
+            <option><?php echo $linguaAttuale == "en" ? "Rosè" : "Rosati" ?></option>
+            <option><?php echo $linguaAttuale == "en" ? "Still" : "Fermi" ?></option>
+            <option><?php echo $linguaAttuale == "en" ? "Sparkling" : "Frizzanti" ?></option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="regions" class="form-label"><?php echo $linguaAttuale == "en" ? "Regions" : "Regioni" ?></label>
+          <select multiple class="form-select" id="regions">
+            <option>Abruzzo</option>
+            <option>Basilicata</option>
+            <option>Calabria</option>
+            <option>Campania</option>
+            <option>Emilia-Romagna</option>
+            <option>Friuli-Venezia Giulia</option>
+            <option>Lazio</option>
+            <option>Liguria</option>
+            <option>Lombardia</option>
+            <option>Marche</option>
+            <option>Molise</option>
+            <option>Piemonte</option>
+            <option>Puglia</option>
+            <option>Sardegna</option>
+            <option>Sicilia</option>
+            <option>Toscana</option>
+            <option>Trentino-Alto Adige</option>
+            <option>Umbria</option>
+            <option>Valle d'Aosta</option>
+            <option>Veneto</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="formato" class="form-label"><?php echo $linguaAttuale == "en" ? "Bottle size" : "Formato" ?></label>
+          <select multiple class="form-select" id="formato">
+            <option>0.375L</option>
+            <option>0.5L</option>
+            <option>0.75L</option>
+            <option>1L</option>
+            <option>1.5L</option>
+          </select>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          <?php echo $linguaAttuale == "en" ? "Close" : "Chiudi" ?>
-        </button>
-        <button type="button" class="btn btn-primary">
-          <?php echo $linguaAttuale == "en" ? "Apply filter" : "Applica filtro" ?>
-        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi" ?></button>
+        <button type="button" class="btn btn-primary"><?php echo $linguaAttuale == "en" ? "Apply filter" : "Applica filtro" ?></button>
       </div>
     </div>
   </div>
