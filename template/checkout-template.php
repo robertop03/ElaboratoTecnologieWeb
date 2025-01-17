@@ -128,7 +128,7 @@
                 <div class="col-md-6 mb-3 scadenza">
                   <label for="annoScadenza" class="form-label"><?php echo $linguaAttuale == "en" ? "Expiration year" : "Anno di scadenza" ?><span class="text-danger">*</span></label>
                   <select class="form-select" id="annoScadenza" required>
-                    <option selected disabled>YY</option>
+                    <option selected disabled><?php echo $linguaAttuale == "en" ? "YY" : "AA" ?></option>
                     <option>2025</option>
                     <option>2026</option>
                     <option>2027</option>
