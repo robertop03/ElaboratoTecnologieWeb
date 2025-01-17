@@ -816,21 +816,19 @@ svg {
 /* Stile per i dettagli dell'ordine */
 .order-details-modal .modal-body {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
+  align-items: center; /* Allinea l'immagine e il testo verticalmente */
+  gap: 20px; /* Spaziatura tra immagine e testo */
   padding: 20px;
 }
 
-.order-details-modal img {
-  max-width: 150px;
+.order-details-modal .product-image {
+  max-width: 150px; /* Dimensione massima dell'immagine */
   border: 1px solid #ddd;
   border-radius: 8px;
-  margin-bottom: 10px;
 }
 
 .order-details-modal .order-info {
-  text-align: center;
+  flex: 1; /* Occupa tutto lo spazio disponibile accanto all'immagine */
 }
 
 .order-details-modal .order-info p {
@@ -840,8 +838,4 @@ svg {
 
 .order-details-modal .order-info .fw-bold {
   font-size: 18px;
-}
-
-.order-details-modal .modal-footer {
-  justify-content: center;
 }
