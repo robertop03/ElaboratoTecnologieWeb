@@ -2,11 +2,11 @@
 
 -- Popolamento della tabella UTENTE
 INSERT INTO UTENTE (Email, Password, Nome, Cognome, Newsletter) VALUES
-('mario.rossi@example.com', '$2y$10$Q8nb/xaZ1AHrEzWt/gG4LO.hxuPmYZLF6tOJBPNtobA', 'Mario', 'Rossi', 'Y'),
-('luigi.bianchi@example.com', '$2y$10$Q8nb/xaZ1AHrEzWt/gG4LO.hxuPmYZLF6tOJBPNtobA', 'Luigi', 'Bianchi', 'N');
+('mario.rossi@example.com', '$2y$10$ugQcOrF.RxntBJF1Zsqo4uO21ruT80nI8THPxTqqpuXeR3Z4eirDi', 'Mario', 'Rossi', 'Y'),
+('luigi.bianchi@example.com', '$2y$10$ugQcOrF.RxntBJF1Zsqo4uO21ruT80nI8THPxTqqpuXeR3Z4eirDi', 'Luigi', 'Bianchi', 'N');
 
 INSERT INTO UTENTE (Email, Password, Nome, Cognome, Newsletter,Admin) VALUES
-('admin@gmail.com', '$2y$10$cNx5hLsOuXii2ltrQzwire/2CjyoH5IyGKriZ65VUK4', 'Roberto', 'Nuvoli', 'N','Y');
+('admin@gmail.com', '$2y$10$WkcTcF8ljas/XCzxCAvzK.AbrUPhg6yymp2njIwVXEJjcRSC3.xge', 'Roberto', 'Nuvoli', 'N','Y');
 
 -- Popolamento della tabella INDIRIZZO
 INSERT INTO INDIRIZZO (ID_Indirizzo, Via, Numero_Civico, CAP, Citta, Paese, Email) VALUES

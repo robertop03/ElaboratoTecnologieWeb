@@ -100,7 +100,7 @@ create table TESTO_PRODOTTO (
 
 create table UTENTE (
      Email varchar(100) not null,
-     Password varchar(50) not null,
+     Password varchar(256) not null,
      Nome varchar(25),
      Cognome varchar(25),
      Newsletter char not null,
