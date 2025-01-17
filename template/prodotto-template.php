@@ -1,15 +1,15 @@
 <div class="container py-4">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 text-center position-relative">
-      <img src="resources/img/vino1.jpg" alt="Chateau Fleur Haut Gaussens" class="shadow" />
+      <img src="resources/img/<?php echo $vino[0]["Foto"] ?>" alt="<?php echo $vino[0]["Titolo_Prodotto"] ?>" class="img-fluid rounded shadow product"/>
       <button class="btn btn-light position-absolute top-0 end-0 m-2 border rounded-circle">
         <span class="bi bi-heart" role="img" aria-label="icona cuore"></span>
       </button>
     </div>
     <div class="col-12 col-md-6 mx-auto text-center">
-      <h1 class="h4 mt-4">Chateau Fleur Haut Gaussens</h1>
-      <p>Bordeaux Supérieur 2019</p>
-      <p class="fw-bold fs-5">12,50 €</p>
+      <h1 class="h4 mt-4"><?php echo $vino[0]["Titolo_Prodotto"] ?></h1>
+      <p><?php echo $vino[0]["Sottotitolo"] ?></p>
+      <p class="fw-bold fs-5"><?php echo $vino[0]["Prezzo"] ?> €</p>
       <div class="row justify-content-center align-items-center mb-3">
         <div class="col-auto d-inline-flex align-items-center">
           <button class="btn btn-outline-secondary rounded-circle text-dark fw-bold">-</button>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <h2 class="h5 mt-3 pt-2 mb-3 pb-2"><?php echo $linguaAttuale == "en" ? "Features" : "Caratteristiche" ?></h2>
-      <p>Il Château Fleur Haut Gaussens 2019 è un Bordeaux Supérieur che esprime al meglio le caratteristiche del suo terroir. Composto per l'85% da Merlot, con aggiunte di Cabernet Franc, Cabernet Sauvignon e Malbec, offre un bouquet intenso di prugne mature e more, arricchito da note di legno tostato. Al palato, si presenta setoso e vellutato, con tannini morbidi e una piacevole freschezza.</p>
+      <p><?php echo $vino[0]["Descrizione"] ?></p>
     </div>
   </div>
 </div>

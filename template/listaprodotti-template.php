@@ -197,6 +197,7 @@ $wines = $db->getAllVini( $lingua, $pmin, $pmax, $prov, $friz, $tona, $dime, $or
   <?php if (!empty($wines)): ?>
   <?php foreach ($wines as $vino): ?>
   <div class="col">
+    <a href="prodotto.php?id=<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>">
     <div class="card h-100 text-center">
       <img src="<?php echo "resources/img/".htmlspecialchars($vino['Foto'] ?? 'vino_generic.jpg'); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>" />
       <div class="card-body">
@@ -224,6 +225,7 @@ $wines = $db->getAllVini( $lingua, $pmin, $pmax, $prov, $friz, $tona, $dime, $or
         </button>
       </div>
     </div>
+    </a>
   </div>
   <?php endforeach; ?>
   <?php else: ?>

@@ -6,6 +6,10 @@ body {
   height: 100%;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 span.bi {
   font-size: 30px;
   color: #000;
@@ -26,7 +30,6 @@ span.bi {
 
 /* Aggiunge un'eventuale personalizzazione per il testo */
 .offcanvas .list-group-item a {
-  text-decoration: none;
   color: inherit;
 }
 
@@ -179,6 +182,9 @@ hr.styled-divider {
 main input[type="number"] {
   background-color: #590425;
   color: #fff;
+}
+.product {
+  max-height: 400px !important;
 }
 
 /* Pagina lista prodotti */
@@ -334,7 +340,6 @@ main {
   .nav-links a {
     padding: 0 35px 0 35px;
     margin: 0 35px 0 35px;
-    text-decoration: none;
   }
 
   .search-bar {
@@ -404,7 +409,6 @@ main {
   .nav-links a {
     padding: 0 4px 0 4px;
     margin: 0 4px 0 4px;
-    text-decoration: none; /* Rimuove la sottolineatura */
   }
 
   .search-bar {
@@ -717,7 +721,6 @@ svg {
 
 .custom-link {
   color: #54072a;
-  text-decoration: none;
 }
 
 .custom-link:hover {
