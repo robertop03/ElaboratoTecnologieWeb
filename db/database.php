@@ -683,5 +683,27 @@ class VinoDatabase {
 
         return $this->executeQuery($query, $params);
     }
+
+    //returna il numero di utenti registrati (escludendo gli admin)
+    public function getUsersCount() {
+        $query = "SELECT COUNT(*) AS total FROM UTENTE WHERE admin IS NULL";
+    
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+    
+        // Ritorna il numero di utenti senza il campo admin impostato
+        return $stmt->fetchColumn();
+    }
+
+    //returna il numero totale di ordini presenti nel db
+    public function getTotalOrderCount() {
+        $sql = "SELECT COUNT(*) AS total_orders FROM ORDINE";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetchColumn();
+    }
+    
+
 }
 ?>
