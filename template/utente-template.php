@@ -3,7 +3,7 @@
   <!-- Sezione profilo -->
   <div class="d-flex align-items-center mb-4">
     <div>
-      <h5 class="mb-2 ms-3">Matilda Brown</h5>
+      <h5 class="mb-2 ms-3"><?php echo $_SESSION["nome"] . " " . $_SESSION["cognome"]; ?></h5>
       <p class="text-muted ms-3"><?php echo $_SESSION["email"] ?></p>
     </div>
   </div>
@@ -80,53 +80,56 @@
           <div class="row">
             <div class="col-md-6">
               <h4><?php echo $linguaAttuale == "en" ? "Personal information" : "Informazioni personali" ?></h4>
-              <form>
+              <form method="POST" action="utente.php">
                 <div class="mb-3">
-                  <label for="nome-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Name" : "Nome" ?></label>
-                  <input type="text" class="form-control" id="nome-modal" />
+                  <label for="nome-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Name" : "Nome" ?><span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="nome-modal" name="nome" value="<?php echo isset($_SESSION['nome']) ? htmlspecialchars($_SESSION['nome']) : ''; ?>" required />
                 </div>
                 <div class="mb-3">
-                  <label for="cognome-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Surname" : "Cognome" ?></label>
-                  <input type="text" class="form-control" id="cognome-modal" />
+                  <label for="cognome-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Surname" : "Cognome" ?><span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="cognome-modal" name="cognome" value="<?php echo isset($_SESSION['cognome']) ? htmlspecialchars($_SESSION['cognome']) : ''; ?>" required />
                 </div>
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="notifiche-modal" />
                   <label class="form-check-label" for="notifiche-modal"><?php echo $linguaAttuale == "en" ? "I want to receive notifications for delivery status updates" : "Voglio ricevere notifiche per il cambio di stato consegna" ?></label>
                 </div>
+                <div class="d-grid w-50 mx-auto">
+                  <button type="submit" class="btn btn-lg btn-primary mt-3" value="formDati"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
+                </div>
               </form>
             </div>
             <div class="col-md-6">
               <h4 class="py-3"><?php echo $linguaAttuale == "en" ? "Change Password" : "Cambia Password" ?></h4>
-              <form>
+              <form method="POST" action="utente.php">
                 <div class="mb-3">
-                  <label for="current-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Actual password" : "Password attuale" ?></label>
+                  <label for="current-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Actual password" : "Password attuale" ?><span class="text-danger">*</span></label>
                   <div class="input-group">
-                    <input type="password" class="form-control" id="current-password-modal" />
+                    <input type="password" class="form-control" id="current-password-modal" name="current-password" required />
                     <button class="btn btn-outline-secondary toggle-password" type="button">
                       <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
                     </button>
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label for="new-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "New password" : "Nuova password" ?></label>
+                  <label for="new-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "New password" : "Nuova password" ?><span class="text-danger">*</span></label>
                   <div class="input-group">
-                    <input type="password" class="form-control" id="new-password-modal" />
+                    <input type="password" class="form-control" id="new-password-modal" required />
                     <button class="btn btn-outline-secondary toggle-password" type="button">
                       <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
                     </button>
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label for="confirm-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Confirm new password" : "Conferma nuova password" ?></label>
+                  <label for="confirm-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Confirm new password" : "Conferma nuova password" ?><span class="text-danger">*</span></label>
                   <div class="input-group">
-                    <input type="password" class="form-control" id="confirm-password-modal" />
+                    <input type="password" class="form-control" id="confirm-password-modal" required />
                     <button class="btn btn-outline-secondary toggle-password" type="button">
                       <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
                     </button>
                   </div>
                 </div>
-                <div class="d-grid">
-                  <button type="submit" class="btn btn-lg btn-primary mt-3"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
+                <div class="d-grid w-50 mx-auto">
+                  <button type="submit" class="btn btn-lg btn-primary mt-3" name="submit_form" name="submit_form" value="formPw"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
                 </div>
               </form>
             </div>
@@ -201,7 +204,7 @@
       <div class="d-flex overflow-auto">
         <div class="col-md-4">
           <div class="card me-3">
-            <img src="resources/img/vino1.jpg" alt="Château Fleur Haut Gaussens" />
+            <img src="resources/img/foto1.jpg" alt="Château Fleur Haut Gaussens" />
             <div class="card-body text-center">
               <p>Château Fleur Haut Gaussens</p>
               <p>12,90€</p>
@@ -212,7 +215,7 @@
         </div>
         <div class="col-md-4">
           <div class="card me-3">
-            <img src="resources/img/vino2.jpg" alt="Sottimano" />
+            <img src="resources/img/foto2.jpg" alt="Sottimano" />
             <div class="card-body text-center">
               <p>Sottimano</p>
               <p>19,90€</p>
@@ -223,7 +226,7 @@
         </div>
         <div class="col-md-4">
           <div class="card">
-            <img src="resources/img/vino3.jpg" alt="Mazoni Campi" />
+            <img src="resources/img/foto3.jpg" alt="Mazoni Campi" />
             <div class="card-body text-center">
               <p>Mazoni Campi</p>
               <p>14,90€</p>
@@ -261,58 +264,64 @@
   <div class="row">
     <div class="col-md-6">
       <h4><?php echo $linguaAttuale == "en" ? "Personal information" : "Informazioni personali" ?></h4>
-      <form>
+      <form method="POST" action="utente.php">
         <div class="mb-3">
-          <label for="nome" class="form-label"><?php echo $linguaAttuale == "en" ? "Name" : "Nome" ?></label>
-          <input type="text" class="form-control" id="nome" />
+          <label for="nome" class="form-label"><?php echo $linguaAttuale == "en" ? "Name" : "Nome" ?><span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="nome" name="nome" value="<?php echo isset($_SESSION['nome']) ? htmlspecialchars($_SESSION['nome']) : ''; ?>" required />
         </div>
         <div class="mb-3">
-          <label for="cognome" class="form-label"><?php echo $linguaAttuale == "en" ? "Surname" : "Cognome" ?></label>
-          <input type="text" class="form-control" id="cognome" />
+          <label for="cognome" class="form-label"><?php echo $linguaAttuale == "en" ? "Surname" : "Cognome" ?><span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="cognome" name="cognome" value="<?php echo isset($_SESSION['cognome']) ? htmlspecialchars($_SESSION['cognome']) : ''; ?>" required />
         </div>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="notifiche" />
           <label class="form-check-label" for="notifiche"><?php echo $linguaAttuale == "en" ? "I want to receive notifications for delivery status updates" : "Voglio ricevere notifiche per il cambio di stato consegna" ?></label>
         </div>
+        <div class="d-grid w-50 mx-auto">
+            <button type="submit" class="btn btn-lg btn-primary mt-3" name="submit_form" value="formDati"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
+        </div>
       </form>
     </div>
     <div class="col-md-6">
       <h4><?php echo $linguaAttuale == "en" ? "Change password" : "Cambia password" ?></h4>
-      <form>
+      <?php if(isset($templateParams["risultatoCambioPw"])): ?>
+      <p class="text-center"><?php echo $templateParams["risultatoCambioPw"]; ?></p>
+      <?php endif; ?>
+      <form method="POST" action="utente.php">
         <div class="mb-3">
-          <label for="current-password" class="form-label"><?php echo $linguaAttuale == "en" ? "Actual password" : "Password attuale" ?></label>
+          <label for="current-password" class="form-label"><?php echo $linguaAttuale == "en" ? "Actual password" : "Password attuale" ?><span class="text-danger">*</span></label>
           <div class="input-group">
-            <input type="password" class="form-control" id="current-password" />
+            <input type="password" class="form-control" id="current-password" name="current-password" required />
             <button class="btn btn-outline-secondary toggle-password" type="button">
               <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
             </button>
           </div>
         </div>
         <div class="mb-3">
-          <label for="new-password" class="form-label"><?php echo $linguaAttuale == "en" ? "New password" : "Nuova password" ?></label>
+          <label for="new-password" class="form-label"><?php echo $linguaAttuale == "en" ? "New password" : "Nuova password" ?><span class="text-danger">*</span></label>
           <div class="input-group">
-            <input type="password" class="form-control" id="new-password" />
+            <input type="password" class="form-control" id="new-password" name="new-password" required />
             <button class="btn btn-outline-secondary toggle-password" type="button">
               <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
             </button>
           </div>
         </div>
         <div class="mb-3">
-          <label for="confirm-password" class="form-label"><?php echo $linguaAttuale == "en" ? "Confirm new password" : "Conferma nuova password" ?></label>
+          <label for="confirm-password" class="form-label"><?php echo $linguaAttuale == "en" ? "Confirm new password" : "Conferma nuova password" ?><span class="text-danger">*</span></label>
           <div class="input-group">
-            <input type="password" class="form-control" id="confirm-password" />
+            <input type="password" class="form-control" id="confirm-password" name="confirm-password" required />
             <button class="btn btn-outline-secondary toggle-password" type="button">
               <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
             </button>
           </div>
         </div>
-        <div class="d-grid">
-          <button type="submit" class="btn btn-lg btn-primary mt-3"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
+        <div class="d-grid w-50 mx-auto">
+          <button type="submit" class="btn btn-lg btn-primary mt-3" name="submit_form" value="formPw"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
         </div>
       </form>
     </div>
   </div>
-  <div class="d-grid mt-4">
+  <div class="d-grid mt-4 mx-auto">
     <button class="btn btn-dark btn-lg" onclick="window.location.href='logout.php'">Logout</button>
   </div>
 </div>

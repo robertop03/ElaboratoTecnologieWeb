@@ -8,6 +8,9 @@ function registerLoggedUser($user){
     $_SESSION["email"] = $user["Email"];
 }
 
-
+function nameAndSurname($nome, $cognome){
+    $_SESSION["nome"] = $nome;
+    $_SESSION["cognome"] = $cognome;
+}
 
 ?>

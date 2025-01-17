@@ -10,7 +10,8 @@ if(isset($_POST["email"]) && isset($_POST["password"])){
         $templateParams["errorelogin"] = "Errore! Controllare email o password";
     }else{
         registerLoggedUser($login_result[0]);
-        
+        $nameAndSurname = $db->getNameAndSurname($_SESSION["email"]);
+        nameAndSurname($nameAndSurname[0]["nome"], $nameAndSurname[0]["cognome"]);
         if(isset($_SESSION["email"]) && $db->checkIsAdmin($_SESSION["email"]) == 1){
             header("Location: dashboard.php");
             exit();

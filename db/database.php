@@ -609,5 +609,77 @@ class VinoDatabase {
         return $this->executeQuery($query, $params);
     }
     
+    // funzione per ottenere il nome e cognome dell'utente loggato se presenti
+    public function getNameAndSurname($email){
+        $query = "
+           SELECT nome, cognome
+           FROM UTENTE
+           WHERE (nome IS NOT NULL OR cognome IS NOT NULL) AND email = :email;
+       ";
+   
+       $params = [
+        ':email' => $email
+       ];
+
+       return $this->executeQuery($query, $params);
+   }
+
+    // funzione per aggiornare o aggiungere nome e cognome di un utente
+    public function updateNameAndSurname($nome, $cognome, $email){
+         $query = "
+           UPDATE UTENTE
+           SET
+                nome = CASE 
+                    WHEN nome = '' OR nome != :nome THEN :nome 
+                ELSE nome 
+                END,
+                cognome = CASE 
+                    WHEN cognome = '' OR cognome != :cognome THEN :cognome
+                    ELSE cognome 
+                END
+            WHERE email = :email;
+        ";
+    
+        $params = [
+            ':email' => $email,
+            ':nome' => $nome,
+            ':cognome' => $cognome
+        ];
+
+        return $this->executeQuery($query, $params);
+    }
+
+    // funzione per aggiornare la password di un utente
+    public function updatePassword($email, $password){
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $query = "
+          UPDATE UTENTE
+          SET password = :password
+          WHERE email = :email;
+       ";
+   
+       $params = [
+           ':email' => $email,
+           ':password' => $hashed_password
+       ];
+
+       return $this->executeQuery($query, $params);
+   }
+
+   // funzione che restituisce l'hash della password di un determinato utente
+   // utile per controllare se la vecchia password inserita è corretta e si può proseguire con il suo aggiornamento
+   public function getHashPassword($email){
+        $query = "
+           SELECT password
+           FROM UTENTE
+           WHERE email = :email;
+        ";
+
+        $params = [
+            ':email' => $email
+        ];
+
+        return $this->executeQuery($query, $params);
+    }
 }
 ?>
