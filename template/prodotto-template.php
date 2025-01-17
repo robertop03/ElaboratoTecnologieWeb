@@ -9,7 +9,7 @@
     <div class="col-12 col-md-6 mx-auto text-center">
       <h1 class="h4 mt-4"><?php echo $vino[0]["Titolo_Prodotto"] ?></h1>
       <p><?php echo $vino[0]["Sottotitolo"] ?></p>
-      <p class="fw-bold fs-5"><?php echo $vino[0]["Prezzo"] ?> €</p>
+      <p class="fw-bold fs-5"><?php  echo number_format($vino[0]["Prezzo"], 2, ',', '.')."€";  ?></p>
       <div class="row justify-content-center align-items-center mb-3">
         <div class="col-auto d-inline-flex align-items-center">
           <button class="btn btn-outline-secondary rounded-circle text-dark fw-bold">-</button>

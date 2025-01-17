@@ -13,4 +13,8 @@ function nameAndSurname($nome, $cognome){
     $_SESSION["cognome"] = $cognome;
 }
 
+function actualProduct($id){
+    $_SESSION["id"] = $id;
+}
+
 ?>
