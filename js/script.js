@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // CODICE PER CARICARE I PERCORSI NELLA MAPPA SVG
   async function loadPaths() {
     try {
-      const { paths } = await import("../js/path.js")
+      const { paths } = await import("../js/path.js?v=1")
 
       paths.forEach((pathString) => {
         svgElement.innerHTML += pathString
@@ -166,7 +166,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Evento click per selezionare una regione
         region.addEventListener("click", () => {
           const regionName = region.getAttribute("title") || region.getAttribute("data-name") || region.id || "Regione non definita"
-          alert(`Hai selezionato la regione: ${regionName}`)
+          const url = `listaprodotti.php?prov=${encodeURIComponent(regionName)}`
+          window.location.href = url
         })
       })
     } catch (error) {
