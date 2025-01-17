@@ -94,11 +94,11 @@
       <div class="container-fluid d-none d-md-flex justify-content-center border border-dark">
         <ul class="nav-links d-flex gap-3 list-unstyled">
           <li><a href="#" class="text-dark text-uppercase" data-bs-toggle="modal" data-bs-target="#map-modal"><?php echo $linguaAttuale == "en" ? "Region" : "Regione" ?></a></li>
-          <li><a href="#" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "RED" : "ROSSI" ?></a></li>
-          <li><a href="#" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "WHITE" : "BIANCHI" ?></a></li>
-          <li><a href="#" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "ROSÈ" : "ROSATI" ?></a></li>
-          <li><a href="#" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "STILL" : "FERMI" ?></a></li>
-          <li><a href="#" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "SPARKLING" : "FRIZZANTI" ?></a></li>
+          <li><a href="listaprodotti.php?tona=rosso" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "RED" : "ROSSI" ?></a></li>
+          <li><a href="listaprodotti.php?tona=bianco" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "WHITE" : "BIANCHI" ?></a></li>
+          <li><a href="listaprodotti.php?tona=rosè" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "ROSÈ" : "ROSATI" ?></a></li>
+          <li><a href="listaprodotti.php?friz=fermo" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "STILL" : "FERMI" ?></a></li>
+          <li><a href="listaprodotti.php?friz=frizzante" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "SPARKLING" : "FRIZZANTI" ?></a></li>
         </ul>
       </div>
       <!-- OFFCANVAS MENU -->
@@ -110,11 +110,11 @@
         <div class="offcanvas-body">
           <!-- LISTA PRINCIPALE -->
           <ul class="list-group">
-            <li class="list-group-item"><a href="#"><?php echo $linguaAttuale == "en" ? "Red" : "Rossi" ?></a></li>
-            <li class="list-group-item"><a href="#"><?php echo $linguaAttuale == "en" ? "White" : "Bianchi" ?></a></li>
-            <li class="list-group-item"><a href="#"><?php echo $linguaAttuale == "en" ? "Rosè" : "Rosati" ?></a></li>
-            <li class="list-group-item"><a href="#"><?php echo $linguaAttuale == "en" ? "Still" : "Fermi" ?></a></li>
-            <li class="list-group-item"><a href="#"><?php echo $linguaAttuale == "en" ? "Sparkling" : "Frizzanti" ?></a></li>
+            <li class="list-group-item"><a href="listaprodotti.php?tona=rosso"><?php echo $linguaAttuale == "en" ? "Red" : "Rossi" ?></a></li>
+            <li class="list-group-item"><a href="listaprodotti.php?tona=bianco"><?php echo $linguaAttuale == "en" ? "White" : "Bianchi" ?></a></li>
+            <li class="list-group-item"><a href="listaprodotti.php?tona=rosè"><?php echo $linguaAttuale == "en" ? "Rosè" : "Rosati" ?></a></li>
+            <li class="list-group-item"><a href="listaprodotti.php?friz=fermo"><?php echo $linguaAttuale == "en" ? "Still" : "Fermi" ?></a></li>
+            <li class="list-group-item"><a href="listaprodotti.php?friz=frizzante"><?php echo $linguaAttuale == "en" ? "Sparkling" : "Frizzanti" ?></a></li>
             <!-- REGIONE CON SUB-MENU -->
             <li class="list-group-item">
               <a class="d-flex justify-content-between align-items-center" href="#" data-bs-toggle="collapse" data-bs-target="#menuRegioni" aria-expanded="false" aria-controls="menuRegioni">

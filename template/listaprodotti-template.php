@@ -60,73 +60,78 @@ $wines = $db->getAllVini( $lingua, $pmin, $pmax, $prov, $friz, $tona, $dime, $or
         <h5 class="modal-title" id="filterModalLabel"><?php echo $linguaAttuale == "en" ? "Filter" : "Filtra" ?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi modale filtraggio"></button>
       </div>
-      <div class="modal-body">
-        <div class="mb-3">
-          <label class="form-label"><?php echo $linguaAttuale == "en" ? "Price" : "Prezzo" ?></label>
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <span class="badge bg-warning text-dark" id="priceMin">0€</span>
-            <span class="badge bg-danger" id="priceMax">1000€</span>
-          </div>
-          <div class="position-relative">
-            <!-- Singolo slider -->
-            <div class="range-slider">
-              <label for="sliderMin" class="visually-hidden">Slider prezzo minimo</label>
-              <input type="range" class="form-range" min="0" max="1000" step="1" value="0" id="sliderMin" />
-              <label for="sliderMax" class="visually-hidden">Slider prezzo massimo</label>
-              <input type="range" class="form-range" min="0" max="1000" step="1" value="1000" id="sliderMax" />
+      <form method="GET" action="">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label"><?php echo $linguaAttuale == "en" ? "Price" : "Prezzo" ?></label>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="badge bg-warning text-dark" id="priceMin">0€</span>
+              <span class="badge bg-danger" id="priceMax">100€</span>
+            </div>
+            <div class="position-relative">
+              <!-- Singolo slider -->
+              <div class="range-slider">
+                <label for="sliderMin" class="visually-hidden">Slider prezzo minimo</label>
+                <input type="range" class="form-range" min="0" max="100" step="" value="0" id="sliderMin" name="pmin" />
+                <label for="sliderMax" class="visually-hidden">Slider prezzo massimo</label>
+                <input type="range" class="form-range" min="0" max="100" step="1" value="100" id="sliderMax" name="pmax" />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="mb-3">
-          <label for="categories" class="form-label"><?php echo $linguaAttuale == "en" ? "Categories" : "Categorie" ?></label>
-          <select multiple class="form-select" id="categories">
-            <option><?php echo $linguaAttuale == "en" ? "Red" : "Rossi" ?></option>
-            <option><?php echo $linguaAttuale == "en" ? "White" : "Bianchi" ?></option>
-            <option><?php echo $linguaAttuale == "en" ? "Rosè" : "Rosati" ?></option>
-            <option><?php echo $linguaAttuale == "en" ? "Still" : "Fermi" ?></option>
-            <option><?php echo $linguaAttuale == "en" ? "Sparkling" : "Frizzanti" ?></option>
-          </select>
+          <div class="mb-3">
+            <label for="tonalita" class="form-label"><?php echo $linguaAttuale == "en" ? "Hue" : "Tonalità" ?></label>
+            <select multiple class="form-select" id="tonalita" name="tona">
+              <option value="rosso"><?php echo $linguaAttuale == "en" ? "Red" : "Rossi" ?></option>
+              <option value="bianco"><?php echo $linguaAttuale == "en" ? "White" : "Bianchi" ?></option>
+              <option value="rosè"><?php echo $linguaAttuale == "en" ? "Rosè" : "Rosati" ?></option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="frizzantezza" class="form-label"><?php echo $linguaAttuale == "en" ? "Effervescence" : "Frizzantezza" ?></label>
+            <select multiple class="form-select" id="frizzantezza" name="friz">
+              <option value="fermo"><?php echo $linguaAttuale == "en" ? "Still" : "Fermi" ?></option>
+              <option value="frizzante"><?php echo $linguaAttuale == "en" ? "Sparkling" : "Frizzanti" ?></option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="regions" class="form-label"><?php echo $linguaAttuale == "en" ? "Regions" : "Regioni" ?></label>
+            <select multiple class="form-select" id="regions" name="prov">
+              <option value="Abruzzo" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Abruzzo' ? 'selected' : ''; ?> >Abruzzo</option>
+              <option value="Basilicata" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Basilicata' ? 'selected' : ''; ?> >Basilicata</option>
+              <option value="Calabria" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Calabria' ? 'selected' : ''; ?> >Calabria</option>
+              <option value="Campania" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Campania' ? 'selected' : ''; ?> >Campania</option>
+              <option value="Emilia Romagna" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Emilia Romagna' ? 'selected' : ''; ?> >Emilia Romagna</option>
+              <option value="Friuli Venezia Giulia" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Friuli Venezia Giulia' ? 'selected' : ''; ?> >Friuli Venezia Giulia</option>
+              <option value="Lazio" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Lazio' ? 'selected' : ''; ?> >Lazio</option>
+              <option value="Liguria" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Liguria' ? 'selected' : ''; ?> >Liguria</option>
+              <option value="Lombardia" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Lombardia' ? 'selected' : ''; ?> >Lombardia</option>
+              <option value="Marche" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Marche' ? 'selected' : ''; ?> >Marche</option>
+              <option value="Molise" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Molise' ? 'selected' : ''; ?> >Molise</option>
+              <option value="Piemonte" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Piemonte' ? 'selected' : ''; ?> >Piemonte</option>
+              <option value="Puglia" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Puglia' ? 'selected' : ''; ?> >Puglia</option>
+              <option value="Sardegna" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Sardegna' ? 'selected' : ''; ?> >Sardegna</option>
+              <option value="Sicilia" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Sicilia' ? 'selected' : ''; ?> >Sicilia</option>
+              <option value="Toscana" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Toscana' ? 'selected' : ''; ?> >Toscana</option>
+              <option value="Trentino Alto Adige" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Trentino Alto Adige' ? 'selected' : ''; ?> >Trentino Alto Adige</option>
+              <option value="Umbria" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Umbria' ? 'selected' : ''; ?> >Umbria</option>
+              <option value="Valle d'Aosta" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Valle d\'Aosta' ? 'selected' : ''; ?> >Valle d'Aosta</option>
+              <option value="Veneto" <?php echo isset($_GET['prov']) && $_GET['prov'] == 'Veneto' ? 'selected' : ''; ?> >Veneto</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="formato" class="form-label"><?php echo $linguaAttuale == "en" ? "Bottle size" : "Formato" ?></label>
+            <select multiple class="form-select" id="formato" name="dime">
+              <option value="Mezza 0.375l">0.375L</option>
+              <option value="Bottiglia 0.75l">0.75L</option>
+              <option value="Magnum 1.5l">1.5L</option>
+            </select>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="regions" class="form-label"><?php echo $linguaAttuale == "en" ? "Regions" : "Regioni" ?></label>
-          <select multiple class="form-select" id="regions">
-            <option>Abruzzo</option>
-            <option>Basilicata</option>
-            <option>Calabria</option>
-            <option>Campania</option>
-            <option>Emilia-Romagna</option>
-            <option>Friuli-Venezia Giulia</option>
-            <option>Lazio</option>
-            <option>Liguria</option>
-            <option>Lombardia</option>
-            <option>Marche</option>
-            <option>Molise</option>
-            <option>Piemonte</option>
-            <option>Puglia</option>
-            <option>Sardegna</option>
-            <option>Sicilia</option>
-            <option>Toscana</option>
-            <option>Trentino-Alto Adige</option>
-            <option>Umbria</option>
-            <option>Valle d'Aosta</option>
-            <option>Veneto</option>
-          </select>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary"><?php echo $linguaAttuale == "en" ? "Apply filter" : "Applica filtro" ?></button>
         </div>
-        <div class="mb-3">
-          <label for="formato" class="form-label"><?php echo $linguaAttuale == "en" ? "Bottle size" : "Formato" ?></label>
-          <select multiple class="form-select" id="formato">
-            <option>0.375L</option>
-            <option>0.5L</option>
-            <option>0.75L</option>
-            <option>1L</option>
-            <option>1.5L</option>
-          </select>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary"><?php echo $linguaAttuale == "en" ? "Apply filter" : "Applica filtro" ?></button>
-      </div>
+      </form>
     </div>
   </div>
 </div>
@@ -141,51 +146,66 @@ $wines = $db->getAllVini( $lingua, $pmin, $pmax, $prov, $friz, $tona, $dime, $or
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi Modale ordinamento"></button>
       </div>
-      
       <form method="GET" action="">
+        <?php
+        $queryParams = $_GET;
+        unset($queryParams['sort']);
+        foreach ($queryParams as $key => $value): ?>
+            <input type="hidden" name="<?php echo htmlspecialchars($key); ?>" value="<?php echo htmlspecialchars($value); ?>">
+        <?php endforeach; ?>
+        
         <div class="modal-body">
-          <h6><?php echo $linguaAttuale == "en" ? "Price" : "Prezzo"; ?></h6>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="sort" id="priceAsc" value="ascPrice"
-              <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'ascPrice') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="priceAsc">
-              <?php echo $linguaAttuale == "en" ? "Ascending" : "Crescente"; ?>
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="sort" id="priceDesc" value="descPrice"
-              <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'descPrice') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="priceDesc">
-              <?php echo $linguaAttuale == "en" ? "Descending" : "Decrescente"; ?>
-            </label>
-          </div>
+            <h6><?php echo $linguaAttuale == "en" ? "Price" : "Prezzo"; ?></h6>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sort" id="priceAsc" value="ascPrice"
+                  <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'ascPrice') ? 'checked' : ''; ?>>
+                <label class="form-check-label" for="priceAsc">
+                  <?php echo $linguaAttuale == "en" ? "Ascending" : "Crescente"; ?>
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sort" id="priceDesc" value="descPrice"
+                  <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'descPrice') ? 'checked' : ''; ?>>
+                <label class="form-check-label" for="priceDesc">
+                  <?php echo $linguaAttuale == "en" ? "Descending" : "Decrescente"; ?>
+                </label>
+            </div>
         </div>
-
+        
         <div class="modal-body">
-          <h6><?php echo $linguaAttuale == "en" ? "Bottle size" : "Formato"; ?></h6>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="sort" id="FormatAsc" value="ascFormato"
-              <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'ascFormato') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="FormatAsc">
-              <?php echo $linguaAttuale == "en" ? "Ascending" : "Crescente"; ?>
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="sort" id="FormatDesc" value="descFormato"
-              <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'descFormato') ? 'checked' : ''; ?>>
-            <label class="form-check-label" for="FormatDesc">
-              <?php echo $linguaAttuale == "en" ? "Descending" : "Decrescente"; ?>
-            </label>
-          </div>
+            <h6><?php echo $linguaAttuale == "en" ? "Bottle size" : "Formato"; ?></h6>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sort" id="FormatAsc" value="ascFormato"
+                  <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'ascFormato') ? 'checked' : ''; ?>>
+                <label class="form-check-label" for="FormatAsc">
+                  <?php echo $linguaAttuale == "en" ? "Ascending" : "Crescente"; ?>
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sort" id="FormatDesc" value="descFormato"
+                  <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'descFormato') ? 'checked' : ''; ?>>
+                <label class="form-check-label" for="FormatDesc">
+                  <?php echo $linguaAttuale == "en" ? "Descending" : "Decrescente"; ?>
+                </label>
+            </div>
         </div>
-
+        
+        <?php
+            // Ricostruisci l'URL senza il parametro 'sort'
+            $queryParams = $_GET;
+            unset($queryParams['sort']);
+            $resetUrl = strtok($_SERVER["REQUEST_URI"], '?');
+            if (!empty($queryParams)) {
+                $resetUrl .= '?' . http_build_query($queryParams);
+            }
+        ?>
         <div class="modal-footer">
-          <a href="<?php echo strtok($_SERVER["REQUEST_URI"], '?'); ?>" class="btn btn-danger me-auto">
-            <?php echo $linguaAttuale == "en" ? "Reset sorting" : "Resetta ordinamento"; ?>
-          </a>
-          <button type="submit" class="btn btn-primary">
-            <?php echo $linguaAttuale == "en" ? "Apply sorting" : "Applica ordinamento"; ?>
-          </button>
+            <a href="<?php echo htmlspecialchars($resetUrl); ?>" class="btn btn-danger me-auto">
+                <?php echo $linguaAttuale == "en" ? "Reset sorting" : "Resetta ordinamento"; ?>
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <?php echo $linguaAttuale == "en" ? "Apply sorting" : "Applica ordinamento"; ?>
+            </button>
         </div>
       </form>
     </div>
