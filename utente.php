@@ -38,6 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
+$nPrefs = $db->getNumberPrefs($_SESSION["email"]);
+numberOfPrefs($nPrefs[0]["numero_occorrenze"]);
+
 $templateParams["titolo"] = "Profilo utente";
 $templateParams["nome"] = "utente-template.php";
 $templateParams["mainClasses"] = "";

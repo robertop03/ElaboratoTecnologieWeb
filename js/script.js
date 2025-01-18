@@ -192,3 +192,56 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   })
 })
+
+function addFavorite(wineId, element) {
+  fetch("aggiorna-preferiti.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ wineId: wineId, action: "add" }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        console.log(`Wine ID ${wineId} added to favorites.`)
+        // Aggiorna l'icona del cuore
+        element.classList.remove("bi-heart")
+        element.classList.add("bi-heart-fill", "text-danger")
+        element.setAttribute("onclick", `removeFavorite('${wineId}', this)`)
+      } else {
+        console.error("Error adding favorite:", data.message)
+      }
+    })
+    .catch((error) => console.error("Error:", error))
+}
+
+function removeFavorite(wineId, element) {
+  // Mostra il modale di conferma
+  const confirmRemoveModal = new bootstrap.Modal(document.getElementById("confirmRemoveModal"))
+  const confirmRemoveButton = document.getElementById("confirmRemoveButton")
+
+  // Configura il pulsante del modale
+  confirmRemoveButton.onclick = () => {
+    fetch("aggiorna-preferiti.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ wineId: wineId, action: "remove" }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          console.log(`Wine ID ${wineId} removed from favorites.`)
+          // Aggiorna l'icona del cuore
+          element.classList.remove("bi-heart-fill", "text-danger")
+          element.classList.add("bi-heart")
+          element.setAttribute("onclick", `addFavorite('${wineId}', this)`)
+        } else {
+          console.error("Error removing favorite:", data.message)
+        }
+      })
+      .catch((error) => console.error("Error:", error))
+
+    confirmRemoveModal.hide()
+  }
+
+  confirmRemoveModal.show()
+}

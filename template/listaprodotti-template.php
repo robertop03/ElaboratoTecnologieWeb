@@ -1,48 +1,3 @@
-<?php
-/*************************************************
- * Legge i filtri di GET per:
- *  - pmin, pmax
- *  - prov (Provenienza)
- *  - friz (Frizzantezza)
- *  - tona (Tonalità)
- *  - dime (Capacita_Bottiglia)
- *  - sort (ascPrice, descPrice, ascFormato, descFormato)
- * e mostra i vini usando il template fornito.
- *************************************************/
-
-// 1. Lettura dei parametri GET con fallback ai default
-$pmin  = isset($_GET['pmin'])  ? (float) $_GET['pmin']  : 0; // Prezzo minimo
-$pmax  = isset($_GET['pmax'])  ? (float) $_GET['pmax']  : 10000; // Prezzo massimo
-$prov  = isset($_GET['prov'])  ? $_GET['prov']         : '%'; // Provenienza
-$friz  = isset($_GET['friz'])  ? $_GET['friz']         : '%'; // Frizzantezza
-$tona  = isset($_GET['tona'])  ? $_GET['tona']         : '%'; // Tonalità
-$dime  = isset($_GET['dime'])  ? $_GET['dime']         : '%'; // Capacità bottiglia
-$sort  = isset($_GET['sort'])  ? $_GET['sort']         : ''; // Ordinamento
-
-// 1 = italiano, 2 = inglese
-$lingua = ($linguaAttuale === "en") ? 2 : 1;
-
-
-switch ($sort) {
-  case 'ascPrice':
-    $ordine = "price_asc";           
-    break;
-  case 'descPrice':
-    $ordine = "price_desc";
-    break;
-  case 'ascFormato':
-    $ordine = "cap_asc";
-    break;
-  case 'descFormato':
-    $ordine = "cap_desc";
-    break;
-  default:
-    $ordine = ""; // Nessun ordinamento
-    break;
-}
-
-$wines = $db->getAllVini( $lingua, $pmin, $pmax, $prov, $friz, $tona, $dime, $ordine ); ?>
-
 <div class="d-flex justify-content-center gap-3">
   <button class="btn btn-dark text-white mb-3 btn-lg w-100" data-bs-toggle="modal" data-bs-target="#filterModal">
     <?php echo $linguaAttuale == "en" ? "Filter" : "Filtra" ?>
@@ -218,12 +173,12 @@ $wines = $db->getAllVini( $lingua, $pmin, $pmax, $prov, $friz, $tona, $dime, $or
   <?php foreach ($wines as $vino): ?>
   <div class="col">
     <a href="prodotto.php?id=<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>">
-    <div class="card h-100 text-center">
-      <img src="<?php echo "resources/img/".htmlspecialchars($vino['Foto'] ?? 'vino_generic.jpg'); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>" />
-      <div class="card-body">
-        <h5 class="card-title">
-          <?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>
-        </h5>
+      <div class="card h-100 text-center">
+        <img src="<?php echo "resources/img/".htmlspecialchars($vino['Foto'] ?? 'vino_generic.jpg'); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>" />
+        <div class="card-body">
+          <h5 class="card-title">
+            <?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>
+          </h5>
         <p class="fs-6 mb-0">
           <?php echo htmlspecialchars($vino['Provenienza'])." - ".htmlspecialchars($vino['Tonalita']);?>
         </p>
@@ -232,20 +187,45 @@ $wines = $db->getAllVini( $lingua, $pmin, $pmax, $prov, $friz, $tona, $dime, $or
         </p>
         <p class="card-text fw-bold">
           <?php 
-                echo number_format($vino['Prezzo'], 2, ',', '.')."€"; 
-              ?>
+              echo number_format($vino['Prezzo'], 2, ',', '.')."€"; 
+            ?>
         </p>
       </div>
       <div class="card-footer bg-white border-0">
         <button class="btn-custom me-2">
           <span class="bi bi-cart text-dark" role="img" aria-label="icona carrello"></span>
         </button>
-        <button class="btn-custom">
-          <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"></span>
-        </button>
+    </a>
+      <button class="btn-custom">
+        <?php $isPref = $db->checkVinoPreferito($_SESSION['email'], $vino['ID_Prodotto']); ?>
+        <?php if ($isPref[0]["is_favorite"] != 0): ?>
+          <span class="bi bi-heart-fill text-dark" role="img" aria-label="icona cuore pieno"
+          onclick="removeFavorite('<?php echo $vino['ID_Prodotto']; ?>', this)"></span>
+        <?php else: ?>
+          <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"
+          onclick="addFavorite('<?php echo $vino['ID_Prodotto']; ?>', this)"></span>
+        <?php endif; ?>
+      </button>
+        <div class="modal fade" id="confirmRemoveModal" tabindex="-1" aria-labelledby="confirmRemoveLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirmRemoveLabel"><?php echo $linguaAttuale == "en" ? "Remove Favorite" : "Rimuovi Preferito"; ?></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <?php echo $linguaAttuale == "en" ? "Are you sure you want to remove this product from your favorites?" : "Sei sicuro di voler rimuovere questo prodotto dai preferiti?"; ?>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Cancel" : "Annulla"; ?></button>
+                <button type="button" class="btn btn-danger" id="confirmRemoveButton"><?php echo $linguaAttuale == "en" ? "Remove" : "Rimuovi"; ?></button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    </a>
+    
   </div>
   <?php endforeach; ?>
   <?php else: ?>

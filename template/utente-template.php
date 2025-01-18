@@ -41,13 +41,17 @@
     </li>
 
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
-      <a href="#" class="text-decoration-none text-dark w-100">
+      <a href="listaprodotti.php?prefs" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
-          <span class="fw-bold" data-bs-toggle="modal" data-bs-target=".address-modal"><?php echo $linguaAttuale == "en" ? "Favourites" : "Preferiti" ?></span>
-          <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have no favourites" : "Non hai preferiti" ?></span>
+          <span class="fw-bold" ><?php echo $linguaAttuale == "en" ? "Favourites" : "Preferiti" ?></span>
+          <?php if($_SESSION["nPrefs"] === 0): ?>
+            <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have no favourites" : "Non hai preferiti" ?></span>
+          <?php else: ?>
+            <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You currently have " . $_SESSION['nPrefs'] . " favourites" : "Al momento hai " . $_SESSION['nPrefs'] . " preferiti" ?></span>
+          <?php endif; ?>
         </div>
       </a>
-      <a href="" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span></a>
+      <a href="listaprodotti.php?prefs" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span></a>
     </li>
 
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
@@ -283,7 +287,7 @@
 
       </div>
     </div>
-    <a href="" class="mt-3 text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "see all" : "vedi tutti" ?></a>
+    <a href="listaprodotti.php?prefs" class="mt-3 text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "see all" : "vedi tutti" ?></a>
   </div>
 
   <!-- Sezione Notifiche -->

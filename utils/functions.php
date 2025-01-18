@@ -17,4 +17,8 @@ function actualProduct($id){
     $_SESSION["id"] = $id;
 }
 
+function numberOfPrefs($nPrefs){
+    $_SESSION["nPrefs"] = $nPrefs;
+}
+
 ?>

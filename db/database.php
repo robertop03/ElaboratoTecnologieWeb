@@ -430,7 +430,8 @@ class VinoDatabase {
             GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END) AS Provenienza,
             GROUP_CONCAT(CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END) AS Capacita_Bottiglia,
             TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
-            TESTO_PRODOTTO.Descrizione
+            TESTO_PRODOTTO.Descrizione,
+            PRODOTTO.Foto
         FROM 
             PRODOTTO
         JOIN 
@@ -679,6 +680,37 @@ class VinoDatabase {
 
         $params = [
             ':email' => $email
+        ];
+
+        return $this->executeQuery($query, $params);
+    }
+
+    // funzione che conta il numero di preferiti di un utente
+    public function getNumberPrefs($email){
+        $query = "
+           SELECT COUNT(*) AS numero_occorrenze
+           FROM preferisce
+           WHERE email = :email;
+        ";
+
+        $params = [
+            ':email' => $email
+        ];
+
+        return $this->executeQuery($query, $params);
+    }
+
+    // funzione per controllare se quel vino è preferito dall'utente
+    public function checkVinoPreferito($email, $id){
+        $query = "
+           SELECT COUNT(*) AS is_favorite
+           FROM preferisce
+            WHERE email = :email AND id_prodotto = :id;
+        ";
+
+        $params = [
+            ':email' => $email,
+            ':id' => $id
         ];
 
         return $this->executeQuery($query, $params);
