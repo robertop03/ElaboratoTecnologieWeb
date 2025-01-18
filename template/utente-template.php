@@ -248,6 +248,7 @@
     <div class="col-12">
       <h4><?php echo $linguaAttuale == "en" ? "Favourites" : "Preferiti" ?></h4>
       <div class="d-flex overflow-auto gap-3">
+      <?php if($_SESSION["nPrefs"] != 0): ?>
         <?php for ($i = 0; $i < min(3, count($prefs)); $i++): ?>
           <?php $vino = $prefs[$i]; ?>
           <div class="flex-shrink-0">
@@ -272,6 +273,9 @@
             </a>
           </div>
         <?php endfor; ?>
+          <?php else: ?>
+            <p><?php echo $linguaAttuale == "en" ? "currently, you have no favorites" : "attualmente non hai preferiti" ?></p>
+        <?php endif; ?>
       </div>
     </div>
     <a href="listaprodotti.php?prefs" class="mt-3 text-decoration-none border-bottom pb-1">
