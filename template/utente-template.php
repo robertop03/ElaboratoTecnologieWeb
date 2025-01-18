@@ -247,48 +247,38 @@
   <div class="row mb-4">
     <div class="col-12">
       <h4><?php echo $linguaAttuale == "en" ? "Favourites" : "Preferiti" ?></h4>
-      <div class="d-flex overflow-auto">
-        
-        <div class="col-md-4">
-          <div class="card me-3">
-            <img src="resources/img/foto1.jpg" alt="Château Fleur Haut Gaussens" />
-            <div class="card-body text-center">
-              <p>Château Fleur Haut Gaussens</p>
-              <p>12,90€</p>
-              <span class="bi bi-cart-plus text-dark pe-2" role="img" aria-label="icona aggiungi al carrello"></span>
-              <span class="bi bi-heart-fill text-dark ps-2" role="img" aria-label="icona cuore pieno"></span>
-            </div>
+      <div class="d-flex overflow-auto gap-3">
+        <?php for ($i = 0; $i < min(3, count($prefs)); $i++): ?>
+          <?php $vino = $prefs[$i]; ?>
+          <div class="flex-shrink-0">
+            <a href="prodotto.php?id=<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>" class="text-decoration-none">
+              <div class="card h-100 text-center">
+                <img src="<?php echo "resources/img/".htmlspecialchars($vino['Foto'] ?? 'vino_generic.jpg'); ?>" alt="<?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>" />
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>
+                  </h5>
+                  <p class="fs-6 mb-0">
+                    <?php echo htmlspecialchars($vino['Provenienza'])." - ".htmlspecialchars($vino['Tonalita']); ?>
+                  </p>
+                  <p class="fs-6">
+                    <?php echo htmlspecialchars($vino['Capacita_Bottiglia']); ?>
+                  </p>
+                  <p class="card-text fw-bold">
+                    <?php echo number_format($vino['Prezzo'], 2, ',', '.')."€"; ?>
+                  </p>
+                </div>
+              </div>
+            </a>
           </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card me-3">
-            <img src="resources/img/foto2.jpg" alt="Sottimano" />
-            <div class="card-body text-center">
-              <p>Sottimano</p>
-              <p>19,90€</p>
-              <span class="bi bi-cart-plus text-dark pe-2" role="img" aria-label="icona aggiungi al carrello"></span>
-              <span class="bi bi-heart-fill text-dark ps-2" role="img" aria-label="icona cuore pieno"></span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card">
-            <img src="resources/img/foto3.jpg" alt="Mazoni Campi" />
-            <div class="card-body text-center">
-              <p>Mazoni Campi</p>
-              <p>14,90€</p>
-              <span class="bi bi-cart-plus text-dark pe-2" role="img" aria-label="icona aggiungi al carrello"></span>
-              <span class="bi bi-heart-fill text-dark ps-2" role="img" aria-label="icona cuore pieno"></span>
-            </div>
-          </div>
-        </div>
-
+        <?php endfor; ?>
       </div>
     </div>
-    <a href="listaprodotti.php?prefs" class="mt-3 text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "see all" : "vedi tutti" ?></a>
+    <a href="listaprodotti.php?prefs" class="mt-3 text-decoration-none border-bottom pb-1">
+      <?php echo $linguaAttuale == "en" ? "see all" : "vedi tutti" ?>
+    </a>
   </div>
+
 
   <!-- Sezione Notifiche -->
   <div class="row mb-4">

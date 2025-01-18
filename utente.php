@@ -41,6 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 $nPrefs = $db->getNumberPrefs($_SESSION["email"]);
 numberOfPrefs($nPrefs[0]["numero_occorrenze"]);
 
+$prefs = $db->getViniPreferiti($linguaAttuale === "it" ? 1 : 2, $_SESSION["email"]);
+
+
 $templateParams["titolo"] = "Profilo utente";
 $templateParams["nome"] = "utente-template.php";
 $templateParams["mainClasses"] = "";

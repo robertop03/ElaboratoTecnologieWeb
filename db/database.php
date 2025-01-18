@@ -704,8 +704,6 @@ class VinoDatabase {
         
         return $stmt->fetchColumn();
     }
-    
-
 
     // funzione che conta il numero di preferiti di un utente
     public function getNumberPrefs($email){
