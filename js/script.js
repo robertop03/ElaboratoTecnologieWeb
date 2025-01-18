@@ -1,23 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Codice per mostrare o nascondere le password nei vari form
   document.querySelectorAll(".toggle-password").forEach((button) => {
-    button.addEventListener("click", function () {
+    button.onclick = function () {
       const input = this.parentElement.querySelector("input")
       if (input.type === "password") {
         input.type = "text"
-        this.innerHTML = '<span class="bi bi-eye-slash" role="img" aria-label="icona occhio mostra passsword"></span>'
+        this.innerHTML = '<span class="bi bi-eye-slash" role="img" aria-label="icona occhio mostra password"></span>'
       } else {
         input.type = "password"
-        this.innerHTML = '<span class="bi bi-eye" role="img" aria-label="icona occhio mostra passsword"></span>'
+        this.innerHTML = '<span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>'
       }
-    })
+    }
   })
 
   // Codice per il cambio di lingua nella navbar
   const dropdownMenu = document.querySelector(".dropdown .dropdown-toggle")
   const dropdownItems = document.querySelectorAll(".dropdown-menu .dropdown-item")
   dropdownItems.forEach((item) => {
-    item.addEventListener("click", function (event) {
+    item.onclick = function () {
       const selectedImage = this.querySelector("img").src
       const selectedText = this.textContent.trim()
 
@@ -26,26 +26,26 @@ document.addEventListener("DOMContentLoaded", function () {
       dropdownMenu.textContent = "" // Pulisci il contenuto del pulsante
       dropdownMenu.appendChild(dropdownImg) // Aggiungi l'immagine
       dropdownMenu.append(" " + selectedText) // Aggiungi il testo
-    })
+    }
   })
 
   // Codice per i pulsanti quantità nella pagina prodotto
   const quantityInput = document.querySelector('input[type="number"]')
   const buttons = document.querySelectorAll(".btn-outline-secondary")
   if (quantityInput && buttons.length >= 2) {
-    buttons[0].addEventListener("click", function () {
+    buttons[0].onclick = function () {
       const currentValue = parseInt(quantityInput.value, 10)
       if (currentValue > 1) {
         quantityInput.value = currentValue - 1
       }
-    })
+    }
 
-    buttons[1].addEventListener("click", function () {
+    buttons[1].onclick = function () {
       const currentValue = parseInt(quantityInput.value, 10)
       if (currentValue < 1000) {
         quantityInput.value = currentValue + 1
       }
-    })
+    }
   }
 
   // CODICE PER I MODALI DELLE NOTIFICHE
@@ -101,37 +101,40 @@ document.addEventListener("DOMContentLoaded", function () {
     const targetModal = document.querySelector(targetModalId)
 
     if (targetModal) {
-      trigger.addEventListener("click", (event) => {
+      trigger.onclick = function (event) {
         event.preventDefault() // Per evitare che il link href="#" scorra verso l'alto
-      })
-      targetModal.addEventListener("hide.bs.modal", () => {
+      }
+      targetModal.onhide = function () {
         // Rimuovi il focus dall'elemento attivo
         if (document.activeElement) {
           document.activeElement.blur()
         }
-      })
+      }
     }
   })
 
   // CODICE PER IL RANGE PREZZO NEL FILTRAGGIO
-  document.querySelectorAll(".form-range").forEach((slider, index, sliders) => {
-    const badges = document.querySelectorAll(".badge")
+  const sliders = document.querySelectorAll(".form-range")
+  const badges = document.querySelectorAll(".badge")
+  if (sliders.length >= 2 && badges.length >= 2) {
     const minSlider = sliders[0]
     const maxSlider = sliders[1]
 
-    slider.addEventListener("input", () => {
-      const minValue = parseInt(minSlider.value)
-      const maxValue = parseInt(maxSlider.value)
+    sliders.forEach((slider) => {
+      slider.oninput = function () {
+        const minValue = parseInt(minSlider.value, 10)
+        const maxValue = parseInt(maxSlider.value, 10)
 
-      // Sincronizza il valore del badge
-      badges[0].textContent = `Min: ${minValue}€`
-      badges[1].textContent = `Max: ${maxValue}€`
+        // Sincronizza il valore del badge
+        badges[0].textContent = `Min: ${minValue}€`
+        badges[1].textContent = `Max: ${maxValue}€`
 
-      // Impedisce la sovrapposizione dei pallini
-      if (minValue >= maxValue) minSlider.value = maxValue - 1
-      if (maxValue <= minValue) maxSlider.value = minValue + 1
+        // Impedisce la sovrapposizione dei pallini
+        if (minValue >= maxValue) minSlider.value = maxValue - 1
+        if (maxValue <= minValue) maxSlider.value = minValue + 1
+      }
     })
-  })
+  }
 
   // CODICE PER INTERATTIVITA' MAPPA
   const tooltip = document.createElement("div")
@@ -164,11 +167,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       regions.forEach((region) => {
         // Evento click per selezionare una regione
-        region.addEventListener("click", () => {
+        region.onclick = function () {
           const regionName = region.getAttribute("title") || region.getAttribute("data-name") || region.id || "Regione non definita"
           const url = `listaprodotti.php?prov=${encodeURIComponent(regionName)}`
           window.location.href = url
-        })
+        }
       })
     } catch (error) {
       console.error("Errore durante il caricamento dei path:", error)

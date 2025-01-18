@@ -6,13 +6,13 @@
     <p><?php echo $linguaAttuale == "en" ? "Discover our best-selling products, chosen by our customers. Join them and try these amazing labels yourself!" : "Scopri i nostri prodotti più venduti, scelti dai nostri clienti. Unisciti a loro e prova anche tu queste fantastiche etichette!" ?></p>
     <div class="carousel-inner text-center">
       <div class="carousel-item active">
-        <img src="resources/img/vino1.jpg" alt="Vino 1" class="d-block w-100" />
+        <img src="resources/img/foto1.jpg" alt="Vino 1" class="d-block w-100" />
       </div>
       <div class="carousel-item">
-        <img src="resources/img/vino2.jpg" alt="Vino 2" class="d-block w-100" />
+        <img src="resources/img/foto2.jpg" alt="Vino 2" class="d-block w-100" />
       </div>
       <div class="carousel-item">
-        <img src="resources/img/vino3.jpg" alt="Vino 3" class="d-block w-100" />
+        <img src="resources/img/foto3.jpg" alt="Vino 3" class="d-block w-100" />
       </div>
     </div>
 
