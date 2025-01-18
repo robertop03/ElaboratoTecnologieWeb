@@ -197,13 +197,18 @@
         </button>
     </a>
       <button class="btn-custom">
-        <?php $isPref = $db->checkVinoPreferito($_SESSION['email'], $vino['ID_Prodotto']); ?>
+        <?php $isPref = $db->checkVinoPreferito(isset($_SESSION['email']) ? $_SESSION['email'] : "", $vino['ID_Prodotto']); ?>
         <?php if ($isPref[0]["is_favorite"] != 0): ?>
           <span class="bi bi-heart-fill text-dark" role="img" aria-label="icona cuore pieno"
           onclick="removeFavorite('<?php echo $vino['ID_Prodotto']; ?>', this)"></span>
         <?php else: ?>
+          <?php if(isset($_SESSION['email'])): ?>
           <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"
           onclick="addFavorite('<?php echo $vino['ID_Prodotto']; ?>', this)"></span>
+          <?php else: ?>
+            <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"
+            onclick="window.location.href='login.php';"></span>
+          <?php endif; ?>
         <?php endif; ?>
       </button>
         <div class="modal fade" id="confirmRemoveModal" tabindex="-1" aria-labelledby="confirmRemoveLabel" aria-hidden="true">

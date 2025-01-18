@@ -3,13 +3,18 @@
     <div class="col-12 col-md-6 text-center position-relative">
       <img src="resources/img/<?php echo $vino[0]["Foto"] ?>" alt="<?php echo $vino[0]["Titolo_Prodotto"] ?>" class="img-fluid rounded shadow product"/>
       <button class="btn btn-light position-absolute top-0 end-0 m-2 border rounded-circle">
-      <?php $isPref = $db->checkVinoPreferito($_SESSION['email'], $vino[0]['ID_Prodotto']); ?>
+      <?php $isPref = $db->checkVinoPreferito(isset($_SESSION['email']) ? $_SESSION['email'] : "", $vino[0]['ID_Prodotto']); ?>
         <?php if ($isPref[0]["is_favorite"] != 0): ?>
           <span class="bi bi-heart-fill text-dark" role="img" aria-label="icona cuore pieno"
           onclick="removeFavorite('<?php echo $vino[0]['ID_Prodotto']; ?>', this)"></span>
         <?php else: ?>
+          <?php if(isset($_SESSION['email'])): ?>
           <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"
           onclick="addFavorite('<?php echo $vino[0]['ID_Prodotto']; ?>', this)"></span>
+          <?php else: ?>
+            <span class="bi bi-heart text-dark" role="img" aria-label="icona cuore"
+            onclick="window.location.href='login.php';"></span>
+          <?php endif; ?>
         <?php endif; ?>
       </button>
     </div>

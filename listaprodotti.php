@@ -43,7 +43,7 @@ switch ($sort) {
 }
 
 if(isset($_GET['prefs'])){
-    $wines = $db->getViniPreferiti($linguaAttuale === "it" ? 1 : 2, $_SESSION["email"]);
+    $wines = $db->getViniPreferiti($lingua, $_SESSION["email"]);
     $nPrefs = $db->getNumberPrefs($_SESSION["email"]);
     numberOfPrefs($nPrefs[0]["numero_occorrenze"]);
 }else{
