@@ -604,12 +604,33 @@ class VinoDatabase {
                 Data, 
                 Stato
             FROM ORDINE
+            ORDER BY Data DESC
         ";
     
         $params = [];
     
         // Esegui la query con la funzione interna executeQuery
         return $this->executeQuery($query, $params);
+    }
+
+    //funzione che restituisce gli ordini con limite e offset per impaginazione
+    public function getOrdersPaginated($limit, $offset) {
+            $sql = "
+            SELECT *
+            FROM ORDINE
+            ORDER BY Data DESC
+            LIMIT :limit OFFSET :offset
+        ";
+
+        // Invece di passare $params a executeQuery, fai il bind manuale degli int
+        $stmt = $this->pdo->prepare($sql);
+
+        // bindValue con PDO::PARAM_INT
+        $stmt->bindValue(':limit',  (int)$limit,  PDO::PARAM_INT);
+        $stmt->bindValue(':offset', (int)$offset, PDO::PARAM_INT);
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
     // funzione per ottenere il nome e cognome dell'utente loggato se presenti
@@ -689,7 +710,7 @@ class VinoDatabase {
     public function getUsersCount() {
         $query = "SELECT COUNT(*) AS total FROM UTENTE WHERE admin IS NULL";
     
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($query);
         $stmt->execute();
     
         // Ritorna il numero di utenti senza il campo admin impostato
@@ -720,6 +741,24 @@ class VinoDatabase {
         return $this->executeQuery($query, $params);
     }
 
+    //funzione che returna il numero di ordini da evadere
+    public function getOrdersUnshipped() {
+        $query = "SELECT COUNT(*) AS total_ordini FROM ORDINE WHERE Stato = 0";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+    
+        return $stmt->fetchColumn();
+    }
+
+    //funzione che returna il numero totale di bottiglie presenti in magazzino
+    public function getTotalBottleCount() {
+        $query = "SELECT SUM(Quantita_Magazzino) FROM PRODOTTO";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+    
+        return (int) $stmt->fetchColumn();
+    }
+
     // funzione per controllare se quel vino è preferito dall'utente
     public function checkVinoPreferito($email, $id){
         $query = "
@@ -748,5 +787,63 @@ class VinoDatabase {
 
         return $this->executeQuery($query, $params);
     }
+
+    //funzione per ottenere dettagli ordine
+    public function getOrderInfo($idOrdine) {
+        $query = "
+            SELECT 
+                O.ID_Ordine,
+                O.Data,
+                O.Stato,
+                O.Email,
+                I.Via,
+                I.Numero_Civico,
+                I.CAP,
+                I.Citta,
+                I.Paese,
+                M.Numero_Carta,
+                M.mese_scadenza,
+                M.anno_scadenza
+            FROM ORDINE O
+            LEFT JOIN INDIRIZZO I 
+                   ON O.ID_Indirizzo = I.ID_Indirizzo
+            LEFT JOIN METODO_PAGAMENTO M
+                   ON O.ID_Metodo = M.ID_Metodo
+            WHERE O.ID_Ordine = :id
+        ";
+    
+        $params = [
+            ':id' => $idOrdine
+        ];
+    
+        $result = $this->executeQuery($query, $params);
+        return isset($result[0]) ? $result[0] : null;
+    }
+
+    //funzione per ottenere gli item di un ordine
+    public function getOrderItems($idOrdine) {
+        $query = "
+            SELECT 
+                P.ID_Prodotto,
+                TP.Titolo,
+                P.Prezzo,
+                C.Quantità
+            FROM COMPONE C
+            JOIN PRODOTTO P ON C.ID_Prodotto = P.ID_Prodotto
+            JOIN TESTO_PRODOTTO TP ON P.ID_Prodotto = TP.ID_Prodotto
+            WHERE C.ID_Ordine = :id
+              AND TP.Lingua = 1
+        ";
+    
+        $params = [
+            ':id' => $idOrdine
+        ];
+    
+        return $this->executeQuery($query, $params);
+    }
+    
+    
+
+
 }
 ?>

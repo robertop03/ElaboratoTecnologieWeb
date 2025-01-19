@@ -21,7 +21,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link text-white" href="page2.php">Page 2</a>
+                <a class="nav-link text-white" href="OrderManager.php">Orders</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="page3.php">Page 3</a>
@@ -49,8 +49,7 @@
 
     <!-- MAIN SECTION -->
     <main class="flex-grow-1">
-      <div class="container mt-5 pt-4">
-        <h1 class="text-center">Dashboard Operatore</h1>
+      <div class="container">
         <?php require($templateParams["nome"]); ?>
       </div>
     </main>
