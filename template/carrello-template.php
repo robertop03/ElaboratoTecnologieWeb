@@ -8,7 +8,9 @@
 
   <!-- Bottone per rimuovere tutti i prodotti -->
   <button id="clear-cart" class="clear-cart" aria-label="Elimina tutti i prodotti">
-    <span class="bi bi-trash fs-5 ms-3 mb-3" aria-label="Elimina tutti i prodotti"><?php echo $linguaAttuale == "en" ? "Delete all products" : "Elimina tutti i prodotti" ?></span>
+    <span class="bi bi-trash fs-5 ms-3 mb-3" aria-label="Elimina tutti i prodotti">
+      <?php echo $linguaAttuale == "en" ? "Delete all products" : "Elimina tutti i prodotti" ?>
+    </span>
   </button>
 </section>
 
@@ -18,14 +20,16 @@
     <h2><?php echo $linguaAttuale == "en" ? "Your shopping bag is empty" : "La tua shopping bag è vuota" ?></h2>
     <img src="resources/img/emptyCart.svg" alt="Carrello vuoto" />
     <p><?php echo $linguaAttuale == "en" ? "You haven't added any products to your bag yet!" : "Non hai ancora aggiunto nessun prodotto alla tua bag!" ?></p>
-    <button class="btn btn-dark mt-2" onclick="window.location.href='listaprodotti.php'"><?php echo $linguaAttuale == "en" ? "Start the shopping" : "Inizia lo shopping" ?></button>
+    <button class="btn btn-dark mt-2" onclick="window.location.href='listaprodotti.php'">
+      <?php echo $linguaAttuale == "en" ? "Start the shopping" : "Inizia lo shopping" ?>
+    </button>
   </div>
 
   <!-- CARRELLO CON PRODOTTI -->
   <div id="cart-full" class="cart-state full">
     <h2><?php echo $linguaAttuale == "en" ? "Your shopping bag" : "La tua shopping bag" ?></h2>
     <ul id="cart-items">
-      <!-- Aggiornati dinamicamente (cart.js) -->
+      <!-- Gli elementi saranno caricati dinamicamente da cart.js -->
     </ul>
   </div>
 
@@ -40,7 +44,14 @@
       <span><?php echo $linguaAttuale == "en" ? "Shipping:" : "Spedizione:" ?></span>
       <strong id="shipping-price">€0,00</strong>
     </div>
-    <div class="total"><?php echo $linguaAttuale == "en" ? "Total:" : "Totale:" ?> <strong id="total-price">€0,00</strong> </div>
-    <button class="btn btn-dark w-100 mt-2" id="checkout-button" onclick="window.location.href='checkout.php'"><?php echo $linguaAttuale == "en" ? "Proceed to checkout" : "Procedi al checkout:" ?> </button>
+    <div class="total">
+      <?php echo $linguaAttuale == "en" ? "Total:" : "Totale:" ?>
+      <strong id="total-price">€0,00</strong>
+    </div>
+    <button class="btn btn-dark w-100 mt-2" id="checkout-button" onclick="window.location.href='checkout.php'">
+      <?php echo $linguaAttuale == "en" ? "Proceed to checkout" : "Procedi al checkout" ?>
+    </button>
   </aside>
 </div>
+
+<script src="js/cart.js?v=1"></script>
