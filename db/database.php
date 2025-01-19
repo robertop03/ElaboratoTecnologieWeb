@@ -845,5 +845,17 @@ class VinoDatabase {
     
 
 
+    // funzione che restituisce il numero di notifiche ancora da leggere di un utente
+    public function getNumeroNotificheNonLette($email){
+        $query = "
+        SELECT COUNT(ID_NOTIFICA) FROM Notifica WHERE Email = :email AND Visualizzato = 'N'
+        ";
+
+        $params = [
+            ':email' => $email
+        ];
+
+        return $this->executeQuery($query, $params);
+    }
 }
 ?>
