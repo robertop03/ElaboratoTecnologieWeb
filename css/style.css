@@ -127,14 +127,6 @@ hr.styled-divider {
   margin-right: 10px;
 }
 
-.search-bar input {
-  background-color: transparent;
-  color: white;
-  border: none;
-  outline: none;
-  flex-grow: 1;
-}
-
 /* Placeholder */
 .search-bar input::placeholder {
   color: rgba(255, 255, 255, 0.8);
@@ -279,7 +271,6 @@ footer p {
 .search-bar input {
   border: none;
   background: transparent;
-  color: #800000;
   flex-grow: 1;
   outline: none;
 }

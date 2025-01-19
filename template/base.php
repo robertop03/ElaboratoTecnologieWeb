@@ -45,10 +45,12 @@
           </div>
           <!-- Barra di ricerca Mobile -->
           <div class="d-flex d-md-none mt-2">
-            <div class="search-bar d-flex align-items-center rounded px-3 w-100">
+            <div class="search-bar d-flex align-items-center rounded">
               <span class="bi bi-search" role="img" aria-label="icona lente d'ingrandimento"></span>
-              <label for="search-bar-mobile" class="visually-hidden"><?php echo $linguaAttuale == "en" ? "Search bar" : "Barra di ricerca" ?></label>
-              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="<?php echo $linguaAttuale == "en" ? "Search" : "Cerca" ?>" name="search-bar-mobile" id="search-bar-mobile" />
+              <form action="listaprodotti.php" method="get" class="w-100">
+                <label for="search-bar-mobile" class="visually-hidden"><?php echo $linguaAttuale == "en" ? "Search bar" : "Barra di ricerca" ?></label>
+                <input type="text" class="form-control border-0 bg-transparent text-light" placeholder="<?php echo $linguaAttuale == "en" ? "Search" : "Cerca" ?>" name="q" id="search-bar-mobile" />
+              </form>
             </div>
           </div>
 
@@ -59,10 +61,12 @@
               <img src="resources/img/logoWeb.png" alt="Logo" />
             </a>
             <!-- Barra di ricerca Desktop -->
-            <div class="search-bar d-flex align-items-center rounded px-3">
-              <span class="bi bi-search" role="img" aria-label="icona lente d'ingrandimento"></span>
-              <label for="search-bar-desktop" class="visually-hidden"> <?php echo $linguaAttuale == "en" ? "Search bar" : "Barra di ricerca" ?></label>
-              <input type="text" class="form-control border-0 bg-transparent text-dark" placeholder="<?php echo $linguaAttuale == "en" ? "Search" : "Cerca" ?>" name="search-bar-desktop" id="search-bar-desktop" />
+            <div class="search-bar d-flex align-items-center rounded">
+                <span class="bi bi-search" role="img" aria-label="icona lente d'ingrandimento"></span>
+                <form action="listaprodotti.php" method="get" class="w-100">
+                  <label for="search-bar-desktop" class="visually-hidden"> <?php echo $linguaAttuale == "en" ? "Search bar" : "Barra di ricerca" ?></label>
+                  <input type="text" class="form-control border-0 bg-transparent text-dark w-100" placeholder="<?php echo $linguaAttuale == "en" ? "Search" : "Cerca" ?>" name="q" id="search-bar-desktop" />
+                </form>
             </div>
             <!-- Icone Desktop -->
             <div class="icons-group d-flex align-items-center">
