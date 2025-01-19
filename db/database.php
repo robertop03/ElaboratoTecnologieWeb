@@ -735,5 +735,18 @@ class VinoDatabase {
 
         return $this->executeQuery($query, $params);
     }
+
+    // funzione per prendere le notifiche dato un utente
+    public function getNotifiche($email){
+        $query = "
+        SELECT ID_NOTIFICA, Data, Titolo, Testo, Visualizzato FROM Notifica WHERE Email = :email
+        ";
+
+        $params = [
+            ':email' => $email
+        ];
+
+        return $this->executeQuery($query, $params);
+    }
 }
 ?>

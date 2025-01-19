@@ -1,26 +1,13 @@
 <div class="d-flex flex-column flex-lg-row">
   <!-- Notification List -->
   <div class="list-group flex-lg-shrink-0">
+  <?php foreach ($notifiche as $notifica): ?>
     <a href="#" class="list-group-item list-group-item-action">
       <span class="bi bi-truck me-3" role="img"></span>
-      <span>Aggiornamento spedizione</span>
-      <p class="mb-0 text-muted">La spedizione è arrivata con successo!</p>
+      <span><?php echo htmlspecialchars($notifica["Titolo"]); ?></span>
+      <p class="mb-0 text-muted"><?php echo htmlspecialchars($notifica["Testo"]); ?></p>
     </a>
-    <a href="#" class="list-group-item list-group-item-action">
-      <span class="bi bi-truck me-3" role="img"></span>
-      <span>Aggiornamento spedizione</span>
-      <p class="mb-0 text-muted">L'ordine IT2320P è in arrivo domani!</p>
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">
-      <span class="bi bi-truck me-3" role="img"></span>
-      <span>Aggiornamento spedizione</span>
-      <p class="mb-0 text-muted">La spedizione contenente l'ordine IT2320P è stata effettuata</p>
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">
-      <span class="bi bi-truck me-3" role="img"></span>
-      <span>Ordine effettuato</span>
-      <p class="mb-0 text-muted">Ordine IT2320P effettuato con successo</p>
-    </a>
+    <?php endforeach; ?>
   </div>
 
   <!-- Notification Details -->

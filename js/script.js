@@ -72,16 +72,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (shortContentElement != null) {
       const shortContent = shortContentElement.textContent.trim()
       const titleText = titleElement.textContent.trim()
-      const detailedText = detailedContent[shortContent] || "I dettagli della notifica non sono disponibili."
 
       if (window.innerWidth >= 992) {
         // Modalità Desktop: aggiorna la sidebar
         cardTitle.textContent = titleText
-        cardText.textContent = detailedText
+        cardText.textContent = shortContent
       } else {
         // Modalità Mobile: aggiorna e mostra il modale
         modalTitle.textContent = titleText
-        modalBody.textContent = detailedText
+        modalBody.textContent = shortContent
         const modalInstance = new bootstrap.Modal(notificationModal, { backdrop: true, keyboard: true })
         modalInstance.show()
       }

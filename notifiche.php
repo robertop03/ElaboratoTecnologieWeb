@@ -6,6 +6,8 @@ if (!isset($_SESSION["email"])) {
     exit();
 }
 
+$notifiche = $db->getNotifiche($_SESSION["email"]);
+
 $templateParams["titolo"] = "Notifiche";
 $templateParams["nome"] = "notifiche-template.php";
 $templateParams["mainClasses"] = "flex-grow-1";
