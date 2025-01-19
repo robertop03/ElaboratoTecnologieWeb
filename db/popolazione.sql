@@ -192,7 +192,20 @@ INSERT INTO Preferisce (Email, ID_Prodotto) VALUES
 INSERT INTO ORDINE (ID_Ordine, Data, Stato, ID_Metodo, Email, ID_Indirizzo) VALUES
 ('O1', '2023-10-01', 2, 'M1', 'mario.rossi@example.com', 'I1'),
 ('O2', '2024-12-29', 1, 'M2', 'luigi.bianchi@example.com', 'I3'),
-('O3', '2025-01-02', 0, 'M3', 'luigi.bianchi@example.com', 'I2');
+('O3', '2025-01-02', 0, 'M3', 'luigi.bianchi@example.com', 'I2'),
+('O4', '2023-11-15', 2, 'M1', 'mario.rossi@example.com', 'I1'),
+('O5', '2024-01-20', 1, 'M2', 'luigi.bianchi@example.com', 'I3'),
+('O6', '2024-02-10', 0, 'M3', 'luigi.bianchi@example.com', 'I2'),
+('O7', '2024-03-05', 2, 'M1', 'mario.rossi@example.com', 'I1'),
+('O8', '2024-04-18', 1, 'M2', 'luigi.bianchi@example.com', 'I3'),
+('O9', '2024-05-22', 0, 'M3', 'luigi.bianchi@example.com', 'I2'),
+('O10', '2024-06-30', 2, 'M1', 'mario.rossi@example.com', 'I1'),
+('O11', '2024-07-14', 1, 'M2', 'luigi.bianchi@example.com', 'I3'),
+('O12', '2024-08-19', 0, 'M3', 'luigi.bianchi@example.com', 'I2'),
+('O13', '2024-09-25', 2, 'M1', 'mario.rossi@example.com', 'I1'),
+('O14', '2024-10-10', 1, 'M2', 'luigi.bianchi@example.com', 'I3'),
+('O15', '2024-11-05', 0, 'M3', 'luigi.bianchi@example.com', 'I2'),
+('O16', '2024-12-01', 2, 'M1', 'mario.rossi@example.com', 'I1');
 
 -- Popolamento della tabella Compone
 INSERT INTO Compone (ID_Prodotto, ID_Ordine, Quantità) VALUES
@@ -202,7 +215,34 @@ INSERT INTO Compone (ID_Prodotto, ID_Ordine, Quantità) VALUES
 ('P2', 'O2', 3),
 ('P4', 'O3', 6),
 ('P6', 'O3', 3),
-('P9', 'O3', 1);
+('P9', 'O3', 1),
+('P3', 'O4', 1),
+('P5', 'O4', 2),
+('P7', 'O5', 3),
+('P9', 'O5', 1),
+('P2', 'O6', 4),
+('P4', 'O6', 2),
+('P1', 'O7', 3),
+('P6', 'O7', 1),
+('P8', 'O8', 2),
+('P10', 'O8', 1),
+('P3', 'O9', 3),
+('P5', 'O9', 2),
+('P7', 'O10', 1),
+('P9', 'O10', 2),
+('P2', 'O11', 3),
+('P4', 'O11', 1),
+('P1', 'O12', 2),
+('P6', 'O12', 3),
+('P8', 'O13', 1),
+('P10', 'O13', 2),
+('P3', 'O14', 2),
+('P5', 'O14', 1),
+('P7', 'O15', 3),
+('P9', 'O15', 1),
+('P2', 'O16', 4),
+('P4', 'O16', 2);
+
 
 -- Popolamento della tabella EVENTO
 INSERT INTO EVENTO (ID_Evento, Data_Inizio, Data_Fine, Foto) VALUES

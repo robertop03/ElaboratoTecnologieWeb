@@ -857,5 +857,46 @@ class VinoDatabase {
 
         return $this->executeQuery($query, $params);
     }
+
+    // Funzione per modificare lo stato di un ordine
+    public function modificaStatoOrdine($idOrdine) {
+        // Recupera lo stato attuale dell'ordine
+        $queryGetStato = "
+            SELECT Stato 
+            FROM ORDINE 
+            WHERE ID_Ordine = :idOrdine
+        ";
+
+        $paramsGetStato = [
+            ':idOrdine' => $idOrdine
+        ];
+
+        $result = $this->executeQuery($queryGetStato, $paramsGetStato);
+
+        $statoCorrente = (int)$result[0]['Stato'];
+
+        // Determina il nuovo stato
+        $nuovoStato = null;
+        if ($statoCorrente === 0) {
+            $nuovoStato = 1; // Da "confermato" a "spedito"
+        } elseif ($statoCorrente === 1) {
+            $nuovoStato = 2; // Da "spedito" a "consegnato"
+        } else{
+            return TRUE;
+        }
+
+        $queryUpdateStato = "
+            UPDATE ORDINE 
+            SET Stato = :nuovoStato
+            WHERE ID_Ordine = :idOrdine
+        ";
+
+        $paramsUpdateStato = [
+            ':nuovoStato' => $nuovoStato,
+            ':idOrdine' => $idOrdine
+        ];
+        $this->executeQuery($queryUpdateStato, $paramsUpdateStato);
+        return TRUE;
+    }
 }
 ?>

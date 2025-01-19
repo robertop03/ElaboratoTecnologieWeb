@@ -8,4 +8,5 @@ $templateParams["nome"] = "orderdetail-template.php";
 $templateParams["mainClasses"] = "content-wrapper";
 
 require("template/base-operatore.php");
+
 ?>
