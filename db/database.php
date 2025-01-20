@@ -1095,6 +1095,190 @@ class VinoDatabase {
     
         return $this->executeQuery($query, $params);
     }
+
+    public function updateProduct(
+        $idProdotto,
+        $prezzo,
+        $quantitaMagazzino,
+        $foto,
+        $titoloIT,
+        $sottotitoloIT,
+        $descrizioneIT,
+        $titoloEN,
+        $sottotitoloEN,
+        $descrizioneEN
+    ) {
+        try {
+            // Inizia la transazione
+            $this->pdo->beginTransaction();
+    
+            // Aggiorna i dati del prodotto
+            $queryProdotto = "
+                UPDATE PRODOTTO
+                SET Prezzo = :prezzo, Quantita_Magazzino = :quantitaMagazzino, Foto = :foto
+                WHERE ID_Prodotto = :idProdotto
+            ";
+            $paramsProdotto = [
+                ':prezzo' => $prezzo,
+                ':quantitaMagazzino' => $quantitaMagazzino,
+                ':foto' => $foto,
+                ':idProdotto' => $idProdotto,
+            ];
+            $this->executeQuery($queryProdotto, $paramsProdotto);
+    
+            // Aggiorna il testo del prodotto in italiano
+            $queryTestoIT = "
+                UPDATE TESTO_PRODOTTO
+                SET Titolo = :titoloIT, Sottotitolo = :sottotitoloIT, Descrizione = :descrizioneIT
+                WHERE ID_Prodotto = :idProdotto AND Lingua = 1
+            ";
+            $paramsTestoIT = [
+                ':titoloIT' => $titoloIT,
+                ':sottotitoloIT' => $sottotitoloIT,
+                ':descrizioneIT' => $descrizioneIT,
+                ':idProdotto' => $idProdotto,
+            ];
+            $this->executeQuery($queryTestoIT, $paramsTestoIT);
+    
+            // Aggiorna il testo del prodotto in inglese
+            $queryTestoEN = "
+                UPDATE TESTO_PRODOTTO
+                SET Titolo = :titoloEN, Sottotitolo = :sottotitoloEN, Descrizione = :descrizioneEN
+                WHERE ID_Prodotto = :idProdotto AND Lingua = 2
+            ";
+            $paramsTestoEN = [
+                ':titoloEN' => $titoloEN,
+                ':sottotitoloEN' => $sottotitoloEN,
+                ':descrizioneEN' => $descrizioneEN,
+                ':idProdotto' => $idProdotto,
+            ];
+            $this->executeQuery($queryTestoEN, $paramsTestoEN);
+    
+            // Conferma la transazione
+            $this->pdo->commit();
+    
+            return true;
+        } catch (Exception $e) {
+            // Rollback in caso di errore
+            $this->pdo->rollBack();
+            throw $e;
+        }
+    }
+
+    public function getWineAllDetails($idProdotto) {
+        $query = "
+            SELECT 
+                P.ID_Prodotto,
+                P.Prezzo,
+                P.Quantita_Magazzino,
+                P.Foto,
+                TP1.Titolo AS Titolo_IT,
+                TP1.Sottotitolo AS Sottotitolo_IT,
+                TP1.Descrizione AS Descrizione_IT,
+                TP2.Titolo AS Titolo_EN,
+                TP2.Sottotitolo AS Sottotitolo_EN,
+                TP2.Descrizione AS Descrizione_EN
+            FROM PRODOTTO P
+            LEFT JOIN TESTO_PRODOTTO TP1 ON P.ID_Prodotto = TP1.ID_Prodotto AND TP1.Lingua = 1
+            LEFT JOIN TESTO_PRODOTTO TP2 ON P.ID_Prodotto = TP2.ID_Prodotto AND TP2.Lingua = 2
+            WHERE P.ID_Prodotto = :idProdotto
+        ";
+        
+        $params = [':idProdotto' => $idProdotto];
+        $result = $this->executeQuery($query, $params);
+    
+        return $result[0] ?? null;
+    }
+
+    public function addWineWithAttributesAndTexts(
+        $prezzo, 
+        $quantitaMagazzino, 
+        $foto, 
+        $titoloIT, 
+        $sottotitoloIT, 
+        $descrizioneIT, 
+        $titoloEN, 
+        $sottotitoloEN, 
+        $descrizioneEN, 
+        $frizzantezza, 
+        $tonalita, 
+        $provenienza, 
+        $dimensioneBottiglia
+    ) {
+        try {
+            $this->pdo->beginTransaction();
+    
+            // Genera ID univoco per il prodotto
+            $idProdotto = 'P' . substr(uniqid(), 0, 8);
+    
+            // Inserimento nella tabella PRODOTTO
+            $queryProdotto = "
+                INSERT INTO PRODOTTO (ID_Prodotto, Prezzo, Quantita_Magazzino, Foto)
+                VALUES (:idProdotto, :prezzo, :quantitaMagazzino, :foto)
+            ";
+            $this->executeQuery($queryProdotto, [
+                ':idProdotto' => $idProdotto,
+                ':prezzo' => $prezzo,
+                ':quantitaMagazzino' => $quantitaMagazzino,
+                ':foto' => $foto
+            ]);
+    
+            // Genera ID_Testo per italiano e inglese
+            $idTestoIT = 'TI' . substr(uniqid(), 0, 8);
+            $idTestoEN = 'TE' . substr(uniqid(), 0, 8);
+    
+            // Inserimento testo in Italiano
+            $queryTestoIT = "
+                INSERT INTO TESTO_PRODOTTO (ID_Testo, Lingua, Titolo, Sottotitolo, Descrizione, ID_Prodotto)
+                VALUES (:idTesto, 1, :titolo, :sottotitolo, :descrizione, :idProdotto)
+            ";
+            $this->executeQuery($queryTestoIT, [
+                ':idTesto' => $idTestoIT,
+                ':titolo' => $titoloIT,
+                ':sottotitolo' => $sottotitoloIT,
+                ':descrizione' => $descrizioneIT,
+                ':idProdotto' => $idProdotto
+            ]);
+    
+            // Inserimento testo in Inglese
+            $queryTestoEN = "
+                INSERT INTO TESTO_PRODOTTO (ID_Testo, Lingua, Titolo, Sottotitolo, Descrizione, ID_Prodotto)
+                VALUES (:idTesto, 2, :titolo, :sottotitolo, :descrizione, :idProdotto)
+            ";
+            $this->executeQuery($queryTestoEN, [
+                ':idTesto' => $idTestoEN,
+                ':titolo' => $titoloEN,
+                ':sottotitolo' => $sottotitoloEN,
+                ':descrizione' => $descrizioneEN,
+                ':idProdotto' => $idProdotto
+            ]);
+    
+            // Inserimento attributi collegati al prodotto
+            $attributes = [
+                $frizzantezza,
+                $tonalita,
+                $provenienza,
+                $dimensioneBottiglia
+            ];
+    
+            foreach ($attributes as $idAttributo) {
+                $queryAttributo = "
+                    INSERT INTO ATTRIBUTA (ID_Attributo, ID_Prodotto)
+                    VALUES (:idAttributo, :idProdotto)
+                ";
+                $this->executeQuery($queryAttributo, [
+                    ':idAttributo' => $idAttributo,
+                    ':idProdotto' => $idProdotto
+                ]);
+            }
+    
+            $this->pdo->commit();
+            return true;
+        } catch (Exception $e) {
+            $this->pdo->rollBack();
+            throw $e;
+        }
+    }
      
 }
 ?>
