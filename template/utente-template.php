@@ -294,14 +294,16 @@
     <div class="col-12">
       <h4><?php echo $linguaAttuale == "en" ? "Notification" : "Notifiche" ?></h4>
       <ul class="notifications-list">
+      <?php if(!empty($lastNotifications)): ?>
+      <?php foreach ($lastNotifications as $notifica): ?>
         <li>
           <span class="bi bi-bell text-primary me-2" role="img" aria-label="icona campanella"></span>
-          Aggiornamento spedizione - <small class="text-muted">12 Marzo 2024</small>
+          <?php echo $notifica["Titolo"] ?> - <small class="text-muted"><?php echo $notifica["Data"] ?></small>
         </li>
-        <li>
-          <span class="bi bi-box-arrow-down text-success me-2" role="img" aria-label="icona freccia giù"></span>
-          Ordine effettuato - <small class="text-muted">11 Marzo 2024</small>
-        </li>
+        <?php endforeach; ?>
+        <?php else: ?>
+          <p> <?php echo $linguaAttuale == "en" ? "Currently, you have no notifications to read" : "Attualmente non hai notifiche da leggere" ?> </p>
+        <?php endif; ?>
       </ul>
     </div>
     <a href="notifiche.php" class="mt-3 text-decoration-none border-bottom pb-1"><?php echo $linguaAttuale == "en" ? "see all" : "vedi tutte" ?></a>

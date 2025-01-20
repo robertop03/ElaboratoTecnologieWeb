@@ -1294,6 +1294,26 @@ class VinoDatabase {
             throw $e;
         }
     }
+
+    // funzione per prendere le 2 notifiche non lette più recenti per un utente
+    public function getUltimeDueNotifiche($lingua = 1, $email){
+        $query = "
+        SELECT N.Data, TN.Titolo, TN.Testo
+        FROM Notifica AS N
+        JOIN testo_notifica AS TN ON N.ID_NOTIFICA = TN.ID_NOTIFICA
+        WHERE N.Email = :email 
+          AND TN.lingua = :lingua
+          AND N.Visualizzato = 'N'
+        ORDER BY N.Data DESC
+        LIMIT 2";
+
+        $params = [
+            ':email' => $email,
+            ':lingua' => $lingua
+        ];
+    
+        return $this->executeQuery($query, $params);
+    }
      
 }
 ?>

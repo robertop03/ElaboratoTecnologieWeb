@@ -60,7 +60,7 @@
 <!-- ASIDE -->
 <aside>
   <div class="container">
-    <a href="dovecitroviamo.php" title="Dove ci troviamo" class="no-style">
+    <a href="dovecitroviamo.php" title="Dove ci troviamo">
       <h3 class="fw-bold"><?php echo $linguaAttuale == "en" ? "Where are we?" : "Dove siamo?" ?></h3>
     </a>
     <div class="row align-items-center mb-4">
@@ -70,7 +70,7 @@
         </a>
       </div>
       <div class="col-md-6">
-        <a href="dovecitroviamo.php" title="Dove ci troviamo" class="no-style">
+        <a href="dovecitroviamo.php" title="Dove ci troviamo" >
           <p><?php echo $linguaAttuale == "en" ? "We are located in Cesena, 10 minutes from the Hippodrome and a few minutes from Bufalini Hospital" : "Ci troviamo a Cesena, a 10 minuti dall'Ippodromo e a pochi minuti dall'ospedale Bufalini" ?></p>
         </a>
       </div>

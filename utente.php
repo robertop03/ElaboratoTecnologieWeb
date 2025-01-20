@@ -44,6 +44,7 @@ numberOfPrefs($nPrefs[0]["numero_occorrenze"]);
 
 $prefs = $db->getViniPreferiti($lingua, $_SESSION["email"]);
 
+$lastNotifications = $db->getUltimeDueNotifiche($lingua, $_SESSION["email"]);
 
 $templateParams["titolo"] = "Profilo utente";
 $templateParams["nome"] = "utente-template.php";
