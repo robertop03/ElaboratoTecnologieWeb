@@ -191,14 +191,14 @@ INSERT INTO Preferisce (Email, ID_Prodotto) VALUES
 -- stato 2 -> ordine consegnato
 INSERT INTO ORDINE (ID_Ordine, Data, Stato, ID_Metodo, Email, ID_Indirizzo) VALUES
 ('O1', '2023-10-01', 2, 'M1', 'mario.rossi@example.com', 'I1'),
-('O2', '2024-12-29', 1, 'M2', 'luigi.bianchi@example.com', 'I3'),
+('O2', '2024-12-29', 2, 'M2', 'luigi.bianchi@example.com', 'I3'),
 ('O3', '2025-01-02', 0, 'M3', 'luigi.bianchi@example.com', 'I2'),
-('O4', '2023-11-15', 2, 'M1', 'mario.rossi@example.com', 'I1'),
+('O4', '2023-11-15', 1, 'M1', 'mario.rossi@example.com', 'I1'),
 ('O5', '2024-01-20', 1, 'M2', 'luigi.bianchi@example.com', 'I3'),
 ('O6', '2024-02-10', 0, 'M3', 'luigi.bianchi@example.com', 'I2'),
 ('O7', '2024-03-05', 2, 'M1', 'mario.rossi@example.com', 'I1'),
 ('O8', '2024-04-18', 1, 'M2', 'luigi.bianchi@example.com', 'I3'),
-('O9', '2024-05-22', 0, 'M3', 'luigi.bianchi@example.com', 'I2'),
+('O9', '2024-05-22', 2, 'M3', 'luigi.bianchi@example.com', 'I2'),
 ('O10', '2024-06-30', 2, 'M1', 'mario.rossi@example.com', 'I1'),
 ('O11', '2024-07-14', 1, 'M2', 'luigi.bianchi@example.com', 'I3'),
 ('O12', '2024-08-19', 0, 'M3', 'luigi.bianchi@example.com', 'I2'),
@@ -274,9 +274,26 @@ INSERT INTO Consiglia (ID_Prodotto, ID_Evento) VALUES
 ('P7', 'E2'),
 ('P10', 'E2');
 
-INSERT INTO NOTIFICA (ID_NOTIFICA, Data, Titolo, Testo, Visualizzato, Email) 
+INSERT INTO NOTIFICA (ID_NOTIFICA, Data, Visualizzato, Email) 
 VALUES
-('N001', '2023-10-23', 'Ordine consegnato', 'Il tuo ordine è stato consegnato con successo.', 'Y', 'luigi.bianchi@example.com'),
-('N002', '2023-10-23', 'Ordine spedito', 'Il tuo ordine è stato spedito ed è in transito.', 'N', 'mario.rossi@example.com'),
-('N003', '2025-01-13', 'Articolo esaurito', 'Un articolo del catalogo non è più disponibile, id articolo: P4', 'N', 'admin@gmail.com'),
-('N004', '2025-01-02', 'Ordine confermato', 'Il tuo ordine è stato confermato, attendi la spedizione 3/7 giorni lavorativi.', 'N', 'luigi.bianchi@example.com');
+('N001', '2023-10-23', 'Y', 'luigi.bianchi@example.com'),
+('N002', '2023-10-23', 'N', 'mario.rossi@example.com'),
+('N003', '2025-01-13', 'N', 'mario.rossi@example.com'),
+('N004', '2025-01-02', 'N', 'luigi.bianchi@example.com');
+
+INSERT INTO TESTO_NOTIFICA (ID_Testo, Lingua, Titolo, Testo, ID_NOTIFICA) VALUES
+-- Notifica N001
+('T01', 1, 'Ordine consegnato', 'Il tuo ordine è stato consegnato id ordine: O2', 'N001'),
+('T02', 2, 'Order delivered', 'Your order has been delivered order id: O2', 'N001'),
+
+-- Notifica N002
+('T03', 1, 'Ordine spedito', 'Il tuo ordine è stato spedito id ordine: O4', 'N002'),
+('T04', 2, 'Shipping confirmation', 'Your order has been shipped order id: O4', 'N002'),
+
+-- Notifica N003
+('T05', 1, 'Ordine spedito', "Il tuo ordine è stato consegnato id ordine: O10", 'N003'),
+('T06', 2, 'Shipping confirmation', 'Your order has been delivered order id: O10', 'N003'),
+
+-- Notifica N004
+('T07', 1, 'Ordine consegnato', 'Il tuo ordine è stato consegnato id ordine: O9', 'N004'),
+('T08', 2, 'Order delivered', 'Your order has been delivered order id: O9', 'N004');
