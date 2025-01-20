@@ -102,21 +102,20 @@
         <div class="form-check">
             <input class="form-check-input" type="checkbox" name="newArrivals" id="newArrivals" required />
             <label class="form-check-label" for="newArrivals"> 
-                <span class="text-danger">*</span> 
-                Voglio ricevere notizie riguardo ai nuovi arrivi
+                <span class="text-danger">*</span>
+                <?php echo $linguaAttuale == "en" ? "I want to receive news about new arrivals" : "Voglio ricevere notizie riguardo ai nuovi arrivi" ?>
             </label>
         </div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" name="events" id="events" required />
             <label class="form-check-label" for="events">
                 <span class="text-danger">*</span> 
-                Voglio ricevere notizie riguardo ai nuovi eventi
+                <?php echo $linguaAttuale == "en" ? "I want to receive news about new events" : "Voglio ricevere notizie riguardo ai nuovi eventi" ?>
             </label>
         </div>
         <input type="hidden" name="action" value="Y" />
-        <button type="submit" class="btn mt-3 px-5 py-2">Invia</button>
+        <button type="submit" class="btn mt-3 px-5 py-2"><?php echo $linguaAttuale == "en" ? "Send" : "Invia" ?></button>
     </form>
-    <div id="response-message"></div>
     <?php
     }
   ?>
