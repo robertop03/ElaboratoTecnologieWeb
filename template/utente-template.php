@@ -58,11 +58,11 @@
       <a href="notifiche.php" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
           <span class="fw-bold"><?php echo $linguaAttuale == "en" ? "Notifications" : "Notifiche" ?></span>
-          <?php $nNotifications = $db->getNumeroNotificheNonLette($_SESSION["email"]); ?>
-          <?php if($nNotifications[0]["COUNT(ID_NOTIFICA)"] === 0): ?>
+          <?php $nNotifications = $db->getNumeroNotificheNonLette($_SESSION["email"]);
+            if($nNotifications[0]["COUNT(ID_NOTIFICA)"] === 0): ?>
             <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You currently have no notifications" : "Al momento non hai notifiche" ?></span>
           <?php else: ?>
-            <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have " . $nNotifications[0]["COUNT(ID_NOTIFICA)"] . " unread notifications" : "Hai " . $_SESSION['nNotifications'] . " non lette" ?></span>
+            <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have " . $nNotifications[0]["COUNT(ID_NOTIFICA)"] . " unread notifications" : "Hai " . $nNotifications[0]["COUNT(ID_NOTIFICA)"] . " non lette" ?></span>
           <?php endif; ?>
         </div>
       </a>
@@ -508,7 +508,7 @@
               <label for="postalCode" class="form-label"><?php echo $linguaAttuale == "en" ? "ZIP code" : "CAP" ?></label>
               <input type="text" class="form-control" id="postalCode" placeholder="10100" title="Inserisci un CAP valido" required />
             </div>
-            <button type="submit" class="btn btn-primary" id="formButton"><?php echo $linguaAttuale == "en" ? "Add address" : "Aggiungi indirizzo" ?></button>
+            <button type="submit" class="btn btn-primary"><?php echo $linguaAttuale == "en" ? "Add address" : "Aggiungi indirizzo" ?></button>
           </form>
         </div>
       </div>
@@ -600,7 +600,7 @@
               <label for="cvv" class="form-label">CVV</label>
               <input type="text" class="form-control" id="cvv" placeholder="123" title="Inserisci un CVV valido" required />
             </div>
-            <button type="submit" class="btn btn-primary" id="formButton"><?php echo $linguaAttuale == "en" ? "Add credit card" : "Aggiungi carta di credito" ?></button>
+            <button type="submit" class="btn btn-primary"><?php echo $linguaAttuale == "en" ? "Add credit card" : "Aggiungi carta di credito" ?></button>
           </form>
         </div>
       </div>
