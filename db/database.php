@@ -843,7 +843,18 @@ class VinoDatabase {
     }
     
     
+    // funzione per segnalare come 'letta' una determinata notifica
+    public function setNotificaLetta($idNotifica){
+        $query = "
+        UPDATE Notifica SET Visualizzato = 'Y' WHERE ID_NOTIFICA = :idNotifica
+        ";
 
+        $params = [
+            ':idNotifica' => $idNotifica
+        ];
+
+        return $this->executeQuery($query, $params);
+    }
 
     // funzione che restituisce il numero di notifiche ancora da leggere di un utente
     public function getNumeroNotificheNonLette($email){

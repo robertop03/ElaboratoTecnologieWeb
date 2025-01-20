@@ -8,9 +8,49 @@ if (!isset($_SESSION["email"])) {
 
 $notifiche = $db->getNotifiche($_SESSION["email"]);
 
-$templateParams["titolo"] = "Notifiche";
-$templateParams["nome"] = "notifiche-template.php";
-$templateParams["mainClasses"] = "flex-grow-1";
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (isset($_GET['action'])) {
+        if ($_GET['action'] === 'data') {
+            // RESTITUISCE IL JSON DELLE NOTIFICHE
+            header('Content-Type: application/json');
 
-require("template/base.php");
+            if (!isset($_SESSION["email"])) {
+                echo json_encode(['error' => 'Utente non autenticato']);
+                exit();
+            }
+
+            $notifiche = $db->getNotifiche($_SESSION["email"]);
+            exit();
+        } elseif ($_GET['action'] === 'update') {
+            // SEGNA LA NOTIFICA COME LETTA
+            header('Content-Type: application/json');
+
+            if (!isset($_GET['id'])) {
+                http_response_code(400);
+                echo json_encode(['error' => 'ID della notifica non fornito']);
+                exit();
+            }
+
+            $idNotifica = htmlspecialchars($_GET['id']);
+            $db->setNotificaLetta($idNotifica);
+            exit();
+        }
+    }
+
+    // VISUALIZZA IL TEMPLATE HTML
+    if (!isset($_SESSION["email"])) {
+        header("Location: login.php");
+        exit();
+    }
+
+    $templateParams["titolo"] = "Notifiche";
+    $templateParams["nome"] = "notifiche-template.php";
+    $templateParams["mainClasses"] = "flex-grow-1";
+
+    require("template/base.php");
+} else {
+    http_response_code(405);
+    echo json_encode(['error' => 'Metodo non consentito']);
+    exit();
+}
 ?>

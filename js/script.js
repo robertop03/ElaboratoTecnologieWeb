@@ -195,6 +195,31 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 })
 
+function setNotificaLetta(element) {
+  const idNotifica = element.getAttribute("data-id")
+  if (idNotifica) {
+    const url = `notifiche.php?action=update&id=${encodeURIComponent(idNotifica)}`
+
+    fetch(url, {
+      method: "GET",
+    })
+      .then((response) => {
+        console.log(response)
+        return response.json()
+      })
+      .then((data) => {
+        if (data.success) {
+          // Aggiorna lo stile della notifica come "letta"
+          element.classList.remove("bg-light", "fw-bold")
+          element.classList.add("bg-white", "fw-normal", "opacity-50")
+        } else {
+          console.error("Errore:", data.error)
+        }
+      })
+      .catch((error) => console.error("Errore:", error))
+  }
+}
+
 function addFavorite(wineId, element) {
   fetch("aggiorna-preferiti.php", {
     method: "POST",

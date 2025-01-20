@@ -2,12 +2,17 @@
   <!-- Notification List -->
   <div class="list-group flex-lg-shrink-0">
   <?php foreach ($notifiche as $notifica): ?>
-    <a href="#" class="list-group-item list-group-item-action">
+    <a href="javascript:void(0)" 
+       class="list-group-item list-group-item-action 
+              <?php echo $notifica["Visualizzato"] === 'Y' ? 'bg-white fw-normal opacity-50' : 'bg-light fw-bold'; ?>" 
+       data-id="<?php echo $notifica['ID_NOTIFICA']; ?>"
+       onclick="setNotificaLetta(this, event)">
       <span class="bi bi-truck me-3" role="img"></span>
-      <span><?php echo htmlspecialchars($notifica["Titolo"]); ?></span>
+      <span class="pe-5"><?php echo htmlspecialchars($notifica["Titolo"]); ?></span>
+      <span class="ps-5 ms-5"><?php echo htmlspecialchars($notifica["Data"]); ?></span>
       <p class="mb-0 text-muted"><?php echo htmlspecialchars($notifica["Testo"]); ?></p>
     </a>
-    <?php endforeach; ?>
+   <?php endforeach; ?>
   </div>
 
   <!-- Notification Details -->
