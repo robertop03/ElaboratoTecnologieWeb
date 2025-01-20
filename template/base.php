@@ -13,6 +13,9 @@
       if ($pageName === 'checkout') {
         echo '<script src="js/checkout.js?v=1"></script>';
       }
+      if ($pageName === 'index') {
+        echo '<script src="js/newsletter.js?v=1"></script>';
+      }
     ?>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
@@ -99,7 +102,7 @@
               <?php if(isset(($_SESSION["email"]))): ?>
                 <?php $nNotifications = $db->getNumeroNotificheNonLette($_SESSION["email"]); ?>
                 <?php if($nNotifications[0]["COUNT(ID_NOTIFICA)"] !== 0): ?>
-                  <p id="notification-count-mb"> <?php echo $nNotifications[0]["COUNT(ID_NOTIFICA)"]?></p>
+                  <p class="text-light" id="notification-count-mb"> <?php echo $nNotifications[0]["COUNT(ID_NOTIFICA)"]?></p>
                 <?php endif; ?>
               <?php endif; ?>
             </div>

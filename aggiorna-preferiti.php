@@ -1,7 +1,7 @@
 <?php
 require_once("bootstrapt.php");
 if (!isset($_SESSION["email"])) {
-    http_response_code(401); // Stato 401: non autorizzato
+    http_response_code(401);
     echo json_encode(['success' => false, 'message' => 'User not logged in']);
     exit();
 }

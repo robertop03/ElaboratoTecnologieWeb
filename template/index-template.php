@@ -65,7 +65,6 @@
     </a>
     <div class="row align-items-center mb-4">
       <div class="col-md-6">
-        <!-- <a href="https://maps.app.goo.gl/qrVCVyX85zjw7Xta6" target="_blank"> -->
         <a href="dovecitroviamo.php" target="_blank">
           <img src="resources/img/maps.png" alt="Mappa Cesena" class="img-fluid rounded shadow" />
         </a>
@@ -79,21 +78,48 @@
     <hr class="my-4" />
     <h3 class="fw-bold">Newsletter</h3>
     <p><?php echo $linguaAttuale == "en" ? "Keep up to date with new arrivals and upcoming events!" : "Rimani aggiornato sui nuovi arrivi e sui prossimi eventi!" ?></p>
-    <form>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Email" required />
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="newArrivals" required />
-        <label class="form-check-label" for="newArrivals"> <span class="text-danger">*</span> <?php echo $linguaAttuale == "en" ? "I want to receive news about new arrivals" : "Voglio ricevere notizie riguardo ai nuovi arrivi" ?></label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="events" required/>
-        <label class="form-check-label" for="events"> <span class="text-danger">*</span> <?php echo $linguaAttuale == "en" ? "I want to receive news about new events" : "Voglio ricevere notizie riguardo ai nuovi eventi" ?> </label>
-      </div>
-      <button type="submit" class="btn mt-3 px-5 py-2"><?php echo $linguaAttuale == "en" ? "Sent" : "Invia" ?></button>
+    <?php
+      $iscritto = $db->checkNewsletter(isset($_SESSION["email"]) ? $_SESSION["email"] : "");
+      if (isset($_SESSION["email"]) && $iscritto[0]["Newsletter"] === "Y") {
+        // Utente loggato e iscritto alla newsletter
+        $email = $_SESSION["email"];
+    ?>
+    <p>Email: <strong><?php echo htmlspecialchars($email); ?></strong></p>
+    <form id="unsubscribe-form">
+        <input type="hidden" name="email" value="<?php echo htmlspecialchars($email); ?>" />
+        <input type="hidden" name="action" value="N" />
+        <button type="submit" class="btn btn-danger">Disiscriviti dalla Newsletter</button>
     </form>
+    <?php
+      } else {
+      // Utente non loggato
+    ?>
+    <form id="subscribe-form">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="example@gmail.com" required />
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="newArrivals" id="newArrivals" required />
+            <label class="form-check-label" for="newArrivals"> 
+                <span class="text-danger">*</span> 
+                Voglio ricevere notizie riguardo ai nuovi arrivi
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="events" id="events" required />
+            <label class="form-check-label" for="events">
+                <span class="text-danger">*</span> 
+                Voglio ricevere notizie riguardo ai nuovi eventi
+            </label>
+        </div>
+        <input type="hidden" name="action" value="Y" />
+        <button type="submit" class="btn mt-3 px-5 py-2">Invia</button>
+    </form>
+    <div id="response-message"></div>
+    <?php
+    }
+  ?>
   </div>
 </aside>
 <!-- END ASIDE -->

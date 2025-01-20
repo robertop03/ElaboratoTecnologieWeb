@@ -1,5 +1,5 @@
 <?php
-
+require_once("bootstrapt.php");
 $_SESSION = [];
 
 // Cancella il cookie della sessione
