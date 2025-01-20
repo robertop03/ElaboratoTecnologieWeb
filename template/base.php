@@ -41,6 +41,8 @@
               <a href="login.php" class="text-decoration-none" aria-label="icona utente">
                 <span class="bi bi-person" role="img" aria-hidden="true"></span>
               </a>
+              <p id="notification-count-mb"><?php $nNotifications = $db->getNumeroNotificheNonLette($_SESSION["email"]);
+                        echo $nNotifications[0]["COUNT(ID_NOTIFICA)"]?></p>
             </div>
           </div>
           <!-- Barra di ricerca Mobile -->
@@ -90,6 +92,8 @@
               <a href="login.php" class="text-decoration-none" aria-label="icona utente">
                 <span class="bi bi-person" role="img" aria-hidden="true"></span>
               </a>
+              <p class="text-light" id="notification-count-d"><?php $nNotifications = $db->getNumeroNotificheNonLette($_SESSION["email"]);
+                        echo $nNotifications[0]["COUNT(ID_NOTIFICA)"]?></p>
             </div>
           </div>
         </div>

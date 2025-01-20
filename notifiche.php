@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             }
 
             $notifiche = $db->getNotifiche($_SESSION["email"]);
+            echo json_encode($notifiche);
             exit();
         } elseif ($_GET['action'] === 'update') {
             // SEGNA LA NOTIFICA COME LETTA
@@ -33,9 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
             $idNotifica = htmlspecialchars($_GET['id']);
             $db->setNotificaLetta($idNotifica);
+            echo json_encode(['success' => true, 'id' => $idNotifica]);
+            exit();
+        } elseif ($_GET['action'] === 'count') {
+            $nNotifications = $db->getNumeroNotificheNonLette($_SESSION["email"]);
+            echo json_encode(['count' => $nNotifications[0]["COUNT(ID_NOTIFICA)"]]);
             exit();
         }
-    }
+    } 
 
     // VISUALIZZA IL TEMPLATE HTML
     if (!isset($_SESSION["email"])) {

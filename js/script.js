@@ -195,31 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 })
 
-function setNotificaLetta(element) {
-  const idNotifica = element.getAttribute("data-id")
-  if (idNotifica) {
-    const url = `notifiche.php?action=update&id=${encodeURIComponent(idNotifica)}`
-
-    fetch(url, {
-      method: "GET",
-    })
-      .then((response) => {
-        console.log(response)
-        return response.json()
-      })
-      .then((data) => {
-        if (data.success) {
-          // Aggiorna lo stile della notifica come "letta"
-          element.classList.remove("bg-light", "fw-bold")
-          element.classList.add("bg-white", "fw-normal", "opacity-50")
-        } else {
-          console.error("Errore:", data.error)
-        }
-      })
-      .catch((error) => console.error("Errore:", error))
-  }
-}
-
 function addFavorite(wineId, element) {
   fetch("aggiorna-preferiti.php", {
     method: "POST",
@@ -229,8 +204,6 @@ function addFavorite(wineId, element) {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        console.log(`Wine ID ${wineId} added to favorites.`)
-        // Aggiorna l'icona del cuore
         element.classList.remove("bi-heart")
         element.classList.add("bi-heart-fill", "text-danger")
         element.setAttribute("onclick", `removeFavorite('${wineId}', this)`)
@@ -256,7 +229,6 @@ function removeFavorite(wineId, element) {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          console.log(`Wine ID ${wineId} removed from favorites.`)
           // Aggiorna l'icona del cuore
           element.classList.remove("bi-heart-fill", "text-danger")
           element.classList.add("bi-heart")
@@ -271,4 +243,48 @@ function removeFavorite(wineId, element) {
   }
 
   confirmRemoveModal.show()
+}
+
+function setNotificaLetta(element) {
+  const idNotifica = element.getAttribute("data-id")
+  if (idNotifica) {
+    const url = `notifiche.php?action=update&id=${encodeURIComponent(idNotifica)}`
+
+    fetch(url, {
+      method: "GET",
+    })
+      .then((response) => {
+        console.log(response)
+        return response.json()
+      })
+      .then((data) => {
+        if (data.success) {
+          // Aggiorna lo stile della notifica come "letta"
+          element.classList.remove("bg-light", "fw-bold")
+          element.classList.add("bg-white", "fw-normal", "opacity-50")
+          aggiornaNumeroNotifiche()
+        } else {
+          console.error("Errore:", data.error)
+        }
+      })
+      .catch((error) => console.error("Errore:", error))
+  }
+}
+
+function aggiornaNumeroNotifiche() {
+  fetch("notifiche.php?action=count", {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const notificationCountElements = document.querySelectorAll("#notification-count-mb, #notification-count-d")
+      if (data.count !== undefined) {
+        notificationCountElements.forEach((element) => {
+          element.textContent = data.count // Aggiorna il conteggio su ogni elemento selezionato
+        })
+      } else {
+        console.error("Errore: conteggio notifiche non trovato")
+      }
+    })
+    .catch((error) => console.error("Errore nella richiesta di aggiornamento notifiche:", error))
 }
