@@ -58,10 +58,15 @@
       <a href="notifiche.php" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
           <span class="fw-bold"><?php echo $linguaAttuale == "en" ? "Notifications" : "Notifiche" ?></span>
-          <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You currently have no notifications" : "Al momento non hai notifiche" ?></span>
+          <?php $nNotifications = $db->getNumeroNotificheNonLette($_SESSION["email"]); ?>
+          <?php if($nNotifications[0]["COUNT(ID_NOTIFICA)"] === 0): ?>
+            <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You currently have no notifications" : "Al momento non hai notifiche" ?></span>
+          <?php else: ?>
+            <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have " . $nNotifications[0]["COUNT(ID_NOTIFICA)"] . " unread notifications" : "Hai " . $_SESSION['nNotifications'] . " non lette" ?></span>
+          <?php endif; ?>
         </div>
       </a>
-      <a href="notifiche.php" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" data-bs-toggle="modal" data-bs-target=".address-modal"></span></a>
+      <a href="notifiche.php" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" ></span></a>
     </li>
 
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
@@ -105,7 +110,7 @@
                   <label class="form-check-label" for="notifiche-modal"><?php echo $linguaAttuale == "en" ? "I want to receive notifications for delivery status updates" : "Voglio ricevere notifiche per il cambio di stato consegna" ?></label>
                 </div>
                 <div class="d-grid w-50 mx-auto">
-                  <button type="submit" class="btn btn-lg btn-primary mt-3" value="formDati"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
+                  <button type="submit" class="btn btn-lg btn-primary mt-3" name="submit_form" value="formDati"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
                 </div>
               </form>
             </div>
@@ -124,7 +129,7 @@
                 <div class="mb-3">
                   <label for="new-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "New password" : "Nuova password" ?><span class="text-danger">*</span></label>
                   <div class="input-group">
-                    <input type="password" class="form-control" id="new-password-modal" required />
+                    <input type="password" class="form-control" id="new-password-modal" name="new-password" required />
                     <button class="btn btn-outline-secondary toggle-password" type="button">
                       <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
                     </button>
@@ -133,14 +138,14 @@
                 <div class="mb-3">
                   <label for="confirm-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Confirm new password" : "Conferma nuova password" ?><span class="text-danger">*</span></label>
                   <div class="input-group">
-                    <input type="password" class="form-control" id="confirm-password-modal" required />
+                    <input type="password" class="form-control" id="confirm-password-modal" name="confirm-password" required />
                     <button class="btn btn-outline-secondary toggle-password" type="button">
                       <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
                     </button>
                   </div>
                 </div>
                 <div class="d-grid w-50 mx-auto">
-                  <button type="submit" class="btn btn-lg btn-primary mt-3" name="submit_form" name="submit_form" value="formPw"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
+                  <button type="submit" class="btn btn-lg btn-primary mt-3" name="submit_form" value="formPw"><?php echo $linguaAttuale == "en" ? "Save" : "Salva" ?></button>
                 </div>
               </form>
             </div>
@@ -202,7 +207,7 @@
       <h4><?php echo $linguaAttuale == "en" ? "Delivery addresses" : "Indirizzi di spedizione" ?></h4>
       <div class="card p-3 bg-light">
         <p>Italia<br />Via esempio 123, 47039</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target="#ordersModal"><?php echo $linguaAttuale == "en" ? "See all your addresses" : "Vedi tutti gli indirizzi salvati" ?></a>
+        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target=".address-modal"><?php echo $linguaAttuale == "en" ? "See all your addresses" : "Vedi tutti gli indirizzi salvati" ?></a>
       </div>
     </div>
 

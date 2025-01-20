@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             exit();
         } elseif ($_GET['action'] === 'count') {
             $nNotifications = $db->getNumeroNotificheNonLette($_SESSION["email"]);
+            numberOfNotificationsUnread($nNotifications);
             echo json_encode(['count' => $nNotifications[0]["COUNT(ID_NOTIFICA)"]]);
             exit();
         }

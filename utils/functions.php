@@ -20,5 +20,4 @@ function actualProduct($id){
 function numberOfPrefs($nPrefs){
     $_SESSION["nPrefs"] = $nPrefs;
 }
-
 ?>
