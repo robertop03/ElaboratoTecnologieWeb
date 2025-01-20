@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("Dati ricevuti dal server:", completeCart);
+
   const cartEmpty = document.querySelector("#cart-empty");
   const cartFull = document.querySelector("#cart-full");
   const cartItemsList = document.querySelector("#cart-items");
@@ -8,55 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const freeShippingThreshold = 69;
 
-  // Funzioni per gestire i cookies
-  function getCartFromCookie() {
-    const cookie = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("cart="));
-    return cookie ? JSON.parse(cookie.split("=")[1]) : [];
-  }
+  // Usa il carrello completo passato da PHP
+  const cart = typeof completeCart !== "undefined" ? completeCart : [];
+  console.log("Carrello inizializzato:", cart); // Debug
 
-  function saveCartToCookie(cart) {
-    document.cookie = `cart=${JSON.stringify(cart)}; path=/; max-age=86400`;
-  }
-
-  // Funzione per chiamare l'API e ottenere i dettagli dei prodotti
-  async function fetchProductDetails(cart) {
-    const ids = cart.map((item) => item.id); // Estrai gli ID dal carrello
-
-    const response = await fetch("/api/getProductDetails.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ids }),
-    });
-
-    if (!response.ok) {
-      console.error("Errore durante il recupero dei dettagli dei prodotti");
-      return [];
-    }
-
-    return await response.json();
-  }
-
-  // Funzione per aggiornare la pagina
-  async function refreshCart() {
-    const cart = getCartFromCookie();
-  
-    if (cart.length === 0) {
-      // Mostra il carrello vuoto
-      updateCartState([]);
-      return;
-    }
-  
-    // Renderizza gli elementi del carrello
-    renderCartItems(cart);
-  
-    // Aggiorna lo stato del carrello (empty/full) e il riassunto ordine
-    updateCartState(cart);
-    updateOrderSummary(cart);
-  }
-
-  function updateCartState(cart) {
+  function refreshCart() {
+    console.log("Aggiornamento carrello:", cart); // Debug
     if (cart.length === 0) {
       cartEmpty.classList.add("active");
       cartFull.classList.remove("active");
@@ -66,17 +25,20 @@ document.addEventListener("DOMContentLoaded", () => {
       cartFull.classList.add("active");
       checkoutButton.disabled = false;
     }
+    renderCartItems(cart);
+    updateOrderSummary(cart);
   }
 
   function renderCartItems(cart) {
+    console.log("Renderizzazione elementi carrello:", cart); // Debug
     cartItemsList.innerHTML = ""; // Svuota la lista
-  
+
     cart.forEach((item) => {
       const li = document.createElement("li");
       li.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" />
+        <img src="resources/img/${item.image}" alt="${item.title}" />
         <div>
-          <h4>${item.name}</h4>
+          <h4>${item.title}</h4>
           <p>Prezzo: €${item.price.toFixed(2)}</p>
           <p>Quantità: 
             <button class="btn btn-sm btn-outline-secondary" data-action="decrease" data-id="${item.id}">-</button>
@@ -88,16 +50,27 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       cartItemsList.appendChild(li);
     });
+
+    // Aggiungi eventi per i pulsanti
+    cartItemsList.addEventListener("click", (e) => {
+      const id = e.target.dataset.id;
+      const action = e.target.dataset.action;
+
+      if (!id || !action) return;
+
+      if (action === "increase") {
+        modifyQuantity(id, 1);
+      } else if (action === "decrease") {
+        modifyQuantity(id, -1);
+      } else if (action === "remove") {
+        removeFromCart(id);
+      }
+      refreshCart();
+    });
   }
 
-  function updateOrderSummary(cart, products) {
-    const subtotal = cart.reduce((total, item) => {
-      const productDetails = products.find((prod) => prod.ID_Prodotto == item.id);
-      if (!productDetails) return total;
-
-      return total + productDetails.Prezzo * item.quantity;
-    }, 0);
-
+  function updateOrderSummary(cart) {
+    const subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     const shippingCost = subtotal >= freeShippingThreshold ? 0 : 7.75;
 
     document.querySelector("#subtotal-price").textContent = `€${subtotal.toFixed(2)}`;
@@ -111,38 +84,30 @@ document.addEventListener("DOMContentLoaded", () => {
         : `<span class="bi bi-x"></span> Aggiungi ancora €${(freeShippingThreshold - subtotal).toFixed(2)} per ottenere la spedizione gratuita.`;
   }
 
-  cartItemsList.addEventListener("click", (e) => {
-    const id = parseInt(e.target.dataset.id, 10);
-    const action = e.target.dataset.action;
+  function modifyQuantity(id, delta) {
+    const item = cart.find((product) => product.id === id);
+    if (!item) return;
 
-    if (action === "increase") addToCart(id, 1);
-    if (action === "decrease") updateProductQuantity(id, "decrease");
-    if (action === "remove") removeFromCart(id);
-    refreshCart();
+    item.quantity = Math.max(1, item.quantity + delta);
+    saveCartToCookie(cart);
+  }
+
+  function removeFromCart(id) {
+    const index = cart.findIndex((product) => product.id === id);
+    if (index === -1) return;
+
+    cart.splice(index, 1);
+    saveCartToCookie(cart);
+  }
+
+  function saveCartToCookie(cart) {
+    document.cookie = `cart=${JSON.stringify(cart)}; path=/; max-age=86400`; // 1 giorno
+  }
+
+  clearCartButton.addEventListener("click", () => {
+    document.cookie = "cart=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    location.reload(); // Ricarica la pagina
   });
 
-  function clearCart() {
-    // Rimuove i dati relativi al carrello (esempio: cookie o localStorage)
-    document.cookie = "cart=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-
-    // Aggiorna la visualizzazione della pagina
-    console.log("Carrello svuotato");
-    refreshCart(); // Chiama la funzione per aggiornare la vista del carrello
-  }
-
-  clearCartButton.addEventListener("click", clearCart);
-
   refreshCart();
-
-  function logCartContents() {
-    const cart = getCartFromCookie(); // Usa la funzione che legge i cookies
-    if (cart.length === 0) {
-      console.log("Il carrello è vuoto.");
-      return;
-    }
-    console.log("Contenuto del carrello:", cart);
-  }
-  
-  logCartContents();
-
 });
