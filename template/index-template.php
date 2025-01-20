@@ -85,12 +85,12 @@
         <input type="email" class="form-control" id="email" placeholder="Email" required />
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="newArrivals" />
-        <label class="form-check-label" for="newArrivals"> <?php echo $linguaAttuale == "en" ? "I want to receive news about new arrivals" : "Voglio ricevere notizie riguardo ai nuovi arrivi" ?></label>
+        <input class="form-check-input" type="checkbox" id="newArrivals" required />
+        <label class="form-check-label" for="newArrivals"> <span class="text-danger">*</span> <?php echo $linguaAttuale == "en" ? "I want to receive news about new arrivals" : "Voglio ricevere notizie riguardo ai nuovi arrivi" ?></label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="events" />
-        <label class="form-check-label" for="events"> <?php echo $linguaAttuale == "en" ? "I want to receive news about new events" : "Voglio ricevere notizie riguardo ai nuovi eventi" ?> </label>
+        <input class="form-check-input" type="checkbox" id="events" required/>
+        <label class="form-check-label" for="events"> <span class="text-danger">*</span> <?php echo $linguaAttuale == "en" ? "I want to receive news about new events" : "Voglio ricevere notizie riguardo ai nuovi eventi" ?> </label>
       </div>
       <button type="submit" class="btn mt-3 px-5 py-2"><?php echo $linguaAttuale == "en" ? "Sent" : "Invia" ?></button>
     </form>

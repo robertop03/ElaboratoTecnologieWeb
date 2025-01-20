@@ -1019,6 +1019,19 @@ class VinoDatabase {
         $results = $this->executeQuery($query, $params); // Returns an array
         return $results[0] ?? false; // Return the first result or false
     }
+
+    // funzione per aggiungere un utente alla newsletter
+    public function addUtenteNewsletter($email){
+        $query = "
+        SELECT COUNT(ID_NOTIFICA) FROM Notifica WHERE Email = :email AND Visualizzato = 'N'
+        ";
+
+        $params = [
+            ':email' => $email
+        ];
+
+        return $this->executeQuery($query, $params);
+    }
     
      
 }
