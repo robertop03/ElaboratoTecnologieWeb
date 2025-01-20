@@ -910,6 +910,89 @@ class VinoDatabase {
         return TRUE;
     }
 
+    public function addEventWithTexts($dataInizio, $dataFine, $foto, $titoloIT, $sottotitoloIT, $descrizioneIT, $titoloEN, $sottotitoloEN, $descrizioneEN) {
+        try {
+            // Avvia la transazione
+            $this->pdo->beginTransaction();
+
+            $idEvento = 'E' . substr(uniqid(), 0, 8);
+    
+            // Inserisci l'evento nella tabella EVENTO
+            $queryEvento = "
+                INSERT INTO EVENTO (ID_Evento, Data_Inizio, Data_Fine, Foto)
+                VALUES (:idEvento, :dataInizio, :dataFine, :foto)
+            ";
+            $paramsEvento = [
+                ':idEvento' => $idEvento,
+                ':dataInizio' => $dataInizio,
+                ':dataFine' => $dataFine,
+                ':foto' => $foto
+            ];
+            $this->executeQuery($queryEvento, $paramsEvento);
+    
+            // Genera ID_Testo per italiano e inglese
+            $idTestoIT = 'TI' . substr(uniqid(), 0, 8);
+            $idTestoEN = 'TE' . substr(uniqid(), 0, 8);
+    
+            // Inserisci il testo in italiano
+            $queryTestoIT = "
+                INSERT INTO TESTO_EVENTO (ID_Testo, Lingua, Titolo, Sottotitolo, Descrizione, ID_Evento)
+                VALUES (:idTesto, 1, :titolo, :sottotitolo, :descrizione, :idEvento)
+            ";
+            $paramsTestoIT = [
+                ':idTesto' => $idTestoIT,
+                ':titolo' => $titoloIT,
+                ':sottotitolo' => $sottotitoloIT,
+                ':descrizione' => $descrizioneIT,
+                ':idEvento' => $idEvento
+            ];
+            $this->executeQuery($queryTestoIT, $paramsTestoIT);
+    
+            // Inserisci il testo in inglese
+            $queryTestoEN = "
+                INSERT INTO TESTO_EVENTO (ID_Testo, Lingua, Titolo, Sottotitolo, Descrizione, ID_Evento)
+                VALUES (:idTesto, 2, :titolo, :sottotitolo, :descrizione, :idEvento)
+            ";
+            $paramsTestoEN = [
+                ':idTesto' => $idTestoEN,
+                ':titolo' => $titoloEN,
+                ':sottotitolo' => $sottotitoloEN,
+                ':descrizione' => $descrizioneEN,
+                ':idEvento' => $idEvento
+            ];
+            $this->executeQuery($queryTestoEN, $paramsTestoEN);
+    
+            // Conferma la transazione
+            $this->pdo->commit();
+            return true;
+        } catch (Exception $e) {
+            // Rollback in caso di errore
+            $this->pdo->rollBack();
+            throw $e;
+        }
+    }
+
+    public function getAllEvents() {
+        $query = "
+            SELECT 
+                E.ID_Evento,
+                E.Data_Inizio,
+                E.Data_Fine,
+                E.Foto,
+                TI.Titolo AS Titolo_IT,
+                TE.Titolo AS Titolo_EN
+            FROM 
+                EVENTO E
+            LEFT JOIN 
+                TESTO_EVENTO TI ON E.ID_Evento = TI.ID_Evento AND TI.Lingua = 1
+            LEFT JOIN 
+                TESTO_EVENTO TE ON E.ID_Evento = TE.ID_Evento AND TE.Lingua = 2
+            ORDER BY 
+                E.Data_Inizio DESC
+        ";
+
+        return $this->executeQuery($query);
+    }
     public function getProductDetails($productId, $language = 1) {
         $query = "
         SELECT 

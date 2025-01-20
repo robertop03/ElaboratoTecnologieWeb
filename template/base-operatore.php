@@ -24,7 +24,7 @@
                 <a class="nav-link text-white" href="OrderManager.php">Orders</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="page3.php">Page 3</a>
+                <a class="nav-link text-white" href="eventManager.php">Events</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="page4.php">Page 4</a>
