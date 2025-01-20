@@ -34,6 +34,9 @@ switch ($orderInfo['Stato']) {
 
 ?>
 <div class="container my-4">
+  <a href="javascript:history.back()" class="btn btn-secondary btn-lg">
+    <i class="bi bi-arrow-left"></i> Back
+  </a>
   <h2>Dettagli Ordine</h2>
 
   <div class="row">

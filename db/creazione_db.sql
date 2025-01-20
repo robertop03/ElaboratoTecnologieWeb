@@ -110,11 +110,17 @@ create table UTENTE (
 create table NOTIFICA (
      ID_NOTIFICA varchar(10) not null,
      Data date not null,
-     Titolo varchar(200) not null,
-     Testo varchar(500) not null,
      Visualizzato char not null,
      Email varchar(100) not null,
      primary key (ID_NOTIFICA));
+
+create table TESTO_NOTIFICA (
+     ID_Testo varchar(10) not null,
+     Lingua numeric(1) not null,
+     Titolo varchar(50) not null,
+     Testo varchar(200) not null,
+     ID_NOTIFICA varchar(10) not null,
+     primary key (ID_Testo));
 
 
 
@@ -185,3 +191,7 @@ alter table TESTO_PRODOTTO add constraint FKDescrive
 alter table NOTIFICA add constraint FKR
      foreign key (Email)
      references UTENTE(Email);
+
+alter table TESTO_NOTIFICA add constraint FKComunica
+     foreign key (ID_NOTIFICA)
+     references NOTIFICA(ID_NOTIFICA);
