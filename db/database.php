@@ -825,13 +825,14 @@ class VinoDatabase {
     }
 
     // funzione per prendere le notifiche dato un utente
-    public function getNotifiche($email){
+    public function getNotifiche($lingua = 1, $email){
         $query = "
-        SELECT ID_NOTIFICA, Data, Titolo, Testo, Visualizzato FROM Notifica WHERE Email = :email
-        ";
+        SELECT N.ID_NOTIFICA, N.Data, TN.Titolo, TN.Testo, N.Visualizzato FROM Notifica AS N
+         JOIN testo_notifica AS TN ON N.ID_NOTIFICA = TN.ID_NOTIFICA WHERE N.Email = :email AND TN.lingua = :lingua";
 
         $params = [
-            ':email' => $email
+            ':email' => $email,
+            ':lingua' => $lingua
         ];
 
         return $this->executeQuery($query, $params);
