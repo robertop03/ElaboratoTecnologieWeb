@@ -909,5 +909,33 @@ class VinoDatabase {
         $this->executeQuery($queryUpdateStato, $paramsUpdateStato);
         return TRUE;
     }
+
+    public function getProductDetails($productId, $language = 1) {
+        $query = "
+        SELECT 
+            p.ID_Prodotto AS id,
+            tp.Titolo AS title,
+            p.Prezzo AS price,
+            p.Foto AS image
+        FROM 
+            PRODOTTO p
+        JOIN 
+            TESTO_PRODOTTO tp ON p.ID_Prodotto = tp.ID_Prodotto
+        WHERE 
+            p.ID_Prodotto = :productId
+        AND 
+            tp.Lingua = :language
+        ";
+    
+        $params = [
+            ':productId' => $productId,
+            ':language' => $language
+        ];
+    
+        $results = $this->executeQuery($query, $params); // Returns an array
+        return $results[0] ?? false; // Return the first result or false
+    }
+    
+     
 }
 ?>
