@@ -27,7 +27,7 @@
                 <a class="nav-link text-white" href="eventManager.php">Events</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="page4.php">Page 4</a>
+                <a class="nav-link text-white" href="wineManager.php">Wine</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="page5.php">Page 5</a>

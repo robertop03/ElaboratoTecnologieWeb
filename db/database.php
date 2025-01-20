@@ -51,7 +51,8 @@ class VinoDatabase {
                 ) AS Capacita_Bottiglia,
                 TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
                 TESTO_PRODOTTO.Descrizione,
-                Foto
+                Foto,
+                Quantita_Magazzino
             FROM 
                 PRODOTTO
             JOIN TESTO_PRODOTTO 
@@ -119,6 +120,54 @@ class VinoDatabase {
     
         // Esegui e restituisci i risultati
         return $this->executeQuery($finalQuery, $params);
+    }
+
+    public function getWinesPaginated($limit, $offset, $lingua = 1) {
+        // Query principale senza filtri opzionali
+        $query = "
+            SELECT 
+                PRODOTTO.ID_Prodotto, 
+                Prezzo, 
+                GROUP_CONCAT(
+                    CASE WHEN CATEGORIA.Titolo = 'Frizzantezza' THEN ATTRIBUTO.Titolo END
+                ) AS Frizzantezza,
+                GROUP_CONCAT(
+                    CASE WHEN CATEGORIA.Titolo = 'Tonalità' THEN ATTRIBUTO.Titolo END
+                ) AS Tonalita,
+                GROUP_CONCAT(
+                    CASE WHEN CATEGORIA.Titolo = 'Provenienza' THEN ATTRIBUTO.Titolo END
+                ) AS Provenienza,
+                GROUP_CONCAT(
+                    CASE WHEN CATEGORIA.Titolo = 'Dimensione Bottiglia' THEN ATTRIBUTO.Titolo END
+                ) AS Capacita_Bottiglia,
+                TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
+                TESTO_PRODOTTO.Descrizione,
+                Foto,
+                Quantita_Magazzino
+            FROM 
+                PRODOTTO
+            JOIN TESTO_PRODOTTO 
+                ON PRODOTTO.ID_Prodotto = TESTO_PRODOTTO.ID_Prodotto
+            LEFT JOIN ATTRIBUTA 
+                ON PRODOTTO.ID_Prodotto = ATTRIBUTA.ID_Prodotto
+            LEFT JOIN ATTRIBUTO 
+                ON ATTRIBUTA.ID_Attributo = ATTRIBUTO.ID_Attributo
+            LEFT JOIN CATEGORIA 
+                ON ATTRIBUTO.ID_Categoria = CATEGORIA.ID_Categoria
+            WHERE 
+                TESTO_PRODOTTO.Lingua = :lingua
+            GROUP BY 
+                PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione
+            LIMIT :limit OFFSET :offset
+        ";
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindValue(':lingua', $lingua, PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT); 
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
 
@@ -1033,6 +1082,32 @@ class VinoDatabase {
         return $this->executeQuery($query, $params);
     }
     
+    public function getTotalWineCount() {
+        $query = "
+            SELECT COUNT(*) AS total
+            FROM PRODOTTO
+        ";
+    
+        $result = $this->executeQuery($query);
+    
+        // Restituisce solo il numero totale
+        return $result[0]['total'] ?? 0;
+    }
+
+    public function updateWineQuantity($id, $quantity) {
+        $query = "
+            UPDATE PRODOTTO
+            SET Quantita_Magazzino = :quantity
+            WHERE ID_Prodotto = :id
+        ";
+    
+        $params = [
+            ':id' => $id,
+            ':quantity' => $quantity
+        ];
+    
+        return $this->executeQuery($query, $params);
+    }
      
 }
 ?>

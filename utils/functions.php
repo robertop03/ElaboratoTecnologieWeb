@@ -20,4 +20,11 @@ function actualProduct($id){
 function numberOfPrefs($nPrefs){
     $_SESSION["nPrefs"] = $nPrefs;
 }
+
+function deleteCookie($name) {
+    // Imposta il cookie con una data di scadenza passata
+    setcookie($name, '', time() - 3600, '/');
+}
+   
+  
 ?>

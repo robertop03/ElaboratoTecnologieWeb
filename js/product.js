@@ -7,22 +7,22 @@ document.addEventListener("DOMContentLoaded", () => {
     return
   }
 
-  const quantityInput = document.getElementById("quantity")
-  const addToCartButton = document.getElementById("add-to-cart")
-  const increaseQuantityButton = document.getElementById("increase-quantity")
-  const decreaseQuantityButton = document.getElementById("decrease-quantity")
+  const quantityInput = document.querySelector("#quantity")
+  const addToCartButton = document.querySelector("#add-to-cart")
+  const increaseQuantityButton = document.querySelector("#increase-quantity")
+  const decreaseQuantityButton = document.querySelector("#decrease-quantity")
 
   // Incrementa la quantità
   increaseQuantityButton.addEventListener("click", () => {
     let currentQuantity = parseInt(quantityInput.value, 10)
-    quantityInput.value = currentQuantity + 1
+    quantityInput.value = currentQuantity
   })
 
   // Decrementa la quantità
   decreaseQuantityButton.addEventListener("click", () => {
     let currentQuantity = parseInt(quantityInput.value, 10)
     if (currentQuantity > 1) {
-      quantityInput.value = currentQuantity - 1
+      quantityInput.value = currentQuantity
     }
   })
 
@@ -30,21 +30,21 @@ document.addEventListener("DOMContentLoaded", () => {
   addToCartButton.addEventListener("click", () => {
     const quantity = parseInt(quantityInput.value, 10)
 
-    // Salva l'ID del prodotto e la quantità nei cookie del carrello
+    // Salva l'ID del prodotto e la quantità nel cookie del carrello
     addToCart(productId, quantity)
 
     // Mostra un alert di conferma
     alert("Prodotto aggiunto al carrello!")
   })
 
-  // Funzione per salvare un prodotto nel carrello
+  // Funzione per aggiungere un prodotto al carrello
   function addToCart(productId, quantity) {
     const cart = getCartFromCookie()
 
     // Cerca il prodotto nel carrello
     const existingProduct = cart.find((item) => item.id === productId)
     if (existingProduct) {
-      existingProduct.quantity += quantity // Aggiorna la quantità
+      existingProduct.quantity += quantity // Aumenta la quantità
     } else {
       // Aggiungi un nuovo prodotto al carrello
       cart.push({ id: productId, quantity })

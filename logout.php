@@ -10,6 +10,7 @@ if (ini_get("session.use_cookies")) {
         $params["secure"], $params["httponly"]
     );
 }
+deleteCookie('cart');
 session_destroy();
 unset($_COOKIE[session_name()]);
 header("Location: login.php");
