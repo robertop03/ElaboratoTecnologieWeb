@@ -273,7 +273,7 @@ function aggiornaNumeroNotifiche() {
       const notificationCountElements = document.querySelectorAll("#notification-count-mb, #notification-count-d")
       if (data.count !== undefined) {
         notificationCountElements.forEach((element) => {
-          element.textContent = data.count // Aggiorna il conteggio su ogni elemento selezionato
+          element.textContent = data.count
         })
       } else {
         console.error("Errore: conteggio notifiche non trovato")
