@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cart.forEach((item) => {
       const li = document.createElement("li");
       li.innerHTML = `
-        <img src="${item.image}" alt="${item.title}" />
+        <img src="resources/img/${item.image}" alt="${item.title}" />
         <div>
           <h4>${item.title}</h4>
           <p>Prezzo: €${item.price.toFixed(2)}</p>
