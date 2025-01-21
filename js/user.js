@@ -1,66 +1,73 @@
 document.addEventListener("DOMContentLoaded", () => {
   // CODICE PER CHIUDERE ALTRI EVENTUALI MODALI APERTI
-  const modalTriggers = document.querySelectorAll("[data-bs-toggle='modal']")
+  const modalTriggers = document.querySelectorAll("[data-bs-toggle='modal']");
   modalTriggers.forEach((trigger) => {
-    const targetModalId = trigger.getAttribute("data-bs-target")
-    const targetModal = document.querySelector(targetModalId)
+    const targetModalId = trigger.getAttribute("data-bs-target");
+    const targetModal = document.querySelector(targetModalId);
 
     if (targetModal) {
       trigger.onclick = function (event) {
-        event.preventDefault() // Per evitare che il link href="#" scorra verso l'alto
-      }
+        event.preventDefault(); // Per evitare che il link href="#" scorra verso l'alto
+      };
       targetModal.onhide = function () {
         // Rimuovi il focus dall'elemento attivo
         if (document.activeElement) {
-          document.activeElement.blur()
+          document.activeElement.blur();
         }
-      }
+      };
     }
   });
 
   // ==============================
-  // Gestione delle carte di credito
+  // Gestione degli indirizzi
   // ==============================
-  const addNewCardModal = document.querySelector("#addNewCardModal");
+  const addNewAddressModal = document.querySelector("#addNewAddressModal");
 
-  // Resetta il form quando si apre il modale per aggiungere una carta
-  addNewCardModal.addEventListener("show.bs.modal", () => {
-    document.querySelector("#cardNumber").value = "";
-    document.querySelector("#expiryMonth").value = "";
-    document.querySelector("#expiryYear").value = "";
+  // Resetta il form quando si apre il modale per aggiungere un indirizzo
+  addNewAddressModal.addEventListener("show.bs.modal", () => {
+    document.querySelector("#address").value = "";
+    document.querySelector("#numeroCivico").value = "";
+    document.querySelector("#postalCode").value = "";
+    document.querySelector("#city").value = "";
+    document.querySelector("#country").value = "";
 
-    const saveButton = document.querySelector("#addNewCardModal .btn-primary");
-    saveButton.textContent = "Aggiungi Carta";
+    const saveButton = document.querySelector("#addNewAddressModal .btn-primary");
+    saveButton.textContent = "Aggiungi Indirizzo";
     delete saveButton.dataset.id;
   });
 
-  // Assegna eventi di modifica alle carte esistenti
-  document.querySelectorAll(".selectable-card").forEach((card) => {
-    card.addEventListener("click", function () {
-      const cardText = this.querySelector(".card-text").textContent.trim();
-      const [cardNumber, expiry] = cardText.split("\n");
-      const [month, year] = expiry.split("/");
+  // Assegna eventi di modifica agli indirizzi esistenti
+  document.querySelectorAll(".selectable-address").forEach((address) => {
+    address.addEventListener("click", function () {
+      const addressText = this.querySelector(".address-text").textContent.trim();
+      const [line1, capCity, country] = addressText.split("\n");
+      const [via, numeroCivico] = line1.split(", ");
+      const [cap, city] = capCity.split(" ");
 
-      document.querySelector("#cardNumber").value = cardNumber.trim();
-      document.querySelector("#expiryMonth").value = month.trim();
-      document.querySelector("#expiryYear").value = year.trim();
+      document.querySelector("#address").value = via.trim();
+      document.querySelector("#numeroCivico").value = numeroCivico.trim();
+      document.querySelector("#postalCode").value = cap.trim();
+      document.querySelector("#city").value = city.trim();
+      document.querySelector("#country").value = country.trim();
 
-      const saveButton = document.querySelector("#addNewCardModal .btn-primary");
-      saveButton.textContent = "Modifica Carta";
+      const saveButton = document.querySelector("#addNewAddressModal .btn-primary");
+      saveButton.textContent = "Modifica Indirizzo";
       saveButton.dataset.id = this.dataset.id;
     });
   });
 
-  // Salva una nuova carta o aggiorna una esistente
-  document.querySelector("#addNewCardModal .btn-primary").addEventListener("click", function (event) {
+  // Salva un nuovo indirizzo o aggiorna uno esistente
+  document.querySelector("#addNewAddressModal .btn-primary").addEventListener("click", function (event) {
     event.preventDefault();
 
-    const cardNumber = document.querySelector("#cardNumber").value.trim();
-    const expiryMonth = document.querySelector("#expiryMonth").value.trim();
-    const expiryYear = document.querySelector("#expiryYear").value.trim();
+    const address = document.querySelector("#address").value.trim();
+    const numeroCivico = document.querySelector("#numeroCivico").value.trim();
+    const postalCode = document.querySelector("#postalCode").value.trim();
+    const city = document.querySelector("#city").value.trim();
+    const country = document.querySelector("#country").value.trim();
     const id = this.dataset.id || null;
 
-    if (!cardNumber || !expiryMonth || !expiryYear) {
+    if (!address || !numeroCivico || !postalCode || !city || !country) {
       alert("Tutti i campi sono obbligatori.");
       return;
     }
@@ -72,41 +79,45 @@ document.addEventListener("DOMContentLoaded", () => {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
-        submit_form: "addPaymentMethod",
-        numeroCarta: cardNumber,
-        meseScadenza: expiryMonth,
-        annoScadenza: expiryYear,
+        submit_form: "addAddress",
+        address: address,
+        numeroCivico: numeroCivico,
+        cap: postalCode,
+        city: city,
+        country: country,
         id: id || "",
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          // Aggiorna la lista delle carte
+          // Aggiorna la lista degli indirizzi
           if (id) {
-            const cardItem = document.querySelector(`.card-item[data-id="${id}"]`);
-            if (cardItem) {
-              cardItem.querySelector(".card-text").innerHTML = `
-                ${cardNumber}<br />
-                ${expiryMonth}/${expiryYear}
+            const addressItem = document.querySelector(`.address-card[data-id="${id}"]`);
+            if (addressItem) {
+              addressItem.querySelector(".address-text").innerHTML = `
+                ${address}, ${numeroCivico}<br />
+                ${postalCode} ${city}<br />
+                ${country}
               `;
             }
           } else {
-            const cardList = document.querySelector(".card-list");
-            const newCardItem = document.createElement("div");
-            newCardItem.classList.add("card-item", "selectable-card");
-            newCardItem.dataset.id = data.id; // ID ritornato dal server
-            newCardItem.innerHTML = `
-              <p class="card-text">
-                ${cardNumber}<br />
-                ${expiryMonth}/${expiryYear}
+            const addressList = document.querySelector(".address-list");
+            const newAddressItem = document.createElement("div");
+            newAddressItem.classList.add("address-card", "selectable-address");
+            newAddressItem.dataset.id = data.id; // ID ritornato dal server
+            newAddressItem.innerHTML = `
+              <p class="address-text">
+                ${address}, ${numeroCivico}<br />
+                ${postalCode} ${city}<br />
+                ${country}
               </p>
             `;
-            cardList.insertBefore(newCardItem, document.querySelector(".add-card-item"));
+            addressList.insertBefore(newAddressItem, document.querySelector(".add-address-card"));
           }
 
           // Chiudi il modale
-          const modalInstance = bootstrap.Modal.getInstance(addNewCardModal);
+          const modalInstance = bootstrap.Modal.getInstance(addNewAddressModal);
           modalInstance.hide();
         } else {
           alert("Errore durante il salvataggio. Riprova.");
