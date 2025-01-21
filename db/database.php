@@ -1327,5 +1327,154 @@ class VinoDatabase {
         return $this->executeQuery($query, $params);
     }
      
+    public function deleteEventById($idEvento) {
+        #try {
+            // Inizia una transazione per assicurare l'integrità dei dati
+            $this->pdo->beginTransaction();
+    
+            // Elimina i testi associati all'evento
+            $queryDeleteTexts = "
+                DELETE FROM TESTO_EVENTO
+                WHERE ID_Evento = :idEvento
+            ";
+            $paramsDeleteTexts = [
+                ':idEvento' => $idEvento,
+            ];
+            $this->executeQuery($queryDeleteTexts, $paramsDeleteTexts);
+
+            // Elimina i consigliati associati all'evento
+            $queryDeleteTexts = "
+                DELETE FROM Consiglia
+                WHERE ID_Evento = :idEvento
+            ";
+            $paramsDeleteTexts = [
+                ':idEvento' => $idEvento,
+            ];
+            $this->executeQuery($queryDeleteTexts, $paramsDeleteTexts);
+    
+            // Elimina l'evento
+            $queryDeleteEvent = "
+                DELETE FROM EVENTO
+                WHERE ID_Evento = :idEvento
+            ";
+            $paramsDeleteEvent = [
+                ':idEvento' => $idEvento,
+            ];
+            $this->executeQuery($queryDeleteEvent, $paramsDeleteEvent);
+    
+            // Conferma la transazione
+            $this->pdo->commit();
+    
+            return true;
+        #} catch (Exception $e) {
+            // Annulla la transazione in caso di errore
+        #    $this->pdo->rollBack();
+        #    return false;
+        #}
+    }
+
+    public function updateEvent(
+        $idEvento,
+        $dataInizio,
+        $dataFine,
+        $foto,
+        $titoloIT,
+        $sottotitoloIT,
+        $descrizioneIT,
+        $titoloEN,
+        $sottotitoloEN,
+        $descrizioneEN
+    ) {
+        try {
+            // Inizia una transazione per garantire la coerenza dei dati
+            $this->pdo->beginTransaction();
+    
+            // Aggiorna i dettagli dell'evento
+            $queryUpdateEvent = "
+                UPDATE EVENTO
+                SET Data_Inizio = :dataInizio,
+                    Data_Fine = :dataFine,
+                    Foto = :foto
+                WHERE ID_Evento = :idEvento
+            ";
+            $paramsUpdateEvent = [
+                ':dataInizio' => $dataInizio,
+                ':dataFine'   => $dataFine,
+                ':foto'       => $foto,
+                ':idEvento'   => $idEvento,
+            ];
+            $this->executeQuery($queryUpdateEvent, $paramsUpdateEvent);
+    
+            // Aggiorna il testo in italiano
+            $queryUpdateTextIT = "
+                UPDATE TESTO_EVENTO
+                SET Titolo = :titolo,
+                    Sottotitolo = :sottotitolo,
+                    Descrizione = :descrizione
+                WHERE ID_Evento = :idEvento
+                  AND Lingua = 1
+            ";
+            $paramsUpdateTextIT = [
+                ':titolo'      => $titoloIT,
+                ':sottotitolo' => $sottotitoloIT,
+                ':descrizione' => $descrizioneIT,
+                ':idEvento'    => $idEvento,
+            ];
+            $this->executeQuery($queryUpdateTextIT, $paramsUpdateTextIT);
+    
+            // Aggiorna il testo in inglese
+            $queryUpdateTextEN = "
+                UPDATE TESTO_EVENTO
+                SET Titolo = :titolo,
+                    Sottotitolo = :sottotitolo,
+                    Descrizione = :descrizione
+                WHERE ID_Evento = :idEvento
+                  AND Lingua = 2
+            ";
+            $paramsUpdateTextEN = [
+                ':titolo'      => $titoloEN,
+                ':sottotitolo' => $sottotitoloEN,
+                ':descrizione' => $descrizioneEN,
+                ':idEvento'    => $idEvento,
+            ];
+            $this->executeQuery($queryUpdateTextEN, $paramsUpdateTextEN);
+    
+            // Conferma la transazione
+            $this->pdo->commit();
+    
+            return true;
+        } catch (Exception $e) {
+            // Annulla la transazione in caso di errore
+            $this->pdo->rollBack();
+            return false;
+        }
+    }
+
+    public function getEventAllDetails($idEvento) {
+        $query = "
+            SELECT 
+                E.ID_Evento,
+                E.Data_Inizio,
+                E.Data_Fine,
+                E.Foto,
+                TE_IT.Titolo AS Titolo_IT,
+                TE_IT.Sottotitolo AS Sottotitolo_IT,
+                TE_IT.Descrizione AS Descrizione_IT,
+                TE_EN.Titolo AS Titolo_EN,
+                TE_EN.Sottotitolo AS Sottotitolo_EN,
+                TE_EN.Descrizione AS Descrizione_EN
+            FROM EVENTO E
+            LEFT JOIN TESTO_EVENTO TE_IT ON E.ID_Evento = TE_IT.ID_Evento AND TE_IT.Lingua = 1
+            LEFT JOIN TESTO_EVENTO TE_EN ON E.ID_Evento = TE_EN.ID_Evento AND TE_EN.Lingua = 2
+            WHERE E.ID_Evento = :idEvento
+        ";
+        
+        $params = [':idEvento' => $idEvento];
+        $result = $this->executeQuery($query, $params);
+    
+        return $result[0] ?? null;
+    }
+    
+    
 }
 ?>
