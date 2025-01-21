@@ -1298,8 +1298,11 @@ class VinoDatabase {
     // funzione per cancellare una notifica
     public function deleteNotifica($idNotifica){
         $query = "
+        DELETE FROM testo_notifica
+        WHERE ID_NOTIFICA = :notifica;
+
         DELETE FROM Notifica
-        WHERE ID_NOTIFICA = :notifica";
+        WHERE ID_NOTIFICA = :notifica;";
 
         $params = [
             ':notifica' => $idNotifica

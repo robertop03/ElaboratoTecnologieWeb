@@ -296,8 +296,11 @@ function eliminaNotifica(event, idNotifica) {
     })
     .then((data) => {
       if (data.success) {
-        // Rimuovi la notifica dalla lista
-        document.querySelector(`[data-id='${idNotifica}']`).remove()
+        // Rimuovi l'intero elemento della notifica dalla lista
+        const notificaElement = document.querySelector(`[data-id='${idNotifica}']`)
+        if (notificaElement) {
+          notificaElement.remove()
+        }
       }
     })
     .catch((error) => {
