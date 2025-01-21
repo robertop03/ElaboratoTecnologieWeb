@@ -21,8 +21,8 @@ $ordini = $db->getOrdersPaginated($perPage, $offset);
       <table class="table table-bordered" id="order-table">
         <thead>
           <tr>
-            <th style="width: 15ch;">ID Ordine</th>
-            <th style="width: 15ch;">Data</th>
+            <th class="w-10">ID Ordine</th>
+            <th class="w-10">Data</th>
             <th>Email Utente</th>
             <th>Stato</th>
             <th></th>
@@ -31,26 +31,26 @@ $ordini = $db->getOrdersPaginated($perPage, $offset);
         <tbody>
           <?php foreach ($ordini as $ordine): ?>
             <?php 
-              switch ($ordine['Stato']) {
+            switch ($ordine['Stato']) {
                 case '0':
-                  $statoTesto = "ordine confermato";
-                  break;
+                    $statoTesto = '<i class="bi bi-check-circle text-success"></i> ordine confermato'; // Icona di conferma
+                    break;
                 case '1':
-                  $statoTesto = "ordine spedito";
-                  break;
+                    $statoTesto = '<i class="bi bi-truck text-primary"></i> ordine spedito'; // Icona di spedizione
+                    break;
                 case '2':
-                  $statoTesto = "ordine consegnato";
-                  break;
+                    $statoTesto = '<i class="bi bi-box text-warning"></i> ordine consegnato'; // Icona di consegna
+                    break;
                 default:
-                  $statoTesto = "sconosciuto";
-                  break;
-              }
+                    $statoTesto = '<i class="bi bi-question-circle text-danger"></i> sconosciuto'; // Icona di errore/sconosciuto
+                    break;
+            }
             ?>
             <tr id="ordine-<?php echo htmlspecialchars($ordine['ID_Ordine']); ?>">
               <td><?php echo htmlspecialchars($ordine['ID_Ordine']); ?></td>
               <td><?php echo htmlspecialchars($ordine['Data']); ?></td>
               <td><?php echo htmlspecialchars($ordine['Email']); ?></td>
-              <td class="stato-ordine"><?php echo htmlspecialchars($statoTesto); ?></td>
+              <td class="stato-ordine"><?php echo $statoTesto; ?></td>
               <td class="text-end">
                 <div class="d-inline-flex gap-2">
                   <button class="btn btn-warning btn-cambia-stato" data-id="<?php echo htmlspecialchars($ordine['ID_Ordine']); ?>">
@@ -90,7 +90,7 @@ document.querySelectorAll(".btn-cambia-stato").forEach(button => {
         const id = this.dataset.id; // dataset è un modo comodo per accedere agli attributi data-*
 
         // AJAX Request
-        fetch("template/modifica-stato-ordine.php", {
+        fetch("api/modifica-stato-ordine.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
