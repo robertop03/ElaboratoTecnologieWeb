@@ -200,11 +200,11 @@ $vini = $db->getWinesPaginated($perPage, $offset,1,$cerca);
           <!-- Dati base del prodotto -->
           <div class="mb-3">
             <label for="prezzo" class="form-label">Prezzo</label>
-            <input type="number" class="form-control" id="prezzo" name="prezzo" step="0.01" required>
+            <input type="number" class="form-control" id="prezzo" name="prezzo" min="0" step="0.01" required>
           </div>
           <div class="mb-3">
             <label for="quantitaMagazzino" class="form-label">Quantità Magazzino</label>
-            <input type="number" class="form-control" id="quantitaMagazzino" name="quantitaMagazzino" min="0" required>
+            <input type="number" class="form-control" id="quantitaMagazzino" name="quantitaMagazzino" min="0" step="1" required>
           </div>
           <div class="mb-3">
             <label for="foto" class="form-label">Nome Foto</label>
