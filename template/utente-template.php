@@ -1,57 +1,50 @@
 <!-- MOBILE PAGE -->
-<div class="container mt-4 mb-5 d-md-none">
+<div id="mainMobileContent" class="container mt-4 mb-5 d-md-none">
   <!-- Sezione profilo -->
   <div class="d-flex align-items-center mb-4">
     <div>
       <h5 class="mb-2 ms-3"><?php echo $_SESSION["nome"] . " " . $_SESSION["cognome"]; ?></h5>
-      <p class="text-muted ms-3"><?php echo $_SESSION["email"] ?></p>
+      <p class="text-muted ms-3"><?php echo $_SESSION["email"]; ?></p>
     </div>
   </div>
 
   <!-- Sezioni menu -->
   <ul class="list-group list-group-flush">
+    <!-- Ordini -->
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
       <a href="#" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
-          <span class="fw-bold" data-bs-toggle="modal" data-bs-target="#ordersModal"><?php echo $linguaAttuale == "en" ? "My orders" : "I miei ordini" ?></span>
-          <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have placed 3 orders" : "Hai effettuato 3 ordini" ?></span>
+          <span class="fw-bold" data-bs-toggle="modal" data-bs-target="#ordersModal"><?php echo $linguaAttuale == "en" ? "My orders" : "I miei ordini"; ?></span>
+          <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have placed 3 orders" : "Hai effettuato 3 ordini"; ?></span>
         </div>
       </a>
       <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#ordersModal"></span>
     </li>
 
+    <!-- Indirizzi di spedizione -->
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
       <a href="#" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
-          <span class="fw-bold" data-bs-toggle="modal" data-bs-target=".address-modal"><?php echo $linguaAttuale == "en" ? "Delivery Addresses" : "Indirizzi di spedizione" ?></span>
-          <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "1 address" : "1 indirizzo" ?></span>
+          <span class="fw-bold" data-bs-toggle="modal" data-bs-target="#addressModal"><?php echo $linguaAttuale == "en" ? "Delivery Addresses" : "Indirizzi di spedizione"; ?></span>
+          <span class="text-muted small">
+            <?php echo $linguaAttuale == "en" ? count($templateParams["addresses"]) . " addresses" : count($templateParams["addresses"]) . " indirizzi"; ?>
+          </span>
         </div>
       </a>
-      <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" data-bs-toggle="modal" data-bs-target=".address-modal"></span>
+      <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#addressModal"></span>
     </li>
 
+    <!-- Sezione metodi di pagamento -->
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
-      <a href="#" class="text-decoration-none text-dark w-100">
+      <a href="#" class="text-decoration-none text-dark w-100" data-bs-toggle="modal" data-bs-target="#paymentModal">
         <div class="d-flex flex-column">
-          <span class="fw-bold" data-bs-toggle="modal" data-bs-target=".card-modal"><?php echo $linguaAttuale == "en" ? "Payment Methods" : "Metodi di pagamento" ?></span>
-          <span class="text-muted small">Visa **34</span>
+          <span class="fw-bold"><?php echo $linguaAttuale == "en" ? "Payment Methods" : "Metodi di pagamento"; ?></span>
+          <span class="text-muted small">
+            <?php echo count($templateParams["paymentMethods"]) . ($linguaAttuale == "en" ? " cards saved" : " carte salvate"); ?>
+          </span>
         </div>
       </a>
-      <a href="" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" data-bs-toggle="modal" data-bs-target=".card-modal"></span></a>
-    </li>
-
-    <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
-      <a href="listaprodotti.php?prefs" class="text-decoration-none text-dark w-100">
-        <div class="d-flex flex-column">
-          <span class="fw-bold" ><?php echo $linguaAttuale == "en" ? "Favourites" : "Preferiti" ?></span>
-          <?php if($_SESSION["nPrefs"] === 0): ?>
-            <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have no favourites" : "Non hai preferiti" ?></span>
-          <?php else: ?>
-            <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You currently have " . $_SESSION['nPrefs'] . " favourites" : "Al momento hai " . $_SESSION['nPrefs'] . " preferiti" ?></span>
-          <?php endif; ?>
-        </div>
-      </a>
-      <a href="listaprodotti.php?prefs" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true"></span></a>
+      <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#paymentModal"></span>
     </li>
 
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
@@ -66,7 +59,7 @@
           <?php endif; ?>
         </div>
       </a>
-      <a href="notifiche.php" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" ></span></a>
+      <a title="frecciaDestra" href="notifiche.php" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" ></span></a>
     </li>
 
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
@@ -76,7 +69,7 @@
           <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "Manage notifications and password" : "Gestisci notifiche e password" ?></span>
         </div>
       </a>
-      <a href="#" data-bs-toggle="modal" data-bs-target="#impostazioniModal" aria-label="icona freccia a destra">
+      <a title="frecciaDestra" href="#" data-bs-toggle="modal" data-bs-target="#impostazioniModal" aria-label="icona freccia a destra">
         <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#impostazioniModal"></span>
       </a>
     </li>
@@ -203,49 +196,56 @@
   <!-- Sezione Indirizzi di spedizione e Metodi di pagamento -->
   <div class="row mb-4">
     
+    <!-- Indirizzi di spedizione -->
     <div class="col-md-6">
       <h4><?php echo $linguaAttuale == "en" ? "Delivery addresses" : "Indirizzi di spedizione" ?></h4>
       <div class="card p-3 bg-light">
-        <p>Italia<br />Via esempio 123, 47039</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target=".address-modal"><?php echo $linguaAttuale == "en" ? "See all your addresses" : "Vedi tutti gli indirizzi salvati" ?></a>
+        <?php if (!empty($templateParams["addresses"])): ?>
+          <ul class="list-unstyled">
+            <?php foreach ($templateParams["addresses"] as $address): ?>
+              <li class="mb-2">
+                <p>
+                  <?php echo htmlspecialchars($address["Via"]) . ", " . htmlspecialchars($address["Numero_Civico"]); ?><br>
+                  <?php echo htmlspecialchars($address["CAP"]) . " " . htmlspecialchars($address["Citta"]); ?><br>
+                  <?php echo htmlspecialchars($address["Paese"]); ?>
+                </p>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php else: ?>
+          <p><?php echo $linguaAttuale == "en" ? "No addresses available." : "Nessun indirizzo disponibile." ?></p>
+        <?php endif; ?>
+        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target=".address-modal">
+          <?php echo $linguaAttuale == "en" ? "See all your addresses" : "Vedi tutti gli indirizzi salvati" ?>
+        </a>
       </div>
     </div>
 
+    <!-- Carte di credito -->
     <div class="col-md-6">
       <h4><?php echo $linguaAttuale == "en" ? "Payment methods" : "Metodi di pagamento" ?></h4>
       <div class="card p-3 bg-light">
-        <p><?php echo $linguaAttuale == "en" ? "Default Payment Method" : "Metodo di pagamento predefinito" ?><br />Visa **34</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target=".card-modal"><?php echo $linguaAttuale == "en" ? "See all your credit cards" : "Vedi tutte le carte salvate" ?></a>
+        <?php if (!empty($templateParams["paymentMethods"])): ?>
+          <ul class="list-unstyled">
+            <?php foreach ($templateParams["paymentMethods"] as $method): ?>
+              <li class="mb-2">
+                <p>
+                  **** **** **** <?php echo substr(htmlspecialchars($method["Numero_Carta"]), -4); ?><br>
+                  <?php echo $linguaAttuale == "en" ? "Expiry: " : "Scadenza: "; ?>
+                  <?php echo htmlspecialchars($method["mese_scadenza"]) . "/" . htmlspecialchars($method["anno_scadenza"]); ?>
+                </p>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php else: ?>
+          <p><?php echo $linguaAttuale == "en" ? "No payment methods available." : "Nessun metodo di pagamento disponibile." ?></p>
+        <?php endif; ?>
+        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target="#paymentModal">
+          <?php echo $linguaAttuale == "en" ? "See all your credit cards" : "Vedi tutte le carte salvate" ?>
+        </a>
       </div>
     </div>
 
-  </div>
-
-  <!-- MODALE PER CARTE -->
-  <div class="modal fade" id="viewCreditCard" tabindex="-1" aria-labelledby="viewCreditCardLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="viewCreditCardLabel"><?php echo $linguaAttuale == "en" ? "Choose a credit card" : "Scegli una carta di credito" ?></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body-viewCards">
-          <!-- Lista delle carte salvate -->
-          <div class="row g-2" id="creditCard-list">
-            <div class="col-12">
-              <div class="card p-3 selectable-card" data-card="VISA|1234123412341234|01/25|123">
-                <p class="mb-0">VISA<br />**** **** **** 1234<br />Scadenza: 01/25</p>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="card p-3 selectable-card" data-card="MasterCard|5678567856785678|02/26|456">
-                <p class="mb-0">MasterCard<br />**** **** **** 5678<br />Scadenza: 02/26</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Sezione Preferiti -->
@@ -259,7 +259,7 @@
           <div class="flex-shrink-0">
             <a href="prodotto.php?id=<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>" class="text-decoration-none">
               <div class="card h-100 text-center">
-                <img src="<?php echo "resources/img/".htmlspecialchars($vino['Foto'] ?? 'vino_generic.jpg'); ?>" alt="<?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>" />
+                <img alt="ImmagineVino" src="<?php echo "resources/img/".htmlspecialchars($vino['Foto'] ?? 'vino_generic.jpg'); ?>" alt="<?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>" />
                 <div class="card-body">
                   <h5 class="card-title">
                     <?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>
@@ -378,233 +378,211 @@
 </div>
 
 <!-- SEZIONE MODALI -->
-  <!-- Modale per visualizzare tutti gli ordini -->
-  <div class="modal fade orders-modal" id="ordersModal" tabindex="-1" aria-labelledby="ordersModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ordersModalLabel"><?php echo $linguaAttuale == "en" ? "All orders" : "Tutti gli ordini" ?></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Lista degli ordini -->
-          <div class="orders-list">
-            <!-- Ordine 1 -->
-            <div class="order-item" data-order-id="AT325D">
-              <p class="fw-bold ms-2">N. ordine: AT325D</p>
-              <hr>
-              <p class="ms-2">Creato il: 27/01/2024</p>
-              <p class="ms-2">Totale: 45€</p>
-              <a href="#" class="text-decoration-none details-link ms-2" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
-            </div>
+<!-- Modale per visualizzare tutti gli ordini -->
+<div class="modal fade orders-modal" id="ordersModal" tabindex="-1" aria-labelledby="ordersModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ordersModalLabel"><?php echo $linguaAttuale == "en" ? "All orders" : "Tutti gli ordini" ?></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Lista degli ordini -->
+        <div class="orders-list">
+          <!-- Ordine 1 -->
+          <div class="order-item" data-order-id="AT325D">
+            <p class="fw-bold ms-2">N. ordine: AT325D</p>
+            <hr>
+            <p class="ms-2">Creato il: 27/01/2024</p>
+            <p class="ms-2">Totale: 45€</p>
+            <a href="#" class="text-decoration-none details-link ms-2" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
+          </div>
 
-            <!-- Ordine 2 -->
-            <div class="order-item" data-order-id="PO124R">
-              <p class="fw-bold ms-2">N. ordine: PO124R</p>
-              <hr>
-              <p class="ms-2">Creato il: 17/01/2024</p>
-              <p class="ms-2">Totale: 25€</p>
-              <a href="#" class="text-decoration-none details-link ms-2" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
-            </div>
+          <!-- Ordine 2 -->
+          <div class="order-item" data-order-id="PO124R">
+            <p class="fw-bold ms-2">N. ordine: PO124R</p>
+            <hr>
+            <p class="ms-2">Creato il: 17/01/2024</p>
+            <p class="ms-2">Totale: 25€</p>
+            <a href="#" class="text-decoration-none details-link ms-2" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
+          </div>
 
-            <!-- Ordine 3 -->
-            <div class="order-item" data-order-id="RE642E">
-              <p class="fw-bold ms-2">N. ordine: RE642E</p>
-              <hr>
-              <p class="ms-2">Creato il: 12/01/2024</p>
-              <p class="ms-2">Totale: 35€</p>
-              <a href="#" class="text-decoration-none details-link ms-2" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
-            </div>
+          <!-- Ordine 3 -->
+          <div class="order-item" data-order-id="RE642E">
+            <p class="fw-bold ms-2">N. ordine: RE642E</p>
+            <hr>
+            <p class="ms-2">Creato il: 12/01/2024</p>
+            <p class="ms-2">Totale: 35€</p>
+            <a href="#" class="text-decoration-none details-link ms-2" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi" ?></button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi" ?></button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Modale per i dettagli dell'ordine -->
-  <div class="modal fade order-details-modal" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="orderDetailsModalLabel"><?php echo $linguaAttuale == "en" ? "Order details" : "Dettagli dell'ordine" ?></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Modale per i dettagli dell'ordine -->
+<div class="modal fade order-details-modal" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="orderDetailsModalLabel"><?php echo $linguaAttuale == "en" ? "Order details" : "Dettagli dell'ordine" ?></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Dettagli dell'ordine -->
+        <img src="#" alt="Immagine prodotto" class="img-fluid product-image">
+        <div class="order-info">
+          <p class="fw-bold product-quantity">Quantità: 1</p>
+          <p class="product-unit-price">Prezzo unitario: 15€</p>
+          <p class="order-status">Stato: In elaborazione</p>
         </div>
-        <div class="modal-body">
-          <!-- Dettagli dell'ordine -->
-          <img src="#" alt="Immagine prodotto" class="img-fluid product-image">
-          <div class="order-info">
-            <p class="fw-bold product-quantity">Quantità: 1</p>
-            <p class="product-unit-price">Prezzo unitario: 15€</p>
-            <p class="order-status">Stato: In elaborazione</p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi" ?></button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi" ?></button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Modale per la selezione dell'indirizzo -->
-  <div class="modal fade address-modal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"><?php echo $linguaAttuale == "en" ? "Choose an address" : "Scegli un indirizzo" ?></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Modale Indirizzi -->
+<div class="modal fade address-modal" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><?php echo $linguaAttuale == "en" ? "Delivery Addresses" : "Indirizzi di spedizione"; ?></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <?php if (!empty($templateParams["addresses"])): ?>
+              <?php foreach ($templateParams["addresses"] as $address): ?>
+                <div class="address-card">
+                  <p class="address-text">
+                    <?php echo htmlspecialchars($address["Via"]) . ", " . htmlspecialchars($address["Numero_Civico"]); ?><br />
+                    <?php echo htmlspecialchars($address["CAP"]) . " " . htmlspecialchars($address["Citta"]); ?><br />
+                    <?php echo htmlspecialchars($address["Paese"]); ?>
+                  </p>
+                </div>
+              <?php endforeach; ?>
+            <?php else: ?>
+              <p><?php echo $linguaAttuale == "en" ? "No addresses available." : "Nessun indirizzo disponibile."; ?></p>
+            <?php endif; ?>
+            <div class="text-center mt-3">
+              <div class="address-card add-address-card" data-bs-toggle="modal" data-bs-target="#addNewAddressModal">
+                <span class="bi bi-plus fs-5"></span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="modal-body">
-          <!-- Lista degli indirizzi -->
-          <div class="address-list">
-            <!-- Card 1 -->
-            <div class="address-card selectable-address">
-              <p class="address-text">Via delle Rose, 10<br />10100 Torino</p>
-            </div>
+      </div>
+    </div>
+  </ul>
+</div>
 
-            <!-- Card 2 -->
-            <div class="address-card selectable-address">
-              <p class="address-text">Via Roma, 20<br />20100 Milano</p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="address-card selectable-address">
-              <p class="address-text">Via Garibaldi, 5<br />30100 Venezia</p>
-            </div>
-
-            <!-- Card per aggiungere un nuovo indirizzo -->
+<!-- Modale per aggiungere un indirizzo -->
+<div class="modal fade" id="addNewAddressModal" tabindex="-1" aria-labelledby="addNewAddressLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addNewAddressLabel"><?php echo $linguaAttuale === "en" ? "Add New Address" : "Aggiungi un nuovo indirizzo"; ?></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="utente.php">
+          <input type="hidden" name="submit_form" value="addAddress">
+          <div class="mb-3">
+            <label for="address" class="form-label"><?php echo $linguaAttuale === "en" ? "Street Address" : "Via"; ?></label>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Via delle Rose" required>
+          </div>
+          <div class="mb-3">
+            <label for="numeroCivico" class="form-label"><?php echo $linguaAttuale === "en" ? "House Number" : "Numero Civico"; ?></label>
+            <input type="text" class="form-control" id="numeroCivico" name="numeroCivico" placeholder="10" required>
+          </div>
+          <div class="mb-3">
+            <label for="postalCode" class="form-label"><?php echo $linguaAttuale === "en" ? "ZIP Code" : "CAP"; ?></label>
+            <input type="text" class="form-control" id="postalCode" name="cap" placeholder="10100" required>
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label"><?php echo $linguaAttuale === "en" ? "City" : "Città"; ?></label>
+            <input type="text" class="form-control" id="city" name="city" placeholder="Torino" required>
+          </div>
+          <div class="mb-3">
+            <label for="country" class="form-label"><?php echo $linguaAttuale === "en" ? "Country" : "Paese"; ?></label>
+            <input type="text" class="form-control" id="country" name="country" placeholder="Italia" required>
+          </div>
+          <button type="submit" class="btn btn-primary"><?php echo $linguaAttuale === "en" ? "Add Address" : "Aggiungi Indirizzo"; ?></button>
+          <div class="text-center mt-3">
             <div class="address-card add-address-card" data-bs-toggle="modal" data-bs-target="#addNewAddressModal">
               <span class="bi bi-plus fs-5"></span>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Modale per aggiungere un indirizzo -->
-  <div class="modal fade" id="addNewAddressModal" tabindex="-1" aria-labelledby="addNewAddressLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addNewAddressLabel"><?php echo $linguaAttuale == "en" ? "Manage addresses" : "Gestisci indirizzo" ?></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="address" class="form-label"><?php echo $linguaAttuale == "en" ? "Address" : "Indirizzo" ?></label>
-              <input type="text" class="form-control" id="address" placeholder="Via delle Rose, 10" required />
-            </div>
-            <div class="mb-3">
-              <label for="city" class="form-label"><?php echo $linguaAttuale == "en" ? "City" : "Città" ?></label>
-              <input type="text" class="form-control" id="city" placeholder="Torino" required />
-            </div>
-            <div class="mb-3">
-              <label for="province" class="form-label"><?php echo $linguaAttuale == "en" ? "Province" : "Provincia" ?></label>
-              <input type="text" class="form-control" id="province" placeholder="TO" required />
-            </div>
-            <div class="mb-3">
-              <label for="postalCode" class="form-label"><?php echo $linguaAttuale == "en" ? "ZIP code" : "CAP" ?></label>
-              <input type="text" class="form-control" id="postalCode" placeholder="10100" title="Inserisci un CAP valido" required />
-            </div>
-            <button type="submit" class="btn btn-primary"><?php echo $linguaAttuale == "en" ? "Add address" : "Aggiungi indirizzo" ?></button>
-          </form>
-        </div>
+<!-- Modale per i metodi di pagamento -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><?php echo $linguaAttuale == "en" ? "Payment Methods" : "Metodi di pagamento"; ?></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    </div>
-  </div>
-
-  <!-- Modale per la selezione della carta -->
-  <div class="modal fade card-modal" tabindex="-1" aria-labelledby="cardModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"><?php echo $linguaAttuale == "en" ? "Choose a credit card" : "Scegli una carta di credito" ?></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Lista delle carte -->
-          <div class="card-list">
-            <!-- Card 1 -->
-            <div class="card-item selectable-card">
-              <p class="card-text">VISA<br />**** **** **** 1234<br />Scadenza: 01/25</p>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="card-item selectable-card">
-              <p class="card-text">MasterCard<br />**** **** **** 5678<br />Scadenza: 02/26</p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="card-item selectable-card">
-              <p class="card-text">American Express<br />**** **** **** 3456<br />Scadenza: 03/27</p>
-            </div>
-
-            <!-- Card per aggiungere una nuova carta -->
-            <div class="card-item add-address-card" data-bs-toggle="modal" data-bs-target="#addNewCardModal">
-              <span class="bi bi-plus fs-5"></span>
-            </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <?php foreach ($templateParams["paymentMethods"] as $method): ?>
+          <li class="list-group-item">
+            <p><?php echo "**** " . substr($method["Numero_Carta"], -4); ?></p>
+            <small>
+              <?php echo $linguaAttuale == "en" ? "Expires" : "Scadenza"; ?>: 
+              <?php echo $method["mese_scadenza"] . "/" . $method["anno_scadenza"]; ?>
+            </small>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+        <div class="text-center mt-3">
+          <div class="address-card add-address-card" data-bs-toggle="modal" data-bs-target="#addNewAddressModal">
+            <span class="bi bi-plus fs-5"></span>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Modale per aggiungere una carta -->
-  <div class="modal fade" id="addNewCardModal" tabindex="-1" aria-labelledby="addNewCardLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addNewCardLabel"><?php echo $linguaAttuale == "en" ? "Manage credit cards" : "Gestisci le carte di credito" ?></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="cardNumber" class="form-label"><?php echo $linguaAttuale == "en" ? "Credit card number" : "Numero carta di credito" ?></label>
-              <input type="text" class="form-control" id="cardNumber" placeholder="4111 1111 1111 1111" title="Inserisci un numero di carta valido" required />
+<!-- Modale per aggiungere un metodo di pagamento -->
+<div class="modal fade" id="addNewPaymentMethodModal" tabindex="-1" aria-labelledby="addNewPaymentMethodLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><?php echo $linguaAttuale == "en" ? "Add Payment Method" : "Aggiungi metodo di pagamento"; ?></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="utente.php">
+          <input type="hidden" name="submit_form" value="addPaymentMethod">
+          <div class="mb-3">
+            <label for="numeroCarta" class="form-label"><?php echo $linguaAttuale == "en" ? "Card Number" : "Numero carta"; ?></label>
+            <input type="text" class="form-control" id="numeroCarta" name="numeroCarta" placeholder="4111 1111 1111 1111" required>
+          </div>
+          <div class="row">
+            <div class="col-6 mb-3">
+              <label for="meseScadenza" class="form-label"><?php echo $linguaAttuale == "en" ? "Expiration Month" : "Mese di scadenza"; ?></label>
+              <input type="text" class="form-control" id="meseScadenza" name="meseScadenza" min="1" max="12" placeholder="MM" required>
             </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="expiryMonth" class="form-label"><?php echo $linguaAttuale == "en" ? "Expiration month" : "Mese di scadenza" ?></label>
-                <select class="form-select" id="expiryMonth" required>
-                  <option selected disabled>MM</option>
-                  <option>01</option>
-                  <option>02</option>
-                  <option>03</option>
-                  <option>04</option>
-                  <option>05</option>
-                  <option>06</option>
-                  <option>07</option>
-                  <option>08</option>
-                  <option>09</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
-                </select>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="expiryYear" class="form-label"><?php echo $linguaAttuale == "en" ? "Expiration year" : "Anno di scadenza" ?></label>
-                <select class="form-select" id="expiryYear" required>
-                  <option selected disabled><?php echo $linguaAttuale == "en" ? "YY" : "AA" ?></option>
-                  <option>2025</option>
-                  <option>2026</option>
-                  <option>2027</option>
-                  <option>2028</option>
-                  <option>2029</option>
-                </select>
-              </div>
+            <div class="col-6 mb-3">
+              <label for="annoScadenza" class="form-label"><?php echo $linguaAttuale == "en" ? "Expiration Year" : "Anno di scadenza"; ?></label>
+              <input type="text" class="form-control" id="annoScadenza" name="annoScadenza" min="<?php echo date('Y'); ?>" max="<?php echo date('Y') + 20; ?>" placeholder="YYYY" required>
             </div>
-            <div class="mb-3">
-              <label for="cvv" class="form-label">CVV</label>
-              <input type="text" class="form-control" id="cvv" placeholder="123" title="Inserisci un CVV valido" required />
-            </div>
-            <button type="submit" class="btn btn-primary"><?php echo $linguaAttuale == "en" ? "Add credit card" : "Aggiungi carta di credito" ?></button>
-          </form>
-        </div>
+          </div>
+          <button type="submit" class="btn btn-primary"><?php echo $linguaAttuale == "en" ? "Save Card" : "Salva carta"; ?></button>
+        </form>
       </div>
     </div>
   </div>
+</div>

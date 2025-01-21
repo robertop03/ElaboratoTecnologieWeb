@@ -12,7 +12,7 @@
           </div>
 
           <div class="checkout-box p-4">
-            <h3><?php echo $linguaAttuale == "en" ? "Shipping details" : "Dettagli della spedizione" ?></h3>
+            <h4><?php echo $linguaAttuale == "en" ? "Shipping details" : "Dettagli della spedizione" ?></h4>
             <!-- Modulo di Checkout -->
             <form>
               <div class="mb-3 nome">
@@ -99,7 +99,7 @@
           </div>
 
           <div class="checkout-box p-4">
-            <h3><?php echo $linguaAttuale == "en" ? "Credit card details" : "Dettagli della carta di credito" ?></h3>
+            <h4><?php echo $linguaAttuale == "en" ? "Credit card details" : "Dettagli della carta di credito" ?></h4>
             <!-- Modulo per i dati della carta -->
             <form>
               <div class="mb-3 numero-carta">

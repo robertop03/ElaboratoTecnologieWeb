@@ -1,72 +1,125 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Intercetta il click su un link "Modifica"
-  document.querySelectorAll(".edit-link").forEach(link => {
-    link.addEventListener("click", function (event) {
-      event.preventDefault(); // Evita il comportamento predefinito del link
+  // CODICE PER CHIUDERE ALTRI EVENTUALI MODALI APERTI
+  const modalTriggers = document.querySelectorAll("[data-bs-toggle='modal']")
+  modalTriggers.forEach((trigger) => {
+    const targetModalId = trigger.getAttribute("data-bs-target")
+    const targetModal = document.querySelector(targetModalId)
 
-      // Trova l'elemento della scheda associata
-      const addressCard = this.closest(".address-card");
-      if (!addressCard) {
-        console.error("Errore: Impossibile trovare la scheda associata.");
-        return;
+    if (targetModal) {
+      trigger.onclick = function (event) {
+        event.preventDefault() // Per evitare che il link href="#" scorra verso l'alto
       }
+      targetModal.onhide = function () {
+        // Rimuovi il focus dall'elemento attivo
+        if (document.activeElement) {
+          document.activeElement.blur()
+        }
+      }
+    }
+  });
 
-      // Estrai i dati dalla scheda
-      const addressText = addressCard.querySelector(".address-text").textContent.trim();
-      const [addressLine, postalCity] = addressText.split("\n");
-      const [address, cityProvince] = addressLine.split(", ");
-      const [city, province] = cityProvince.split(" ");
-      const postalCode = postalCity.trim();
+  // ==============================
+  // Gestione delle carte di credito
+  // ==============================
+  const addNewCardModal = document.querySelector("#addNewCardModal");
 
-      // Compila i campi del modale
-      document.querySelector("#address").value = address.trim();
-      document.querySelector("#city").value = city.trim();
-      document.querySelector("#province").value = province.trim();
-      document.querySelector("#postalCode").value = postalCode.trim();
+  // Resetta il form quando si apre il modale per aggiungere una carta
+  addNewCardModal.addEventListener("show.bs.modal", () => {
+    document.querySelector("#cardNumber").value = "";
+    document.querySelector("#expiryMonth").value = "";
+    document.querySelector("#expiryYear").value = "";
 
-      // Cambia il titolo del modale e il testo del pulsante
-      document.querySelector("#addNewAddressLabel").textContent = "Modifica indirizzo";
-      const formButton = document.querySelector("#addNewAddressModal .btn-primary");
-      formButton.textContent = "Conferma modifiche";
+    const saveButton = document.querySelector("#addNewCardModal .btn-primary");
+    saveButton.textContent = "Aggiungi Carta";
+    delete saveButton.dataset.id;
+  });
 
-      // Aggiungi un attributo data-id al pulsante per identificare quale indirizzo stai modificando (opzionale)
-      formButton.dataset.id = addressCard.dataset.id;
+  // Assegna eventi di modifica alle carte esistenti
+  document.querySelectorAll(".selectable-card").forEach((card) => {
+    card.addEventListener("click", function () {
+      const cardText = this.querySelector(".card-text").textContent.trim();
+      const [cardNumber, expiry] = cardText.split("\n");
+      const [month, year] = expiry.split("/");
 
-      // Mostra il modale
-      const addNewAddressModal = new bootstrap.Modal(document.querySelector("#addNewAddressModal"));
-      addNewAddressModal.show();
+      document.querySelector("#cardNumber").value = cardNumber.trim();
+      document.querySelector("#expiryMonth").value = month.trim();
+      document.querySelector("#expiryYear").value = year.trim();
+
+      const saveButton = document.querySelector("#addNewCardModal .btn-primary");
+      saveButton.textContent = "Modifica Carta";
+      saveButton.dataset.id = this.dataset.id;
     });
   });
 
-  // Pulsante per confermare modifiche
-  const formButton = document.querySelector("#addNewAddressModal .btn-primary");
-  formButton.addEventListener("click", function (event) {
+  // Salva una nuova carta o aggiorna una esistente
+  document.querySelector("#addNewCardModal .btn-primary").addEventListener("click", function (event) {
     event.preventDefault();
 
-    // Ottieni i dati aggiornati dai campi del modale
-    const updatedAddress = document.querySelector("#address").value;
-    const updatedCity = document.querySelector("#city").value;
-    const updatedProvince = document.querySelector("#province").value;
-    const updatedPostalCode = document.querySelector("#postalCode").value;
+    const cardNumber = document.querySelector("#cardNumber").value.trim();
+    const expiryMonth = document.querySelector("#expiryMonth").value.trim();
+    const expiryYear = document.querySelector("#expiryYear").value.trim();
+    const id = this.dataset.id || null;
 
-    // Trova la scheda corrispondente e aggiorna i dati
-    const addressCard = document.querySelector(`.address-card[data-id="${this.dataset.id}"]`);
-    if (addressCard) {
-      addressCard.querySelector(".address-text").innerHTML = `
-        ${updatedAddress}, ${updatedCity} ${updatedProvince}<br />
-        ${updatedPostalCode}
-      `;
+    if (!cardNumber || !expiryMonth || !expiryYear) {
+      alert("Tutti i campi sono obbligatori.");
+      return;
     }
 
-    // Chiudi il modale
-    const addNewAddressModal = bootstrap.Modal.getInstance(document.querySelector("#addNewAddressModal"));
-    addNewAddressModal.hide();
+    // Invio dei dati al server per l'aggiunta o la modifica
+    fetch("utente.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        submit_form: "addPaymentMethod",
+        numeroCarta: cardNumber,
+        meseScadenza: expiryMonth,
+        annoScadenza: expiryYear,
+        id: id || "",
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          // Aggiorna la lista delle carte
+          if (id) {
+            const cardItem = document.querySelector(`.card-item[data-id="${id}"]`);
+            if (cardItem) {
+              cardItem.querySelector(".card-text").innerHTML = `
+                ${cardNumber}<br />
+                ${expiryMonth}/${expiryYear}
+              `;
+            }
+          } else {
+            const cardList = document.querySelector(".card-list");
+            const newCardItem = document.createElement("div");
+            newCardItem.classList.add("card-item", "selectable-card");
+            newCardItem.dataset.id = data.id; // ID ritornato dal server
+            newCardItem.innerHTML = `
+              <p class="card-text">
+                ${cardNumber}<br />
+                ${expiryMonth}/${expiryYear}
+              </p>
+            `;
+            cardList.insertBefore(newCardItem, document.querySelector(".add-card-item"));
+          }
+
+          // Chiudi il modale
+          const modalInstance = bootstrap.Modal.getInstance(addNewCardModal);
+          modalInstance.hide();
+        } else {
+          alert("Errore durante il salvataggio. Riprova.");
+        }
+      })
+      .catch((error) => {
+        console.error("Errore:", error);
+      });
   });
 
   // ==============================
-  // Modali per gli ordini
+  // Gestione ordini (lasciato invariato)
   // ==============================
-
   const orders = {
     AT325D: {
       image: "../resources/img/vino1.jpg", // Immagine prodotto
@@ -88,7 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-  // Assegna l'evento di clic e doppio clic alle schede degli ordini
   document.querySelectorAll(".order-item").forEach((item) => {
     item.addEventListener("dblclick", function () {
       openOrderDetailsModal(item.dataset.orderId);
@@ -100,7 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Funzione per aprire il modale dei dettagli dell'ordine
   function openOrderDetailsModal(orderId) {
     const orderDetails = orders[orderId];
 
@@ -114,12 +165,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const orderDetailsModal = new bootstrap.Modal(document.querySelector("#orderDetailsModal"));
     orderDetailsModal.show();
 
-    // Evento per assicurarsi che la pagina venga ripristinata correttamente al termine
     const modalElement = document.querySelector("#orderDetailsModal");
     modalElement.addEventListener("hidden.bs.modal", removeBackdrop);
   }
 
-  // Funzione per rimuovere manualmente il backdrop
   function removeBackdrop() {
     const backdrop = document.querySelector(".modal-backdrop");
     if (backdrop) {
