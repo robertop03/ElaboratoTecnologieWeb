@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         } elseif ($_GET['action'] === 'update') {
             // SEGNA LA NOTIFICA COME LETTA
             header('Content-Type: application/json');
-
             if (!isset($_GET['id'])) {
                 http_response_code(400);
                 echo json_encode(['error' => 'ID della notifica non fornito']);
@@ -37,11 +36,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             echo json_encode(['success' => true, 'id' => $idNotifica]);
             exit();
         } elseif ($_GET['action'] === 'count') {
+            header('Content-Type: application/json');
             $nNotifications = $db->getNumeroNotificheNonLette($_SESSION["email"]);
             echo json_encode(['count' => $nNotifications[0]["COUNT(ID_NOTIFICA)"]]);
             exit();
+        } elseif ($_GET['action'] === 'delete'){
+            header('Content-Type: application/json');
+    
+            // Controllo sessione
+            if (!isset($_SESSION["email"])) {
+                echo json_encode(['success' => false, 'error' => 'Utente non autenticato']);
+                exit();
+            }
+            // Controllo ID notifica
+            if (!isset($_GET['id'])) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'error' => 'ID della notifica non fornito']);
+                exit();
+            }
+            $idNotifica = htmlspecialchars($_GET['id']);
+            // Tentativo di eliminazione
+            if ($db->deleteNotifica($idNotifica)) {
+                echo json_encode(['success' => true, 'message' => 'Notifica eliminata']);
+            } else {
+                echo json_encode(['success' => false, 'error' => 'Impossibile eliminare la notifica']);
+            }
+            exit();
         }
-    } 
+    }
 
     // VISUALIZZA IL TEMPLATE HTML
     if (!isset($_SESSION["email"])) {

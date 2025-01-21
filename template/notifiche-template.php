@@ -11,6 +11,10 @@
       <span class="pe-5"><?php echo htmlspecialchars($notifica["Titolo"]); ?></span>
       <span class="ps-5 ms-5"><?php echo htmlspecialchars($notifica["Data"]); ?></span>
       <p class="mb-0 text-muted"><?php echo htmlspecialchars($notifica["Testo"]); ?></p>
+      <button class="btn btn-danger btn-sm float-end" 
+              onclick="eliminaNotifica(event, '<?php echo $notifica['ID_NOTIFICA']; ?>')">
+            <?php echo $linguaAttuale == "en" ? "Delete" : "Elimina" ?>
+      </button>
     </a>
    <?php endforeach; ?>
   </div>
@@ -29,7 +33,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="notificationModalLabel">Titolo Notifica</h5>
+          <h5 class="modal-title" id="notificationModalLabel"></h5>
         </div>
         <div class="modal-body"> </div>
         <div class="modal-footer">

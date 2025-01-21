@@ -281,3 +281,26 @@ function aggiornaNumeroNotifiche() {
     })
     .catch((error) => console.error("Errore nella richiesta di aggiornamento notifiche:", error))
 }
+
+function eliminaNotifica(event, idNotifica) {
+  event.stopPropagation()
+
+  fetch(`notifiche.php?action=delete&id=${idNotifica}`, {
+    method: "GET",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Errore nella risposta del server")
+      }
+      return response.json()
+    })
+    .then((data) => {
+      if (data.success) {
+        // Rimuovi la notifica dalla lista
+        document.querySelector(`[data-id='${idNotifica}']`).remove()
+      }
+    })
+    .catch((error) => {
+      console.error("Si è verificato un errore:", error)
+    })
+}

@@ -1295,6 +1295,18 @@ class VinoDatabase {
         }
     }
 
+    // funzione per cancellare una notifica
+    public function deleteNotifica($idNotifica){
+        $query = "
+        DELETE FROM Notifica
+        WHERE ID_NOTIFICA = :notifica";
+
+        $params = [
+            ':notifica' => $idNotifica
+        ];
+        return $this->executeQuery($query, $params);
+    }
+
     // funzione per prendere le 2 notifiche non lette più recenti per un utente
     public function getUltimeDueNotifiche($lingua = 1, $email){
         $query = "
