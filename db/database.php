@@ -1569,5 +1569,8 @@ class VinoDatabase {
         return $this->executeQuery($query, $params);
     }    
     
+    public function getLastInsertId() {
+        return $this->pdo->lastInsertId();
+    }    
 }
 ?>

@@ -22,6 +22,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Ricarica la pagina per aggiornare la lista dei metodi di pagamento
             header("Location: utente.php");
             exit();
+
+        } elseif ($_POST['submit_form'] === 'addAddress') {
+            // Aggiungi o modifica un indirizzo
+            $via = trim($_POST["address"]);
+            $numeroCivico = trim($_POST["numeroCivico"]);
+            $cap = trim($_POST["cap"]);
+            $citta = trim($_POST["city"]);
+            $paese = trim($_POST["country"]);
+            $id = isset($_POST["id"]) && !empty($_POST["id"]) ? trim($_POST["id"]) : null;
+
+            if ($id) {
+                // Modifica un indirizzo esistente
+                $success = $db->updateUserAddress($id, $via, $numeroCivico, $cap, $citta, $paese);
+            } else {
+                // Aggiungi un nuovo indirizzo
+                $success = $db->addUserAddress($email, $via, $numeroCivico, $cap, $citta, $paese);
+            }
+
+            // Risposta JSON per AJAX
+            header("Content-Type: application/json");
+            echo json_encode(["success" => $success, "id" => $id ?: $db->getLastInsertId()]);
+            exit();
         }
     }
 }

@@ -196,52 +196,46 @@
   <!-- Sezione Indirizzi di spedizione e Metodi di pagamento -->
   <div class="row mb-4">
     
-    <!-- Indirizzi di spedizione -->
     <div class="col-md-6">
-      <h4><?php echo $linguaAttuale == "en" ? "Delivery addresses" : "Indirizzi di spedizione" ?></h4>
-      <div class="card p-3 bg-light">
+      <h4><?php echo $linguaAttuale == "en" ? "Delivery addresses" : "Indirizzi di spedizione"; ?></h4>
+      <div class="card p-3 bg-light card-spacing">
         <?php if (!empty($templateParams["addresses"])): ?>
-          <ul class="list-unstyled">
-            <?php foreach ($templateParams["addresses"] as $address): ?>
-              <li class="mb-2">
-                <p>
-                  <?php echo htmlspecialchars($address["Via"]) . ", " . htmlspecialchars($address["Numero_Civico"]); ?><br>
-                  <?php echo htmlspecialchars($address["CAP"]) . " " . htmlspecialchars($address["Citta"]); ?><br>
-                  <?php echo htmlspecialchars($address["Paese"]); ?>
-                </p>
-              </li>
-            <?php endforeach; ?>
-          </ul>
+          <?php 
+          $firstAddress = $templateParams["addresses"][0]; 
+          ?>
+          <p>
+            <?php echo htmlspecialchars($firstAddress["Via"]) . ", " . htmlspecialchars($firstAddress["Numero_Civico"]); ?><br />
+            <?php echo htmlspecialchars($firstAddress["CAP"]) . " " . htmlspecialchars($firstAddress["Citta"]); ?><br />
+            <?php echo htmlspecialchars($firstAddress["Paese"]); ?>
+          </p>
         <?php else: ?>
-          <p><?php echo $linguaAttuale == "en" ? "No addresses available." : "Nessun indirizzo disponibile." ?></p>
+          <p><?php echo $linguaAttuale == "en" ? "No saved addresses." : "Nessun indirizzo salvato."; ?></p>
         <?php endif; ?>
         <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target=".address-modal">
-          <?php echo $linguaAttuale == "en" ? "See all your addresses" : "Vedi tutti gli indirizzi salvati" ?>
+          <?php echo $linguaAttuale == "en" ? "See all your addresses" : "Vedi tutti gli indirizzi salvati"; ?>
         </a>
       </div>
     </div>
 
+
     <!-- Carte di credito -->
     <div class="col-md-6">
-      <h4><?php echo $linguaAttuale == "en" ? "Payment methods" : "Metodi di pagamento" ?></h4>
-      <div class="card p-3 bg-light">
+      <h4><?php echo $linguaAttuale == "en" ? "Payment methods" : "Metodi di pagamento"; ?></h4>
+      <div class="card p-3 bg-light card-spacing">
         <?php if (!empty($templateParams["paymentMethods"])): ?>
-          <ul class="list-unstyled">
-            <?php foreach ($templateParams["paymentMethods"] as $method): ?>
-              <li class="mb-2">
-                <p>
-                  **** **** **** <?php echo substr(htmlspecialchars($method["Numero_Carta"]), -4); ?><br>
-                  <?php echo $linguaAttuale == "en" ? "Expiry: " : "Scadenza: "; ?>
-                  <?php echo htmlspecialchars($method["mese_scadenza"]) . "/" . htmlspecialchars($method["anno_scadenza"]); ?>
-                </p>
-              </li>
-            <?php endforeach; ?>
-          </ul>
+          <?php 
+          $firstCard = $templateParams["paymentMethods"][0];
+          ?>
+          <p>
+            **** **** **** <?php echo substr(htmlspecialchars($firstCard["Numero_Carta"]), -4); ?><br />
+            <?php echo $linguaAttuale == "en" ? "Expiration:" : "Scadenza:"; ?> 
+            <?php echo htmlspecialchars($firstCard["mese_scadenza"]) . "/" . htmlspecialchars($firstCard["anno_scadenza"]); ?>
+          </p>
         <?php else: ?>
-          <p><?php echo $linguaAttuale == "en" ? "No payment methods available." : "Nessun metodo di pagamento disponibile." ?></p>
+          <p><?php echo $linguaAttuale == "en" ? "No saved payment methods." : "Nessun metodo di pagamento salvato."; ?></p>
         <?php endif; ?>
         <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target="#paymentModal">
-          <?php echo $linguaAttuale == "en" ? "See all your credit cards" : "Vedi tutte le carte salvate" ?>
+          <?php echo $linguaAttuale == "en" ? "See all your credit cards" : "Vedi tutte le carte salvate"; ?>
         </a>
       </div>
     </div>
@@ -459,7 +453,7 @@
           <div class="modal-body">
             <?php if (!empty($templateParams["addresses"])): ?>
               <?php foreach ($templateParams["addresses"] as $address): ?>
-                <div class="address-card">
+                <div class="address-card card-spacing">
                   <p class="address-text">
                     <?php echo htmlspecialchars($address["Via"]) . ", " . htmlspecialchars($address["Numero_Civico"]); ?><br />
                     <?php echo htmlspecialchars($address["CAP"]) . " " . htmlspecialchars($address["Citta"]); ?><br />
@@ -514,10 +508,6 @@
             <input type="text" class="form-control" id="country" name="country" placeholder="Italia" required>
           </div>
           <button type="submit" class="btn btn-primary"><?php echo $linguaAttuale === "en" ? "Add Address" : "Aggiungi Indirizzo"; ?></button>
-          <div class="text-center mt-3">
-            <div class="address-card add-address-card" data-bs-toggle="modal" data-bs-target="#addNewAddressModal">
-              <span class="bi bi-plus fs-5"></span>
-            </div>
           </div>
         </form>
       </div>
@@ -536,7 +526,7 @@
       <div class="modal-body">
         <ul class="list-group">
           <?php foreach ($templateParams["paymentMethods"] as $method): ?>
-          <li class="list-group-item">
+          <li class="list-group-item card-spacing">
             <p><?php echo "**** " . substr($method["Numero_Carta"], -4); ?></p>
             <small>
               <?php echo $linguaAttuale == "en" ? "Expires" : "Scadenza"; ?>: 
@@ -546,7 +536,7 @@
           <?php endforeach; ?>
         </ul>
         <div class="text-center mt-3">
-          <div class="address-card add-address-card" data-bs-toggle="modal" data-bs-target="#addNewAddressModal">
+          <div class="address-card add-address-card" data-bs-toggle="modal" data-bs-target="#addNewPaymentMethodModal">
             <span class="bi bi-plus fs-5"></span>
           </div>
         </div>

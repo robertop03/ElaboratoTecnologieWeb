@@ -760,7 +760,8 @@ svg {
 /* Scheda degli indirizzi */
 .order-item,
 .card-item,
-.address-card {
+.address-card,
+.list-group-item {
   position: relative;
   padding: 15px;
   background-color: #f8f9fa;
@@ -773,7 +774,8 @@ svg {
 /* Hover sulla scheda */
 .order-item:hover,
 .card-item:hover,
-.address-card:hover {
+.address-card:hover,
+.list-group-item:hover {
   background-color: #e9ecef;
   transform: translateY(-2px);
 }
@@ -838,4 +840,8 @@ svg {
 
 .order-details-modal .order-info .fw-bold {
   font-size: 18px;
+}
+
+.card-spacing {
+  margin-bottom: 1rem; 
 }
