@@ -112,12 +112,13 @@
       <!-- Menu di navigazione (solo desktop) -->
       <div class="container-fluid d-none d-md-flex justify-content-center border border-dark">
         <ul class="nav-links d-flex gap-3 list-unstyled">
-          <li><a href="#" class="text-dark text-uppercase" data-bs-toggle="modal" data-bs-target="#map-modal"><?php echo $linguaAttuale == "en" ? "Region" : "Regione" ?></a></li>
-          <li><a href="listaprodotti.php?tona=rosso" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "RED" : "ROSSI" ?></a></li>
-          <li><a href="listaprodotti.php?tona=bianco" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "WHITE" : "BIANCHI" ?></a></li>
-          <li><a href="listaprodotti.php?tona=rosè" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "ROSÈ" : "ROSATI" ?></a></li>
-          <li><a href="listaprodotti.php?friz=fermo" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "STILL" : "FERMI" ?></a></li>
-          <li><a href="listaprodotti.php?friz=frizzante" class="text-dark text-uppercase"><?php echo $linguaAttuale == "en" ? "SPARKLING" : "FRIZZANTI" ?></a></li>
+          <li><a href="listaprodotti.php" class="text-dark"><?php echo $linguaAttuale == "en" ? "ALL" : "TUTTI" ?></a></li>
+          <li><a href="#" class="text-dark" data-bs-toggle="modal" data-bs-target="#map-modal"><?php echo $linguaAttuale == "en" ? "REGION" : "REGIONE" ?></a></li>
+          <li><a href="listaprodotti.php?tona=rosso" class="text-dark"><?php echo $linguaAttuale == "en" ? "RED" : "ROSSI" ?></a></li>
+          <li><a href="listaprodotti.php?tona=bianco" class="text-dark"><?php echo $linguaAttuale == "en" ? "WHITE" : "BIANCHI" ?></a></li>
+          <li><a href="listaprodotti.php?tona=rosè" class="text-dark"><?php echo $linguaAttuale == "en" ? "ROSÈ" : "ROSATI" ?></a></li>
+          <li><a href="listaprodotti.php?friz=fermo" class="text-dark"><?php echo $linguaAttuale == "en" ? "STILL" : "FERMI" ?></a></li>
+          <li><a href="listaprodotti.php?friz=frizzante" class="text-dark"><?php echo $linguaAttuale == "en" ? "SPARKLING" : "FRIZZANTI" ?></a></li>
         </ul>
       </div>
       <!-- OFFCANVAS MENU -->
@@ -129,6 +130,7 @@
         <div class="offcanvas-body">
           <!-- LISTA PRINCIPALE -->
           <ul class="list-group">
+            <li class="list-group-item"><a href="listaprodotti.php"><?php echo $linguaAttuale == "en" ? "All" : "Tutti" ?></a></li>
             <li class="list-group-item"><a href="listaprodotti.php?tona=rosso"><?php echo $linguaAttuale == "en" ? "Red" : "Rossi" ?></a></li>
             <li class="list-group-item"><a href="listaprodotti.php?tona=bianco"><?php echo $linguaAttuale == "en" ? "White" : "Bianchi" ?></a></li>
             <li class="list-group-item"><a href="listaprodotti.php?tona=rosè"><?php echo $linguaAttuale == "en" ? "Rosè" : "Rosati" ?></a></li>
@@ -144,6 +146,22 @@
               <ul class="list-group collapse mt-2" id="menuRegioni">
                 <li class="list-group-item"><a href="#" data-bs-toggle="modal" data-bs-target="#map-modal"><?php echo $linguaAttuale == "en" ? "Go to the maps" : "Vai alla mappa" ?></a></li>
               </ul>
+            </li>
+            <li class="list-group-item">  <?php echo $linguaAttuale == "en" ? "Language" : "Lingua" ?>
+            <div class="dropdown pe-1">
+                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="resources/icons/<?php echo $linguaAttuale == "en" ? "english.png" : "italy.png" ?>" alt="<?php echo $linguaAttuale == "en" ? "Bandiera Inghilterra" : "Bandiera Italia" ?>" />
+                  <?php echo $linguaAttuale == "en" ? "EN" : "IT" ?>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li
+                    ><a class="dropdown-item" href="?lang=en"><img src="resources/icons/english.png" alt="Bandiera Inghilterra" /> EN</a></li
+                  >
+                  <li
+                    ><a class="dropdown-item" href="?lang=it"><img src="resources/icons/italy.png" alt="Bandiera Italia" /> IT</a></li
+                  >
+                </ul>
+              </div>
             </li>
           </ul>
         </div>

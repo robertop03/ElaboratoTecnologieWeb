@@ -2,8 +2,8 @@
 <div class="content-main">
   <!-- CAROUSEL BEST SELLER PRODUCTS -->
   <div class="carousel slide mb-4" id="carouselBestSeller" data-bs-ride="carousel">
-    <h2><?php echo $linguaAttuale == "en" ? "Best Sellers" : "I più venduti" ?></h2>
-    <p><?php echo $linguaAttuale == "en" ? "Discover our best-selling products, chosen by our customers. Join them and try these amazing labels yourself!" : "Scopri i nostri prodotti più venduti, scelti dai nostri clienti. Unisciti a loro e prova anche tu queste fantastiche etichette!" ?></p>
+    <h2 class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Best Sellers" : "I più venduti" ?></h2>
+    <p class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Discover our best-selling products, chosen by our customers. Join them and try these amazing labels yourself!" : "Scopri i nostri prodotti più venduti, scelti dai nostri clienti. Unisciti a loro e prova anche tu queste fantastiche etichette!" ?></p>
     <div class="carousel-inner text-center">
       <div class="carousel-item active">
         <img src="resources/img/foto1.jpg" alt="Vino 1" class="d-block w-100" />
@@ -30,8 +30,8 @@
 
   <!-- CAROUSEL EVENTS -->
   <div class="carousel slide mb-4" id="carouselEvents" data-bs-ride="carousel">
-    <h2><?php echo $linguaAttuale == "en" ? "Events" : "Eventi" ?></h2>
-    <p><?php echo $linguaAttuale == "en" ? "Don't miss the most exclusive events organized by us. Join us and experience unique moments in the world of wine!" : "Non perdere gli eventi più esclusivi organizzati da noi. Partecipa e vivi esperienze uniche nel mondo del vino!" ?></p>
+    <h2 class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Events" : "Eventi" ?></h2>
+    <p class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Don't miss the most exclusive events organized by us. Join us and experience unique moments in the world of wine!" : "Non perdere gli eventi più esclusivi organizzati da noi. Partecipa e vivi esperienze uniche nel mondo del vino!" ?></p>
     <div class="carousel-inner text-center">
       <div class="carousel-item active">
         <img src="resources/img/evento1.png" alt="Evento 1" class="d-block w-100" />
@@ -88,7 +88,7 @@
     <form id="unsubscribe-form">
         <input type="hidden" name="email" value="<?php echo htmlspecialchars($email); ?>" />
         <input type="hidden" name="action" value="N" />
-        <button type="submit" class="btn btn-danger">Disiscriviti dalla Newsletter</button>
+        <button type="submit" class="btn btn-danger"><?php echo $linguaAttuale == "en" ? "Unsubscribe from the Newsletter" : "Disiscriviti dalla Newsletter" ?></button>
     </form>
     <?php
       } else {
