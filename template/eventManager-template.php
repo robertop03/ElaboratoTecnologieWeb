@@ -36,7 +36,7 @@ $eventi = $db->getAllEvents();
                                             data-id="<?php echo htmlspecialchars($evento['ID_Evento']); ?>" 
                                             data-bs-toggle="modal" 
                                             data-bs-target="#modificaEventoModal">
-                                        Modifica
+                                        Dettagli e Modifica
                                     </button>
                                     <button class="btn btn-danger btn-elimina-evento" 
                                             data-id="<?php echo htmlspecialchars($evento['ID_Evento']); ?>">
