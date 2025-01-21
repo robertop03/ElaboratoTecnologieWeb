@@ -2,7 +2,7 @@
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 if ($page < 1) $page = 1;
 
-$perPage = 8;
+$perPage = 5;
 $offset = ($page - 1) * $perPage;
 
 $totalOrders = $db->getTotalOrderCount();
