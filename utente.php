@@ -5,46 +5,35 @@ if (!isset($_SESSION["email"])) {
     header("Location: login.php");
     exit();
 }
+
 $lingua = ($linguaAttuale === "en") ? 2 : 1;
+$email = $_SESSION["email"];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = $_SESSION["email"];
-    if (isset($_POST['submit_form']) && $_POST['submit_form'] === 'formDati'){
-        // Ottieni i valori dal modulo
-        $nome = trim($_POST["nome"]);
-        $cognome = trim($_POST["cognome"]);
+    if (isset($_POST['submit_form'])) {
+        if ($_POST['submit_form'] === 'addPaymentMethod') {
+            // Aggiungi un nuovo metodo di pagamento
+            $numeroCarta = trim($_POST["numeroCarta"]);
+            $meseScadenza = trim($_POST["meseScadenza"]);
+            $annoScadenza = trim($_POST["annoScadenza"]);
 
-        $result = $db->updateNameAndSurname($nome, $cognome, $email);
-        $nameAndSurname = $db->getNameAndSurname($email);
-        nameAndSurname($nameAndSurname[0]["nome"], $nameAndSurname[0]["cognome"]);
+            $db->addUserPaymentMethod($email, $numeroCarta, $meseScadenza, $annoScadenza);
 
-    }elseif (isset($_POST['submit_form']) && $_POST['submit_form'] === 'formPw'){
-        $pwAttuale = trim($_POST["current-password"]);
-        $pwNuova = trim($_POST["new-password"]);
-        $pwNuovaConferma = trim($_POST["confirm-password"]);
-
-        $result = $db->getHashPassword($email);
-        $hashDb = $result[0]["password"];
-        if($pwNuova === $pwNuovaConferma){
-            if (password_verify($pwAttuale, $hashDb)){
-                $templateParams["risultatoCambioPw"] = "Password modificata correttamente.";
-                $resultChangePw = $db->updatePassword($email, $pwNuova);
-            }else{
-                $templateParams["risultatoCambioPw"] = "Errore! Password errata.";
-            }
-        }else{
-            $templateParams["risultatoCambioPw"] = "Errore! Le due password sono diverse.";
+            // Ricarica la pagina per aggiornare la lista dei metodi di pagamento
+            header("Location: utente.php");
+            exit();
         }
-        
     }
 }
 
-$nPrefs = $db->getNumberPrefs($_SESSION["email"]);
+// Carica dati utente, indirizzi e metodi di pagamento
+$templateParams["addresses"] = $db->getUserAddresses($email);
+$templateParams["paymentMethods"] = $db->getUserPaymentMethods($email);
+
+$nPrefs = $db->getNumberPrefs($email);
 numberOfPrefs($nPrefs[0]["numero_occorrenze"]);
 
-$prefs = $db->getViniPreferiti($lingua, $_SESSION["email"]);
-
-$lastNotifications = $db->getUltimeDueNotifiche($lingua, $_SESSION["email"]);
+$prefs = $db->getViniPreferiti($lingua, $email);
 
 $templateParams["titolo"] = "Profilo utente";
 $templateParams["nome"] = "utente-template.php";

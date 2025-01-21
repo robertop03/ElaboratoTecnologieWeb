@@ -1476,5 +1476,68 @@ class VinoDatabase {
     }
     
     
+    // Funzione per estrarre tutti gli indirizzi di un utente
+    public function getUserAddresses($email) {
+        $query = "
+        SELECT ID_Indirizzo, Via, Numero_Civico, CAP, Citta, Paese 
+        FROM INDIRIZZO 
+        WHERE Email = :email";
+    
+        $params = [
+            ':email' => $email
+        ];
+    
+        return $this->executeQuery($query, $params);
+    }
+
+    // Funzione per aggiungere un nuovo indirizzo
+    public function addUserAddress($email, $via, $numeroCivico, $cap, $citta, $paese) {
+        $query = "
+        INSERT INTO INDIRIZZO (ID_Indirizzo, Via, Numero_Civico, CAP, Citta, Paese, Email) 
+        VALUES (UUID(), :via, :numeroCivico, :cap, :citta, :paese, :email)";
+        
+        $params = [
+            ':via' => $via,
+            ':numeroCivico' => $numeroCivico,
+            ':cap' => $cap,
+            ':citta' => $citta,
+            ':paese' => $paese,
+            ':email' => $email
+        ];
+        
+        return $this->executeQuery($query, $params);
+    }
+    
+    
+    // Funzione per estrarre tutte le carte di credito di un utente
+    public function getUserPaymentMethods($email) {
+        $query = "
+        SELECT ID_Metodo, Numero_Carta, mese_scadenza, anno_scadenza 
+        FROM METODO_PAGAMENTO 
+        WHERE Email = :email";
+    
+        $params = [
+            ':email' => $email
+        ];
+    
+        return $this->executeQuery($query, $params);
+    }
+    
+    // Funzione per aggiungere un metodo di pagamento
+    public function addUserPaymentMethod($email, $numeroCarta, $meseScadenza, $annoScadenza) {
+        $query = "
+        INSERT INTO METODO_PAGAMENTO (ID_Metodo, Numero_Carta, mese_scadenza, anno_scadenza, Email) 
+        VALUES (UUID(), :numeroCarta, :meseScadenza, :annoScadenza, :email)";
+    
+        $params = [
+            ':numeroCarta' => $numeroCarta,
+            ':meseScadenza' => $meseScadenza,
+            ':annoScadenza' => $annoScadenza,
+            ':email' => $email
+        ];
+    
+        return $this->executeQuery($query, $params);
+    }    
+    
 }
 ?>
