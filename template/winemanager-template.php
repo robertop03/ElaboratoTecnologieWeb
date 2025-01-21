@@ -1,21 +1,37 @@
 <?php
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 if ($page < 1) $page = 1;
-
+$cerca = isset($_GET['cerca']) ? $_GET['cerca'] : null;
 $perPage = 5;
 $offset = ($page - 1) * $perPage;
 
-$totalWines = $db->getTotalWineCount();
+$totalWines = $db->getTotalWineCount($cerca);
 $totalPages = ceil($totalWines / $perPage);
 
-$vini = $db->getWinesPaginated($perPage, $offset);
+$vini = $db->getWinesPaginated($perPage, $offset,1,$cerca);
 ?>
 
 <div class="container my-4">
   <h2 class="mt-3">Lista Vini</h2>
-  <button class="btn btn-success mb-4" data-bs-toggle="modal" data-bs-target="#aggiungiVinoModal">Aggiungi Vino</button>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- Pulsante aggiungi vino -->
+    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggiungiVinoModal">Aggiungi Vino</button>
+    
+    <!-- Barra di ricerca -->
+    <form class="d-flex" method="GET" action="">
+        <input 
+            type="text" 
+            class="form-control me-2" 
+            name="cerca" 
+            placeholder="Cerca..." 
+            value="<?php echo isset($_GET['cerca']) ? htmlspecialchars($_GET['cerca']) : ''; ?>"
+        />
+        <button type="submit" class="btn btn-primary">Cerca</button>
+    </form>
+</div>
   <?php if ($totalWines > 0): ?>
     <p>Vini trovati: <?php echo $totalWines; ?></p>
+    
 
     <!-- Tabella vini -->
     <div class="table-responsive">
@@ -59,9 +75,12 @@ $vini = $db->getWinesPaginated($perPage, $offset);
     <nav>
       <ul class="pagination">
         <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-          <?php $active = ($i === $page) ? 'active' : ''; ?>
+          <?php 
+            $active = ($i === $page) ? 'active' : ''; 
+            $queryString = http_build_query(['page' => $i, 'cerca' => $cerca]); // Costruisce l'URL con il parametro cerca
+          ?>
           <li class="page-item <?php echo $active; ?>">
-            <a class="page-link" href="?page=<?php echo $i; ?>">
+            <a class="page-link" href="?<?php echo $queryString; ?>">
               <?php echo $i; ?>
             </a>
           </li>

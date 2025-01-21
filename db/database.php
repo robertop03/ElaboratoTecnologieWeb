@@ -122,8 +122,8 @@ class VinoDatabase {
         return $this->executeQuery($finalQuery, $params);
     }
 
-    public function getWinesPaginated($limit, $offset, $lingua = 1) {
-        // Query principale senza filtri opzionali
+    public function getWinesPaginated($limit, $offset, $lingua = 1, $cerca = null) {
+        // Query principale con filtri opzionali
         $query = "
             SELECT 
                 PRODOTTO.ID_Prodotto, 
@@ -156,13 +156,27 @@ class VinoDatabase {
                 ON ATTRIBUTO.ID_Categoria = CATEGORIA.ID_Categoria
             WHERE 
                 TESTO_PRODOTTO.Lingua = :lingua
+        ";
+    
+        // Aggiungi il filtro di ricerca se il parametro "cerca" è fornito
+        if ($cerca !== null && $cerca !== '') {
+            $query .= " AND (TESTO_PRODOTTO.Titolo LIKE :cerca OR TESTO_PRODOTTO.Descrizione LIKE :cerca)";
+        }
+    
+        $query .= "
             GROUP BY 
                 PRODOTTO.ID_Prodotto, Prezzo, TESTO_PRODOTTO.Titolo, TESTO_PRODOTTO.Descrizione
             LIMIT :limit OFFSET :offset
         ";
-
+    
         $stmt = $this->pdo->prepare($query);
         $stmt->bindValue(':lingua', $lingua, PDO::PARAM_INT);
+    
+        if ($cerca !== null && $cerca !== '') {
+            $searchTerm = '%' . $cerca . '%';
+            $stmt->bindValue(':cerca', $searchTerm, PDO::PARAM_STR);
+        }
+    
         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT); 
         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
         $stmt->execute();
@@ -1069,17 +1083,30 @@ class VinoDatabase {
         return $results[0] ?? false; // Return the first result or false
     }
     
-    public function getTotalWineCount() {
+    public function getTotalWineCount($cerca = null) {
+        // Query base con join per accedere a TESTO_PRODOTTO
         $query = "
-            SELECT COUNT(*) AS total
+            SELECT COUNT(DISTINCT PRODOTTO.ID_Prodotto) AS total
             FROM PRODOTTO
+            LEFT JOIN TESTO_PRODOTTO ON PRODOTTO.ID_Prodotto = TESTO_PRODOTTO.ID_Prodotto
+            WHERE 1 = 1
         ";
     
-        $result = $this->executeQuery($query);
+        // Parametri per il filtro "cerca"
+        $params = [];
     
-        // Restituisce solo il numero totale
+        if (!empty($cerca)) {
+            $query .= " AND (TESTO_PRODOTTO.Titolo LIKE :cerca OR TESTO_PRODOTTO.Descrizione LIKE :cerca)";
+            $params[':cerca'] = '%' . $cerca . '%';
+        }
+    
+        // Esegui la query con i parametri
+        $result = $this->executeQuery($query, $params);
+    
+        // Restituisci il totale
         return $result[0]['total'] ?? 0;
     }
+    
 
     public function updateWineQuantity($id, $quantity) {
         $query = "
