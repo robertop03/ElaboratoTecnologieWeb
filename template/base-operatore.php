@@ -20,26 +20,20 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link text-white" href="OrderManager.php">Orders</a>
+              <li class="nav-item me-3">
+                <a class="nav-link btn btn-outline-dark text-white" href="OrderManager.php">Ordini</a>
+              </li>
+              <li class="nav-item me-3">
+                <a class="nav-link btn btn-outline-dark text-white" href="eventManager.php">Eventi</a>
+              </li>
+              <li class="nav-item me-3">
+                <a class="nav-link btn btn-outline-dark text-white" href="wineManager.php">Vini  </a>
+              </li>
+              <li class="nav-item me-3">
+                <a class="nav-link btn btn-outline-dark text-white" href="index.php">Home  </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="eventManager.php">Events</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="wineManager.php">Wine</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="page5.php">Page 5</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="page6.php">Page 6</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="index.php">Frontend</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-danger" href="logout.php">Logout</a>
+                <a class="nav-link btn btn-outline-dark text-danger" href="logout.php">Logout</a>
               </li>
             </ul>
           </div>
