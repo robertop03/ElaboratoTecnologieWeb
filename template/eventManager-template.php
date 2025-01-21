@@ -117,7 +117,7 @@ $eventi = $db->getAllEvents();
 </div>
 
 <!-- Modale per modificare evento -->
-<div class="modal fade" id="modificaEventoModal" tabindex="-1" aria-labelledby="modificaEventoModalLabel" aria-hidden="true">
+<div class="modal fade" id="modificaEventoModal" tabindex="-1" aria-labelledby="modificaEventoModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -182,6 +182,14 @@ $eventi = $db->getAllEvents();
         </div>
     </div>
 </div>
+
+<script>
+// Forza la rimozione del backdrop <- risoluzione a bug di mancata chiusura corretta modale modifica evento
+document.getElementById("modificaEventoModal").addEventListener("hidden.bs.modal", function () {
+    const backdrops = document.querySelectorAll(".modal-backdrop");
+    backdrops.forEach(backdrop => backdrop.remove());
+});
+</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
