@@ -196,49 +196,56 @@
   <!-- Sezione Indirizzi di spedizione e Metodi di pagamento -->
   <div class="row mb-4">
     
+    <!-- Indirizzi di spedizione -->
     <div class="col-md-6">
       <h4><?php echo $linguaAttuale == "en" ? "Delivery addresses" : "Indirizzi di spedizione" ?></h4>
       <div class="card p-3 bg-light">
-        <p>Italia<br />Via esempio 123, 47039</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target=".address-modal"><?php echo $linguaAttuale == "en" ? "See all your addresses" : "Vedi tutti gli indirizzi salvati" ?></a>
+        <?php if (!empty($templateParams["addresses"])): ?>
+          <ul class="list-unstyled">
+            <?php foreach ($templateParams["addresses"] as $address): ?>
+              <li class="mb-2">
+                <p>
+                  <?php echo htmlspecialchars($address["Via"]) . ", " . htmlspecialchars($address["Numero_Civico"]); ?><br>
+                  <?php echo htmlspecialchars($address["CAP"]) . " " . htmlspecialchars($address["Citta"]); ?><br>
+                  <?php echo htmlspecialchars($address["Paese"]); ?>
+                </p>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php else: ?>
+          <p><?php echo $linguaAttuale == "en" ? "No addresses available." : "Nessun indirizzo disponibile." ?></p>
+        <?php endif; ?>
+        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target=".address-modal">
+          <?php echo $linguaAttuale == "en" ? "See all your addresses" : "Vedi tutti gli indirizzi salvati" ?>
+        </a>
       </div>
     </div>
 
+    <!-- Carte di credito -->
     <div class="col-md-6">
       <h4><?php echo $linguaAttuale == "en" ? "Payment methods" : "Metodi di pagamento" ?></h4>
       <div class="card p-3 bg-light">
-        <p><?php echo $linguaAttuale == "en" ? "Default Payment Method" : "Metodo di pagamento predefinito" ?><br />Visa **34</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target=".card-modal"><?php echo $linguaAttuale == "en" ? "See all your credit cards" : "Vedi tutte le carte salvate" ?></a>
+        <?php if (!empty($templateParams["paymentMethods"])): ?>
+          <ul class="list-unstyled">
+            <?php foreach ($templateParams["paymentMethods"] as $method): ?>
+              <li class="mb-2">
+                <p>
+                  **** **** **** <?php echo substr(htmlspecialchars($method["Numero_Carta"]), -4); ?><br>
+                  <?php echo $linguaAttuale == "en" ? "Expiry: " : "Scadenza: "; ?>
+                  <?php echo htmlspecialchars($method["mese_scadenza"]) . "/" . htmlspecialchars($method["anno_scadenza"]); ?>
+                </p>
+              </li>
+            <?php endforeach; ?>
+          </ul>
+        <?php else: ?>
+          <p><?php echo $linguaAttuale == "en" ? "No payment methods available." : "Nessun metodo di pagamento disponibile." ?></p>
+        <?php endif; ?>
+        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target="#paymentModal">
+          <?php echo $linguaAttuale == "en" ? "See all your credit cards" : "Vedi tutte le carte salvate" ?>
+        </a>
       </div>
     </div>
 
-  </div>
-
-  <!-- MODALE PER CARTE -->
-  <div class="modal fade" id="viewCreditCard" tabindex="-1" aria-labelledby="viewCreditCardLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="viewCreditCardLabel"><?php echo $linguaAttuale == "en" ? "Choose a credit card" : "Scegli una carta di credito" ?></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body-viewCards">
-          <!-- Lista delle carte salvate -->
-          <div class="row g-2" id="creditCard-list">
-            <div class="col-12">
-              <div class="card p-3 selectable-card" data-card="VISA|1234123412341234|01/25|123">
-                <p class="mb-0">VISA<br />**** **** **** 1234<br />Scadenza: 01/25</p>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="card p-3 selectable-card" data-card="MasterCard|5678567856785678|02/26|456">
-                <p class="mb-0">MasterCard<br />**** **** **** 5678<br />Scadenza: 02/26</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Sezione Preferiti -->
