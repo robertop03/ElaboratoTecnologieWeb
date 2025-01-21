@@ -149,7 +149,7 @@
             </li>
             <li class="list-group-item">  <?php echo $linguaAttuale == "en" ? "Language" : "Lingua" ?>
             <div class="dropdown pe-1">
-                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="btn text-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src="resources/icons/<?php echo $linguaAttuale == "en" ? "english.png" : "italy.png" ?>" alt="<?php echo $linguaAttuale == "en" ? "Bandiera Inghilterra" : "Bandiera Italia" ?>" />
                   <?php echo $linguaAttuale == "en" ? "EN" : "IT" ?>
                 </a>
