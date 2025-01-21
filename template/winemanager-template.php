@@ -86,7 +86,7 @@ $vini = $db->getWinesPaginated($perPage, $offset);
           <input type="hidden" id="vinoId" name="vinoId">
           <div class="mb-3">
             <label for="nuovaQuantita" class="form-label">Nuova Quantità</label>
-            <input type="number" class="form-control" id="nuovaQuantita" name="nuovaQuantita" min="0" required>
+            <input type="number" class="form-control" id="nuovaQuantita" name="nuovaQuantita" min="0" step="1" required>
           </div>
         </div>
         <div class="modal-footer">
@@ -111,11 +111,11 @@ $vini = $db->getWinesPaginated($perPage, $offset);
           <input type="hidden" id="modificaVinoId" name="vinoId">
           <div class="mb-3">
             <label for="modificaPrezzo" class="form-label">Prezzo</label>
-            <input type="number" class="form-control" id="modificaPrezzo" name="prezzo" step="0.01" required>
+            <input type="number" class="form-control" id="modificaPrezzo" name="prezzo" min="0" step="0.01" required>
           </div>
           <div class="mb-3">
             <label for="modificaQuantitaMagazzino" class="form-label">Quantità Magazzino</label>
-            <input type="number" class="form-control" id="modificaQuantitaMagazzino" name="quantitaMagazzino" min="0" required>
+            <input type="number" class="form-control" id="modificaQuantitaMagazzino" name="quantitaMagazzino" min="0" step="1" required>
           </div>
           <div class="mb-3">
             <label for="modificaFoto" class="form-label">Nome Foto</label>
