@@ -121,9 +121,25 @@ switch ($orderInfo['Stato']) {
               </tbody>
             </table>
           </div>
-          <p><strong>Totale:</strong>
-            <?php echo number_format($totProdotti, 2, ',', '.')." €"; ?>
+
+          <?php 
+            // Calcolo della spedizione
+            $costoSpedizione = $totProdotti > 69 ? 0 : 7.75;
+            $totaleOrdine = $totProdotti + $costoSpedizione;
+          ?>
+
+          <p><strong>Totale prodotti:</strong> <?php echo number_format($totProdotti, 2, ',', '.')." €"; ?></p>
+          <p><strong>Spedizione:</strong> 
+            <?php 
+              echo $costoSpedizione == 0 
+                ? "Gratis" 
+                : number_format($costoSpedizione, 2, ',', '.')." €"; 
+            ?>
           </p>
+          <p><strong>Totale ordine:</strong> 
+            <?php echo number_format($totaleOrdine, 2, ',', '.')." €"; ?>
+          </p>
+
         <?php else: ?>
           <p>Nessun prodotto per questo ordine.</p>
         <?php endif; ?>
