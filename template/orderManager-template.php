@@ -33,13 +33,13 @@ $ordini = $db->getOrdersPaginated($perPage, $offset);
             <?php 
             switch ($ordine['Stato']) {
                 case '0':
-                    $statoTesto = '<i class="bi bi-check-circle text-success"></i> ordine confermato'; // Icona di conferma
+                    $statoTesto = '<i class="bi bi-box text-warning"></i> ordine confermato'; // Icona di conferma
                     break;
                 case '1':
                     $statoTesto = '<i class="bi bi-truck text-primary"></i> ordine spedito'; // Icona di spedizione
                     break;
                 case '2':
-                    $statoTesto = '<i class="bi bi-box text-warning"></i> ordine consegnato'; // Icona di consegna
+                    $statoTesto = '<i class="bi bi-check-circle text-success"></i> ordine consegnato'; // Icona di consegna
                     break;
                 default:
                     $statoTesto = '<i class="bi bi-question-circle text-danger"></i> sconosciuto'; // Icona di errore/sconosciuto
