@@ -238,6 +238,61 @@ function removeFavorite(wineId, element) {
   confirmRemoveModal.show()
 }
 
+function aggiornaNumeroNotifiche() {
+  fetch("notifiche.php?action=count", {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const notificationCountElements = document.querySelectorAll("#notification-count-mb, #notification-count-d")
+      if (data.count !== undefined) {
+        notificationCountElements.forEach((element) => {
+          element.textContent = data.count
+        })
+      } else {
+        console.error("Errore: conteggio notifiche non trovato")
+      }
+    })
+    .catch((error) => console.error("Errore nella richiesta di aggiornamento notifiche:", error))
+}
+
+function eliminaNotifica(event, idNotifica) {
+  console.log(idNotifica)
+  event.stopPropagation()
+  fetch(`notifiche.php?action=delete&id=${idNotifica}`, {
+    method: "GET",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Errore nella risposta del server")
+      }
+      return response.json()
+    })
+    .then((data) => {
+      console.log(data)
+      if (data.success) {
+        // Trova e rimuove l'elemento della notifica
+        const notificaElement = document.querySelector(`[data-id='${idNotifica}']`)
+        if (notificaElement) {
+          console.log(notificaElement)
+          notificaElement.remove()
+        }
+
+        // Verifica se ci sono altre notifiche nella lista
+        const listaNotifiche = document.querySelector(".list-group")
+        if (listaNotifiche && listaNotifiche.children.length === 0) {
+          listaNotifiche.innerHTML = "<p>Non ci sono notifiche al momento.</p>"
+        }
+        aggiornaNumeroNotifiche()
+      } else {
+        console.error("Errore nell'eliminazione della notifica:", data.error)
+      }
+    })
+    .catch((error) => {
+      console.error("Si è verificato un errore:", error)
+    })
+}
+
 function setNotificaLetta(element) {
   const idNotifica = element.getAttribute("data-id")
   if (idNotifica) {
@@ -262,48 +317,4 @@ function setNotificaLetta(element) {
       })
       .catch((error) => console.error("Errore:", error))
   }
-}
-
-function aggiornaNumeroNotifiche() {
-  fetch("notifiche.php?action=count", {
-    method: "GET",
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      const notificationCountElements = document.querySelectorAll("#notification-count-mb, #notification-count-d")
-      if (data.count !== undefined) {
-        notificationCountElements.forEach((element) => {
-          element.textContent = data.count
-        })
-      } else {
-        console.error("Errore: conteggio notifiche non trovato")
-      }
-    })
-    .catch((error) => console.error("Errore nella richiesta di aggiornamento notifiche:", error))
-}
-
-function eliminaNotifica(event, idNotifica) {
-  event.stopPropagation()
-
-  fetch(`notifiche.php?action=delete&id=${idNotifica}`, {
-    method: "GET",
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Errore nella risposta del server")
-      }
-      return response.json()
-    })
-    .then((data) => {
-      if (data.success) {
-        // Rimuovi l'intero elemento della notifica dalla lista
-        const notificaElement = document.querySelector(`[data-id='${idNotifica}']`)
-        if (notificaElement) {
-          notificaElement.remove()
-        }
-      }
-    })
-    .catch((error) => {
-      console.error("Si è verificato un errore:", error)
-    })
 }

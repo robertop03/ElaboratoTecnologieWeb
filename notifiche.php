@@ -6,23 +6,12 @@ if (!isset($_SESSION["email"])) {
     exit();
 }
 $lingua = ($linguaAttuale === "en") ? 2 : 1;
+
 $notifiche = $db->getNotifiche($lingua, $_SESSION["email"]);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['action'])) {
-        if ($_GET['action'] === 'data') {
-            // RESTITUISCE IL JSON DELLE NOTIFICHE
-            header('Content-Type: application/json');
-
-            if (!isset($_SESSION["email"])) {
-                echo json_encode(['error' => 'Utente non autenticato']);
-                exit();
-            }
-
-            $notifiche = $db->getNotifiche($_SESSION["email"]);
-            echo json_encode($notifiche);
-            exit();
-        } elseif ($_GET['action'] === 'update') {
+        if ($_GET['action'] === 'update') {
             // SEGNA LA NOTIFICA COME LETTA
             header('Content-Type: application/json');
             if (!isset($_GET['id'])) {
@@ -55,12 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 exit();
             }
             $idNotifica = htmlspecialchars($_GET['id']);
-            // Tentativo di eliminazione
-            if ($db->deleteNotifica($idNotifica)) {
-                echo json_encode(['success' => true, 'message' => 'Notifica eliminata']);
-            } else {
-                echo json_encode(['success' => false, 'error' => 'Impossibile eliminare la notifica']);
-            }
+            $db->deleteNotifica($idNotifica);
+            echo json_encode(['success' => true, 'message' => 'Notifica eliminata']);
             exit();
         }
     }
@@ -71,14 +56,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         exit();
     }
 
-    $templateParams["titolo"] = "Notifiche";
-    $templateParams["nome"] = "notifiche-template.php";
-    $templateParams["mainClasses"] = "flex-grow-1";
-
-    require("template/base.php");
+   
 } else {
     http_response_code(405);
     echo json_encode(['error' => 'Metodo non consentito']);
     exit();
 }
+
+$templateParams["titolo"] = "Notifiche";
+$templateParams["nome"] = "notifiche-template.php";
+$templateParams["mainClasses"] = "flex-grow-1";
+require("template/base.php");
 ?>
