@@ -59,7 +59,7 @@
           <?php endif; ?>
         </div>
       </a>
-      <a href="notifiche.php" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" ></span></a>
+      <a title="frecciaDestra" href="notifiche.php" aria-label="icona freccia a destra"><span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" ></span></a>
     </li>
 
     <li class="list-group-item py-3 d-flex justify-content-between align-items-center">
@@ -69,7 +69,7 @@
           <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "Manage notifications and password" : "Gestisci notifiche e password" ?></span>
         </div>
       </a>
-      <a href="#" data-bs-toggle="modal" data-bs-target="#impostazioniModal" aria-label="icona freccia a destra">
+      <a title="frecciaDestra" href="#" data-bs-toggle="modal" data-bs-target="#impostazioniModal" aria-label="icona freccia a destra">
         <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#impostazioniModal"></span>
       </a>
     </li>
@@ -259,7 +259,7 @@
           <div class="flex-shrink-0">
             <a href="prodotto.php?id=<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>" class="text-decoration-none">
               <div class="card h-100 text-center">
-                <img src="<?php echo "resources/img/".htmlspecialchars($vino['Foto'] ?? 'vino_generic.jpg'); ?>" alt="<?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>" />
+                <img alt="ImmagineVino" src="<?php echo "resources/img/".htmlspecialchars($vino['Foto'] ?? 'vino_generic.jpg'); ?>" alt="<?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>" />
                 <div class="card-body">
                   <h5 class="card-title">
                     <?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?>
