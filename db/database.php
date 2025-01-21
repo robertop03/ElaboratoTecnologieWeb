@@ -52,7 +52,8 @@ class VinoDatabase {
                 TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
                 TESTO_PRODOTTO.Descrizione,
                 Foto,
-                Quantita_Magazzino
+                Quantita_Magazzino,
+                Nascosto
             FROM 
                 PRODOTTO
             JOIN TESTO_PRODOTTO 
@@ -73,6 +74,7 @@ class VinoDatabase {
                 AND (Provenienza     LIKE :prov)
                 AND (Capacita_Bottiglia LIKE :dime)
                 AND Prezzo BETWEEN :pmin AND :pmax
+                AND (PRODOTTO.Nascosto IS NULL)
         ";
     
         //query esterna per utilizzo ordinamento senza problemi di raggruppamento 
@@ -143,7 +145,8 @@ class VinoDatabase {
                 TESTO_PRODOTTO.Titolo AS Titolo_Prodotto, 
                 TESTO_PRODOTTO.Descrizione,
                 Foto,
-                Quantita_Magazzino
+                Quantita_Magazzino,
+                Nascosto
             FROM 
                 PRODOTTO
             JOIN TESTO_PRODOTTO 
@@ -1571,6 +1574,30 @@ class VinoDatabase {
     
     public function getLastInsertId() {
         return $this->pdo->lastInsertId();
-    }    
+    }
+
+    public function toggleHidden($idProdotto) {
+        // Recupera il valore corrente del campo Nascosto
+        $querySelect = "SELECT Nascosto FROM PRODOTTO WHERE ID_Prodotto = :idProdotto";
+        $stmtSelect = $this->pdo->prepare($querySelect);
+        $stmtSelect->bindValue(':idProdotto', $idProdotto, PDO::PARAM_STR);
+        $stmtSelect->execute();
+        $currentValue = $stmtSelect->fetchColumn();
+    
+        // Determina il nuovo valore
+        $newValue = ($currentValue === 'Y') ? NULL : 'Y';
+    
+        // Aggiorna il valore nel database
+        $queryUpdate = "UPDATE PRODOTTO SET Nascosto = :newValue WHERE ID_Prodotto = :idProdotto";
+        $stmtUpdate = $this->pdo->prepare($queryUpdate);
+        $stmtUpdate->bindValue(':newValue', $newValue, PDO::PARAM_STR);
+        $stmtUpdate->bindValue(':idProdotto', $idProdotto, PDO::PARAM_STR);
+    
+        if ($stmtUpdate->execute()) {
+            return true; // Operazione riuscita
+        } else {
+            return false; // Operazione fallita
+        }
+    }
 }
 ?>

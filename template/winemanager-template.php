@@ -41,6 +41,7 @@ $vini = $db->getWinesPaginated($perPage, $offset,1,$cerca);
             <th>ID Prodotto</th>
             <th>Quantità Magazzino</th>
             <th>Titolo Prodotto</th>
+            <th>Nascosto</th>
             <th></th>
           </tr>
         </thead>
@@ -50,8 +51,16 @@ $vini = $db->getWinesPaginated($perPage, $offset,1,$cerca);
                 <td><?php echo htmlspecialchars($vino['ID_Prodotto']); ?></td>
                 <td><?php echo htmlspecialchars($vino['Quantita_Magazzino']); ?></td>
                 <td><?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?></td>
+                <td><?php echo htmlspecialchars($vino['Nascosto'] === 'Y' ? 'Y' : 'N'); ?></td>
                 <td class="text-end">
                 <div class="d-inline-flex gap-2">
+                    <!-- Bottone modifica visibilità -->
+                    <form action="api/toggle-visibility.php" method="POST" style="display: inline;">
+                        <input type="hidden" name="idProdotto" value="<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>">
+                        <button type="submit" class="btn btn-secondary">
+                            Modifica Visibilità
+                        </button>
+                    </form>
                     <!-- Bottone modifica quantità -->
                     <button class="btn btn-warning btn-modifica-quantita" data-id="<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>" data-bs-toggle="modal" data-bs-target="#modificaQuantitaModal">
                       Modifica quantità

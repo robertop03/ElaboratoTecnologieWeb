@@ -78,6 +78,7 @@ create table PRODOTTO (
      Prezzo float(10) not null,
      Quantita_Magazzino numeric(10) not null,
      Foto text not null,
+     Nascosto char,
      primary key (ID_Prodotto));
 
 create table TESTO_EVENTO (
