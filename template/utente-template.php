@@ -15,7 +15,13 @@
       <a href="#" class="text-decoration-none text-dark w-100">
         <div class="d-flex flex-column">
           <span class="fw-bold" data-bs-toggle="modal" data-bs-target="#ordersModal"><?php echo $linguaAttuale == "en" ? "My orders" : "I miei ordini"; ?></span>
-          <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have placed 3 orders" : "Hai effettuato 3 ordini"; ?></span>
+          <?php if ($templateParams["orderCount"] > 0): ?>
+            <span class="text-muted small">
+              <?php echo $linguaAttuale == "en" 
+                  ? "You have placed " . $templateParams["orderCount"] . " orders" 
+                  : "Hai effettuato " . $templateParams["orderCount"] . " ordini"; ?>
+            </span>
+          <?php endif; ?>
         </div>
       </a>
       <span class="bi bi-chevron-right text-muted" role="img" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#ordersModal"></span>
@@ -381,38 +387,42 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Lista degli ordini -->
+        <!-- Lista dinamica degli ordini -->
         <div class="orders-list">
-          <!-- Ordine 1 -->
-          <div class="order-item" data-order-id="AT325D">
-            <p class="fw-bold ms-2">N. ordine: AT325D</p>
-            <hr>
-            <p class="ms-2">Creato il: 27/01/2024</p>
-            <p class="ms-2">Totale: 45€</p>
-            <a href="#" class="text-decoration-none details-link ms-2" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
-          </div>
-
-          <!-- Ordine 2 -->
-          <div class="order-item" data-order-id="PO124R">
-            <p class="fw-bold ms-2">N. ordine: PO124R</p>
-            <hr>
-            <p class="ms-2">Creato il: 17/01/2024</p>
-            <p class="ms-2">Totale: 25€</p>
-            <a href="#" class="text-decoration-none details-link ms-2" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
-          </div>
-
-          <!-- Ordine 3 -->
-          <div class="order-item" data-order-id="RE642E">
-            <p class="fw-bold ms-2">N. ordine: RE642E</p>
-            <hr>
-            <p class="ms-2">Creato il: 12/01/2024</p>
-            <p class="ms-2">Totale: 35€</p>
-            <a href="#" class="text-decoration-none details-link ms-2" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
-          </div>
+          <?php if ($templateParams["orderCount"] > 0): ?>
+            <?php foreach ($templateParams["orders"] as $order): ?>
+              <div class="order-item" data-order-id="<?php echo htmlspecialchars($order["ID_Ordine"]); ?>">
+                <p class="fw-bold ms-2">
+                  <?php echo $linguaAttuale == "en" ? "Order No: " : "N. ordine: "; ?>
+                  <?php echo htmlspecialchars($order["ID_Ordine"]); ?>
+                </p>
+                <hr>
+                <p class="ms-2">
+                  <?php echo $linguaAttuale == "en" ? "Created on: " : "Creato il: "; ?>
+                  <?php echo htmlspecialchars($order["Data"]); ?>
+                </p>
+                <p class="ms-2">
+                  <?php echo $linguaAttuale == "en" ? "Total: " : "Totale: "; ?>
+                  <?php echo number_format((float)$order["Totale"], 2, ',', '.'); ?>€
+                </p>
+                <p class="ms-2">
+                  <?php echo $linguaAttuale == "en" ? "Status: " : "Stato: "; ?>
+                  <?php echo htmlspecialchars($order["Stato"]); ?>
+                </p>
+                <a href="#" class="text-decoration-none details-link ms-2" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
+                  <?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli"; ?>
+                </a>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <p class="text-muted text-center">
+              <?php echo $linguaAttuale == "en" ? "No orders have been placed yet." : "Nessun ordine effettuato."; ?>
+            </p>
+          <?php endif; ?>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi" ?></button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi"; ?></button>
       </div>
     </div>
   </div>
@@ -427,20 +437,29 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <!-- Dettagli dell'ordine -->
-        <img src="#" alt="Immagine prodotto" class="img-fluid product-image">
-        <div class="order-info">
-          <p class="fw-bold product-quantity">Quantità: 1</p>
-          <p class="product-unit-price">Prezzo unitario: 15€</p>
-          <p class="order-status">Stato: In elaborazione</p>
-        </div>
+        <?php if (isset($templateParams["orderDetails"]) && count($templateParams["orderDetails"]) > 0): ?>
+          <?php foreach ($templateParams["orderDetails"] as $index => $product): ?>
+            <div class="product-details">
+              <img src="resources/img/<?php echo htmlspecialchars($product["Foto"]); ?>" alt="<?php echo htmlspecialchars($product["Nome"]); ?>" class="img-fluid product-image mb-3">
+              <p class="fw-bold product-name"><?php echo $linguaAttuale == "en" ? "Name: " : "Nome: "; ?><?php echo htmlspecialchars($product["Nome"]); ?></p>
+              <p class="product-quantity"><?php echo $linguaAttuale == "en" ? "Quantity: " : "Quantità: "; ?><?php echo htmlspecialchars($product["Quantità"]); ?></p>
+              <p class="product-unit-price"><?php echo $linguaAttuale == "en" ? "Unit Price: " : "Prezzo unitario: "; ?><?php echo number_format($product["Prezzo"], 2, ',', '.'); ?>€</p>
+            </div>
+            <?php if ($index < count($templateParams["orderDetails"]) - 1): ?>
+              <hr>
+            <?php endif; ?>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <p><?php echo $linguaAttuale == "en" ? "No details available for this order." : "Nessun dettaglio disponibile per questo ordine."; ?></p>
+        <?php endif; ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi" ?></button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi"; ?></button>
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- Modale Indirizzi -->
 <div class="modal fade address-modal" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
@@ -576,3 +595,5 @@
     </div>
   </div>
 </div>
+
+<script src="./js/user.js" defer></script>

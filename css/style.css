@@ -499,7 +499,6 @@ main > section > aside {
 .cart-container {
   display: flex;
   flex-direction: column; /* Layout verticale predefinito */
-  gap: 20px;
 }
 
 /* Carrello vuoto */
@@ -510,7 +509,7 @@ main > section > aside {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -539,8 +538,6 @@ main > section > aside {
 
 .full ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 .full ul li {
@@ -571,7 +568,6 @@ main > section > aside {
   padding: 20px;
   text-align: left;
   width: 100%;
-  margin-top: 10px; /* Ridotto spazio sopra */
 }
 
 @media (min-width: 900px) {
@@ -588,7 +584,6 @@ main > section > aside {
 
   .order-summary {
     width: 35%;
-    margin: 0;
   }
 }
 
@@ -596,8 +591,6 @@ main > section > aside {
 .shipping-message {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
-  gap: 10px;
 }
 
 .shipping-message .icon {
@@ -817,16 +810,31 @@ svg {
 
 /* Stile per i dettagli dell'ordine */
 .order-details-modal .modal-body {
-  display: flex;
-  align-items: center; /* Allinea l'immagine e il testo verticalmente */
-  gap: 20px; /* Spaziatura tra immagine e testo */
+  display: block; /* Modifica a block per mostrare elementi uno sotto l'altro */
+  max-height: 70vh;
   padding: 20px;
+  overflow-y: auto;
+}
+
+.order-details-modal .product-details {
+  display: flex;
+  align-items: center; /* Centra verticalmente immagine e dettagli */
+  gap: 15px; /* Spaziatura tra immagine e dettagli */
+  margin-bottom: 15px; /* Margine inferiore tra i prodotti */
+}
+
+.order-details-modal hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 15px 0;
 }
 
 .order-details-modal .product-image {
-  max-width: 150px; /* Dimensione massima dell'immagine */
+  max-width: 100px; /* Riduce la dimensione massima della larghezza */
+  max-height: 100px; /* Imposta una altezza massima */
   border: 1px solid #ddd;
   border-radius: 8px;
+  object-fit: cover; /* Garantisce che l'immagine si adatti al contenitore */
 }
 
 .order-details-modal .order-info {
@@ -840,8 +848,4 @@ svg {
 
 .order-details-modal .order-info .fw-bold {
   font-size: 18px;
-}
-
-.card-spacing {
-  margin-bottom: 1rem; 
 }

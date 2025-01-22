@@ -1576,6 +1576,75 @@ class VinoDatabase {
         return $this->pdo->lastInsertId();
     }
 
+    // Funzione aggiornata in database.php
+    public function getUserOrders($email) {
+        $query = "
+            SELECT 
+                ordine.ID_Ordine,
+                ordine.Data,
+                ordine.Stato,
+                ordine.ID_Metodo,
+                ordine.ID_Indirizzo,
+                ordine.Email,
+                SUM(compone.Quantità * prodotto.Prezzo) AS Totale
+            FROM 
+                ordine
+            LEFT JOIN compone ON ordine.ID_Ordine = compone.ID_Ordine
+            LEFT JOIN prodotto ON compone.ID_Prodotto = prodotto.ID_Prodotto
+            WHERE 
+                ordine.Email = :email
+            GROUP BY 
+                ordine.ID_Ordine
+            ORDER BY 
+                ordine.Data DESC
+        ";
+        
+        $params = [
+            ":email" => $email,
+        ];
+    
+        return $this->executeQuery($query, $params);
+    }
+    
+
+    public function getOrderDetails($orderId) {
+        $query = "
+            SELECT 
+                testo_prodotto.Titolo AS Nome,
+                prodotto.Prezzo,
+                compone.Quantità,
+                prodotto.Foto
+            FROM 
+                compone
+            LEFT JOIN prodotto ON compone.ID_Prodotto = prodotto.ID_Prodotto
+            LEFT JOIN testo_prodotto ON prodotto.ID_Prodotto = testo_prodotto.ID_Prodotto
+            WHERE 
+                compone.ID_Ordine = :orderId
+        ";
+        
+        $params = [
+            ":orderId" => $orderId,
+        ];
+    
+        return $this->executeQuery($query, $params);
+    }
+    
+    
+    public function countUserOrders($email) {
+        $query = "
+            SELECT COUNT(*) AS orderCount
+            FROM ordine
+            WHERE Email = :email
+        ";
+    
+        $params = [':email' => $email];
+    
+        $result = $this->executeQuery($query, $params);
+    
+        return isset($result[0]["orderCount"]) ? (int)$result[0]["orderCount"] : 0;
+    }
+    
+
     public function toggleHidden($idProdotto) {
         // Recupera il valore corrente del campo Nascosto
         $querySelect = "SELECT Nascosto FROM PRODOTTO WHERE ID_Prodotto = :idProdotto";

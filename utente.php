@@ -22,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Ricarica la pagina per aggiornare la lista dei metodi di pagamento
             header("Location: utente.php");
             exit();
-
         } elseif ($_POST['submit_form'] === 'addAddress') {
             // Aggiungi o modifica un indirizzo
             $via = trim($_POST["address"]);
@@ -45,12 +44,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo json_encode(["success" => $success, "id" => $id ?: $db->getLastInsertId()]);
             exit();
         }
+    } elseif (isset($_POST['action']) && $_POST['action'] === 'getOrderDetails') {
+        // Ottenere i dettagli di un ordine
+        $orderId = isset($_POST['orderId']) ? trim($_POST['orderId']) : null;
+        if ($orderId) {
+            error_log("Richiesta dettagli per l'ordine ID: " . $orderId);
+            $orderDetails = $db->getOrderDetails($orderId);
+            if ($orderDetails) {
+                header("Content-Type: application/json");
+                echo json_encode(["success" => true, "details" => $orderDetails]);
+            } else {
+                header("Content-Type: application/json");
+                echo json_encode(["success" => false, "message" => "Dettagli dell'ordine non trovati."]);
+            }
+        } else {
+            error_log("Ramo else, ordine id non preso");
+            header("Content-Type: application/json");
+            echo json_encode(["success" => false, "message" => "ID ordine non specificato."]);
+        }
+        exit();
     }
 }
 
-// Carica dati utente, indirizzi e metodi di pagamento
+// Carica dati utente, indirizzi, metodi di pagamento e ordini
 $templateParams["addresses"] = $db->getUserAddresses($email);
 $templateParams["paymentMethods"] = $db->getUserPaymentMethods($email);
+
+$orders = $db->getUserOrders($email);
+$templateParams["orders"] = $orders;
+$templateParams["orderCount"] = $db->countUserOrders($email); // Usa la funzione count
 
 $nPrefs = $db->getNumberPrefs($email);
 numberOfPrefs($nPrefs[0]["numero_occorrenze"]);
