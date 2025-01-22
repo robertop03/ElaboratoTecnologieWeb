@@ -261,50 +261,53 @@ document.addEventListener("DOMContentLoaded", () => {
       const modalBody = document.querySelector("#orderDetailsModal .modal-body");
       modalBody.innerHTML = `
         <div class="d-flex justify-content-center my-3">
-          <div class="spinner-border text-primary" role="status">
+          <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>
       `;
 
-      // Richiesta al server per ottenere i dettagli dell'ordine
-      fetch("utente.php", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          action: "getOrderDetails",
-          orderId: orderId,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          modalBody.innerHTML = ""; // Reset del contenuto del modale
-
-          if (data.success) {
-            data.details.forEach((product, index) => {
-              modalBody.innerHTML += `
-                <div class="product-details">
-                  <img src="resources/img/${product.Foto}" class="img-fluid product-image" alt="${product.Nome}">
-                  <div class="order-info">
-                    <p class="fw-bold">Nome: ${product.Nome}</p>
-                    <p>Quantità: ${product.Quantità}</p>
-                    <p>Prezzo: ${product.Prezzo.toFixed(2)}€</p>
-                  </div>
-                </div>
-              `;
-              if (index < data.details.length - 1) {
-                modalBody.innerHTML += "<hr>"; // Linea orizzontale tra i prodotti
-              }
-            });            
-          } else {
-            modalBody.innerHTML = "<p>Nessun dettaglio disponibile.</p>";
-          }
+      // Simula il caricamento con un timeout di 1,5 secondi
+      setTimeout(() => {
+        // Richiesta al server per ottenere i dettagli dell'ordine
+        fetch("utente.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
+            action: "getOrderDetails",
+            orderId: orderId,
+          }),
         })
-        .catch(() => {
-          modalBody.innerHTML = "<p>Errore nel caricamento dei dettagli.</p>";
-        });
+          .then((response) => response.json())
+          .then((data) => {
+            modalBody.innerHTML = ""; // Reset del contenuto del modale
+
+            if (data.success) {
+              data.details.forEach((product, index) => {
+                modalBody.innerHTML += `
+                  <div class="product-details d-flex align-items-start gap-3 my-2">
+                    <img src="resources/img/${product.Foto}" class="img-fluid product-image" alt="${product.Nome}">
+                    <div class="order-info">
+                      <p class="fw-bold">Nome: ${product.Nome}</p>
+                      <p>Quantità: ${product.Quantità}</p>
+                      <p>Prezzo: ${product.Prezzo.toFixed(2)}€</p>
+                    </div>
+                  </div>
+                `;
+                if (index < data.details.length - 1) {
+                  modalBody.innerHTML += "<hr>"; // Linea orizzontale tra i prodotti
+                }
+              });
+            } else {
+              modalBody.innerHTML = "<p>Nessun dettaglio disponibile.</p>";
+            }
+          })
+          .catch(() => {
+            modalBody.innerHTML = "<p>Errore nel caricamento dei dettagli.</p>";
+          });
+      }, 1500); // Attendi 1,5 secondi prima di eseguire il fetch
     });
   });
 });

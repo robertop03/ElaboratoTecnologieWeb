@@ -849,3 +849,12 @@ svg {
 .order-details-modal .order-info .fw-bold {
   font-size: 18px;
 }
+
+a[data-bs-target="#ordersModal"] {
+  margin-top: 5px; /* Aggiunge spazio tra le card e il link */
+  display: inline-block; /* Per rispettare lo spazio del margine */
+}
+
+a[data-bs-target="#ordersModal"]:hover {
+  text-decoration: underline;
+}

@@ -163,40 +163,47 @@
   
   <!-- Sezione I miei ordini -->
   <div class="row mb-4">
-    
     <div class="col-12">
-      <h3><?php echo $linguaAttuale == "en" ? "My orders" : "I miei ordini" ?></h3>
+      <h3><?php echo $linguaAttuale == "en" ? "My orders" : "I miei ordini"; ?></h3>
     </div>
 
-    <div class="col-md-4">
-      <div class="card p-3 bg-light">
-        <p class="fw-bold">N. ordine: AT325D</p>
-        <p>Creato il: 27/01/2024</p>
-        <p>Totale: 45€</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
+    <?php if (count($templateParams["orders"]) > 0): ?>
+      <?php 
+      $maxOrdersToShow = 3; 
+      $ordersToShow = array_slice($templateParams["orders"], 0, $maxOrdersToShow);
+      ?>
+
+      <?php foreach ($ordersToShow as $order): ?>
+        <div class="col-md-4">
+          <div class="card p-3 bg-light">
+            <p class="fw-bold">N. ordine: <?php echo htmlspecialchars($order["ID_Ordine"]); ?></p>
+            <p><?php echo $linguaAttuale == "en" ? "Created on" : "Creato il"; ?>: <?php echo htmlspecialchars($order["Data"]); ?></p>
+            <p><?php echo $linguaAttuale == "en" ? "Total" : "Totale"; ?>: <?php echo number_format($order["Totale"], 2); ?>€</p>
+            <a href="#" class="text-decoration-none border-bottom pb-1" 
+              data-bs-toggle="modal" 
+              data-bs-target="#orderDetailsModal" 
+              data-order-id="<?php echo htmlspecialchars($order["ID_Ordine"]); ?>">
+              <?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli"; ?>
+            </a>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    <?php else: ?>
+      <div class="col-12">
+        <p class="text-muted">
+          <?php echo $linguaAttuale == "en" ? "You haven't placed any orders yet." : "Non hai effettuato ancora nessun ordine."; ?>
+        </p>
       </div>
-    </div>
+    <?php endif; ?>
 
-    <div class="col-md-4">
-      <div class="card p-3 bg-light">
-        <p class="fw-bold">N. ordine: PO124R</p>
-        <p>Creato il: 17/01/2024</p>
-        <p>Totale: 25€</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
+    <?php if (count($templateParams["orders"]) > $maxOrdersToShow): ?>
+      <div class="col-12">
+        <a href="#" class="mt-4 text-decoration-none pb-1" data-bs-toggle="modal" data-bs-target="#ordersModal">
+          <?php echo $linguaAttuale == "en" ? "see all" : "vedi tutti"; ?>
+        </a>
+        <hr>
       </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card p-3 bg-light">
-        <p class="fw-bold">N. ordine: RE642E</p>
-        <p>Creato il: 12/01/2024</p>
-        <p>Totale: 35€</p>
-        <a href="#" class="text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target="#orderDetailsModal"><?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli" ?></a>
-      </div>
-    </div>
-
-    <a href="#" class="mt-3 text-decoration-none border-bottom pb-1" data-bs-toggle="modal" data-bs-target="#ordersModal"><?php echo $linguaAttuale == "en" ? "see all" : "vedi tutti" ?></a>
-  
+    <?php endif; ?>
   </div>
 
   <!-- Sezione Indirizzi di spedizione e Metodi di pagamento -->
