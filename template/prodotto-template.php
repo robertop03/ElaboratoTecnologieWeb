@@ -57,6 +57,13 @@
         </div>
       </div>
 
+      <!-- Messaggi dinamici -->
+      <div class="row justify-content-center">
+        <div class="col-12 text-center pt-2">
+          <p id="message-box" class="fw-bold mt-2"></p>
+        </div>
+      </div>
+
       <!-- Caratteristiche Prodotto -->
       <h2 class="h5 mt-3 pt-2 mb-3 pb-2">
         <?php echo $linguaAttuale == "en" ? "Features" : "Caratteristiche"; ?>

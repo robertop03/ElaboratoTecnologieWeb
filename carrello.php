@@ -6,35 +6,47 @@ if (!isset($_SESSION["email"])) {
     exit();
 }
 
-// Ottieni il carrello dai cookie
+// Retrieve the cart from cookies
 $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
 
-// Recupera i dettagli dei prodotti dal database
+// Initialize an array for the complete cart details
 $completeCart = [];
 
+// Loop through the cart items to fetch their details and validate stock
 foreach ($cart as $item) {
     $productDetails = $db->getProductDetails($item['id'], $_SESSION['lingua'] ?? 1);
 
     if ($productDetails) {
-        // Poiché getProductDetails restituisce già un array, non devi avvolgerlo in un altro array
+        $stock = $db->getProductStock($item['id']);
+
+        // If the requested quantity exceeds the stock, adjust it
+        if ($item['quantity'] > $stock) {
+            $item['quantity'] = $stock; // Update to the max available stock
+            $message = $productDetails['title'] . " - La quantità richiesta è stata modificata a causa di una disponibilità limitata.";
+            echo "<p class='text-warning'>$message</p>";
+        }
+
+        // Add the product details and updated quantity to the complete cart
         $completeCart[] = [
             'id' => $productDetails['id'],
             'title' => $productDetails['title'],
             'price' => $productDetails['price'],
             'image' => $productDetails['image'],
-            'quantity' => $item['quantity']
+            'quantity' => $item['quantity'],
+            'stock' => $stock
         ];
     }
 }
 
-// Passa i dettagli completi al file JavaScript
+// Pass the complete cart details to JavaScript
 echo "<script>const completeCart = " . json_encode($completeCart) . ";</script>";
 
-// Imposta i parametri per il template
+// Set template parameters
 $templateParams["titolo"] = "Carrello";
 $templateParams["nome"] = "carrello-template.php";
 $templateParams["mainClasses"] = "flex-grow-1";
 
-// Include il template base
+// Include the base template
 require("template/base.php");
 ?>
+    

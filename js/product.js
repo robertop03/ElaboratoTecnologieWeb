@@ -11,10 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const addToCartButton = document.querySelector("#add-to-cart");
   const increaseQuantityButton = document.querySelector("#increase-quantity");
   const decreaseQuantityButton = document.querySelector("#decrease-quantity");
+  const messageBox = document.querySelector("#message-box"); // Elemento per i messaggi dinamici
 
-  let stockAvailable = 0; // Variabile per salvare la quantità disponibile in magazzino
+  let stockAvailable = 0; // Quantità disponibile in magazzino
 
-  // Ottieni la quantità disponibile in magazzino al caricamento della pagina
+  // Recupera la quantità disponibile in magazzino al caricamento
   fetch("prodotto.php", {
     method: "POST",
     headers: {
@@ -28,17 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        stockAvailable = data.stock; // Salva la quantità disponibile
-        console.log(`Quantità disponibile per il prodotto ${productId}: ${stockAvailable}`);
-
-        // Controlla se il pulsante di incremento deve essere disabilitato inizialmente
+        stockAvailable = data.stock;
+        console.log(`Quantità disponibile: ${stockAvailable}`);
         updateButtonsState();
       } else {
-        alert("Errore nel recupero della quantità disponibile: " + data.message);
+        showMessage("Errore nel recupero della disponibilità in magazzino.", "red");
       }
     })
     .catch((error) => {
       console.error("Errore:", error);
+      showMessage("Errore di comunicazione con il server.", "red");
     });
 
   // Incrementa la quantità
@@ -59,40 +59,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Aggiungi il prodotto al carrello
+  // Aggiungi al carrello
   addToCartButton.addEventListener("click", () => {
     const quantity = parseInt(quantityInput.value, 10);
 
-    // Controllo bloccante sulla quantità in magazzino
     if (quantity > stockAvailable) {
-      alert("La quantità richiesta supera la disponibilità in magazzino!");
-      return; // Blocca l'operazione
+      showMessage("La quantità richiesta supera la disponibilità in magazzino!", "orange");
+      return;
     }
 
-    // Procedi con l'aggiunta al carrello
+    // Simula l'aggiunta al carrello
     addToCart(productId, quantity);
-
-    // Mostra un alert di conferma
-    alert("Prodotto aggiunto al carrello!");
+    showMessage("Prodotto aggiunto al carrello!", "green");
   });
 
-  // Funzione per abilitare/disabilitare i pulsanti di incremento/decremento
+  // Funzione per aggiornare i pulsanti
   function updateButtonsState() {
     const currentQuantity = parseInt(quantityInput.value, 10);
 
-    // Disabilita il pulsante di incremento se si raggiunge il limite di stock
-    if (currentQuantity >= stockAvailable) {
-      increaseQuantityButton.disabled = true;
-    } else {
-      increaseQuantityButton.disabled = false;
-    }
+    increaseQuantityButton.disabled = currentQuantity >= stockAvailable;
+    decreaseQuantityButton.disabled = currentQuantity <= 1;
+  }
 
-    // Disabilita il pulsante di decremento se si raggiunge 1
-    if (currentQuantity <= 1) {
-      decreaseQuantityButton.disabled = true;
-    } else {
-      decreaseQuantityButton.disabled = false;
-    }
+  // Funzione per mostrare un messaggio
+  function showMessage(message, color) {
+    messageBox.textContent = message;
+    messageBox.style.color = color;
   }
 
   // Funzione per aggiungere un prodotto al carrello
@@ -102,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cerca il prodotto nel carrello
     const existingProduct = cart.find((item) => item.id === productId);
     if (existingProduct) {
-      existingProduct.quantity += quantity; // Aumenta la quantità
+      existingProduct.quantity = quantity; // Sovrascrivi la quantità specificata
     } else {
       // Aggiungi un nuovo prodotto al carrello
       cart.push({ id: productId, quantity });
