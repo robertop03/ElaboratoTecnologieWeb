@@ -936,46 +936,98 @@ class VinoDatabase {
         return $this->executeQuery($query, $params);
     }
 
-    // Funzione per modificare lo stato di un ordine
     public function modificaStatoOrdine($idOrdine) {
-        // Recupera lo stato attuale dell'ordine
+        // Recupera lo stato attuale dell'ordine e l'email
         $queryGetStato = "
-            SELECT Stato 
+            SELECT Stato, Email
             FROM ORDINE 
             WHERE ID_Ordine = :idOrdine
         ";
-
+    
         $paramsGetStato = [
             ':idOrdine' => $idOrdine
         ];
-
+    
         $result = $this->executeQuery($queryGetStato, $paramsGetStato);
-
+    
+        if (empty($result)) {
+            throw new Exception("Ordine non trovato");
+        }
+    
         $statoCorrente = (int)$result[0]['Stato'];
-
-        // Determina il nuovo stato
+        $email = $result[0]['Email'];
+    
+        // Determina il nuovo stato e i testi
         $nuovoStato = null;
+        $titoloIT = "";
+        $testoIT = "";
+        $titoloEN = "";
+        $testoEN = "";
+    
         if ($statoCorrente === 0) {
             $nuovoStato = 1; // Da "confermato" a "spedito"
+            $titoloIT = "Ordine Spedito";
+            $testoIT = "Il tuo ordine con ID {$idOrdine} è stato spedito.";
+            $titoloEN = "Order Shipped";
+            $testoEN = "Your order with ID {$idOrdine} has been shipped.";
         } elseif ($statoCorrente === 1) {
             $nuovoStato = 2; // Da "spedito" a "consegnato"
-        } else{
-            return TRUE;
+            $titoloIT = "Ordine Consegnato";
+            $testoIT = "Il tuo ordine con ID {$idOrdine} è stato consegnato.";
+            $titoloEN = "Order Delivered";
+            $testoEN = "Your order with ID {$idOrdine} has been delivered.";
+        } else {
+            return true; // Lo stato è già "consegnato"
         }
-
+    
+        // Aggiorna lo stato dell'ordine
         $queryUpdateStato = "
             UPDATE ORDINE 
             SET Stato = :nuovoStato
             WHERE ID_Ordine = :idOrdine
         ";
-
+    
         $paramsUpdateStato = [
             ':nuovoStato' => $nuovoStato,
             ':idOrdine' => $idOrdine
         ];
         $this->executeQuery($queryUpdateStato, $paramsUpdateStato);
-        return TRUE;
+    
+        // Crea una nuova notifica
+        $idNotifica = uniqid("N"); // Genera un ID univoco per la notifica
+        $queryInsertNotifica = "
+            INSERT INTO NOTIFICA (ID_NOTIFICA, Data, Visualizzato, Email)
+            VALUES (:idNotifica, NOW(), 'N', :email)
+        ";
+    
+        $paramsInsertNotifica = [
+            ':idNotifica' => $idNotifica,
+            ':email' => $email
+        ];
+        $this->executeQuery($queryInsertNotifica, $paramsInsertNotifica);
+    
+        // Inserisce i testi della notifica in entrambe le lingue
+        $queryInsertTestoNotifica = "
+            INSERT INTO TESTO_NOTIFICA (ID_Testo, Lingua, Titolo, Testo, ID_NOTIFICA)
+            VALUES 
+            (:idTestoIT, 1, :titoloIT, :testoIT, :idNotifica),
+            (:idTestoEN, 2, :titoloEN, :testoEN, :idNotifica)
+        ";
+    
+        $paramsInsertTestoNotifica = [
+            ':idTestoIT' => uniqid("TI"), // ID univoco per il testo italiano
+            ':titoloIT' => $titoloIT,
+            ':testoIT' => $testoIT,
+            ':idTestoEN' => uniqid("TE"), // ID univoco per il testo inglese
+            ':titoloEN' => $titoloEN,
+            ':testoEN' => $testoEN,
+            ':idNotifica' => $idNotifica
+        ];
+        $this->executeQuery($queryInsertTestoNotifica, $paramsInsertTestoNotifica);
+    
+        return true;
     }
+    
 
     public function addEventWithTexts($dataInizio, $dataFine, $foto, $titoloIT, $sottotitoloIT, $descrizioneIT, $titoloEN, $sottotitoloEN, $descrizioneEN) {
         try {
