@@ -575,6 +575,7 @@ main > section > aside {
   .cart-container {
     flex-direction: row;
     align-items: flex-start;
+    gap: 15px;
   }
 
   .full {

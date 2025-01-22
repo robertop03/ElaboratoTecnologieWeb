@@ -1668,5 +1668,17 @@ class VinoDatabase {
             return false; // Operazione fallita
         }
     }
+
+    public function getProductStock($productId) {
+        $query = "
+            SELECT Quantita_Magazzino 
+            FROM prodotto 
+            WHERE ID_Prodotto = :productId
+        ";
+        $params = [":productId" => $productId];
+        $result = $this->executeQuery($query, $params);
+    
+        return $result[0]["Quantita_Magazzino"] ?? 0; 
+    }    
 }
 ?>
