@@ -1684,6 +1684,69 @@ class VinoDatabase {
         }
     
         return null;
-    }     
+    }
+    
+    // Crea una nuova notifica
+    public function addNotifica(
+        $data,
+        $email,
+        $foto,
+        $titoloIT,
+        $testoIT,
+        $titoloEN,
+        $testoEN
+    ) {
+        try {
+            $this->pdo->beginTransaction();
+    
+            // Genera ID univoco per la notifica
+            $idNotifica = 'N' . substr(uniqid(), 0, 8);
+    
+            // Inserimento nella tabella PRODOTTO
+            $queryProdotto = "
+                INSERT INTO NOTIFICA (ID_NOTIFICA, Data, Visualizzato, Email)
+                VALUES (:idNotifica, :data, 'N', :email)
+            ";
+            $this->executeQuery($queryProdotto, [
+                ':idNotifica' => $idNotifica,
+                ':data' => $data,
+                ':email' => $email
+            ]);
+    
+            // Genera ID_Testo per italiano e inglese
+            $idTestoIT = 'TI' . substr(uniqid(), 0, 8);
+            $idTestoEN = 'TE' . substr(uniqid(), 0, 8);
+    
+            // Inserimento testo in Italiano
+            $queryTestoIT = "
+                INSERT INTO TESTO_NOTIFICA (ID_Testo, Lingua, Titolo, Testo, ID_NOTIFICA)
+                VALUES (:idTesto, 1, :titolo, :testo, :idNotifica)
+            ";
+            $this->executeQuery($queryTestoIT, [
+                ':idTesto' => $idTestoIT,
+                ':titolo' => $titoloIT,
+                ':testo' => $testoIT,
+                ':idNotifica' => $idNotifica
+            ]);
+    
+            // Inserimento testo in Inglese
+            $queryTestoEN = "
+                INSERT INTO TESTO_NOTIFICA (ID_Testo, Lingua, Titolo, Testo, ID_NOTIFICA)
+                VALUES (:idTesto, 2, :titolo, :testo, :idNotifica)
+            ";
+            $this->executeQuery($queryTestoEN, [
+                ':idTesto' => $idTestoEN,
+                ':titolo' => $titoloEN,
+                ':testo' => $testoEN,
+                ':idNotifica' => $idNotifica
+            ]);
+    
+            $this->pdo->commit();
+            return true;
+        } catch (Exception $e) {
+            $this->pdo->rollBack();
+            throw $e;
+        }
+    }
 }
 ?>
