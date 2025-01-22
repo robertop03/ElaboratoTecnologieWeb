@@ -1,5 +1,6 @@
 <div class="d-flex flex-column flex-lg-row">
   <!-- Notification List -->
+  <?php if(!empty($notifiche)):?>
   <div class="list-group flex-lg-shrink-0">
   <?php foreach ($notifiche as $notifica): ?>
     <a href="javascript:void(0)" 
@@ -13,7 +14,7 @@
       <p class="mb-0 text-muted"><?php echo htmlspecialchars($notifica["Testo"]); ?></p>
       <button class="btn btn-danger btn-sm float-end" 
               onclick="eliminaNotifica(event, '<?php echo $notifica['ID_NOTIFICA']; ?>')">
-            <?php echo $linguaAttuale == "en" ? "Delete" : "Elimina" ?>
+            X
       </button>
     </a>
    <?php endforeach; ?>
@@ -42,4 +43,7 @@
       </div>
     </div>
   </div>
+  <?php else: ?>
+    <p class="ms-3 ps-3 pt-2"><?php echo $linguaAttuale == "en" ? "Currently, you have no notifications" : "Attualmente non hai notifiche" ?></p>
+  <?php endif; ?>
 </div>
