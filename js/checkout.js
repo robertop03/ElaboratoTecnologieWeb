@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Listener per il redirect alla chiusura del modale di completamento ordine
   orderCompletionModal.addEventListener("hidden.bs.modal", () => {
-    window.location.href = "./utente.html";
+    window.location.href = "./utente.php";
   });
 
   // Chiamate iniziali

@@ -1671,14 +1671,19 @@ class VinoDatabase {
 
     public function getProductStock($productId) {
         $query = "
-            SELECT Quantita_Magazzino 
-            FROM prodotto 
+            SELECT Quantita_Magazzino
+            FROM prodotto
             WHERE ID_Prodotto = :productId
         ";
-        $params = [":productId" => $productId];
-        $result = $this->executeQuery($query, $params);
     
-        return $result[0]["Quantita_Magazzino"] ?? 0; 
-    }    
+        $params = [":productId" => $productId];
+    
+        $result = $this->executeQuery($query, $params);
+        if (count($result) > 0) {
+            return $result[0]["Quantita_Magazzino"];
+        }
+    
+        return null;
+    }     
 }
 ?>

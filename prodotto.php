@@ -16,18 +16,21 @@ if ($linguaAttuale === "it") {
 }
 
 // Verifica disponibilità in magazzino
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && $_POST["action"] === "checkAvailability") {
-    $productId = $_POST["productId"];
-    $requestedQuantity = (int)$_POST["quantity"];
-    
-    // Ottieni la quantità disponibile dal database
-    $availableQuantity = $db->getProductStock($productId);
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"])) {
+    if ($_POST["action"] === "getStock" && isset($_POST["productId"])) {
+        $productId = trim($_POST["productId"]);
 
-    header("Content-Type: application/json");
-    echo json_encode([
-        "isAvailable" => $requestedQuantity <= $availableQuantity,
-    ]);
-    exit();
+        // Ottieni la quantità in magazzino dal database
+        $stock = $db->getProductStock($productId);
+        if ($stock !== null) {
+            header("Content-Type: application/json");
+            echo json_encode(["success" => true, "stock" => $stock]);
+        } else {
+            header("Content-Type: application/json");
+            echo json_encode(["success" => false, "message" => "Prodotto non trovato."]);
+        }
+        exit();
+    }
 }
 
 require("template/base.php");

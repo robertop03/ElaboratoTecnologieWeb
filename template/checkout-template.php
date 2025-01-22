@@ -24,7 +24,7 @@
                 <input type="text" class="form-control" id="indirizzo" placeholder="Via Chiossetto 1" required />
               </div>
               <div class="mb-3 presso">
-                <label for="presso" class="form-label"><?php echo $linguaAttuale == "en" ? "At" : "Presso" ?><span class="text-danger">*</span></label>
+                <label for="presso" class="form-label"><?php echo $linguaAttuale == "en" ? "At" : "Presso" ?></label>
                 <input type="text" class="form-control" id="presso" placeholder="Studio Associato Rossi" />
               </div>
               <div class="row">
