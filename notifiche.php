@@ -1,5 +1,6 @@
 <?php
 require_once("bootstrapt.php");
+date_default_timezone_set('Europe/Rome');
 
 if (!isset($_SESSION["email"])) {
     header("Location: login.php");

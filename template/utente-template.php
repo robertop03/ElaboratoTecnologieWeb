@@ -169,7 +169,7 @@
 
     <?php if (count($templateParams["orders"]) > 0): ?>
       <?php 
-      $maxOrdersToShow = 3; 
+      $maxOrdersToShow = 3;
       $ordersToShow = array_slice($templateParams["orders"], 0, $maxOrdersToShow);
       ?>
 
@@ -196,13 +196,15 @@
       </div>
     <?php endif; ?>
 
-    <?php if (count($templateParams["orders"]) > $maxOrdersToShow): ?>
-      <div class="col-12">
-        <a href="#" class="mt-4 text-decoration-none pb-1" data-bs-toggle="modal" data-bs-target="#ordersModal">
-          <?php echo $linguaAttuale == "en" ? "see all" : "vedi tutti"; ?>
-        </a>
-        <hr>
-      </div>
+    <?php if(isset($maxOrdersToShow)): ?>
+      <?php if (count($templateParams["orders"]) > $maxOrdersToShow): ?>
+        <div class="col-12">
+          <a href="#" class="mt-4 text-decoration-none pb-1" data-bs-toggle="modal" data-bs-target="#ordersModal">
+            <?php echo $linguaAttuale == "en" ? "see all" : "vedi tutti"; ?>
+          </a>
+          <hr>
+        </div>
+      <?php endif; ?>
     <?php endif; ?>
   </div>
 

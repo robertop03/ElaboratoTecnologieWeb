@@ -1,5 +1,6 @@
 <?php
 require_once("bootstrapt.php");
+date_default_timezone_set('Europe/Rome');
 
 $templateParams["titolo"] = "Registrazione utente";
 $templateParams["nome"] = "register-template.php";
@@ -25,7 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $result = $db->registerUser($email, $password, "", "");
             $userCheck = $db->checkExistsUser($email);
-
+            $createNotification = $db->addNotifica($email, "Creazione account", "Benvenuto, " . $email
+             . " Grazie per esserti registrato al nostro servizio!",
+            "Account creation", "Welcome, " . $email . " Thank you for signing up for our service!");
             if (!empty($userCheck) && isset($userCheck[0]['total']) && $userCheck[0]['total'] > 0) {
                 header("Location: login.php?success=1");
                 exit();

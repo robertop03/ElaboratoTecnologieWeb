@@ -1688,9 +1688,7 @@ class VinoDatabase {
     
     // Crea una nuova notifica
     public function addNotifica(
-        $data,
         $email,
-        $foto,
         $titoloIT,
         $testoIT,
         $titoloEN,
@@ -1701,7 +1699,7 @@ class VinoDatabase {
     
             // Genera ID univoco per la notifica
             $idNotifica = 'N' . substr(uniqid(), 0, 8);
-    
+            $data = date('Y-m-d');
             // Inserimento nella tabella PRODOTTO
             $queryProdotto = "
                 INSERT INTO NOTIFICA (ID_NOTIFICA, Data, Visualizzato, Email)
