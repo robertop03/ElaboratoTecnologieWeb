@@ -31,7 +31,6 @@ INSERT INTO CATEGORIA (ID_Categoria, Titolo) VALUES
 INSERT INTO ATTRIBUTO (ID_Attributo, Titolo, ID_Categoria) VALUES
 ('A1', 'Frizzante', 'C1'),
 ('A2', 'Fermo', 'C1'),
-('A3', 'Spumante', 'C1'),
 ('A4', 'Rosso', 'C2'),
 ('A5', 'Bianco', 'C2'),
 ('A6', 'Rosè', 'C2'),
@@ -85,7 +84,7 @@ INSERT INTO Attributa (ID_Attributo, ID_Prodotto) VALUES
 ('A22', 'P2'), -- Toscana (C3)
 ('A28', 'P2'), -- Magnum 1.5l (C4)
 
-('A3', 'P3'), -- Spumante (C1)
+('A2', 'P3'), -- Spumante (C1)
 ('A6', 'P3'), -- Rosè (C2)
 ('A18', 'P3'), -- Piemonte (C3)
 ('A29', 'P3'), -- Mezza 0.375l (C4)
@@ -100,7 +99,7 @@ INSERT INTO Attributa (ID_Attributo, ID_Prodotto) VALUES
 ('A21', 'P5'), -- Sicilia (C3)
 ('A27', 'P5'), -- Bottiglia 0.75l (C4)
 
-('A3', 'P6'), -- Spumante (C1)
+('A2', 'P6'), -- Spumante (C1)
 ('A6', 'P6'), -- Rosè (C2)
 ('A15', 'P6'), -- Lombardia (C3)
 ('A28', 'P6'), -- Magnum 1.5l (C4)
@@ -115,7 +114,7 @@ INSERT INTO Attributa (ID_Attributo, ID_Prodotto) VALUES
 ('A19', 'P8'), -- Puglia (C3)
 ('A27', 'P8'), -- Bottiglia 0.75l (C4)
 
-('A3', 'P9'), -- Spumante (C1)
+('A2', 'P9'), -- Spumante (C1)
 ('A5', 'P9'), -- Bianco (C2)
 ('A11', 'P9'), -- Emilia Romagna (C3)
 ('A27', 'P9'), -- Bottiglia 0.75l (C4)
