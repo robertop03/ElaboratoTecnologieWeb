@@ -303,6 +303,7 @@
     <div class="col-12">
       <h4><?php echo $linguaAttuale == "en" ? "Notification" : "Notifiche" ?></h4>
       <ul class="notifications-list">
+      <?php $lastNotifications = $db->getUltimeDueNotifiche($linguaAttuale === "it" ? 1 : 2, $_SESSION["email"]) ?>
       <?php if(!empty($lastNotifications)): ?>
       <?php foreach ($lastNotifications as $notifica): ?>
         <li>
