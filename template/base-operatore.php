@@ -20,6 +20,9 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item me-3">
+                <a class="nav-link btn btn-outline-dark text-white" href="notifiche.php">Notifiche</a>
+              </li>
+              <li class="nav-item me-3">
                 <a class="nav-link btn btn-outline-dark text-white" href="OrderManager.php">Ordini</a>
               </li>
               <li class="nav-item me-3">

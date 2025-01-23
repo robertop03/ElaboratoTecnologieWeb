@@ -279,7 +279,10 @@ VALUES
 ('N001', '2023-10-23', 'Y', 'luigi.bianchi@example.com'),
 ('N002', '2023-10-23', 'N', 'mario.rossi@example.com'),
 ('N003', '2025-01-13', 'N', 'mario.rossi@example.com'),
-('N004', '2025-01-02', 'N', 'luigi.bianchi@example.com');
+('N004', '2025-01-02', 'N', 'luigi.bianchi@example.com'),
+('N005', '2025-01-10', 'N', 'admin@gmail.com');
+
+
 
 INSERT INTO TESTO_NOTIFICA (ID_Testo, Lingua, Titolo, Testo, ID_NOTIFICA) VALUES
 -- Notifica N001
@@ -296,4 +299,8 @@ INSERT INTO TESTO_NOTIFICA (ID_Testo, Lingua, Titolo, Testo, ID_NOTIFICA) VALUES
 
 -- Notifica N004
 ('T07', 1, 'Ordine consegnato', 'Il tuo ordine è stato consegnato id ordine: O9', 'N004'),
-('T08', 2, 'Order delivered', 'Your order has been delivered order id: O9', 'N004');
+('T08', 2, 'Order delivered', 'Your order has been delivered order id: O9', 'N004'),
+
+-- Notifica N005
+('T09', 1, 'Prodotto Sold Out', 'Il prodotto P4 è sold out', 'N005'),
+('T10', 2, 'Product Sold Out', 'Product P4 is sold out', 'N005');

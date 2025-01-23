@@ -67,5 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 $templateParams["titolo"] = "Notifiche";
 $templateParams["nome"] = "notifiche-template.php";
 $templateParams["mainClasses"] = "flex-grow-1";
-require("template/base.php");
+if (!(isset($_SESSION["email"]) && $db->checkIsAdmin($_SESSION["email"]) == 1)) {
+    require("template/base.php");
+}else{
+    require("template/base-operatore.php");
+    echo '<script src="js/script.js?v=1"></script>';
+}
 ?>

@@ -34,9 +34,10 @@
   <div class="col-md-3">
     <div class="card h-100 text-center">
       <div class="card-body">
-        <h5 class="card-title">Bottiglie in Magazzino</h5>
-        <p class="display-4 fw-bold"><?php echo $db->getTotalBottleCount(); ?></p>
+        <h5 class="card-title">Notifiche da Leggere</h5>
+        <p class="display-4 fw-bold"><?php echo $db->getNumeroNotificheNonLette($_SESSION["email"])[0]["COUNT(ID_NOTIFICA)"] ?></p>
       </div>
     </div>
   </div>
+
 </div>
