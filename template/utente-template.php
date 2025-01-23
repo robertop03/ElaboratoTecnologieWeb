@@ -244,7 +244,8 @@
           <p>
             **** **** **** <?php echo substr(htmlspecialchars($firstCard["Numero_Carta"]), -4); ?><br />
             <?php echo $linguaAttuale == "en" ? "Expiration:" : "Scadenza:"; ?> 
-            <?php echo htmlspecialchars($firstCard["mese_scadenza"]) . "/" . htmlspecialchars($firstCard["anno_scadenza"]); ?>
+            <?php echo htmlspecialchars($firstCard["mese_scadenza"]) . "/" . htmlspecialchars($firstCard["anno_scadenza"]); ?><br />
+            <?php echo "CVV: ***"; ?>
           </p>
         <?php else: ?>
           <p><?php echo $linguaAttuale == "en" ? "No saved payment methods." : "Nessun metodo di pagamento salvato."; ?></p>

@@ -6,9 +6,17 @@ if (!isset($_SESSION["email"])) {
     exit();
 }
 
+// Ottenere indirizzi e metodi di pagamento
+$templateParams["addresses"] = $db->getUserAddresses($_SESSION["email"]);
+$templateParams["paymentMethods"] = $db->getUserPaymentMethods($_SESSION["email"]);
+
+// Imposta i parametri per il template
 $templateParams["titolo"] = "Checkout";
 $templateParams["nome"] = "checkout-template.php";
 $templateParams["mainClasses"] = "flex-grow-1";
+
+// Debug opzionale per verificare
+// echo '<pre>', print_r($templateParams, true), '</pre>';
 
 require("template/base.php");
 ?>
