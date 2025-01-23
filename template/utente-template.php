@@ -61,7 +61,7 @@
             if($nNotifications[0]["COUNT(ID_NOTIFICA)"] === 0): ?>
             <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You currently have no notifications" : "Al momento non hai notifiche" ?></span>
           <?php else: ?>
-            <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have " . $nNotifications[0]["COUNT(ID_NOTIFICA)"] . " unread notifications" : "Hai " . $nNotifications[0]["COUNT(ID_NOTIFICA)"] . " non lette" ?></span>
+            <span class="text-muted small"><?php echo $linguaAttuale == "en" ? "You have " . $nNotifications[0]["COUNT(ID_NOTIFICA)"] . " unread notifications" : "Hai " . $nNotifications[0]["COUNT(ID_NOTIFICA)"] . " notifiche non lette" ?></span>
           <?php endif; ?>
         </div>
       </a>
