@@ -177,7 +177,7 @@ hr.styled-divider {
 }
 
 /* Pagina singolo prodotto*/
-main input[type="number"] {
+.container .row .col-auto input[type="number"] {
   background-color: #590425;
   color: #fff;
 }
