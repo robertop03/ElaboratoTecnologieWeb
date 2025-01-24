@@ -22,8 +22,8 @@ $ordini = $db->getOrdersPaginated($perPage, $offset);
         <thead>
           <tr>
             <th class="w-10">ID Ordine</th>
-            <th class="w-10">Data</th>
-            <th>Email Utente</th>
+            <th class="w-10 d-none d-md-table-cell">Data</th>
+            <th class="d-none d-md-table-cell">Email Utente</th>
             <th>Stato</th>
             <th></th>
           </tr>
@@ -48,8 +48,8 @@ $ordini = $db->getOrdersPaginated($perPage, $offset);
             ?>
             <tr id="ordine-<?php echo htmlspecialchars($ordine['ID_Ordine']); ?>">
               <td><?php echo htmlspecialchars($ordine['ID_Ordine']); ?></td>
-              <td><?php echo htmlspecialchars($ordine['Data']); ?></td>
-              <td><?php echo htmlspecialchars($ordine['Email']); ?></td>
+              <td class="d-none d-md-table-cell"><?php echo htmlspecialchars($ordine['Data']); ?></td>
+              <td class="d-none d-md-table-cell"><?php echo htmlspecialchars($ordine['Email']); ?></td>
               <td class="stato-ordine"><?php echo $statoTesto; ?></td>
               <td class="text-end">
                 <div class="d-inline-flex gap-2">

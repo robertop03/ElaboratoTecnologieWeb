@@ -16,8 +16,8 @@ $eventi = $db->getAllEvents();
                     <th>ID Evento</th>
                     <th>Data Inizio</th>
                     <th>Data Fine</th>
-                    <th>Titolo (EN)</th>
-                    <th>Titolo (IT)</th>
+                    <th class="d-none d-md-table-cell">Titolo (EN)</th>
+                    <th class="d-none d-md-table-cell">Titolo (IT)</th>
                     <th></th>
                 </tr>
             </thead>
@@ -28,8 +28,8 @@ $eventi = $db->getAllEvents();
                             <td><?php echo htmlspecialchars($evento['ID_Evento']); ?></td>
                             <td><?php echo htmlspecialchars($evento['Data_Inizio']); ?></td>
                             <td><?php echo htmlspecialchars($evento['Data_Fine']); ?></td>
-                            <td><?php echo htmlspecialchars($evento['Titolo_EN']); ?></td>
-                            <td><?php echo htmlspecialchars($evento['Titolo_IT']); ?></td>
+                            <td class="d-none d-md-table-cell"><?php echo htmlspecialchars($evento['Titolo_EN']); ?></td>
+                            <td class="d-none d-md-table-cell"><?php echo htmlspecialchars($evento['Titolo_IT']); ?></td>
                             <td class="text-end">
                                 <div class="d-inline-flex gap-2">
                                     <button class="btn btn-warning btn-modifica-evento" 
@@ -238,20 +238,20 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".btn-elimina-evento").forEach(button => {
         button.addEventListener("click", function () {
             const eventoId = this.dataset.id;
-            if (confirm("Sei sicuro di voler eliminare questo evento?")) {
-                fetch("api/eliminaevento.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ idEvento: eventoId })
-                })
-                .then(response => response.json())
-                .then(data => {
-                        window.location.reload();
-                })
-                .catch(error => {
-                    console.error("Errore:", error);
-                });
-            }
+            
+            fetch("api/eliminaevento.php", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ idEvento: eventoId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                    window.location.reload();
+            })
+            .catch(error => {
+                console.error("Errore:", error);
+            });
+            
         });
     });
 });

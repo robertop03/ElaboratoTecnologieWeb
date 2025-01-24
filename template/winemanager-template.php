@@ -36,49 +36,53 @@ $vini = $db->getWinesPaginated($perPage, $offset,1,$cerca);
     <!-- Tabella vini -->
     <div class="table-responsive">
       <table class="table table-bordered" id="wine-table">
-        <thead>
+        <thead class="table-light">
           <tr>
             <th>ID Prodotto</th>
-            <th>Quantità Magazzino</th>
-            <th>Titolo Prodotto</th>
+            <th class="d-none d-md-table-cell">Quantità Magazzino</th>
+            <th class="d-none d-md-table-cell">Titolo Prodotto</th>
             <th>Nascosto</th>
-            <th></th>
+            <th>Azioni</th>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($vini as $vino): ?>
-            <tr id="vino-<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>">
-                <td><?php echo htmlspecialchars($vino['ID_Prodotto']); ?></td>
-                <td><?php echo htmlspecialchars($vino['Quantita_Magazzino']); ?></td>
-                <td><?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?></td>
-                <td><?php echo htmlspecialchars($vino['Nascosto'] === 'Y' ? 'Y' : 'N'); ?></td>
-                <td class="text-end">
-                <div class="d-inline-flex gap-2">
-                    <!-- Bottone modifica visibilità -->
-                    <form action="api/toggle-visibility.php" method="POST" style="display: inline;">
-                        <input type="hidden" name="idProdotto" value="<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>">
-                        <button type="submit" class="btn btn-secondary">
-                            Modifica Visibilità
-                        </button>
-                    </form>
-                    <!-- Bottone modifica quantità -->
-                    <button class="btn btn-warning btn-modifica-quantita" data-id="<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>" data-bs-toggle="modal" data-bs-target="#modificaQuantitaModal">
-                      Modifica quantità
+            <tr>
+              <td><?php echo htmlspecialchars($vino['ID_Prodotto']); ?></td>
+              <td class="d-none d-md-table-cell"><?php echo htmlspecialchars($vino['Quantita_Magazzino']); ?></td>
+              <td class="d-none d-md-table-cell"><?php echo htmlspecialchars($vino['Titolo_Prodotto']); ?></td>
+              <td><?php echo htmlspecialchars($vino['Nascosto'] === 'Y' ? 'Y' : 'N'); ?></td>
+              <td>
+                <div class="d-flex flex-column flex-md-row gap-2">
+                  <!-- Bottone modifica visibilità -->
+                  <form action="api/toggle-visibility.php" method="POST" style="display: inline;">
+                    <input type="hidden" name="idProdotto" value="<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>">
+                    <button type="submit" class="btn btn-secondary btn-sm">
+                      Modifica Visibilità
                     </button>
-                    <!-- Bottone modifica prodotto -->
-                    <button class="btn btn-primary btn-modifica-prodotto" 
-                            data-id="<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>" 
-                            data-bs-toggle="modal" 
-                        data-bs-target="#modificaProdottoModal">
-                        Modifica prodotto
-                    </button>
+                  </form>
+                  <!-- Bottone modifica quantità -->
+                  <button class="btn btn-warning btn-sm btn-modifica-quantita" 
+                          data-id="<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>" 
+                          data-bs-toggle="modal" 
+                          data-bs-target="#modificaQuantitaModal">
+                    Modifica Quantità
+                  </button>
+                  <!-- Bottone modifica prodotto -->
+                  <button class="btn btn-primary btn-sm btn-modifica-prodotto" 
+                          data-id="<?php echo htmlspecialchars($vino['ID_Prodotto']); ?>" 
+                          data-bs-toggle="modal" 
+                          data-bs-target="#modificaProdottoModal">
+                    Modifica Prodotto
+                  </button>
                 </div>
-            </td>
+              </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
       </table>
     </div>
+
 
     <!-- Paginazione -->
     <nav>
