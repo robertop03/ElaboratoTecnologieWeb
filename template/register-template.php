@@ -37,5 +37,12 @@
       <button type="submit" class="btn btn-dark btn-lg"> <?php echo $linguaAttuale == "en" ? "Create account" : "Crea account" ?></button>
     </div>
   </form>
+  <div class="text-center mt-4">
+    <p class="mb-0">
+      <?php echo $linguaAttuale == "en" ? "Do you already have an account?" : "Hai già un account?"; ?>
+      <a href="login.php" class="fw-bold text-decoration-none"><?php echo $linguaAttuale == "en" ? "Log in" : "Effettua login"; ?></a>
+    </p>
+  </div>
+
 </div>
 <!-- END FORM DI REGISTRAZIONE -->

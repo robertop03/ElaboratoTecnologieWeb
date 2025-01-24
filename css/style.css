@@ -147,14 +147,20 @@ hr.styled-divider {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
+input[type="email"] {
+  height: 47px;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+}
+
 .register-form .form-control:focus {
   border-color: #800020;
   box-shadow: 0 0 0 0.2rem rgba(128, 0, 32, 0.25);
 }
 
 /* Icone toggle password */
-.input-group .toggle-password i {
-  font-size: 1.2rem;
+.input-group .toggle-password span {
+  font-size: 1.4rem;
 }
 
 .input-group .toggle-password:hover {

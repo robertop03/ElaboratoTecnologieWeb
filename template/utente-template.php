@@ -160,7 +160,7 @@
 
 <!-- DESKTOP PAGE -->
 <div class="container mt-4 mb-5 d-none d-md-block">
-  
+  <p class="pb-2"><?php echo $_SESSION["email"]; ?></p>
   <!-- Sezione I miei ordini -->
   <div class="row mb-4">
     <div class="col-12">
