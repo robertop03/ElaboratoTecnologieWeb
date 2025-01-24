@@ -7,12 +7,12 @@
   <form class="register-form" action="#" method="POST">
     <div class="mb-3">
       <label for="email" class="form-label fw-bold text-dark">Email<span class="text-danger">*</span></label>
-      <input type="email" class="form-control" id="email" name="email" placeholder="<?php echo $linguaAttuale == "en" ? "example@gmail.com" : "esempio@gmail.com" ?>" required />
+      <input type="email" class="form-control" id="email" name="email" placeholder="<?php echo $linguaAttuale == "en" ? "example@gmail.com" : "esempio@gmail.com" ?>" required autocomplete="email" />
     </div>
     <div class="mb-3">
       <label for="password" class="form-label fw-bold text-dark">Password<span class="text-danger">*</span></label>
       <div class="input-group">
-        <input type="password" class="form-control" id="password" name="password" placeholder="<?php echo $linguaAttuale == "en" ? "should be at least 8 characters long" : "deve essere di almeno 8 caratteri" ?>" required />
+        <input type="password" class="form-control" id="password" name="password" placeholder="<?php echo $linguaAttuale == "en" ? "should be at least 8 characters long" : "deve essere di almeno 8 caratteri" ?>" required autocomplete="current-password"/>
         <button type="button" class="btn btn-outline-secondary toggle-password border">
           <span class="bi bi-eye" role="img" aria-label="icona occhio mostra passsword"></span>
         </button>
