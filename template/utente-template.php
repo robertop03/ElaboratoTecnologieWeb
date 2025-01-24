@@ -119,7 +119,7 @@
                 <div class="mb-3">
                   <label for="current-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Actual password" : "Password attuale" ?><span class="text-danger">*</span></label>
                   <div class="input-group">
-                    <input type="password" class="form-control" id="current-password-modal" name="current-password" required />
+                    <input type="password" class="form-control" id="current-password-modal" name="current-password" required autocomplete="current-password" />
                     <button class="btn btn-outline-secondary toggle-password" type="button">
                       <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
                     </button>
@@ -128,7 +128,7 @@
                 <div class="mb-3">
                   <label for="new-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "New password" : "Nuova password" ?><span class="text-danger">*</span></label>
                   <div class="input-group">
-                    <input type="password" class="form-control" id="new-password-modal" name="new-password" required />
+                    <input type="password" class="form-control" id="new-password-modal" name="new-password" required autocomplete="new-password" />
                     <button class="btn btn-outline-secondary toggle-password" type="button">
                       <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
                     </button>
@@ -137,7 +137,7 @@
                 <div class="mb-3">
                   <label for="confirm-password-modal" class="form-label"><?php echo $linguaAttuale == "en" ? "Confirm new password" : "Conferma nuova password" ?><span class="text-danger">*</span></label>
                   <div class="input-group">
-                    <input type="password" class="form-control" id="confirm-password-modal" name="confirm-password" required />
+                    <input type="password" class="form-control" id="confirm-password-modal" name="confirm-password" required autocomplete="new-password" />
                     <button class="btn btn-outline-secondary toggle-password" type="button">
                       <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
                     </button>
@@ -353,7 +353,7 @@
         <div class="mb-3">
           <label for="current-password" class="form-label"><?php echo $linguaAttuale == "en" ? "Actual password" : "Password attuale" ?><span class="text-danger">*</span></label>
           <div class="input-group">
-            <input type="password" class="form-control" id="current-password" name="current-password" required />
+            <input type="password" class="form-control" id="current-password" name="current-password" required autocomplete="current-password" />
             <button class="btn btn-outline-secondary toggle-password" type="button">
               <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
             </button>
@@ -362,7 +362,7 @@
         <div class="mb-3">
           <label for="new-password" class="form-label"><?php echo $linguaAttuale == "en" ? "New password" : "Nuova password" ?><span class="text-danger">*</span></label>
           <div class="input-group">
-            <input type="password" class="form-control" id="new-password" name="new-password" required />
+            <input type="password" class="form-control" id="new-password" name="new-password" required autocomplete="new-password"/>
             <button class="btn btn-outline-secondary toggle-password" type="button">
               <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
             </button>
@@ -371,7 +371,7 @@
         <div class="mb-3">
           <label for="confirm-password" class="form-label"><?php echo $linguaAttuale == "en" ? "Confirm new password" : "Conferma nuova password" ?><span class="text-danger">*</span></label>
           <div class="input-group">
-            <input type="password" class="form-control" id="confirm-password" name="confirm-password" required />
+            <input type="password" class="form-control" id="confirm-password" name="confirm-password" required autocomplete="new-password" />
             <button class="btn btn-outline-secondary toggle-password" type="button">
               <span class="bi bi-eye" role="img" aria-label="icona occhio mostra password"></span>
             </button>
