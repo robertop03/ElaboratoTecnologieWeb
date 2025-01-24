@@ -1558,18 +1558,30 @@ class VinoDatabase {
         $result = $this->executeQuery($query, $params);
     
         return $result[0] ?? null;
-    }
-    
+    }    
     
     // Funzione per estrarre tutti gli indirizzi di un utente
     public function getUserAddresses($email) {
         $query = "
-        SELECT ID_Indirizzo, Via, Numero_Civico, CAP, Citta, Paese 
-        FROM INDIRIZZO 
-        WHERE Email = :email";
+            SELECT 
+                INDIRIZZO.ID_Indirizzo, 
+                INDIRIZZO.Via, 
+                INDIRIZZO.Numero_Civico, 
+                INDIRIZZO.CAP, 
+                INDIRIZZO.Citta, 
+                INDIRIZZO.Paese, 
+                UTENTE.Nome, 
+                UTENTE.Cognome
+            FROM 
+                INDIRIZZO
+            JOIN 
+                UTENTE ON INDIRIZZO.Email = UTENTE.Email
+            WHERE 
+                INDIRIZZO.Email = :email
+        ";
     
         $params = [
-            ':email' => $email
+            ":email" => $email,
         ];
     
         return $this->executeQuery($query, $params);
@@ -1593,20 +1605,26 @@ class VinoDatabase {
         return $this->executeQuery($query, $params);
     }
     
-    
     // Funzione per estrarre tutte le carte di credito di un utente
     public function getUserPaymentMethods($email) {
         $query = "
-        SELECT ID_Metodo, Numero_Carta, mese_scadenza, anno_scadenza 
-        FROM METODO_PAGAMENTO 
-        WHERE Email = :email";
+            SELECT 
+                ID_Metodo, 
+                Numero_Carta, 
+                mese_scadenza, 
+                anno_scadenza
+            FROM 
+                METODO_PAGAMENTO
+            WHERE 
+                Email = :email
+        ";
     
         $params = [
-            ':email' => $email
+            ":email" => $email,
         ];
     
         return $this->executeQuery($query, $params);
-    }
+    }    
     
     // Funzione per aggiungere un metodo di pagamento
     public function addUserPaymentMethod($email, $numeroCarta, $meseScadenza, $annoScadenza) {
@@ -1798,5 +1816,52 @@ class VinoDatabase {
             throw $e;
         }
     }
+
+    public function getAddressById($addressId) {
+        $query = "
+            SELECT 
+                ID_Indirizzo,
+                Nome,
+                Via,
+                Numero_Civico,
+                CAP,
+                Citta,
+                Provincia,
+                Paese,
+                Telefono
+            FROM 
+                indirizzi
+            WHERE 
+                ID_Indirizzo = :addressId
+        ";
+    
+        $params = [
+            ":addressId" => $addressId,
+        ];
+    
+        return $this->executeQuery($query, $params);
+    }
+
+    public function getCardById($cardId) {
+        $query = "
+            SELECT 
+                ID_Metodo,
+                Numero_Carta,
+                mese_scadenza,
+                anno_scadenza,
+                CVV
+            FROM 
+                carte_credito
+            WHERE 
+                ID_Metodo = :cardId
+        ";
+    
+        $params = [
+            ":cardId" => $cardId,
+        ];
+    
+        return $this->executeQuery($query, $params);
+    }
+    
 }
 ?>
