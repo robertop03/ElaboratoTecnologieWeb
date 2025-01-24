@@ -1,115 +1,81 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Elementi del DOM
-  const addressList = document.querySelector("#address-list")
-  const addressModal = new bootstrap.Modal(document.querySelector("#addressModal"))
+  // Funzione per compilare i campi del form con i dati dell'indirizzo selezionato
+  function selezionaIndirizzo(card) {
+    const nomeCognomeField = document.querySelector("#nomeCognome")
+    const indirizzoField = document.querySelector("#indirizzo")
+    const capField = document.querySelector("#cap")
+    const comuneField = document.querySelector("#comune")
+    const provinciaField = document.querySelector("#provincia")
+    const telefonoField = document.querySelector("#telefono")
 
-  const cardList = document.querySelector("#credit-card-list")
-  const cardModal = new bootstrap.Modal(document.querySelector("#creditCardModal"))
+    // Estrai i dati dalla card
+    const info = card.dataset.info.split(", ")
+    const indirizzo = info[0] // Via e numero civico
+    const capCitta = info[1] // CAP e città
+    const paese = info[2] // Paese
 
-  // Carica indirizzi salvati
-  fetch("./db/database.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ action: "getUserAddresses" }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Errore HTTP: ${response.status}`)
-      }
-      return response.json()
-    })
-    .then((data) => {
-      if (data.error) {
-        console.error("Errore:", data.error)
-      } else if (data.length > 0) {
-        mostraIndirizzi(data) // Popola il modale
-      } else {
-        console.log("Nessun indirizzo salvato.")
-      }
-    })
-    .catch((error) => console.error("Errore nel caricamento degli indirizzi:", error))
-
-  // Carica carte salvate
-  fetch("./db/database.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ action: "getUserPaymentMethods" }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Errore HTTP: ${response.status}`)
-      }
-      return response.json()
-    })
-    .then((data) => {
-      if (data.error) {
-        console.error("Errore:", data.error)
-      } else if (data.length > 0) {
-        mostraCarte(data) // Popola il modale
-      } else {
-        console.log("Nessuna carta salvata.")
-      }
-    })
-    .catch((error) => console.error("Errore nel caricamento delle carte:", error))
-
-  // Funzione per mostrare indirizzi
-  function mostraIndirizzi(indirizzi) {
-    addressList.innerHTML = ""
-    indirizzi.forEach((indirizzo) => {
-      const card = document.createElement("div")
-      card.className = "card p-3 selectable-address"
-      card.innerHTML = `
-        <p>${indirizzo.Via} ${indirizzo.Numero_Civico}<br />
-        ${indirizzo.CAP} ${indirizzo.Citta}<br />
-        ${indirizzo.Paese}</p>`
-      card.addEventListener("click", () => selezionaIndirizzo(indirizzo))
-      addressList.appendChild(card)
-    })
+    // Compila i campi corrispondenti
+    if (indirizzoField) indirizzoField.value = indirizzo || ""
+    if (capField) capField.value = capCitta.split(" ")[0] || "" // CAP
+    if (comuneField) comuneField.value = capCitta.split(" ")[1] || "" // Comune
+    if (provinciaField) provinciaField.value = "" // Provincia (non disponibile nei dati)
+    if (telefonoField) telefonoField.value = "" // Telefono (non disponibile nei dati)
   }
 
-  // Funzione per mostrare carte
-  function mostraCarte(carte) {
-    cardList.innerHTML = ""
-    carte.forEach((carta) => {
-      const card = document.createElement("div")
-      card.className = "card p-3 selectable-card"
-      card.innerHTML = `
-        <p>**** **** **** ${carta.Numero_Carta.slice(-4)}<br />
-        Scadenza: ${carta.mese_scadenza}/${carta.anno_scadenza}</p>`
-      card.addEventListener("click", () => selezionaCarta(carta))
-      cardList.appendChild(card)
-    })
-  }
-
-  // Funzione per selezionare un indirizzo
-  function selezionaIndirizzo(indirizzo) {
-    document.querySelector("#nomeCognome").value = indirizzo.Nome || ""
-    document.querySelector("#indirizzo").value = `${indirizzo.Via} ${indirizzo.Numero_Civico}`
-    document.querySelector("#cap").value = indirizzo.CAP
-    document.querySelector("#comune").value = indirizzo.Citta
-    document.querySelector("#provincia").value = indirizzo.Provincia || ""
-    document.querySelector("#telefono").value = indirizzo.Telefono || ""
-
-    addressModal.hide() // Chiudi il modale
-  }
-
-  // Funzione per selezionare una carta
+  // Funzione per compilare i campi del form con i dati della carta selezionata
   function selezionaCarta(carta) {
-    document.querySelector("#numeroCarta").value = carta.Numero_Carta
-    document.querySelector("#meseScadenza").value = carta.mese_scadenza
-    document.querySelector("#annoScadenza").value = carta.anno_scadenza
-    document.querySelector("#cvv").value = carta.CVV
+    // Verifica che i campi esistano
+    const numeroCartaField = document.querySelector("#numeroCarta")
+    const meseScadenzaField = document.querySelector("#meseScadenza")
+    const annoScadenzaField = document.querySelector("#annoScadenza")
+    const cvvField = document.querySelector("#cvv")
 
-    cardModal.hide() // Chiudi il modale
+    if (!carta.dataset.cardNumber || !carta.dataset.cardExpiry) {
+      console.error("Errore: dati della carta mancanti!")
+      return
+    }
+
+    // Ottieni i dettagli della carta dal dataset
+    const numeroCarta = carta.dataset.cardNumber
+    const scadenza = carta.dataset.cardExpiry.split("/") // Assicurati che il formato sia "MM/YY"
+    const meseScadenza = scadenza[0]
+    const annoScadenza = scadenza[1]
+    const cvv = carta.dataset.cardCvv || "" // Aggiungi CVV se presente
+
+    // Popola i campi del form
+    if (numeroCartaField) numeroCartaField.value = numeroCarta
+    if (meseScadenzaField) meseScadenzaField.value = meseScadenza
+    if (annoScadenzaField) annoScadenzaField.value = annoScadenza
+    if (cvvField) cvvField.value = cvv
+
+    // Chiudi il modale
+    const cardModal = bootstrap.Modal.getInstance(document.querySelector("#creditCardModal"))
+    if (cardModal) cardModal.hide()
   }
 
-  // Event Listener per aprire il modale degli indirizzi
-  document.querySelector(".custom-link[data-bs-target='#addressModal']").addEventListener("click", () => {
-    addressModal.show()
+  // Aggiungi listener alle card degli indirizzi
+  const addressCards = document.querySelectorAll(".selectable-address")
+  addressCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      selezionaIndirizzo(card)
+
+      // Chiudi il modale degli indirizzi
+      const addressModalElement = document.querySelector("#addressModal")
+      const addressModal = addressModalElement ? bootstrap.Modal.getInstance(addressModalElement) : null
+      if (addressModal) addressModal.hide()
+    })
   })
 
-  // Event Listener per aprire il modale delle carte
-  document.querySelector(".custom-link[data-bs-target='#creditCardModal']").addEventListener("click", () => {
-    cardModal.show()
+  // Aggiungi listener alle card delle carte di credito
+  const creditCardCards = document.querySelectorAll(".selectable-card")
+  creditCardCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      selezionaCarta(card)
+
+      // Chiudi il modale delle carte
+      const cardModalElement = document.querySelector("#creditCardModal")
+      const cardModal = cardModalElement ? bootstrap.Modal.getInstance(cardModalElement) : null
+      if (cardModal) cardModal.hide()
+    })
   })
 })
