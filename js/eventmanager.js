@@ -61,10 +61,10 @@ document.addEventListener("DOMContentLoaded", function () {
             
         });
     });
-});
 
-// Forza la rimozione del backdrop <- risoluzione a bug di mancata chiusura corretta modale modifica evento
-document.querySelector("#modificaEventoModal").addEventListener("hidden.bs.modal", function () {
-    const backdrops = document.querySelectorAll(".modal-backdrop");
-    backdrops.forEach(backdrop => backdrop.remove());
+    // Forza la rimozione del backdrop <- risoluzione a bug di mancata chiusura corretta modale modifica evento
+    document.querySelector("#modificaEventoModal").addEventListener("hidden.bs.modal", function () {
+        const backdrops = document.querySelectorAll(".modal-backdrop");
+        backdrops.forEach(backdrop => backdrop.remove());
+    });
 });

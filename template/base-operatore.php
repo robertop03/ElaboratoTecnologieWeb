@@ -15,7 +15,7 @@
   <body class="d-flex flex-column min-vh-100">
     <!-- NAVBAR -->
     <header class="fixed-top">
-      <nav class="navbar navbar-expand-lg" style="background-color: #343a40;">
+      <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand text-white" href="dashboard.php">Admin Dashboard</a>
           <button class="navbar-toggler bg-primary text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +55,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="text-white py-4 custom-footer mt-auto" style="background-color: #343a40;">
+    <footer class="text-white py-4 custom-footer mt-auto bg-dark">
       <div class="container">
         <div class="row text-center mt-3">
           <div class="col">
