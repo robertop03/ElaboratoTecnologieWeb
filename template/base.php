@@ -16,6 +16,13 @@
       if ($pageName === 'index') {
         echo '<script src="js/newsletter.js?v=1"></script>';
       }
+      if ($pageName === 'utente') {
+        echo '<script src="js/user.js?v=1"></script>';
+      }
+      if ($pageName === 'prodotto') {
+        echo '<script src="js/product.js?v=1"></script>';
+        echo '<script src="js/script.js?v=1"></script>';
+      }
     ?>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />

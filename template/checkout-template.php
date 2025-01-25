@@ -195,21 +195,20 @@
   </div>
   <button id="confirmOrder" class="custom-btn" data-bs-toggle="modal" data-bs-target="#orderModal">Completa l'ordine</button>
 
-      <!-- Modale per confermare l'ordine -->
-      <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="orderModalLabel">Conferma ordine</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <h4>Ordine completato!</h4>
-              <p class="fs-6">Il tuo ordine è stato preso in carico. Grazie per averci scelto per l'acquisto!</p>
-            </div>
-          </div>
+  <!-- Modale per confermare l'ordine -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderModalLabel">Conferma ordine</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4>Ordine completato!</h4>
+          <p class="fs-6">Il tuo ordine è stato preso in carico. Grazie per averci scelto per l'acquisto!</p>
         </div>
       </div>
+    </div>
+  </div>
 </div>
 
-<script src="./js/checkout.js"></script>
