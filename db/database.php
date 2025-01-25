@@ -1991,7 +1991,7 @@ class VinoDatabase {
                 $quantitaMagazzino = (int)$result[0]['Quantita_Magazzino'];
     
                 // Se la quantità è zero, aggiungi una notifica
-                if ($quantitaMagazzino === 0) {
+                if ($quantitaMagazzino <= 0) {
                     addNotifica("admin@gmail.com","Prodotto sold out","prodotto andato sold out id: ".$idProdotto,"product sold out","a product is sold ou id: ".$idProdotto);
                 }
             }
