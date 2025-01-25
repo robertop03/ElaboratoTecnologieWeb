@@ -228,7 +228,7 @@
           <?php endif; ?>
         <?php endif; ?>
       </button>
-        <div class="modal fade" id="confirmRemoveModal" tabindex="-1" aria-labelledby="confirmRemoveLabel" aria-hidden="true">
+        <div class="modal fade" id="confirmRemoveModal<?php echo $vino['ID_Prodotto']; ?>" tabindex="-1" aria-labelledby="confirmRemoveLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">

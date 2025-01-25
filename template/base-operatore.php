@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $templateParams["titolo"]; ?></title>
     <?php
-      $pageName = basename($_SERVER['PHP_SELF'], ".php");
+      $pageName = strtolower(basename($_SERVER['PHP_SELF'], ".php"));
       echo '<script src="js/'.$pageName.'.js?v=1"></script>';
     ?>
     <link rel="stylesheet" href="css/style.css" />

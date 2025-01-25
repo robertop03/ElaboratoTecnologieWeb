@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?php $linguaAttuale ?>">
+<html lang="<?php echo $linguaAttuale ?>">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,7 +29,7 @@
           <!-- Mobile: Navbar -->
           <div class="d-flex d-md-none align-items-center justify-content-between w-100">
             <!-- Menu Hamburger -->
-            <button class="btn me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale">
+            <button class="btn me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLaterale" aria-controls="menuLaterale" aria-label="icona menu burger">
               <span class="bi bi-list" role="img" aria-hidden="true"></span>
             </button>
             <!-- Logo Mobile -->
@@ -80,11 +80,11 @@
             <!-- Icone Desktop -->
             <div class="icons-group d-flex align-items-center">
               <div class="dropdown pe-1">
-                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="btn text-light dropdown-toggle" href="#" role="button" id="dropdownMenuLinkDesktop" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src="resources/icons/<?php echo $linguaAttuale == "en" ? "english.png" : "italy.png" ?>" alt="<?php echo $linguaAttuale == "en" ? "Bandiera Inghilterra" : "Bandiera Italia" ?>" />
                   <?php echo $linguaAttuale == "en" ? "EN" : "IT" ?>
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLinkDesktop">
                   <li
                     ><a class="dropdown-item" href="?lang=en"><img src="resources/icons/english.png" alt="Bandiera Inghilterra" /> EN</a></li
                   >
@@ -102,7 +102,7 @@
               <?php if(isset(($_SESSION["email"]))): ?>
                 <?php $nNotifications = $db->getNumeroNotificheNonLette($_SESSION["email"]); ?>
                 <?php if($nNotifications[0]["COUNT(ID_NOTIFICA)"] !== 0): ?>
-                  <p class="text-light" id="notification-count-mb"> <?php echo $nNotifications[0]["COUNT(ID_NOTIFICA)"]?></p>
+                  <p class="text-light" id="notification-count-d"> <?php echo $nNotifications[0]["COUNT(ID_NOTIFICA)"]?></p>
                 <?php endif; ?>
               <?php endif; ?>
             </div>
@@ -179,7 +179,7 @@
       <div class="container">
         <div class="row text-center">
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <i class="bi bi-lock fs-1 me-3"></i>
+            <span class="bi bi-lock fs-1 me-3" role="img" aria-label="icona lucchetto"></span>
             <div>
               <h5
                 ><strong><?php echo $linguaAttuale == "en" ? "SAFE SHOPPING" : "SHOPPING SICURO" ?></strong></h5
@@ -188,14 +188,14 @@
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <i class="bi bi-truck fs-1 me-3"></i>
+            <span class="bi bi-truck fs-1 me-3" role="img" aria-label="icona camion"></span>
             <div>
               <h5><strong><?php echo $linguaAttuale == "en" ? "SHIPPING COST" : "COSTI SPEDIZIONE" ?></strong></h5>
               <p><?php echo $linguaAttuale == "en" ? "<strong>Free</strong> for orders over <strong>€69</strong>, otherwise shipping costs €7.75." : "<strong>Gratis</strong> per gli ordini sopra i <strong>69€</strong>, altrimenti la spedizione è di 7.75€" ?></p>
             </div>
           </div>
           <div class="col-md-4 mb-3 d-flex align-items-center justify-content-center">
-            <i class="bi bi-telephone fs-1 me-3"></i>
+            <span class="bi bi-telephone fs-1 me-3" role="img" aria-label="icona telefono"></span>
             <div>
               <h5><strong><?php echo $linguaAttuale == "en" ? "CONTACT US" : "CONTATTACI" ?></strong></h5>
               <p><?php echo $linguaAttuale == "en" ? "Check <strong>our guide</strong> or contact our <strong>customer service</strong> for more information and assistance" : "Consulta la <strong>nostra guida</strong> o contatta il nostro <strong>servizio clienti</strong> per ottenere maggiori informazioni e ricevere assistenza" ?></p>

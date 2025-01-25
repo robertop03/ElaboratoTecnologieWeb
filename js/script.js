@@ -209,8 +209,8 @@ function addFavorite(wineId, element) {
 
 function removeFavorite(wineId, element) {
   // Mostra il modale di conferma
-  const confirmRemoveModal = new bootstrap.Modal(document.getElementById("confirmRemoveModal"))
-  const confirmRemoveButton = document.getElementById("confirmRemoveButton")
+  const confirmRemoveModal = new bootstrap.Modal(document.querySelector('[aria-labelledby="confirmRemoveLabel"]'))
+  const confirmRemoveButton = document.querySelector("#confirmRemoveButton")
 
   // Configura il pulsante del modale
   confirmRemoveButton.onclick = () => {

@@ -245,8 +245,8 @@ INSERT INTO Compone (ID_Prodotto, ID_Ordine, Quantità) VALUES
 
 -- Popolamento della tabella EVENTO
 INSERT INTO EVENTO (ID_Evento, Data_Inizio, Data_Fine, Foto) VALUES
-('E1', '2023-12-01', '2023-12-05', 'Evento1.jpg'),
-('E2', '2024-11-15', '2025-03-20', 'Evento2.jpg');
+('E1', '2023-12-01', '2023-12-05', 'Evento1.png'),
+('E2', '2024-11-15', '2025-03-20', 'Evento2.png');
 
 -- Popolamento della tabella TESTO_EVENTO
 -- all'interno del campo lingua il valore 1 significa italiano, il valore 2 inglese

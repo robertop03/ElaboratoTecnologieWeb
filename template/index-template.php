@@ -56,8 +56,7 @@
             <!-- Foto dell'evento -->
             <img src="resources/img/<?php echo htmlspecialchars($event["Foto"]); ?>" alt="<?php echo htmlspecialchars($event["Titolo"]); ?>" class="d-block w-100" />
             <!-- Testo dell'evento -->
-            <div class="carousel-caption d-none d-md-block">
-                <h5><?php echo htmlspecialchars($event["Titolo"]); ?></h5>
+            <h5><?php echo htmlspecialchars($event["Titolo"]); ?></h5>
                 <p><?php echo htmlspecialchars($event["Sottotitolo"]); ?></p>
                 <p class="text-muted">
                     <?php 
@@ -66,7 +65,6 @@
                         : "Dal " . htmlspecialchars(date("d/m/Y", strtotime($event["Data_Inizio"]))) . " al " . htmlspecialchars(date("d/m/Y", strtotime($event["Data_Fine"])));
                     ?>
                 </p>
-            </div>
         </div>
         <?php 
         $isFirst = false;
@@ -106,7 +104,7 @@
       </div>
     </div>
     <hr class="my-4" />
-    <h3 class="fw-bold">Newsletter</h3>
+    <h3 class="fw-bold mt-5">Newsletter</h3>
     <p><?php echo $linguaAttuale == "en" ? "Keep up to date with new arrivals and upcoming events!" : "Rimani aggiornato sui nuovi arrivi e sui prossimi eventi!" ?></p>
     <?php
       $iscritto = $db->checkNewsletter(isset($_SESSION["email"]) ? $_SESSION["email"] : "");

@@ -373,21 +373,6 @@ class VinoDatabase {
         return $this->executeQuery($query, $params);
     }
 
-    // 12 - Funzione per filtrare gli eventi disponibili per una data di inizio e una data di fine specifica 
-    //formato data : YYYY-MM-DD
-    public function getEventiByDate($data_inizio, $data_fine) {
-        $query = "SELECT * FROM EVENTO WHERE Data_Inizio >= :data_inizio AND Data_Fine <= :data_fine";
-
-        // Parametri della query
-        $params = [
-            ':data_inizio' => $data_inizio,
-            ':data_fine' => $data_fine
-        ];
-
-        // Esegui la query e restituisci i risultati
-        return $this->executeQuery($query, $params);
-    }
-
     // 15 - Funzione per estrarre un singolo vino da mostrare nella pagina prodotto
     public function getVinoById($lingua = 1, $id_prodotto) {
         $query = "

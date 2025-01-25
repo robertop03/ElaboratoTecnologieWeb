@@ -251,22 +251,6 @@ footer p {
   margin-bottom: 8px;
 }
 
-/* MEDIA QUERY PER INDEX */
-@media (min-width: 993px) {
-  .content-wrapper {
-    grid-template-columns: 3fr 1fr; /* 3 parti caroselli, 1 parte aside */
-  }
-  .content-main {
-    grid-column: 1 / 2; /* Caroselli nella prima colonna */
-  }
-  aside {
-    grid-column: 2 / 3; /* L'aside nella seconda colonna */
-  }
-  .hamburger-menu {
-    display: none;
-  }
-}
-
 @media (max-width: 993px) {
   .content-wrapper {
     grid-template-columns: 1fr; /* Una sola colonna */
@@ -303,8 +287,72 @@ main {
   margin-bottom: 20px;
 }
 
-/* MEDIA QUERY NAVBAR */
+/* MEDIA QUERY PER NAVBAR FASI INTERMEDIE */
+@media (min-width: 768px) and (max-width: 992px) {
+  .navbar {
+    background-color: #54072a;
+  }
+
+  .navbar .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  span.bi {
+    color: #fff;
+  }
+
+  .container-fluid .search-bar > .bi-search {
+    color: #000;
+    font-size: 20px;
+  }
+
+  .d-flex.align-items-center > i {
+    font-size: 45px;
+    padding-left: 2px;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+
+  .nav-links a {
+    padding: 0 4px 0 4px;
+    margin: 0 4px 0 4px;
+  }
+
+  .search-bar {
+    flex-grow: 1; /* Occupa lo spazio tra logo e icone */
+    max-width: 600px; /* Limita la larghezza */
+    margin: 0;
+    background-color: #fff;
+  }
+
+  .search-bar input::placeholder {
+    color: #000;
+  }
+
+  .container-fluid.d-none.d-md-flex {
+    background-color: #f9e4da;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-decoration-none.border-bottom {
+    color: #54072a;
+  }
+}
+
 @media (min-width: 993px) {
+  /* MEDIA QUERY NAVBAR */
   .navbar {
     background-color: #54072a;
   }
@@ -370,88 +418,7 @@ main {
     margin-top: 180px;
     margin-bottom: 20px;
   }
-}
-
-/* MEDIA QUERY PER NAVBAR FASI INTERMEDIE */
-@media (min-width: 768px) and (max-width: 992px) {
-  .navbar {
-    background-color: #54072a;
-  }
-
-  .navbar .container-fluid {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  span.bi {
-    color: #fff;
-  }
-
-  .container-fluid .search-bar > .bi-search {
-    color: #000;
-    font-size: 20px;
-  }
-
-  .d-flex.align-items-center > i {
-    font-size: 45px;
-    padding-left: 2px;
-  }
-
-  .nav-links {
-    margin-top: 10px;
-    flex-wrap: nowrap;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .nav-links a:hover {
-    text-decoration: underline;
-  }
-
-  .nav-links a {
-    padding: 0 4px 0 4px;
-    margin: 0 4px 0 4px;
-  }
-
-  .search-bar {
-    flex-grow: 1; /* Occupa lo spazio tra logo e icone */
-    max-width: 600px; /* Limita la larghezza */
-    margin: 0;
-    background-color: #fff;
-  }
-
-  .search-bar input::placeholder {
-    color: #000;
-  }
-
-  .container-fluid.d-none.d-md-flex {
-    background-color: #f9e4da;
-  }
-}
-
-/* MEDIA QUERY PAGINE UTENTE */
-@media (min-width: 993px) {
-  /* Immagini preferiti */
-  .row.mb-4 .card img {
-    height: 420px;
-    object-fit: contain;
-  }
-
-  /* vari link */
-  .text-decoration-none.border-bottom:hover {
-    text-decoration: underline !important; /* Sottolinea al passaggio del mouse */
-  }
-}
-
-@media (min-width: 768px) {
-  .text-decoration-none.border-bottom {
-    color: #54072a;
-  }
-}
-
-/* MEDIA QUERY DOVE CI TROVIAMO */
-@media (min-width: 993px) {
+  /* MEDIA QUERY DOVE CI TROVIAMO */
   .mappa-testo {
     grid-template-columns: 1fr 1fr;
     gap: 40px; /* Maggiore spazio tra mappa e testo */
@@ -463,6 +430,30 @@ main {
   p,
   ul > li {
     font-size: 1.25rem; /* Dimensione maggiore per desktop */
+  }
+  /* MEDIA QUERY PAGINE UTENTE */
+  /* Immagini preferiti */
+  .row.mb-4 .card img {
+    height: 420px;
+    object-fit: contain;
+  }
+
+  /* vari link */
+  .text-decoration-none.border-bottom:hover {
+    text-decoration: underline !important; /* Sottolinea al passaggio del mouse */
+  }
+  /* MEDIA QUERY PER INDEX */
+  .content-wrapper {
+    grid-template-columns: 3fr 1fr; /* 3 parti caroselli, 1 parte aside */
+  }
+  .content-main {
+    grid-column: 1 / 2; /* Caroselli nella prima colonna */
+  }
+  aside {
+    grid-column: 2 / 3; /* L'aside nella seconda colonna */
+  }
+  .hamburger-menu {
+    display: none;
   }
 }
 
