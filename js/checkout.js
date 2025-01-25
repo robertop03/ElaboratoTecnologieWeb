@@ -23,20 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const info = card.dataset.info.split(", ");
     const indirizzo = info[0]; // Via e numero civico
     const capCitta = info[1]; // CAP e città
-    const paese = info[2]; // Paese
 
     // Compila i campi corrispondenti
     if (indirizzoField) indirizzoField.value = indirizzo || "";
     if (capField) capField.value = capCitta.split(" ")[0] || ""; // CAP
     if (comuneField) comuneField.value = capCitta.split(" ")[1] || ""; // Comune
-    if (provinciaField) provinciaField.value = ""; // Provincia (non disponibile nei dati)
-    if (telefonoField) telefonoField.value = ""; // Telefono (non disponibile nei dati)
 
     // Aggiorna l'ID dell'indirizzo selezionato
     selectedAddressId = card.dataset.id;
-
-    // Mostra un alert con l'ID dell'indirizzo
-    alert(`ID Indirizzo selezionato: ${selectedAddressId}`);
   }
 
   // Funzione per compilare i campi del form con i dati della carta selezionata
@@ -56,23 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const scadenza = carta.dataset.cardExpiry.split("/"); // Assicurati che il formato sia "MM/YY"
     const meseScadenza = scadenza[0];
     const annoScadenza = scadenza[1];
-    const cvv = carta.dataset.cardCvv || ""; // Aggiungi CVV se presente
 
     // Popola i campi del form
     if (numeroCartaField) numeroCartaField.value = numeroCarta;
     if (meseScadenzaField) meseScadenzaField.value = meseScadenza;
     if (annoScadenzaField) annoScadenzaField.value = annoScadenza;
-    if (cvvField) cvvField.value = cvv;
 
     // Aggiorna l'ID del metodo di pagamento selezionato
     selectedPaymentMethodId = carta.dataset.id;
-
-    // Mostra un alert con l'ID del metodo di pagamento
-    alert(`ID Metodo di pagamento selezionato: ${selectedPaymentMethodId}`);
-
-    // Chiudi il modale
-    const cardModal = bootstrap.Modal.getInstance(document.querySelector("#creditCardModal"));
-    if (cardModal) cardModal.hide();
   }
 
   // Aggiungi listener alle card degli indirizzi
@@ -80,10 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
   addressCards.forEach((card) => {
     card.addEventListener("click", () => {
       selezionaIndirizzo(card);
-
-      // Chiudi il modale degli indirizzi
       const addressModalElement = document.querySelector("#addressModal");
-      const addressModal = addressModalElement ? bootstrap.Modal.getInstance(addressModalElement) : null;
+      const addressModal = addressModalElement
+        ? bootstrap.Modal.getInstance(addressModalElement)
+        : null;
       if (addressModal) addressModal.hide();
     });
   });
@@ -93,41 +78,49 @@ document.addEventListener("DOMContentLoaded", () => {
   creditCardCards.forEach((card) => {
     card.addEventListener("click", () => {
       selezionaCarta(card);
-
-      // Chiudi il modale delle carte
       const cardModalElement = document.querySelector("#creditCardModal");
-      const cardModal = cardModalElement ? bootstrap.Modal.getInstance(cardModalElement) : null;
+      const cardModal = cardModalElement
+        ? bootstrap.Modal.getInstance(cardModalElement)
+        : null;
       if (cardModal) cardModal.hide();
     });
   });
 
   // Funzione per confermare l'ordine
   const confirmOrderButton = document.querySelector("#confirmOrder");
+  const orderModal = new bootstrap.Modal(document.querySelector("#orderModal"));
+  const orderModalTitle = document.querySelector("#orderModalLabel");
+  const orderModalBody = document.querySelector("#orderModal .modal-body");
+
   confirmOrderButton.addEventListener("click", async () => {
     try {
       // Recupera il carrello dal cookie
       const cartCookie = getCookie("cart");
-      const cart = cartCookie ? JSON.parse(cartCookie) : []; // Decodifica il valore JSON
+      const cart = cartCookie ? JSON.parse(cartCookie) : [];
 
       // Verifica che i dati obbligatori siano presenti
       if (!cart.length) {
-        alert("Il carrello è vuoto. Aggiungi prodotti per completare l'ordine.");
+        orderModalTitle.textContent = "Errore";
+        orderModalBody.innerHTML = "<p class='text-danger'>Il carrello è vuoto. Aggiungi prodotti per completare l'ordine.</p>";
+        orderModal.show();
         return;
       }
       if (!selectedPaymentMethodId) {
-        alert("Seleziona un metodo di pagamento valido.");
+        orderModalTitle.textContent = "Errore";
+        orderModalBody.innerHTML = "<p class='text-danger'>Seleziona un metodo di pagamento valido.</p>";
+        orderModal.show();
         return;
       }
       if (!selectedAddressId) {
-        alert("Seleziona un indirizzo valido.");
+        orderModalTitle.textContent = "Errore";
+        orderModalBody.innerHTML = "<p class='text-danger'>Seleziona un indirizzo valido.</p>";
+        orderModal.show();
         return;
       }
 
-      // Mostra stato di elaborazione
-      confirmOrderButton.innerHTML = "Elaborazione...";
+      confirmOrderButton.textContent = "Elaborazione...";
       confirmOrderButton.disabled = true;
 
-      // Invio dati al backend
       const response = await fetch("checkout.php", {
         method: "POST",
         headers: {
@@ -135,27 +128,30 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify({
           action: "confirmOrder",
-          cart: cart, // Dati del carrello
-          paymentMethodId: selectedPaymentMethodId, // ID del metodo di pagamento
-          addressId: selectedAddressId, // ID dell'indirizzo
+          cart: cart,
+          paymentMethodId: selectedPaymentMethodId,
+          addressId: selectedAddressId,
         }),
       });
 
       const result = await response.json();
 
       if (result.success) {
-        alert("Ordine completato con successo!");
-        document.cookie = "cart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; // Cancella il cookie del carrello
-        window.location.href = "utente.php"; // Reindirizza alla pagina di conferma
+        orderModalTitle.textContent = "Ordine completato";
+        orderModalBody.innerHTML = "<p class='text-success'>Il tuo ordine è stato preso in carico con successo. Grazie per il tuo acquisto!</p>";
+        document.cookie = "cart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       } else {
-        alert("Errore durante la creazione dell'ordine: " + result.message);
+        orderModalTitle.textContent = "Errore";
+        orderModalBody.innerHTML = `<p class='text-danger'>Errore durante la creazione dell'ordine: ${result.message}</p>`;
       }
+      orderModal.show();
     } catch (error) {
       console.error("Errore:", error);
-      alert("Si è verificato un errore inatteso durante il completamento dell'ordine.");
+      orderModalTitle.textContent = "Errore";
+      orderModalBody.innerHTML = "<p class='text-danger'>Si è verificato un errore inatteso durante il completamento dell'ordine.</p>";
+      orderModal.show();
     } finally {
-      // Ripristina il pulsante
-      confirmOrderButton.innerHTML = "Conferma l'ordine";
+      confirmOrderButton.textContent = "Conferma l'ordine";
       confirmOrderButton.disabled = false;
     }
   });

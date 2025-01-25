@@ -53,5 +53,3 @@
     </button>
   </aside>
 </div>
-
-<script src="js/cart.js?v=1"></script>
