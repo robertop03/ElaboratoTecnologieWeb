@@ -78,6 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // Conferma la transazione
             $db->commit();
     
+            $db->addNotifica($userEmail, "Ordine ricevuto!", "Abbiamo ricevuto il tuo ordine! Attendi 3/5 giorni lavorativi per la spedizione.", "Order received", "Your order has been received from the system! Wait 3/5 working day for shipping." );
+
             // Rispondi con successo
             header("Content-Type: application/json");
             echo json_encode(["success" => true, "message" => "Ordine creato con successo!"]);
@@ -105,3 +107,4 @@ $templateParams["mainClasses"] = "flex-grow-1";
 
 require("template/base.php");
 ?>
+/5
