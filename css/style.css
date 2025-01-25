@@ -330,8 +330,8 @@ main {
   }
 
   .search-bar {
-    flex-grow: 1; /* Occupa lo spazio tra logo e icone */
-    max-width: 600px; /* Limita la larghezza */
+    flex-grow: 1;
+    max-width: 600px;
     margin: 0;
     background-color: #fff;
   }
@@ -440,7 +440,7 @@ main {
 
   /* vari link */
   .text-decoration-none.border-bottom:hover {
-    text-decoration: underline !important; /* Sottolinea al passaggio del mouse */
+    text-decoration: underline !important;
   }
   /* MEDIA QUERY PER INDEX */
   .content-wrapper {
@@ -551,9 +551,10 @@ main > section > aside {
 /* Immagine prodotto */
 .full ul li img {
   width: 100px;
-  height: auto;
+  height: 180px;
   border-radius: 4px;
   margin-right: 10px;
+  object-fit: cover;
 }
 
 /* Riassunto ordine */
@@ -643,7 +644,7 @@ svg {
 }
 
 .modal-content {
-  padding: 1rem; /* Spaziatura uniforme */
+  padding: 1rem;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -653,7 +654,7 @@ svg {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  justify-content: center; /* Centrare le card */
+  justify-content: center;
 }
 
 /* Stile delle card nel modale (riuso delle regole per indirizzi) */
@@ -672,39 +673,39 @@ svg {
 /* Hover e selezione (stessa logica delle indirizzi) */
 .selectable-address:hover,
 .selectable-card:hover {
-  background-color: #e9eef5; /* Sfondo leggermente più scuro al passaggio del mouse */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra più evidente */
-  transform: scale(1.02); /* Leggero ingrandimento */
+  background-color: #e9eef5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.02);
 }
 
 .selectable-address.active,
 .selectable-card.active {
-  background-color: #d1ecf1; /* Sfondo blu chiaro per la card selezionata */
-  border-color: #bee5eb; /* Bordo blu chiaro */
-  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* Sfumatura blu */
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
 /* Campo input per numero carta */
 .numero-carta input {
-  letter-spacing: 2px; /* Spaziatura tra i numeri */
+  letter-spacing: 2px;
 }
 
 /* Dropdown mese/anno di scadenza */
 .scadenza select {
-  border-radius: 5px; /* Angoli arrotondati */
-  padding: 5px; /* Spaziatura interna */
-  transition: all 0.2s ease; /* Animazione */
+  border-radius: 5px;
+  padding: 5px;
+  transition: all 0.2s ease;
 }
 
 .scadenza select:focus {
-  border-color: #54072a; /* Colore del bordo in focus */
-  outline: none; /* Rimuove l'outline predefinito */
+  border-color: #54072a;
+  outline: none;
 }
 
 /* Campo input per CVV */
 .cvv input {
-  width: 100px; /* Dimensione limitata per il CVV */
-  letter-spacing: 2px; /* Spaziatura tra i caratteri */
+  width: 100px;
+  letter-spacing: 2px;
 }
 
 .custom-link {
@@ -808,7 +809,7 @@ svg {
 
 /* Stile per i dettagli dell'ordine */
 .order-details-modal .modal-body {
-  display: block; /* Modifica a block per mostrare elementi uno sotto l'altro */
+  display: block;
   max-height: 70vh;
   padding: 20px;
   overflow-y: auto;
@@ -816,9 +817,9 @@ svg {
 
 .order-details-modal .product-details {
   display: flex;
-  align-items: center; /* Centra verticalmente immagine e dettagli */
-  gap: 15px; /* Spaziatura tra immagine e dettagli */
-  margin-bottom: 15px; /* Margine inferiore tra i prodotti */
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
 }
 
 .order-details-modal hr {
@@ -828,15 +829,15 @@ svg {
 }
 
 .order-details-modal .product-image {
-  max-width: 100px; /* Riduce la dimensione massima della larghezza */
-  max-height: 100px; /* Imposta una altezza massima */
+  max-width: 100px;
+  max-height: 100px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  object-fit: cover; /* Garantisce che l'immagine si adatti al contenitore */
+  object-fit: cover;
 }
 
 .order-details-modal .order-info {
-  flex: 1; /* Occupa tutto lo spazio disponibile accanto all'immagine */
+  flex: 1;
 }
 
 .order-details-modal .order-info p {
@@ -849,8 +850,8 @@ svg {
 }
 
 a[data-bs-target="#ordersModal"] {
-  margin-top: 5px; /* Aggiunge spazio tra le card e il link */
-  display: inline-block; /* Per rispettare lo spazio del margine */
+  margin-top: 5px;
+  display: inline-block;
 }
 
 a[data-bs-target="#ordersModal"]:hover {

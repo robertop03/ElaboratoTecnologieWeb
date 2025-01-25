@@ -104,7 +104,7 @@
       </div>
     </div>
     <hr class="my-4" />
-    <h4 class="fw-bold mt-5">Newsletter</h>
+    <h4 class="fw-bold mt-5">Newsletter</h4>
     <p><?php echo $linguaAttuale == "en" ? "Keep up to date with new arrivals and upcoming events!" : "Rimani aggiornato sui nuovi arrivi e sui prossimi eventi!" ?></p>
     <?php
       $iscritto = $db->checkNewsletter(isset($_SESSION["email"]) ? $_SESSION["email"] : "");
