@@ -11,9 +11,6 @@
                       {$firstAddress["CAP"]} {$firstAddress["Citta"]}<br />
                       {$firstAddress["Paese"]}</p>";
             ?>
-            <a href="#" class="custom-link" id="use-address">
-                <?php echo $linguaAttuale == "en" ? "Use this address" : "Usa questo indirizzo"; ?>
-            </a>
             <a href="#" class="custom-link" data-bs-toggle="modal" data-bs-target="#addressModal">
                 <?php echo $linguaAttuale == "en" ? "Choose which address to use" : "Scegli quale indirizzo usare"; ?>
             </a>
@@ -87,9 +84,9 @@
           <?php if (!empty($templateParams["addresses"])): ?>
             <?php foreach ($templateParams["addresses"] as $address): ?>
               <div 
-                class="card p-3 selectable-address card-class"
-                data-info="<?php echo htmlspecialchars("{$address['Via']} {$address['Numero_Civico']}, {$address['CAP']} {$address['Citta']}, {$address['Paese']}"); ?>"
-              >
+                class="card p-3 selectable-address"
+                data-id="<?php echo htmlspecialchars($address['ID_Indirizzo']); ?>"
+                data-info="<?php echo htmlspecialchars("{$address['Via']} {$address['Numero_Civico']}, {$address['CAP']} {$address['Citta']}, {$address['Paese']}"); ?>">
                 <p>
                   <?php echo "{$address['Via']} {$address['Numero_Civico']}<br />{$address['CAP']} {$address['Citta']}<br />{$address['Paese']}"; ?>
                 </p>
@@ -118,9 +115,6 @@
                 echo "<p>**** **** **** " . substr($firstCard["Numero_Carta"], -4) . "<br />
                       Scadenza: {$firstCard["mese_scadenza"]}/{$firstCard["anno_scadenza"]}</p>";
             ?>
-            <a href="#" class="custom-link" id="use-credit-card">
-                <?php echo $linguaAttuale == "en" ? "Use this credit card" : "Usa questa carta"; ?>
-            </a>
             <a href="#" class="custom-link" data-bs-toggle="modal" data-bs-target="#creditCardModal">
                 <?php echo $linguaAttuale == "en" ? "Choose which credit card to use" : "Scegli quale carta di credito usare"; ?>
             </a>
@@ -181,13 +175,14 @@
           <?php if (!empty($templateParams["paymentMethods"])): ?>
             <?php foreach ($templateParams["paymentMethods"] as $card): ?>
               <div 
-                class="card-item card-spacing selectable-card" 
-                data-card-number="<?php echo htmlspecialchars($card['Numero_Carta']); ?>" 
-                data-card-expiry="<?php echo htmlspecialchars($card['mese_scadenza']) . '/' . htmlspecialchars($card['anno_scadenza']); ?>" 
+                class="card p-3 selectable-card"
+                data-id="<?php echo htmlspecialchars($card['ID_Metodo']); ?>"
+                data-card-number="<?php echo htmlspecialchars($card['Numero_Carta']); ?>"
+                data-card-expiry="<?php echo htmlspecialchars($card['mese_scadenza']) . '/' . htmlspecialchars($card['anno_scadenza']); ?>"
                 data-card-cvv="<?php echo htmlspecialchars($card['CVV'] ?? ''); ?>">
-                <p class="card-text">
+                <p>
                   **** **** **** <?php echo substr(htmlspecialchars($card["Numero_Carta"]), -4); ?><br />
-                  <?php echo $linguaAttuale == "en" ? "Expiry:" : "Scadenza:"; ?> <?php echo htmlspecialchars($card["mese_scadenza"]) . "/" . htmlspecialchars($card["anno_scadenza"]); ?>
+                  Scadenza: <?php echo htmlspecialchars($card["mese_scadenza"]) . "/" . htmlspecialchars($card["anno_scadenza"]); ?>
                 </p>
               </div>
             <?php endforeach; ?>
@@ -198,7 +193,7 @@
       </div>
     </div>
   </div>
-  <button class="custom-btn" data-bs-toggle="modal" data-bs-target="#orderModal">Completa l'ordine</button>
+  <button id="confirmOrder" class="custom-btn" data-bs-toggle="modal" data-bs-target="#orderModal">Completa l'ordine</button>
 
       <!-- Modale per confermare l'ordine -->
       <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">

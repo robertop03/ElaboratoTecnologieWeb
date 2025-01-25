@@ -1,6 +1,7 @@
 <?php
 require_once("bootstrapt.php");
 
+// Array delle province
 $province = [
     "AG" => "Agrigento", "AL" => "Alessandria", "AN" => "Ancona", "AO" => "Aosta",
     "AR" => "Arezzo", "AP" => "Ascoli Piceno", "AT" => "Asti", "AV" => "Avellino",
@@ -32,33 +33,67 @@ $province = [
     "VT" => "Viterbo"
 ];
 
+// Controllo autenticazione
 if (!isset($_SESSION["email"])) {
     header("Location: login.php");
     exit();
 }
 
-// Gestione delle richieste AJAX
+// Gestione delle richieste POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if ($data["action"] === "getAddressById" && isset($data["id"])) {
-        $id = intval($data["id"]);
-        $address = getAddressById($id);
-        header("Content-Type: application/json");
-        echo json_encode($address);
-        exit();
-    }
-
-    if ($data["action"] === "getCardById" && isset($data["id"])) {
-        $id = intval($data["id"]);
-        $card = getCardById($id);
-        header("Content-Type: application/json");
-        echo json_encode($card);
+    if ($data["action"] === "confirmOrder") {
+        try {
+            // Recupera i dati inviati dal frontend
+            $cart = $data["cart"];
+            $paymentMethodId = $data["paymentMethodId"];
+            $addressId = $data["addressId"];
+            $userEmail = $_SESSION["email"];
+    
+            // Valida i dati
+            if (empty($cart) || !$paymentMethodId || !$addressId || !$userEmail) {
+                throw new Exception("Dati incompleti per la creazione dell'ordine.");
+            }
+    
+            // Ottieni il prossimo ID ordine
+            $orderId = getNextOrderId(); // Funzione appena definita
+    
+            // Data odierna
+            $orderDate = date("Y-m-d H:i:s");
+            $status = 0; // Stato iniziale
+    
+            // Avvia la transazione
+            $db->beginTransaction();
+    
+            // Crea l'ordine
+            $db->createOrder($orderId, $orderDate, $status, $paymentMethodId, $userEmail, $addressId);
+    
+            // Inserisci i prodotti nell'ordine
+            foreach ($cart as $item) {
+                $db->addProductToOrder($item["id"], $orderId, $item["quantity"]);
+                $db->updateProductStock($item["id"], $item["quantity"]);
+            }
+    
+            // Conferma la transazione
+            $db->commit();
+    
+            // Rispondi con successo
+            header("Content-Type: application/json");
+            echo json_encode(["success" => true, "message" => "Ordine creato con successo!"]);
+        } catch (Exception $e) {
+            // Annulla la transazione in caso di errore
+            $db->rollBack();
+    
+            // Rispondi con errore
+            header("Content-Type: application/json");
+            echo json_encode(["success" => false, "message" => $e->getMessage()]);
+        }
         exit();
     }
 }
 
-// Ottenere indirizzi e metodi di pagamento
+// Ottieni indirizzi e metodi di pagamento
 $templateParams["addresses"] = $db->getUserAddresses($_SESSION["email"]);
 $templateParams["paymentMethods"] = $db->getUserPaymentMethods($_SESSION["email"]);
 $templateParams["province"] = $province;
