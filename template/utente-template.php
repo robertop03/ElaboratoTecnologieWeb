@@ -179,9 +179,7 @@
             <p class="fw-bold">N. ordine: <?php echo htmlspecialchars($order["ID_Ordine"]); ?></p>
             <p><?php echo $linguaAttuale == "en" ? "Created on" : "Creato il"; ?>: <?php echo htmlspecialchars($order["Data"]); ?></p>
             <p><?php echo $linguaAttuale == "en" ? "Total" : "Totale"; ?>: <?php echo number_format($order["Totale"], 2); ?>€</p>
-            <a href="#" class="text-decoration-none border-bottom pb-1" 
-              data-bs-toggle="modal" 
-              data-bs-target="#orderDetailsModal" 
+            <a href="orderdetails.php?id=<?php echo urlencode($order['ID_Ordine']); ?>" class="text-decoration-none border-bottom pb-1"  
               data-order-id="<?php echo htmlspecialchars($order["ID_Ordine"]); ?>">
               <?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli"; ?>
             </a>
@@ -420,7 +418,8 @@
                   <?php echo $linguaAttuale == "en" ? "Status: " : "Stato: "; ?>
                   <?php echo htmlspecialchars($order["Stato"]); ?>
                 </p>
-                <a href="#" class="text-decoration-none details-link ms-2" data-bs-toggle="modal" data-bs-target="#orderDetailsModal">
+                <a href="orderdetails.php?id=<?php echo urlencode($order['ID_Ordine']); ?>" class="text-decoration-none pb-1 ms-2"  
+                  data-order-id="<?php echo htmlspecialchars($order["ID_Ordine"]); ?>">
                   <?php echo $linguaAttuale == "en" ? "See details" : "Vedi dettagli"; ?>
                 </a>
               </div>
@@ -434,38 +433,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi"; ?></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modale per i dettagli dell'ordine -->
-<div class="modal fade order-details-modal" id="orderDetailsModal" tabindex="-1" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="orderDetailsModalLabel"><?php echo $linguaAttuale == "en" ? "Order details" : "Dettagli dell'ordine" ?></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <?php if (isset($templateParams["orderDetails"]) && count($templateParams["orderDetails"]) > 0): ?>
-          <?php foreach ($templateParams["orderDetails"] as $index => $product): ?>
-            <div class="product-details">
-              <img src="resources/img/<?php echo htmlspecialchars($product["Foto"]); ?>" alt="<?php echo htmlspecialchars($product["Nome"]); ?>" class="img-fluid product-image mb-3">
-              <p class="fw-bold product-name"><?php echo $linguaAttuale == "en" ? "Name: " : "Nome: "; ?><?php echo htmlspecialchars($product["Nome"]); ?></p>
-              <p class="product-quantity"><?php echo $linguaAttuale == "en" ? "Quantity: " : "Quantità: "; ?><?php echo htmlspecialchars($product["Quantità"]); ?></p>
-              <p class="product-unit-price"><?php echo $linguaAttuale == "en" ? "Unit Price: " : "Prezzo unitario: "; ?><?php echo number_format($product["Prezzo"], 2, ',', '.'); ?>€</p>
-            </div>
-            <?php if ($index < count($templateParams["orderDetails"]) - 1): ?>
-              <hr>
-            <?php endif; ?>
-          <?php endforeach; ?>
-        <?php else: ?>
-          <p><?php echo $linguaAttuale == "en" ? "No details available for this order." : "Nessun dettaglio disponibile per questo ordine."; ?></p>
-        <?php endif; ?>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo $linguaAttuale == "en" ? "Close" : "Chiudi"; ?></button>
       </div>
     </div>
   </div>
