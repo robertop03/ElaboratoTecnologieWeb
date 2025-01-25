@@ -1908,5 +1908,77 @@ class VinoDatabase {
     
         return $this->executeQuery($query, $params);
     }
+
+    public function createOrder($orderId, $orderDate, $status, $paymentMethodId, $userEmail, $addressId) {
+        $query = "
+        INSERT INTO ORDINE (ID_Ordine, Data, Stato, ID_Metodo, Email, ID_Indirizzo) 
+        VALUES (:orderId, :orderDate, :status, :paymentMethodId, :userEmail, :addressId)
+        ";
+
+        $params = [
+            ':orderId' => $orderId,
+            ':orderDate' => $orderDate,
+            ':status' => $status,
+            ':paymentMethodId' => $paymentMethodId,
+            ':userEmail' => $userEmail,
+            ':addressId' => $addressId
+        ];
+
+        return $this->executeQuery($query, $params);
+    }
+
+    public function getLastOrderId() {
+        $query = "
+        SELECT MAX(CAST(SUBSTRING(ID_Ordine, 2) AS UNSIGNED)) AS lastId 
+        FROM ORDINE
+        ";
+
+        $result = $this->executeQuery($query);
+
+        $lastId = $result[0]['lastId'] ?? 16; // Se non ci sono record, inizia da 16
+        
+            return $lastId + 1;
+    }
+    
+
+    public function addProductToOrder($productId, $orderId, $quantity) {
+        $query = "
+            INSERT INTO COMPONE (ID_Prodotto, ID_Ordine, Quantità)
+            VALUES (:productId, :orderId, :quantity)
+        ";
+        $params = [
+            ':productId' => $productId,
+            ':orderId' => $orderId,
+            ':quantity' => $quantity
+        ];
+    
+        $this->executeQuery($query, $params);
+    }
+
+    public function updateProductStock($productId, $quantity) {
+        $query = "
+            UPDATE PRODOTTO
+            SET Quantita_Magazzino = Quantita_Magazzino - :quantity
+            WHERE ID_Prodotto = :productId
+        ";
+        $params = [
+            ':productId' => $productId,
+            ':quantity' => $quantity
+        ];
+    
+        $this->executeQuery($query, $params);
+    }
+
+    public function beginTransaction() {
+        return $this->pdo->beginTransaction();
+    }
+
+    public function commit() {
+        return $this->pdo->commit();
+    }
+
+    public function rollBack() {
+        return $this->pdo->rollBack();
+    }
 }
 ?>
