@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
           window.location.reload()
         })
         .catch((error) => {
-          console.error("Errore nella richiesta:", data.message)
+          console.error("Errore nella richiesta:", error)
           window.location.reload()
         })
     })

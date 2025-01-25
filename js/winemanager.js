@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 })
                 .catch(error => {
-                    console.error("Errore nella richiesta:", data.message);
+                    console.error("Errore nella richiesta:", error);
                 });
         });
     });
