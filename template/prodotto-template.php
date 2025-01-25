@@ -76,9 +76,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="h5 modal-title" id="confirmRemoveLabel">
+            <h1 class="h5 modal-title" id="confirmRemoveLabel">
               <?php echo $linguaAttuale == "en" ? "Remove Favorite" : "Rimuovi Preferito"; ?>
-            </h3>
+            </h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">

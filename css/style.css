@@ -75,7 +75,7 @@ aside .btn:hover {
   width: 100%;
   aspect-ratio: 6 / 9;
   object-fit: contain;
-  max-height: 60vh;
+  max-height: 500px;
 }
 
 /* Frecce dei caroselli */

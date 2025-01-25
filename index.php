@@ -11,7 +11,7 @@ $topSellingProducts = $db->getTopSellingProducts($lingua);
 $events = $db->getEvents($lingua);
 
 // Passa i dati al template
-$templateParams["titolo"] = "Home - <vino>";
+$templateParams["titolo"] = "Home - ". htmlspecialchars("<vino>");
 $templateParams["nome"] = "index-template.php";
 $templateParams["mainClasses"] = "content-wrapper";
 $templateParams["topSellingProducts"] = $topSellingProducts;

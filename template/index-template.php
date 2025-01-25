@@ -2,7 +2,7 @@
 <div class="content-main">
   <!-- CAROUSEL BEST SELLER PRODUCTS -->
   <div class="carousel slide mb-4" id="carouselBestSeller" data-bs-ride="carousel">
-    <h2 class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Best Sellers" : "I più venduti" ?></h2>
+    <h4 class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Best Sellers" : "I più venduti" ?></h4>
     <p class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Discover our best-selling products, chosen by our customers. Join them and try these amazing labels yourself!" : "Scopri i nostri prodotti più venduti, scelti dai nostri clienti. Unisciti a loro e prova anche tu queste fantastiche etichette!" ?></p>
     <div class="carousel-inner text-center">
         <?php 
@@ -39,14 +39,14 @@
 
   <!-- CAROUSEL EVENTS -->
   <div class="carousel slide mb-4" id="carouselEvents" data-bs-ride="carousel">
-    <h2 class="text-center text-sm-start">
+    <h4 class="text-center text-sm-start">
         <?php echo $linguaAttuale == "en" ? "Events" : "Eventi" ?>
-    </h2>
+    </h4>
     <p class="text-center text-sm-start">
         <?php echo $linguaAttuale == "en" 
             ? "Don't miss the most exclusive events organized by us. Join us and experience unique moments in the world of wine!" 
             : "Non perdere gli eventi più esclusivi organizzati da noi. Partecipa e vivi esperienze uniche nel mondo del vino!" ?>
-    </p>
+    </p>  
     <div class="carousel-inner text-center">
         <?php 
         $isFirst = true;
@@ -104,7 +104,7 @@
       </div>
     </div>
     <hr class="my-4" />
-    <h3 class="fw-bold mt-5">Newsletter</h3>
+    <h4 class="fw-bold mt-5">Newsletter</h>
     <p><?php echo $linguaAttuale == "en" ? "Keep up to date with new arrivals and upcoming events!" : "Rimani aggiornato sui nuovi arrivi e sui prossimi eventi!" ?></p>
     <?php
       $iscritto = $db->checkNewsletter(isset($_SESSION["email"]) ? $_SESSION["email"] : "");
