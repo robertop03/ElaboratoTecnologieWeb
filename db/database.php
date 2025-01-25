@@ -189,17 +189,33 @@ class VinoDatabase {
     
 
     // 2 - Estrazione eventi 
-    public function extractEvents($lingua = 1) {
+    public function getEvents($lingua) {
         $query = "
-        SELECT EVENTO.ID_Evento, Data_Inizio, Data_Fine, Foto, Titolo, Sottotitolo, Descrizione
-        FROM EVENTO
-        JOIN TESTO_EVENTO ON EVENTO.ID_EVENTO = TESTO_EVENTO.ID_EVENTO
-        WHERE TESTO_EVENTO.Lingua = :lingua
+            SELECT 
+                E.Foto, 
+                E.Data_Inizio, 
+                E.Data_Fine, 
+                TE.Titolo, 
+                TE.Sottotitolo, 
+                TE.Descrizione
+            FROM 
+                EVENTO E
+            INNER JOIN 
+                TESTO_EVENTO TE ON E.ID_Evento = TE.ID_Evento
+            WHERE 
+                TE.Lingua = :lingua
+            ORDER BY 
+                E.Data_Inizio ASC
+            LIMIT 2
         ";
-
-        $params = [':lingua' => $lingua];
+    
+        $params = [
+            ":lingua" => $lingua,
+        ];
+    
         return $this->executeQuery($query, $params);
     }
+    
 
     // 3 - Estrazione prezzo del prodotto 
     public function getProductPrice($product_id) {
@@ -1863,5 +1879,34 @@ class VinoDatabase {
         return $this->executeQuery($query, $params);
     }
     
+    public function getTopSellingProducts($lingua) {
+        $query = "
+            SELECT 
+                P.Foto, 
+                P.ID_Prodotto, 
+                TP.Titolo, 
+                P.Prezzo, 
+                SUM(C.Quantità) AS TotalSold
+            FROM 
+                PRODOTTO P
+            INNER JOIN 
+                Compone C ON P.ID_Prodotto = C.ID_Prodotto
+            INNER JOIN 
+                TESTO_PRODOTTO TP ON P.ID_Prodotto = TP.ID_Prodotto
+            WHERE 
+                TP.Lingua = :lingua -- Filtra in base alla lingua
+            GROUP BY 
+                P.ID_Prodotto, P.Foto, TP.Titolo, P.Prezzo
+            ORDER BY 
+                TotalSold DESC
+            LIMIT 3
+        ";
+    
+        $params = [
+            ":lingua" => $lingua,
+        ];
+    
+        return $this->executeQuery($query, $params);
+    }
 }
 ?>

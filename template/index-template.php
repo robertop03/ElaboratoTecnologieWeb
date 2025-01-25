@@ -5,53 +5,83 @@
     <h2 class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Best Sellers" : "I più venduti" ?></h2>
     <p class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Discover our best-selling products, chosen by our customers. Join them and try these amazing labels yourself!" : "Scopri i nostri prodotti più venduti, scelti dai nostri clienti. Unisciti a loro e prova anche tu queste fantastiche etichette!" ?></p>
     <div class="carousel-inner text-center">
-      <div class="carousel-item active">
-        <img src="resources/img/foto1.jpg" alt="Vino 1" class="d-block w-100" />
-      </div>
-      <div class="carousel-item">
-        <img src="resources/img/foto2.jpg" alt="Vino 2" class="d-block w-100" />
-      </div>
-      <div class="carousel-item">
-        <img src="resources/img/foto3.jpg" alt="Vino 3" class="d-block w-100" />
-      </div>
+        <?php 
+        $isFirst = true;
+        foreach ($templateParams["topSellingProducts"] as $product): 
+        ?>
+        <div class="carousel-item <?php echo $isFirst ? 'active' : ''; ?>">
+            <!-- Link che porta alla pagina prodotto -->
+            <a href="prodotto.php?id=<?php echo htmlspecialchars($product["ID_Prodotto"]); ?>">
+                <img src="resources/img/<?php echo htmlspecialchars($product["Foto"]); ?>" alt="Prodotto <?php echo htmlspecialchars($product["ID_Prodotto"]); ?>" class="d-block w-100" />
+                <!-- Titolo del prodotto -->
+                <h5 class="mt-2"><?php echo htmlspecialchars($product["Titolo"]); ?></h5>
+                <!-- Prezzo del prodotto -->
+                <p class="text-muted"><?php echo number_format($product["Prezzo"], 2, ',', ' ') . ' €'; ?></p>
+            </a>
+        </div>
+        <?php 
+        $isFirst = false;
+        endforeach; 
+        ?>
     </div>
 
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselBestSeller" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
     </button>
 
     <button class="carousel-control-next" type="button" data-bs-target="#carouselBestSeller" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
     </button>
   </div>
   <!-- END CAROUSEL BEST SELLER PRODUCTS -->
 
   <!-- CAROUSEL EVENTS -->
   <div class="carousel slide mb-4" id="carouselEvents" data-bs-ride="carousel">
-    <h2 class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Events" : "Eventi" ?></h2>
-    <p class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Don't miss the most exclusive events organized by us. Join us and experience unique moments in the world of wine!" : "Non perdere gli eventi più esclusivi organizzati da noi. Partecipa e vivi esperienze uniche nel mondo del vino!" ?></p>
+    <h2 class="text-center text-sm-start">
+        <?php echo $linguaAttuale == "en" ? "Events" : "Eventi" ?>
+    </h2>
+    <p class="text-center text-sm-start">
+        <?php echo $linguaAttuale == "en" 
+            ? "Don't miss the most exclusive events organized by us. Join us and experience unique moments in the world of wine!" 
+            : "Non perdere gli eventi più esclusivi organizzati da noi. Partecipa e vivi esperienze uniche nel mondo del vino!" ?>
+    </p>
     <div class="carousel-inner text-center">
-      <div class="carousel-item active">
-        <img src="resources/img/evento1.png" alt="Evento 1" class="d-block w-100" />
-      </div>
-      <div class="carousel-item">
-        <img src="resources/img/evento2.png" alt="Evento 2" class="d-block w-100" />
-      </div>
-      <div class="carousel-item">
-        <img src="resources/img/evento3.png" alt="Evento 3" class="d-block w-100" />
-      </div>
+        <?php 
+        $isFirst = true;
+        foreach ($templateParams["events"] as $event): 
+        ?>
+        <div class="carousel-item <?php echo $isFirst ? 'active' : ''; ?>">
+            <!-- Foto dell'evento -->
+            <img src="resources/img/<?php echo htmlspecialchars($event["Foto"]); ?>" alt="<?php echo htmlspecialchars($event["Titolo"]); ?>" class="d-block w-100" />
+            <!-- Testo dell'evento -->
+            <div class="carousel-caption d-none d-md-block">
+                <h5><?php echo htmlspecialchars($event["Titolo"]); ?></h5>
+                <p><?php echo htmlspecialchars($event["Sottotitolo"]); ?></p>
+                <p class="text-muted">
+                    <?php 
+                    echo $linguaAttuale == "en" 
+                        ? "From " . htmlspecialchars(date("F j, Y", strtotime($event["Data_Inizio"]))) . " to " . htmlspecialchars(date("F j, Y", strtotime($event["Data_Fine"]))) 
+                        : "Dal " . htmlspecialchars(date("d/m/Y", strtotime($event["Data_Inizio"]))) . " al " . htmlspecialchars(date("d/m/Y", strtotime($event["Data_Fine"])));
+                    ?>
+                </p>
+            </div>
+        </div>
+        <?php 
+        $isFirst = false;
+        endforeach; 
+        ?>
     </div>
 
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselEvents" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
     </button>
 
     <button class="carousel-control-next" type="button" data-bs-target="#carouselEvents" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
     </button>
   </div>
   <!-- END CAROUSEL EVENTS -->
