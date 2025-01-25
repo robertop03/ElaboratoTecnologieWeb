@@ -32,11 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cart.forEach((item) => {
       const li = document.createElement("li")
+      const price = parseFloat(item.price)
       li.innerHTML = `
         <img src="resources/img/${item.image}" alt="${item.title}" />
         <div>
           <h4>${item.title}</h4>
-          <p>Prezzo: €${item.price.toFixed(2)}</p>
+          
+          <p>Prezzo: €${price.toFixed(2)}</p>
           <p>Quantità: 
             <button class="btn btn-sm btn-outline-secondary decrease" data-id="${item.id}">-</button>
             <span>${item.quantity}</span>
