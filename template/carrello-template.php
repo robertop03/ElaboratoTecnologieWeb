@@ -27,7 +27,7 @@
 
   <!-- CARRELLO CON PRODOTTI -->
   <div id="cart-full" class="cart-state full">
-    <h2><?php echo $linguaAttuale == "en" ? "Your shopping bag" : "La tua shopping bag" ?></h2>
+    <h3><?php echo $linguaAttuale == "en" ? "Your shopping bag" : "La tua shopping bag" ?></h3>
     <ul id="cart-items">
       <!-- Gli elementi saranno caricati dinamicamente da cart.js -->
     </ul>

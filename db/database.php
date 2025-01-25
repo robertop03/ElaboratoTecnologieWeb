@@ -1965,5 +1965,37 @@ class VinoDatabase {
     public function rollBack() {
         return $this->pdo->rollBack();
     }
+
+    public function checkProdottiQuantitaZero($idOrdine) {
+        $queryProdotti = "
+            SELECT C.ID_Prodotto
+            FROM COMPONE C
+            WHERE C.ID_Ordine = :idOrdine
+        ";
+    
+        $prodotti = $this->executeQuery($queryProdotti, [':idOrdine' => $idOrdine]);
+    
+        // Per ciascun prodotto dell'ordine, controlla la quantità di magazzino
+        foreach ($prodotti as $row) {
+            $idProdotto = $row['ID_Prodotto'];
+    
+            $queryQuantita = "
+                SELECT Quantita_Magazzino
+                FROM PRODOTTO
+                WHERE ID_Prodotto = :idProdotto
+            ";
+    
+            $result = $this->executeQuery($queryQuantita, [':idProdotto' => $idProdotto]);
+    
+            if (!empty($result)) {
+                $quantitaMagazzino = (int)$result[0]['Quantita_Magazzino'];
+    
+                // Se la quantità è zero, aggiungi una notifica
+                if ($quantitaMagazzino === 0) {
+                    addNotifica("admin@gmail.com","Prodotto sold out","prodotto andato sold out id: ".$idProdotto,"product sold out","a product is sold ou id: ".$idProdotto);
+                }
+            }
+        }
+    }
 }
 ?>

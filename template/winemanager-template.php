@@ -16,15 +16,16 @@ $vini = $db->getWinesPaginated($perPage, $offset,1,$cerca);
   <div class="d-flex justify-content-between align-items-center mb-4">
     <!-- Pulsante aggiungi vino -->
     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#aggiungiVinoModal">Aggiungi Vino</button>
-    
     <!-- Barra di ricerca -->
     <form class="d-flex" method="GET" action="">
+        <label for="cerca" class="visually-hidden">Cerca</label>
         <input 
-            type="text" 
-            class="form-control me-2" 
-            name="cerca" 
-            placeholder="Cerca..." 
-            value="<?php echo isset($_GET['cerca']) ? htmlspecialchars($_GET['cerca']) : ''; ?>"
+        type="text" 
+        id="cerca" 
+        class="form-control me-2" 
+        name="cerca" 
+        placeholder="Cerca..." 
+        value="<?php echo isset($_GET['cerca']) ? htmlspecialchars($_GET['cerca']) : ''; ?>"
         />
         <button type="submit" class="btn btn-primary">Cerca</button>
     </form>

@@ -3,7 +3,7 @@ $eventi = $db->getAllEvents();
 ?>
 
 <div class="container my-4">
-    <h2 class="mb-3">Lista Eventi</h2>
+    <h4 class="h2 mb-3">Lista Eventi</h4>
 
     <!-- Pulsante per aggiungere un evento -->
     <button class="btn btn-success mb-4" data-bs-toggle="modal" data-bs-target="#addEventModal">Aggiungi evento</button>

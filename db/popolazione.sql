@@ -61,7 +61,7 @@ INSERT INTO ATTRIBUTO (ID_Attributo, Titolo, ID_Categoria) VALUES
 
 -- Popolamento della tabella PRODOTTO
 INSERT INTO PRODOTTO (ID_Prodotto, Prezzo, Quantita_Magazzino, Foto) VALUES
-('P1', 15.50, 100, 'foto1.jpg'),
+('P1', 15.50, 5, 'foto1.jpg'),
 ('P2', 12.30, 200, 'foto2.jpg'),
 ('P3', 18.75, 150, 'foto3.jpg'),
 ('P4', 22.40, 0, 'foto4.jpg'),
