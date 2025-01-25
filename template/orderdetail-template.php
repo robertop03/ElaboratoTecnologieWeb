@@ -37,7 +37,7 @@ switch ($orderInfo['Stato']) {
   <a href="javascript:history.back()" class="btn btn-secondary btn-lg">
     <span class="bi bi-arrow-left text-light">Back</span>
   </a>
-  <h2>Dettagli Ordine</h2>
+  <h4>Dettagli Ordine</h4>
 
   <div class="row">
     <!-- Riquadro sinistra: Indirizzo di consegna -->

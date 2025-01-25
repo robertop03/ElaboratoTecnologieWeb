@@ -400,6 +400,22 @@
         <div class="orders-list">
           <?php if ($templateParams["orderCount"] > 0): ?>
             <?php foreach ($templateParams["orders"] as $order): ?>
+              <?php 
+            switch ($order['Stato']) {
+                case '0':
+                    $statoTesto = $linguaAttuale == "en" ? "Order Confirmed" : "Ordine Confermato";
+                    break;
+                case '1':
+                    $statoTesto = $linguaAttuale == "en" ? "Order Shipped" : "Ordine Spedito";
+                    break;
+                case '2':
+                    $statoTesto = $linguaAttuale == "en" ? "Order Delivered" : "Ordine Consegnato";
+                    break;
+                default:
+                    $statoTesto = $linguaAttuale == "en" ? "Unknown" : "Sconosciuto";;
+                    break;
+            }
+            ?>
               <div class="order-item" data-order-id="<?php echo htmlspecialchars($order["ID_Ordine"]); ?>">
                 <p class="fw-bold ms-2">
                   <?php echo $linguaAttuale == "en" ? "Order No: " : "N. ordine: "; ?>
@@ -416,7 +432,7 @@
                 </p>
                 <p class="ms-2">
                   <?php echo $linguaAttuale == "en" ? "Status: " : "Stato: "; ?>
-                  <?php echo htmlspecialchars($order["Stato"]); ?>
+                  <?php echo $statoTesto;?>
                 </p>
                 <a href="orderdetails.php?id=<?php echo urlencode($order['ID_Ordine']); ?>" class="text-decoration-none pb-1 ms-2"  
                   data-order-id="<?php echo htmlspecialchars($order["ID_Ordine"]); ?>">
