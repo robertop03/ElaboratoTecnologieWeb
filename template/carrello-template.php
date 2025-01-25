@@ -35,7 +35,7 @@
 
   <!-- RIASSUNTO ORDINE -->
   <aside id="order-summary" class="order-summary">
-    <h3><?php echo $linguaAttuale == "en" ? "Order summary" : "Riassunto dell'ordine" ?></h3>
+    <h4><?php echo $linguaAttuale == "en" ? "Order summary" : "Riassunto dell'ordine" ?></h4>
     <div class="summary-item">
       <span><?php echo $linguaAttuale == "en" ? "Subtotal:" : "Subtotale:" ?></span>
       <strong id="subtotal-price">€0,00</strong>
