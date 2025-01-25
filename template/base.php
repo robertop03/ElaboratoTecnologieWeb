@@ -45,10 +45,10 @@
             </a>
             <!-- Icone Mobile -->
             <div class="d-flex align-items-center">
-              <a href="carrello.php" class="text-decoration-none me-3" aria-label="icona carrello">
+              <a href="carrello.php" class="text-decoration-none me-3" aria-label="icona carrello" title="Vai al carrello">
                 <span class="bi bi-cart" role="img" aria-hidden="true"></span>
               </a>
-              <a href="login.php" class="text-decoration-none" aria-label="icona utente">
+              <a href="login.php" class="text-decoration-none" aria-label="icona utente" title="Vai al tuo profilo">
                 <span class="bi bi-person" role="img" aria-hidden="true"></span>
               </a>
               <?php if(isset(($_SESSION["email"]))): ?>
@@ -100,10 +100,10 @@
                   >
                 </ul>
               </div>
-              <a href="carrello.php" class="text-decoration-none me-3" aria-label="icona carrello">
+              <a href="carrello.php" class="text-decoration-none me-3" aria-label="icona carrello" title="Vai al carrello">
                 <span class="bi bi-cart" role="img" aria-hidden="true"></span>
               </a>
-              <a href="login.php" class="text-decoration-none" aria-label="icona utente">
+              <a href="login.php" class="text-decoration-none" aria-label="icona utente" title="Vai al carrello">
                 <span class="bi bi-person" role="img" aria-hidden="true"></span>
               </a>
               <?php if(isset(($_SESSION["email"]))): ?>
