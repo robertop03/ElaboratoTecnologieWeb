@@ -26,7 +26,7 @@
 
     <!-- Dettagli Prodotto -->
     <div class="col-12 col-md-6 mx-auto text-center">
-      <h1 class="h4 mt-4"><?php echo $vino[0]["Titolo_Prodotto"]; ?></h1>
+      <h4 class="mt-4"><?php echo $vino[0]["Titolo_Prodotto"]; ?></h4>
       <p><?php echo $vino[0]["Sottotitolo"]; ?></p>
       <p class="fw-bold fs-5"><?php echo number_format($vino[0]["Prezzo"], 2, ',', '.')."€"; ?></p>
 
@@ -65,9 +65,9 @@
       </div>
 
       <!-- Caratteristiche Prodotto -->
-      <h2 class="h5 mt-3 pt-2 mb-3 pb-2">
+      <h4 class="h5 mt-3 pt-2 mb-3 pb-2">
         <?php echo $linguaAttuale == "en" ? "Features" : "Caratteristiche"; ?>
-      </h2>
+      </h4>
       <p><?php echo $vino[0]["Descrizione"]; ?></p>
     </div>
 
@@ -76,9 +76,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="h5 modal-title" id="confirmRemoveLabel">
+            <h4 class="h5 modal-title">
               <?php echo $linguaAttuale == "en" ? "Remove Favorite" : "Rimuovi Preferito"; ?>
-            </h1>
+            </h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">

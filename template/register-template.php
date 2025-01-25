@@ -1,6 +1,6 @@
 <!-- FORM DI REGISTRAZIONE -->
 <div class="container my-5">
-  <h1 class="text-center fw-bold mb-4"><?php echo $linguaAttuale == "en" ? "Create account" : "Crea account" ?></h1>
+  <h4 class="h1 text-center fw-bold mb-4"><?php echo $linguaAttuale == "en" ? "Create account" : "Crea account" ?></h4>
   <?php if(isset($templateParams["errore"])): ?>
     <div class="alert alert-danger">
       <?php echo $templateParams["errore"]; ?>

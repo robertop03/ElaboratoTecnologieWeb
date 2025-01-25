@@ -1,6 +1,6 @@
 <!-- FORM DI LOGIN -->
 <div class="container my-5">
-  <h1 class="text-center fw-bold mb-4">Login</h1>
+  <h4 class="h1 text-center fw-bold mb-4">Login</h4>
   <?php if(isset($templateParams["errorelogin"])): ?>
   <p class="text-center"><?php echo $templateParams["errorelogin"]; ?></p>
   <?php endif; ?>
