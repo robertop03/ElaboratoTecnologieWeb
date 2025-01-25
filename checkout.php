@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
 
     if ($data["action"] === "confirmOrder") {
-        try {
+        //try {
             // Recupera i dati inviati dal frontend
             $cart = $data["cart"];
             $paymentMethodId = $data["paymentMethodId"];
@@ -75,22 +75,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $db->updateProductStock($item["id"], $item["quantity"]);
             }
     
-            // Conferma la transazione
-            $db->commit();
-    
             $db->addNotifica($userEmail, "Ordine ricevuto!", "Abbiamo ricevuto il tuo ordine! Attendi 3/5 giorni lavorativi per la spedizione.", "Order received", "Your order has been received from the system! Wait 3/5 working day for shipping." );
             $db->checkProdottiQuantitaZero($orderId);
+
+            // Conferma la transazione
+            $db->commit();
+
             // Rispondi con successo
             header("Content-Type: application/json");
             echo json_encode(["success" => true, "message" => "Ordine creato con successo!"]);
-        } catch (Exception $e) {
+        /*} catch (Exception $e) {
             // Annulla la transazione in caso di errore
             $db->rollBack();
     
             // Rispondi con errore
             header("Content-Type: application/json");
             echo json_encode(["success" => false, "message" => $e->getMessage()]);
-        }
+        }*/
         exit();
     }
 }

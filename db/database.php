@@ -1035,7 +1035,7 @@ class VinoDatabase {
             // Avvia la transazione
             $this->pdo->beginTransaction();
 
-            $idEvento = 'E' . substr(uniqid(), 0, 8);
+            $idEvento = 'E' . substr(uniqid(), 4, 8);
     
             // Inserisci l'evento nella tabella EVENTO
             $queryEvento = "
@@ -1051,8 +1051,8 @@ class VinoDatabase {
             $this->executeQuery($queryEvento, $paramsEvento);
     
             // Genera ID_Testo per italiano e inglese
-            $idTestoIT = 'TI' . substr(uniqid(), 0, 8);
-            $idTestoEN = 'TE' . substr(uniqid(), 0, 8);
+            $idTestoIT = 'TI' . substr(uniqid(), 4, 8);
+            $idTestoEN = 'TE' . substr(uniqid(), 4, 8);
     
             // Inserisci il testo in italiano
             $queryTestoIT = "
@@ -1307,7 +1307,7 @@ class VinoDatabase {
             $this->pdo->beginTransaction();
     
             // Genera ID univoco per il prodotto
-            $idProdotto = 'P' . substr(uniqid(), 0, 8);
+            $idProdotto = 'P' . substr(uniqid(), 4, 8);
     
             // Inserimento nella tabella PRODOTTO
             $queryProdotto = "
@@ -1322,8 +1322,8 @@ class VinoDatabase {
             ]);
     
             // Genera ID_Testo per italiano e inglese
-            $idTestoIT = 'TI' . substr(uniqid(), 0, 8);
-            $idTestoEN = 'TE' . substr(uniqid(), 0, 8);
+            $idTestoIT = 'TI' . substr(uniqid(), 4, 8);
+            $idTestoEN = 'TE' . substr(uniqid(), 4, 8);
     
             // Inserimento testo in Italiano
             $queryTestoIT = "
@@ -1765,26 +1765,24 @@ class VinoDatabase {
         $titoloEN,
         $testoEN
     ) {
-        try {
-            $this->pdo->beginTransaction();
     
             // Genera ID univoco per la notifica
-            $idNotifica = 'N' . substr(uniqid(), 0, 8);
+            $idNotifica = 'NT' . substr(uniqid(), 4, 8);
             $data = date('Y-m-d');
-            // Inserimento nella tabella PRODOTTO
-            $queryProdotto = "
+            // Inserimento nella tabella Notifica
+            $queryNotifica = "
                 INSERT INTO NOTIFICA (ID_NOTIFICA, Data, Visualizzato, Email)
                 VALUES (:idNotifica, :data, 'N', :email)
             ";
-            $this->executeQuery($queryProdotto, [
+            $this->executeQuery($queryNotifica, [
                 ':idNotifica' => $idNotifica,
                 ':data' => $data,
                 ':email' => $email
             ]);
     
             // Genera ID_Testo per italiano e inglese
-            $idTestoIT = 'TI' . substr(uniqid(), 0, 8);
-            $idTestoEN = 'TE' . substr(uniqid(), 0, 8);
+            $idTestoIT = 'TI' . substr(uniqid(), 4, 8);
+            $idTestoEN = 'TE' . substr(uniqid(), 4, 8);
     
             // Inserimento testo in Italiano
             $queryTestoIT = "
@@ -1810,12 +1808,7 @@ class VinoDatabase {
                 ':idNotifica' => $idNotifica
             ]);
     
-            $this->pdo->commit();
             return true;
-        } catch (Exception $e) {
-            $this->pdo->rollBack();
-            throw $e;
-        }
     }
 
     public function getAddressById($addressId) {
@@ -1992,7 +1985,7 @@ class VinoDatabase {
     
                 // Se la quantità è zero, aggiungi una notifica
                 if ($quantitaMagazzino <= 0) {
-                    addNotifica("admin@gmail.com","Prodotto sold out","prodotto andato sold out id: ".$idProdotto,"product sold out","a product is sold ou id: ".$idProdotto);
+                    $this->addNotifica("admin@gmail.com","Prodotto sold out","prodotto andato sold out id: ".$idProdotto,"product sold out","a product is sold ou id: ".$idProdotto);
                 }
             }
         }
