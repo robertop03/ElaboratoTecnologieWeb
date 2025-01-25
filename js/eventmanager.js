@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .catch(error => {
-                console.error("Errore:", error);
+                console.error("Errore:", data.message);
             });
         });
     });
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     window.location.reload();
             })
             .catch(error => {
-                console.error("Errore:", error);
+                console.error("Errore:", data.message);
             });
             
         });
