@@ -2,7 +2,7 @@
 <div class="content-main">
   <!-- CAROUSEL BEST SELLER PRODUCTS -->
   <div class="carousel slide mb-4" id="carouselBestSeller" data-bs-ride="carousel">
-    <h4 class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Best Sellers" : "I più venduti" ?></h4>
+    <h4 class="h3 text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Best Sellers" : "I più venduti" ?></h4>
     <p class="text-center text-sm-start"><?php echo $linguaAttuale == "en" ? "Discover our best-selling products, chosen by our customers. Join them and try these amazing labels yourself!" : "Scopri i nostri prodotti più venduti, scelti dai nostri clienti. Unisciti a loro e prova anche tu queste fantastiche etichette!" ?></p>
     <div class="carousel-inner text-center">
         <?php 
@@ -39,7 +39,7 @@
 
   <!-- CAROUSEL EVENTS -->
   <div class="carousel slide mb-4" id="carouselEvents" data-bs-ride="carousel">
-    <h4 class="text-center text-sm-start">
+    <h4 class="h3 text-center text-sm-start">
         <?php echo $linguaAttuale == "en" ? "Events" : "Eventi" ?>
     </h4>
     <p class="text-center text-sm-start">
