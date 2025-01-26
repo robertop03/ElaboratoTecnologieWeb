@@ -9,18 +9,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data.success) {
                     const evento = data.evento;
 
-                    // Popola i campi generali dell'evento
                     document.querySelector("#modificaEventoId").value = evento.ID_Evento;
                     document.querySelector("#modificaDataInizio").value = evento.Data_Inizio;
                     document.querySelector("#modificaDataFine").value = evento.Data_Fine;
                     document.querySelector("#modificaFoto").value = evento.Foto;
 
-                    // Popola i campi per la lingua italiana
                     document.querySelector("#modificaTitoloIT").value = evento.Titolo_IT;
                     document.querySelector("#modificaSottotitoloIT").value = evento.Sottotitolo_IT;
                     document.querySelector("#modificaDescrizioneIT").value = evento.Descrizione_IT;
 
-                    // Popola i campi per la lingua inglese
                     document.querySelector("#modificaTitoloEN").value = evento.Titolo_EN;
                     document.querySelector("#modificaSottotitoloEN").value = evento.Sottotitolo_EN;
                     document.querySelector("#modificaDescrizioneEN").value = evento.Descrizione_EN;

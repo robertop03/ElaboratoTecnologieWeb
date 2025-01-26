@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".btn-cambia-stato").forEach((button) => {
     button.addEventListener("click", function () {
-      const id = this.dataset.id // dataset è un modo comodo per accedere agli attributi data-*
+      const id = this.dataset.id 
 
       // AJAX Request
       fetch("api/modifica-stato-ordine.php", {

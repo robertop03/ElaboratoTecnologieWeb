@@ -1,17 +1,15 @@
 <?php
-// dettagli_ordine.php
-
 $idOrdine = isset($_GET['id']) ? $_GET['id'] : '';
 
 if ($idOrdine === '') {
     die("ID Ordine non valido (manca o è vuoto).");
 }
 
-// 2. Recupera i dati dell'ordine dal database
-$orderInfo  = $db->getOrderInfo($idOrdine);  // es.: ID, Data, Stato, Email, Totale, Indirizzo, Metodo di pagamento
-$orderItems = $db->getOrderItems($idOrdine); // es.: ID_Prodotto, Titolo, Prezzo, Quantità
+//Recupera i dati dell'ordine dal database
+$orderInfo  = $db->getOrderInfo($idOrdine);  
+$orderItems = $db->getOrderItems($idOrdine);
 
-// 3. Se l'ordine non esiste, mostra errore
+//Se l'ordine non esiste, mostra errore
 if (!$orderInfo) {
     die("Ordine non trovato.");
 }
