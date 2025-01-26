@@ -16,8 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const indirizzoField = document.querySelector("#indirizzo");
     const capField = document.querySelector("#cap");
     const comuneField = document.querySelector("#comune");
-    const provinciaField = document.querySelector("#provincia");
-    const telefonoField = document.querySelector("#telefono");
 
     // Estrai i dati dalla card
     const info = card.dataset.info.split(", ");
@@ -38,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const numeroCartaField = document.querySelector("#numeroCarta");
     const meseScadenzaField = document.querySelector("#meseScadenza");
     const annoScadenzaField = document.querySelector("#annoScadenza");
-    const cvvField = document.querySelector("#cvv");
 
     if (!carta.dataset.cardNumber || !carta.dataset.cardExpiry) {
       console.error("Errore: dati della carta mancanti!");
@@ -60,30 +57,28 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedPaymentMethodId = carta.dataset.id;
   }
 
-  // Aggiungi listener alle card degli indirizzi
-  const addressCards = document.querySelectorAll(".selectable-address");
-  addressCards.forEach((card) => {
-    card.addEventListener("click", () => {
+  // Usa `onClick` direttamente per le card degli indirizzi
+  document.querySelectorAll(".selectable-address").forEach((card) => {
+    card.onclick = () => {
       selezionaIndirizzo(card);
       const addressModalElement = document.querySelector("#addressModal");
       const addressModal = addressModalElement
         ? bootstrap.Modal.getInstance(addressModalElement)
         : null;
       if (addressModal) addressModal.hide();
-    });
+    };
   });
 
-  // Aggiungi listener alle card delle carte di credito
-  const creditCardCards = document.querySelectorAll(".selectable-card");
-  creditCardCards.forEach((card) => {
-    card.addEventListener("click", () => {
+  // Usa `onClick` direttamente per le card delle carte di credito
+  document.querySelectorAll(".selectable-card").forEach((card) => {
+    card.onclick = () => {
       selezionaCarta(card);
       const cardModalElement = document.querySelector("#creditCardModal");
       const cardModal = cardModalElement
         ? bootstrap.Modal.getInstance(cardModalElement)
         : null;
       if (cardModal) cardModal.hide();
-    });
+    };
   });
 
   // Funzione per confermare l'ordine
@@ -92,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const orderModalTitle = document.querySelector("#orderModalLabel");
   const orderModalBody = document.querySelector("#orderModal .modal-body");
 
-  confirmOrderButton.addEventListener("click", async () => {
+  confirmOrderButton.onclick = async () => {
     try {
       // Recupera il carrello dal cookie
       const cartCookie = getCookie("cart");
@@ -154,5 +149,5 @@ document.addEventListener("DOMContentLoaded", () => {
       confirmOrderButton.textContent = "Conferma l'ordine";
       confirmOrderButton.disabled = false;
     }
-  });
+  };
 });
