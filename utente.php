@@ -40,8 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
 
             // Risposta JSON per AJAX
-            header("Content-Type: application/json");
-            echo json_encode(["success" => $success, "id" => $id ?: $db->getLastInsertId()]);
+            header("Location: utente.php");
             exit();
         }
     } elseif (isset($_POST['action']) && $_POST['action'] === 'getOrderDetails') {
