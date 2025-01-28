@@ -177,6 +177,11 @@
 
     <!-- MAIN SECTION -->
     <main class="<?php echo $templateParams['mainClasses']; ?>">
+      <?php
+      if (!isset($_COOKIE['cookiesAccepted'])) {
+        require('cookie.php');  
+      }
+      ?>
       <?php require("modale-mappa.php"); ?>
       <?php require($templateParams["nome"]); ?>
     </main>
